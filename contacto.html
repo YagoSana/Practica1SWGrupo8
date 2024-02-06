@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contacto</title>
+</head>
+<body>
+    <h1>Contacto para UCMusic</h1>
+    <p>Por favor, rellene el siguiente formulario para contactar con nosotros:</p>
+    
+    <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+
+        <label for="email">Email de contacto:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label>Motivo de la consulta:</label><br>
+        <input type="radio" id="evaluacion" name="motivo" value="evaluacion" required>
+        <label for="evaluacion">Evaluación</label><br>
+        <input type="radio" id="sugerencias" name="motivo" value="sugerencias" required>
+        <label for="sugerencias">Sugerencias</label><br>
+        <input type="radio" id="criticas" name="motivo" value="criticas" required>
+        <label for="criticas">Críticas</label><br><br>
+
+        <input type="checkbox" id="terminos" name="terminos" required>
+        <label for="terminos">Marque esta casilla para verificar que ha leído nuestros términos y condiciones del servicio</label><br><br>
+
+        <label for="consulta">Consulta:</label><br>
+        <textarea id="consulta" name="consulta" rows="4" cols="50" required></textarea><br><br>
+
+        <input type="submit" value="Enviar">
+        <input type="reset" value="Limpiar">
+    </form>
+    
+</body>
+
+<!--
+    Es una página que contiene un formulario de contacto. El formulario se implementará
+para que la información se envíe en forma de correo electrónico, usando la función
+mailto.
+El formulario debe pedir al usuario los siguientes datos:
+• Nombre
+• Dirección de email de contacto
+• Motivo de la consulta, con radio buttons:
+o Evaluación
+o Sugerencias
+o Críticas
+• Un checkbox para marcar junto a la frase: “Marque esta casilla para verificar
+que ha leído nuestros términos y condiciones del servicio”6
+.
+• Un cuadro de texto para que el usuario escriba la consulta.
+-->
+
+</html>
