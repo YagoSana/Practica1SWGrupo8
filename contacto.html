@@ -18,45 +18,45 @@
             <a href="bocetos.html">Bocetos</a>
             <a href="planificacion.html">Planificaci&oacute;n</a>
         </nav>
-        <p>Por favor, rellene el siguiente formulario para contactar con nosotros:</p>
-        <p>
+        <section>
+            <h4>Por favor, rellene el siguiente formulario para contactar con nosotros:</h4>
             <form action="mailto:contactoBackMusic@ucm.es" method="post" enctype="text/plain"> <!-- correo inventado -->
-                <section>
+                <p>
                     <label for="nombre">Nombre:</label>
                     <input type="text" id="nombre" name="nombre" required>
-                </section>
-                <section>
+                </p>
+                <p>
                     <label for="email">Email de contacto:</label>
                     <input type="email" id="email" name="email" required>
-                </section>
-                <section>
+                </p>
+                <p>
                     Motivo de la consulta:
-                </section>
-                <section>
+                </p>
+                <p>
                     <input type="radio" id="evaluacion" name="motivo" value="evaluacion" required>
                     <label for="evaluacion">Evaluaci&oacute;n</label>
-                </section>
-                <section>
+                </p>
+                <p>
                     <input type="radio" id="sugerencias" name="motivo" value="sugerencias" required>
                     <label for="sugerencias">Sugerencias</label>
-                </section>
-                <section>
+                </p>
+                <p>
                     <input type="radio" id="criticas" name="motivo" value="criticas" required>
                     <label for="criticas">Cr&iacute;ticas</label>
-                </section>
-                <section>
+                </p>
+                <p>
                     <input type="checkbox" id="terminos" name="terminos" required>
                     <label for="terminos">Marque esta casilla para verificar que ha le&iacute;do nuestros t&eacute;rminos y condiciones del servicio</label>
-                </section>
-                <section>
+                </p>
+                <p>
                     Consulta:
-                </section>
-                <section>
+                </p>
+                <p>
                     <textarea id="consulta" name="consulta" rows="4" cols="50" required></textarea>
-                </section>
+                </p>
                 <input type="submit" value="Enviar">
                 <input type="reset" value="Limpiar">
             </form>
-        </p>
+        </section>
     </body>
 </html>
