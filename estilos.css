@@ -1,0 +1,73 @@
+body {
+	background-color: #cdcdcd;
+}
+
+div#contenedor {
+	width: 100%;
+	background-color: #cdcdcd;
+	margin-top: 30px;
+}
+
+header {
+	padding: 30px;
+	height: 100px;
+	background-color: #303030;
+	color: white;
+}
+
+header a, header a:visited {
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+} 
+
+header a:hover {
+	color: red;
+	font-weight: bold;
+	text-decoration: underline;
+} 
+
+
+nav {
+	color: #d86767;
+	padding: 10px;
+	float: left;
+	width: 15%;
+	height: 70%;
+	background-color: #cdcdcd;
+}
+
+nav a, nav a:visited {
+	color: #d86767;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+nav a:hover {
+	text-decoration: underline;
+} 
+
+main {
+	padding: 20px;
+	float: right;
+	min-height: 600px;
+	width: 75%;
+	background-color: white;
+}
+
+footer	 {
+	clear: both;
+	padding: 20px;
+	background-color: #303030;
+	color: white;
+	text-align: center;
+}
+
+div.cabecera {
+	width: 100%;
+	text-align: left;
+}
+
+button {
+	margin-left: 100px;
+} 
