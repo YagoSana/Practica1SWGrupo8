@@ -18,7 +18,6 @@
                     música algo para todos. Se puede disfrutar de nuestros servicios tanto online como en la tienda, 
                     desde comprar instrumentos hasta poder venderlos y recibir dinero para próximos descuentos en la tienda.
                     </p>
-                    <img src="../img/backMusicLogo.png" alt="logoBackMusic" width="200" height="200">
                 </section>
                 <section>
                     <h2>Artículos destacados</h2>

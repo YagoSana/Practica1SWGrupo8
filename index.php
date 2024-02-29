@@ -23,7 +23,6 @@
                         una sección en la que vender instrumentos o álbumes (desde vinilos hasta CDs) y recibir dinero
                         por ello, para poder usar en la tienda y tener descuento en productos.
                     </p>
-                    <img src="../img/backMusicLogo.png" alt="logoBackMusic" width="200" height="200">
                     </section>
                 </article>
             </main>
