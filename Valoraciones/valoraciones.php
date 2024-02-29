@@ -14,7 +14,7 @@
                     <section>
                         <h2>Valoraciones Back Music</h2>
                         <p>
-                        Esta el la secci&oacute;n de valoraciones de Back Music. Aqu&iacute; podr&aacute;s encontrar las valoraciones de nuestros clientes.
+                        Esta el la secci&oacute;n de valoraciones de Back Music. Aquí; podrá;s encontrar las valoraciones de nuestros clientes.
                         </p>
                     </section>
                 </article>

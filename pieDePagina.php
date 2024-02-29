@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
     <footer>
-        Pie de p&aacute;gina
+        Pie de pá;gina
     </footer>
 </html>

@@ -14,7 +14,7 @@
                     <section>
                         <h2>Compras Back Music</h2>
                         <p>
-                        Esta el la secci&oacute;n de compras de Back Music. Aqu&iacute; podr&aacute;s encontrar las compras de nuestros clientes.
+                        Esta el la secci&oacute;n de compras de Back Music. Aquí; podrá;s encontrar las compras de nuestros clientes.
                         </p>
                     </section>
                 </article>
