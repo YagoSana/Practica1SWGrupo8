@@ -14,7 +14,7 @@
                     <section>
                         <h2>Ventas Back Music</h2>
                         <p>
-                        Esta el la secci&oacute;n de ventas de Back Music. Aqu&iacute; podr&aacute;s encontrar las ventas de nuestros clientes.
+                        Esta el la sección de ventas de Back Music. Aquí podrís encontrar las ventas de nuestros clientes.
                         </p>
                     </section>
                 </article>
