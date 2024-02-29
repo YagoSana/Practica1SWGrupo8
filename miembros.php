@@ -16,16 +16,16 @@
         
                     <p>Los miembros del grupo 8 de sw somos:</p>
                     <p>
-                        <a href="#miembro1">&Aacute;lvaro F&eacute;lix</a>
+                        <a href="#miembro1">Álvaro Fé;lix</a>
                         <a href="#miembro2">Mohamed El Farissi</a>
                         <a href="#miembro3">Laura Reyes</a>
                         <a href="#miembro4">Yago Sanabria</a>
                     </p>
                     <section>
-                        <h2 id="miembro1">&Aacute;lvaro F&eacute;lix</h2>
+                        <h2 id="miembro1">Álvaro Félix</h2>
                         <img src="../img/AlvaroFelix.jpg" alt="Foto de Alvaro">
                         <p>Correo: alfelix@ucm.es</p>
-                        <p>Intereses: Me gusta la m&uacute;sica cl&aacute;sica y tocar el piano.</p>
+                        <p>Intereses: Me gusta la música clásica y tocar el piano.</p>
                     </section>
                     <section> 
                         <h2 id="miembro2">Mohamed El Farissi</h2>

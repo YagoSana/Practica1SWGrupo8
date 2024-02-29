@@ -26,7 +26,7 @@
                             </p>
                             <p>
                                 <input type="radio" id="evaluacion" name="motivo" value="evaluacion" required>
-                                <label for="evaluacion">Evaluaci&oacute;n</label>
+                                <label for="evaluacion">Evaluación</label>
                             </p>
                             <p>
                                 <input type="radio" id="sugerencias" name="motivo" value="sugerencias" required>
@@ -34,11 +34,11 @@
                             </p>
                             <p>
                                 <input type="radio" id="criticas" name="motivo" value="criticas" required>
-                                <label for="criticas">Cr&iacute;ticas</label>
+                                <label for="criticas">Críticas</label>
                             </p>
                             <p>
                                 <input type="checkbox" id="terminos" name="terminos" required>
-                                <label for="terminos">Marque esta casilla para verificar que ha le&iacute;do nuestros t&eacute;rminos y condiciones del servicio</label>
+                                <label for="terminos">Marque esta casilla para verificar que ha leído nuestros términos y condiciones del servicio</label>
                             </p>
                             <p>
                                 Consulta:

@@ -12,14 +12,18 @@
             <main>
             <article>
                 <section>
-                <h2>&iquest;Qui&eacute;nes Somos?</h2>
-                <p>
-                Somos una peque&ntilde;a tienda en el centro de Madrid, en el barrio Chamart&iacute;n, que quiere hacer el acceso a la 
-                m&uacute;sica algo para todos. Se puede disfrutar de nuestros servicios tanto online como en la tienda, 
-                desde comprar instrumentos hasta poder venderlos y recibir dinero para pr&oacute;ximos descuentos en la tienda.
-                </p>
-                <img src="../img/backMusicLogo.png" alt="logoBackMusic" width="200" height="200">
-            </section>
+                    <h2>¿Quiénes somos?</h2>
+                    <p>
+                    Somos una pequeña tienda en el centro de Madrid, en el barrio Chamartín, que quiere hacer el acceso a la 
+                    música algo para todos. Se puede disfrutar de nuestros servicios tanto online como en la tienda, 
+                    desde comprar instrumentos hasta poder venderlos y recibir dinero para próximos descuentos en la tienda.
+                    </p>
+                    <img src="../img/backMusicLogo.png" alt="logoBackMusic" width="200" height="200">
+                </section>
+                <section>
+                    <h2>Artículos destacados</h2>
+                    <p>Aquí se mostrarán los artículos más vendidos de la tienda.</p>
+                </section>
             </article>
             </main>
             <?php include("pieDePagina.php"); ?>

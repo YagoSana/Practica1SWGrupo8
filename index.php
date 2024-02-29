@@ -14,14 +14,14 @@
                 <article>
                     <section>
                     <h2>
-                        &iquest;Qu&eacute; es Black Music?
+                        ¿Qué es Back Music?
                     </h2>
                     <p>
-                        Este proyecto va a consistir en crear una aplicaci&oacute;n web para una tienda de m&uacute;sica
-                        en la que se vendan elementos de primera mano como instrumentos de m&uacute;sica, &aacute;lbumes de m&uacute;sica
-                        separados por categor&iacute;as musicales e incluso algo de merchandising. Por otra parte habr&aacute; 
-                        una secci&oacute;n en la que vender instrumentos o &aacute;lbumes (desde vinilos hasta CDs) y recibir dinero
-                        por ello para poder usar en la tienda y asi tener algo de descuento en productos.
+                        Este proyecto va a consistir en crear una aplicación web para una tienda de música
+                        en la que se vendan elementos de primera mano como instrumentos de música, álbumes de música
+                        separados por categorías musicales e incluso, algo de merchandising. Por otra parte, habrá 
+                        una sección en la que vender instrumentos o álbumes (desde vinilos hasta CDs) y recibir dinero
+                        por ello, para poder usar en la tienda y tener descuento en productos.
                     </p>
                     <img src="../img/backMusicLogo.png" alt="logoBackMusic" width="200" height="200">
                     </section>
