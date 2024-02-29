@@ -2,7 +2,7 @@
 <html lang="es">
     <head>
         <?php include("../header.php"); ?>
-        <title>Valoraciones Back Music</title>
+        <title>Ventas Back Music</title>
     </head>
     <body>
         <div id="contenedor">
@@ -12,7 +12,7 @@
             <main>
                 <article>
                     <section>
-                        <h2>Valoraciones Back Music</h2>
+                        <h2>Ventas Back Music</h2>
                         <p>
                         Esta el la secci&oacute;n de ventas de Back Music. Aqu&iacute; podr&aacute;s encontrar las ventas de nuestros clientes.
                         </p>
