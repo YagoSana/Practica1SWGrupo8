@@ -19,7 +19,7 @@
         
                     <p>Los miembros del grupo 8 de sw somos:</p>
                     <p>
-                        <a href="#miembro1">Álvaro Fé;lix</a>
+                        <a href="#miembro1">Álvaro Félix</a>
                         <a href="#miembro2">Mohamed El Farissi</a>
                         <a href="#miembro3">Laura Reyes</a>
                         <a href="#miembro4">Yago Sanabria</a>
