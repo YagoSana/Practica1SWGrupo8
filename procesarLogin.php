@@ -9,7 +9,7 @@
     } else if ($username == "admin"&& $password == "adminpass") {
         $_SESSION["login"] = true;
         $_SESSION["nombre"] = "Administador";
-        $_SESSION["esAdmin"] = "true";
+        $_SESSION["esAdmin"] = true;
     }
 ?>
 <!DOCTYPE html>
