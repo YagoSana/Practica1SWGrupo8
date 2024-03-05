@@ -31,8 +31,11 @@
                         </p>
                         <p>
                                 <label for="articulo_descripcion">Descripcion del Articulo:</label>
-                                <input tpye="text" id="articulo_descripcion" name="articulo_descripcion">
                         </p>
+                        <p>
+                                <textarea id="articulo_descripcion" name="articulo_descripcion" rows="4" cols="50" required></textarea>
+                        </p>
+
                         <p>
                                 <label for="articulo_precio">Precio del Articulo:</label>
                                 <input tpye="text" id="articulo_precio" name="articulo_precio">
