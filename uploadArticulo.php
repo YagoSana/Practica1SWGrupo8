@@ -22,20 +22,20 @@
             <main>
                 <form action="procesarArticulo.php" method="POST">
                         <p>
-                                <label for="id">ID del Articulo:</label>
-                                <input type="text" id="id" name="id">
+                                <label for="articulo_id">ID del Articulo:</label>
+                                <input type="text" id="articulo_id" name="articulo_id">
                         </p>
                         <p>
-                                <label for="nombre">Nombre del Articulo:</label>
-                                <input type="text" id="nombre" name="nombre">
+                                <label for="articulo_nombre">Nombre del Articulo:</label>
+                                <input type="text" id="articulo_nombre" name="articulo_nombre">
                         </p>
                         <p>
-                                <label for="descripcion">Descripcion del Articulo:</label>
-                                <input tpye="text" id="descripcion" name="descripcion">
+                                <label for="articulo_descripcion">Descripcion del Articulo:</label>
+                                <input tpye="text" id="articulo_descripcion" name="articulo_descripcion">
                         </p>
                         <p>
-                                <label for="precio">Precio del Articulo:</label>
-                                <input tpye="text" id="precio" name="precio">
+                                <label for="articulo_precio">Precio del Articulo:</label>
+                                <input tpye="text" id="articulo_precio" name="articulo_precio">
                         </p>
                         <input type="submit" value="Subir Articulo">
                 </form>
