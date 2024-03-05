@@ -17,35 +17,7 @@
                         Esta el la sección de compras de Back Music. Aquí podrís encontrar las compras de nuestros clientes.
                         </p>
 
-                        <?php
-                        $serverName = "localhost";
-                        $userName = "username";
-                        $password = "password";
-                        $dbName = "BDsw24";
-
-
-                        //Hacemos conexion con la base de datos
-                        $conexion = new mysqli($serverName, $userName, $password); //añadir nombres de variables globales
-                        
-                        if ($conexion->connect_error) {
-
-                            die("Database connection failed: " . $conn->connect_error);
-                        }
-
-                        //Create DataBase
-                        $sql = "CREATE DATABASE BDsw24";
-                        if ($conexion->query($sql) === TRUE) {
-
-                            echo "DataBase created successfully";
-                        }
-                        else {
-
-                            echo "Error creating DataBase: " . $conexion->error;
-                        }
-                        
-                        //Hacemos una consulta para obtener productos
-
-                        ?>
+                       
                     </section>
                 </article>
             </main>
