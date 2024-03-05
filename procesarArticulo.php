@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-//Conexion a la base de datos
-$db = new mysqli('localhost', 'username', 'password', 'database');
+//Conexion a la base de datos, user y password de vustras cuenta root(previamente creada), junto al nombre del archivo con la bd
+$db = new mysqli('127.0.0.1', 'username', 'password', 'bd');
 
 if($db->connect_error) {
 
@@ -16,7 +16,7 @@ $articulo_precio = floatval($_POST['articulo_precio']);
 
 //Insertamos el producto en la base de datos
 
-$sql "INSERT INTO articulos (articulo_id, articulo_nombre, articulo_descripcion, articulo_precio) VALUES ($articulo_id, '$articulo_nombre', '$articulo_descripcion', '$articulo_precio')";
+$sql = "INSERT INTO articulos (articulo_id, articulo_nombre, articulo_descripcion, articulo_precio) VALUES ('$articulo_id', '$articulo_nombre', '$articulo_descripcion', '$articulo_precio')";
 
 if($db->query($sql) === TRUE){
     echo "Se ha subido el articulo a la BD de manera exitosa";
