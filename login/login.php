@@ -14,6 +14,7 @@
             <?php include("../scripts/lateralIzq.php"); ?>
 
             <main>
+                <h2>Inicio de sesión en BackMusic</h2>
                 <form action="../login/procesarLogin.php" method="POST">
                 <p>
                     <label for="username">Username:</label>
@@ -25,6 +26,9 @@
                 </p>
                     <input type="submit" value="Login">
                 </form>
+
+                <h3>¿No tienes cuenta en nuestra web?</h3>
+                <p>Regístrate como un nuevo usuario <a href="../login/register.php">aquí</a></p>
             </main>
             <?php include("../scripts/pieDePagina.php"); ?>
         </div>
