@@ -4,17 +4,17 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <?php include("header.php"); ?>
+        <?php include("../scripts/header.php"); ?>
         <title>Login Back Music</title>
     </head>  
     <body>
         <div id="contenedor">
            
-            <?php include("cabecera.php"); ?>
-            <?php include("lateralIzq.php"); ?>
+            <?php include("../scripts/cabecera.php"); ?>
+            <?php include("../scripts/lateralIzq.php"); ?>
 
             <main>
-                <form action="procesarLogin.php" method="POST">
+                <form action="../login/procesarLogin.php" method="POST">
                 <p>
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" required>
@@ -26,7 +26,7 @@
                     <input type="submit" value="Login">
                 </form>
             </main>
-            <?php include("pieDePagina.php"); ?>
+            <?php include("../scripts/pieDePagina.php"); ?>
         </div>
     </body>
 </html>
