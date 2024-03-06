@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 //Conexion a la base de datos, user y password de vustras cuenta root(previamente creada), junto al nombre del archivo con la bd
 

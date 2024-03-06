@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    
     $username = htmlspecialchars(trim(strip_tags($_REQUEST["username"])));
     $password = htmlspecialchars(trim(strip_tags($_REQUEST["password"])));
 
