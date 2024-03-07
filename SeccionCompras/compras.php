@@ -22,8 +22,8 @@
 
                         <table>
                             <tr>
-                                <th>Artículo</th>
                                 <th>Imagen</th>
+                                <th>Artículo</th>
                                 <th>Descripción</th>
                                 <th>Precio</th>
                             </tr>

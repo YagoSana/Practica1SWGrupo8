@@ -28,7 +28,7 @@
                         <h2 id="miembro1">Álvaro Félix</h2>
                         <img src="../img/AlvaroFelix.jpg" alt="Foto de Alvaro">
                         <p>Correo: alfelix@ucm.es</p>
-                        <p>Intereses: Me gusta la música clásica y tocar el piano.</p>
+                        <p>Intereses: Me gusta la música electronica, el trap y el rock, ademas toco el bajo</p>
                     </section>
                     <section> 
                         <h2 id="miembro2">Mohamed El Farissi</h2>
