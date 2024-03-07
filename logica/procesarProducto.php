@@ -8,12 +8,7 @@
         $Descripcion = $_POST['producto_descripcion'];
         $Precio = $_POST['producto_precio'];
 
-
         $producto = new Producto($Nombre, $Descripcion, $Precio, $pdo);
-
         $producto->createProducto($Nombre, $Descripcion, $Precio);
-    }
-
-
-    
+    }  
 ?>
