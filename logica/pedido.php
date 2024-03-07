@@ -1,8 +1,11 @@
 <?php
 
 class Pedido {
-    private $usuario;
-    private $productos;
+    private $ID_Pedido;
+    private $Fecha;
+    private $Cliente;
+    private $Producto;
+    private $Cantidad;
 
     public function __construct($usuario) {
         $this->usuario = $usuario;

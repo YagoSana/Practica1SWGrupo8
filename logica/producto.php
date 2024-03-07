@@ -1,57 +1,43 @@
 <?php
 
 class Producto {
-    private $id;
-    private $nombre;
-    private $precio;
-    private $conexion;
+    private $ID;
+    private $Nombre;
+    private $Descripcion;
+    private $Precio;
+    private $pdo;
 
-    public function __construct($id, $nombre, $precio) {
-        $this->id = $id;
-        $this->nombre = $nombre;
-        $this->precio = $precio;
-
-        // Establecer la conexión a la base de datos
-        $this->conexion = new PDO("mysql:host=localhost;dbname=nombre_base_datos", "usuario", "contraseña");
-        $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    public function __construct($Nombre, $Descripcion, $Precio, $pdo) {
+        $this->Nombre = $Nombre;
+        $this->Descripcion = $Descripcion;
+        $this->Precio = $Precio;
+        $this->pdo = $pdo;
     }
 
-    public function guardar() {
-        try {
-            // Preparar la consulta SQL
-            $consulta = $this->conexion->prepare("INSERT INTO productos (id, nombre, precio) VALUES (:id, :nombre, :precio)");
+    public function getProducto($ID) {
+        $stmt = $this->pdo->prepare('SELECT * FROM productos WHERE ID = :ID');
+        $stmt->execute(['ID' => $ID]);
+        $producto = $stmt->fetch();
 
-            // Asignar los valores a los parámetros de la consulta
-            $consulta->bindParam(':id', $this->id);
-            $consulta->bindParam(':nombre', $this->nombre);
-            $consulta->bindParam(':precio', $this->precio);
-
-            // Ejecutar la consulta
-            $consulta->execute();
-
-            echo "Producto guardado correctamente.";
-        } catch (PDOException $e) {
-            echo "Error al guardar el producto: " . $e->getMessage();
-        }
+        $this->ID = $producto['ID'];
+        $this->Nombre = $producto['Nombre'];
+        $this->Descripcion = $producto['Descripcion'];
+        $this->Precio = $producto['Precio'];
     }
 
-    public function actualizar() {
-        try {
-            // Preparar la consulta SQL
-            $consulta = $this->conexion->prepare("UPDATE productos SET nombre = :nombre, precio = :precio WHERE id = :id");
+    public function createProducto($Nombre, $Descripcion, $Precio) {
+        $stmt = $this->pdo->prepare('INSERT INTO productos (Nombre, Descripcion, Precio) VALUES (:Nombre, :Descripcion, :Precio)');
+        $stmt->execute([
+            'Nombre' => $Nombre,
+            'Descripcion' => $Descripcion,
+            'Precio' => $Precio
+        ]);
 
-            // Asignar los valores a los parámetros de la consulta
-            $consulta->bindParam(':id', $this->id);
-            $consulta->bindParam(':nombre', $this->nombre);
-            $consulta->bindParam(':precio', $this->precio);
-
-            // Ejecutar la consulta
-            $consulta->execute();
-
-            echo "Producto actualizado correctamente.";
-        } catch (PDOException $e) {
-            echo "Error al actualizar el producto: " . $e->getMessage();
-        }
+        $this->ID = $this->pdo->lastInsertId();
+        $this->Nombre = $Nombre;
+        $this->Descripcion = $Descripcion;
+        $this->Precio = $Precio;
     }
 }
 
+?>
