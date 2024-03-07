@@ -12,9 +12,9 @@
             <main>
                 <?php
                 // Comprobamos que el usuario ha iniciado sesion
-                if (isset($_SESSION['usuario'])) {
+                if (isset($_SESSION['login'])) {
                     // Obtiene el carrito de compras del usuario
-                    $carrito = $_SESSION['usuario']->getCarrito();
+                    $carrito = $_SESSION['nombre']->getCarrito(); //!!!!!Hay que cambiar esto a user no puede ser el la busqueda por el nombre¡¡¡¡¡¡
 
                     // Muestra los productos en el carrito
                     $carrito->mostrarProductos();
