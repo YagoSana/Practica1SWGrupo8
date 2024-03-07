@@ -1,16 +1,13 @@
-<?php
-    
-?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <?php include("../scripts/header.php"); ?>
+        <?php include("../src/logica/header.php"); ?>
         <title>Miembros Back Music</title>
     </head>
     <body>
         <div id="contenedor">
-            <?php include("../scripts/cabecera.php"); ?>
-            <?php include("../scripts/lateralIzq.php"); ?>
+            <?php include("../src/logica/cabecera.php"); ?>
+            <?php include("../src/logica/lateralIzq.php"); ?>
 
             <main>
                 <article>
@@ -50,7 +47,7 @@
                     </section>
                 </article>
             </main>
-            <?php include("../scripts/pieDePagina.php"); ?>
+            <?php include("../src/logica/pieDePagina.php"); ?>
         </div>
     </body>
 </html>
