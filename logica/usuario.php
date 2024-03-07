@@ -6,7 +6,7 @@ class Usuario {
 
     public function __construct($nombre) {
         $this->nombre = $nombre;
-        $this->carrito = array();
+        $this->carrito = new Carrito();
     }
 
     public function getCarrito() {
