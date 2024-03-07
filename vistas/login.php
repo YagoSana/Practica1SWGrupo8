@@ -25,7 +25,7 @@
                 </form>
 
                 <h3>¿No tienes cuenta en nuestra web?</h3>
-                <p>Regístrate como un nuevo usuario <a href="../src/vistas/register.php">aquí</a></p>
+                <p>Regístrate como un nuevo usuario <a href="../vistas/register.php">aquí</a></p>
             </main>
             <?php include("../logica/pieDePagina.php"); ?>
         </div>
