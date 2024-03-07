@@ -15,5 +15,5 @@
     }
 
 
-    
+    header('Location: paginaConfirmacion.php');
 ?>
