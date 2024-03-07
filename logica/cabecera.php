@@ -14,7 +14,7 @@
                 echo "Usuario desconocido. <a href='../vistas/login.php'>Login</a>";
             }
 
-            echo "<a href='../vistas/mostrarCarrito.php'>CARRITO</a>";
+            echo "<a href='../vistas/mostrarCarrito.php' class='carrito'>CARRITO</a>";
         ?>
 	</header>
 </html>
