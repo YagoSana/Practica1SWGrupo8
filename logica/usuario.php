@@ -1,23 +1,16 @@
 <?php
 
 class Usuario {
-    private $conexion;
+    private $nombre;
+    private $carrito;
 
-    public function __construct() {
-        // Establecer la conexión con la base de datos
-        $this->conexion = new PDO("mysql:host=localhost;dbname=nombre_base_de_datos", "usuario", "contraseña");
+    public function __construct($nombre) {
+        $this->nombre = $nombre;
+        $this->carrito = array();
     }
 
-    public function obtenerUsuario($id) {
-        // Consultar la información del usuario en la base de datos
-        $consulta = $this->conexion->prepare("SELECT * FROM usuarios WHERE id = :id");
-        $consulta->bindParam(":id", $id);
-        $consulta->execute();
-
-        // Obtener el resultado de la consulta
-        $usuario = $consulta->fetch(PDO::FETCH_ASSOC);
-
-        return $usuario;
+    public function getCarrito() {
+        return $this->carrito;
     }
 }
 
