@@ -49,6 +49,10 @@
                 <p>
                     <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña" size="30" required>
                 </p>
+                <p>
+                    <input type="checkbox" id="terminos" name="terminos" required>
+                    <label for="terminos">Marque esta casilla para verificar que ha leído nuestros términos y condiciones del servicio</label>
+                </p>
                     <input type="submit" value="Registrar">
                 </form>
             </main>
