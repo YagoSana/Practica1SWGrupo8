@@ -1,10 +1,18 @@
-<?php
-    
-    session_start();
+<?php   
+    $db = new mysqli('127.0.0.1', 'username', 'password', 'bd_def');
 
-    $username = htmlspecialchars(trim(strip_tags($_REQUEST["username"])));
-    $password = htmlspecialchars(trim(strip_tags($_REQUEST["password"])));
+    $User = $db -> real_escape_string($_POST['username']);
+    $Pass = $db -> real_escape_string($_POST['password']);
 
+    $sql = "select * from usuario where User = '$User' and pass = '$Pass'";
+    $result = $conn->query($sql);
+
+    if($result->num_rows == 1) {
+        $_SESSION["login"] = true;
+        $_SESSION["nombre"] = $User;
+    }
+
+    /*
     if ($username == "usuario" && $password == "usuariopass") {
         $_SESSION["login"] = true;
         $_SESSION["nombre"] = "Usuario";
@@ -12,8 +20,9 @@
         $_SESSION["login"] = true;
         $_SESSION["nombre"] = "Administador";
         $_SESSION["esAdmin"] = true;
-    }
+    }*/
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
