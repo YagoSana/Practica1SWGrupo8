@@ -1,16 +1,13 @@
-<?php
-    
-?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
-            <?php include "../scripts/header.php"; ?>
+            <?php include "../src/logica/header.php"; ?>
             <title>Detalles Back Music</title>
         </head>
         <body>
             <div id="contenedor">
-                <?php include "../scripts/cabecera.php"; ?>
-                <?php include "../scripts/lateralIzq.php"; ?>
+                <?php include "../src/logica/cabecera.php"; ?>
+                <?php include "../src/logica/lateralIzq.php"; ?>
                 <main>
                     <article>
                         <section>
@@ -50,13 +47,13 @@
                                 </ol>
                         </section>
                             <p>
-                                En resumen, nuestra plataforma es más que una simple tienda online. Es un espacio donde la música cobra vida, donde puedes explorar, descubrir y experimentar la música de una manera completamente nueva.
+                                En resumen, nuestra plataforma es más que una simple tienda online. Es un espacio dónde la música cobra vida, donde puedes explorar, descubrir y experimentar la música de una manera completamente nueva.
                             </p>
                             <p><strong><em>¡Únete a nosotros y empieza tu viaje musical hoy mismo!</em></strong></p>
                         </section>
                     </article>
                 </main>
-                <?php include "../scripts/pieDePagina.php"; ?>
+                <?php include "../src/logica/pieDePagina.php"; ?>
         </div>
     </body>
 </html>

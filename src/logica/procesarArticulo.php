@@ -43,8 +43,7 @@ $db->close();
 
             <main>
                 <?php
-                    echo ""
-
+                    echo "";
                 ?>
 
             </main>
