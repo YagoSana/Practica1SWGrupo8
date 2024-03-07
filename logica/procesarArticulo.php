@@ -32,14 +32,14 @@ $db->close();
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <?php include("../scripts/header.php"); ?>
+        <?php include("../logica/header.php"); ?>
         <title>Index Back Music</title>
     </head>  
     <body>
         <div id="contenedor">
            
-            <?php include("../scripts/cabecera.php"); ?>
-            <?php include("../scripts/lateralIzq.php"); ?>
+            <?php include("../logica/cabecera.php"); ?>
+            <?php include("../logica/lateralIzq.php"); ?>
 
             <main>
                 <?php
@@ -47,7 +47,7 @@ $db->close();
                 ?>
 
             </main>
-            <?php include("../scripts/pieDePagina.php"); ?>
+            <?php include("../logica/pieDePagina.php"); ?>
         </div>
     </body>
 </html>
