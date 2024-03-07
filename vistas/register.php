@@ -27,14 +27,14 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <?php include("../src/logica/header.php"); ?>
+        <?php include("../logica/header.php"); ?>
         <title>Index Back Music</title>
     </head>  
     <body>
         <div id="contenedor">
            
-            <?php include("../src/logica/cabecera.php"); ?>
-            <?php include("../src/logica/lateralIzq.php"); ?>
+            <?php include("../logica/cabecera.php"); ?>
+            <?php include("../logica/lateralIzq.php"); ?>
 
             <main>
                 <h2>Regístrate en BackMusic</h2>
@@ -59,7 +59,7 @@
                     <input type="submit" value="Registrar">
                 </form>
             </main>
-            <?php include("../src/logica/pieDePagina.php"); ?>
+            <?php include("../logica/pieDePagina.php"); ?>
         </div>
     </body>
 </html>

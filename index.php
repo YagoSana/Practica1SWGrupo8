@@ -4,14 +4,14 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <?php include("src/logica/header.php"); ?>
+        <?php include("logica/header.php"); ?>
         <title>Index Back Music</title>
     </head>  
     <body>
         <div id="contenedor">
            
-            <?php include("src/logica/cabecera.php"); ?>
-            <?php include("src/logica/lateralIzq.php"); ?>
+            <?php include("logica/cabecera.php"); ?>
+            <?php include("logica/lateralIzq.php"); ?>
 
             <main>
                 <article>
@@ -43,7 +43,7 @@
                     </section>
                 </article>
             </main>
-            <?php include("src/logica/pieDePagina.php"); ?>
+            <?php include("logica/pieDePagina.php"); ?>
         </div>
     </body>
 </html>

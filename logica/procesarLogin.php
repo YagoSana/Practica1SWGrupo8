@@ -1,5 +1,7 @@
 <?php
     
+    session_start();
+
     $username = htmlspecialchars(trim(strip_tags($_REQUEST["username"])));
     $password = htmlspecialchars(trim(strip_tags($_REQUEST["password"])));
 
@@ -15,14 +17,14 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <?php include("../scripts/header.php"); ?>
+        <?php include("../logica/header.php"); ?>
         <title>Index Back Music</title>
     </head>  
     <body>
         <div id="contenedor">
            
-            <?php include("../scripts/cabecera.php"); ?>
-            <?php include("../scripts/lateralIzq.php"); ?>
+            <?php include("../logica/cabecera.php"); ?>
+            <?php include("../logica/lateralIzq.php"); ?>
 
             <main>
                 <?php
@@ -36,7 +38,7 @@
                     }
                 ?>
             </main>
-            <?php include("../scripts/pieDePagina.php"); ?>
+            <?php include("../logica/pieDePagina.php"); ?>
         </div>
     </body>
 </html>

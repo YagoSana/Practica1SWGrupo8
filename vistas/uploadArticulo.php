@@ -8,17 +8,17 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <?php include("../src/logica/header.php"); ?>
+        <?php include("../logica/header.php"); ?>
         <title>Login Back Music</title>
     </head>  
     <body>
         <div id="contenedor">
            
-            <?php include("../src/logica/cabecera.php"); ?>
-            <?php include("../src/logica/lateralIzq.php"); ?>
+            <?php include("../logica/cabecera.php"); ?>
+            <?php include("../logica/lateralIzq.php"); ?>
 
             <main>
-                <form action="../src/logica/procesarArticulo.php" method="POST">
+                <form action="../logica/procesarArticulo.php" method="POST">
                         <p>
                                 <label for="articulo_id">ID del Articulo:</label>
                                 <input type="text" id="articulo_id" name="articulo_id">
@@ -42,7 +42,7 @@
                 </form>
 
             </main>
-            <?php include("../src/logica/pieDePagina.php"); ?>
+            <?php include("../logica/pieDePagina.php"); ?>
         </div>
     </body>
 </html>
