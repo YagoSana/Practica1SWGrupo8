@@ -13,6 +13,8 @@
             } else {
                 echo "Usuario desconocido. <a href='../vistas/login.php'>Login</a>";
             }
+
+            echo "<a href='../vistas/mostrarCarrito.php'>CARRITO</a>";
         ?>
 	</header>
 </html>
