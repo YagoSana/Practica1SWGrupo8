@@ -1,5 +1,7 @@
 <?php
     
+    session_start();
+
     $username = htmlspecialchars(trim(strip_tags($_REQUEST["username"])));
     $password = htmlspecialchars(trim(strip_tags($_REQUEST["password"])));
 
@@ -22,7 +24,7 @@
         <div id="contenedor">
            
             <?php include("../logica/cabecera.php"); ?>
-            <?php include("../scripts/lateralIzq.php"); ?>
+            <?php include("../logica/lateralIzq.php"); ?>
 
             <main>
                 <?php

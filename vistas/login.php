@@ -12,7 +12,7 @@
 
             <main>
                 <h2>Inicio de sesión en BackMusic</h2>
-                <form action="../src/logica/procesarLogin.php" method="POST">
+                <form action="../logica/procesarLogin.php" method="POST">
                 <p>
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" required>
