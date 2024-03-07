@@ -1,22 +1,19 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <?php include("../logica/header.php"); ?>
-        <title>Index Back Music</title>
-    </head>  
-    <body>
-        <div id="contenedor">
-           
-            <?php include("../logica/cabecera.php"); ?>
-            <?php include("../logica/lateralIzq.php"); ?>
+<?php
+    require 'baseDatos.php';
+    require 'Producto.php';
 
-            <main>
-                <?php
-                    echo "";
-                ?>
+    if($_SERVER["REQUEST_METHOD"] == "POST"){ //Comprueba si se ha enviado el formulario correctamente
+        //Recoge los datos del formulario
+        $Nombre = $_POST['producto_nombre'];
+        $Descripcion = $_POST['producto_descripcion'];
+        $Precio = $_POST['producto_precio'];
 
-            </main>
-            <?php include("../logica/pieDePagina.php"); ?>
-        </div>
-    </body>
-</html>
+
+        $producto = new Producto($Nombre, $Descripcion, $Precio, $pdo);
+
+        $producto->createProducto($Nombre, $Descripcion, $Precio);
+    }
+
+
+    
+?>

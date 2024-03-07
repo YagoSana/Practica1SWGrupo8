@@ -20,10 +20,6 @@
             <main>
                 <form action="../logica/procesarProducto.php" method="POST">
                         <p>
-                                <label for="producto_id">ID del Producto:</label>
-                                <input type="text" id="producto_id" name="producto_id">
-                        </p>
-                        <p>
                                 <label for="producto_nombre">Nombre del Producto:</label>
                                 <input type="text" id="producto_nombre" name="producto_nombre">
                         </p>
