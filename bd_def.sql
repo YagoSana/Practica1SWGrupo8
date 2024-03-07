@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-03-2024 a las 10:08:30
+-- Tiempo de generación: 07-03-2024 a las 10:28:41
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -57,8 +57,9 @@ CREATE TABLE `productos` (
 CREATE TABLE `usuario` (
   `Apellido` text NOT NULL,
   `Nombre` text NOT NULL,
-  `user` varchar(20) NOT NULL,
-  `password` varchar(9) NOT NULL
+  `User` varchar(20) NOT NULL,
+  `Pass` varchar(9) NOT NULL,
+  `Email` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -84,7 +85,7 @@ ALTER TABLE `productos`
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`user`),
+  ADD PRIMARY KEY (`User`),
   ADD KEY `Apellido` (`Nombre`(1024));
 
 --
