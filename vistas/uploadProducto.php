@@ -18,27 +18,27 @@
             <?php include("../logica/lateralIzq.php"); ?>
 
             <main>
-                <form action="../logica/procesarArticulo.php" method="POST">
+                <form action="../logica/procesarProducto.php" method="POST">
                         <p>
-                                <label for="articulo_id">ID del Articulo:</label>
-                                <input type="text" id="articulo_id" name="articulo_id">
+                                <label for="producto_id">ID del Producto:</label>
+                                <input type="text" id="producto_id" name="producto_id">
                         </p>
                         <p>
-                                <label for="articulo_nombre">Nombre del Articulo:</label>
-                                <input type="text" id="articulo_nombre" name="articulo_nombre">
+                                <label for="producto_nombre">Nombre del Producto:</label>
+                                <input type="text" id="producto_nombre" name="producto_nombre">
                         </p>
                         <p>
-                                <label for="articulo_descripcion">Descripcion del Articulo:</label>
+                                <label for="producto_descripcion">Descripcion del Producto:</label>
                         </p>
                         <p>
-                                <textarea id="articulo_descripcion" name="articulo_descripcion" rows="4" cols="50" required></textarea>
+                                <textarea id="producto_descripcion" name="producto_descripcion" rows="4" cols="50" required></textarea>
                         </p>
 
                         <p>
-                                <label for="articulo_precio">Precio del Articulo:</label>
-                                <input tpye="text" id="articulo_precio" name="articulo_precio">
+                                <label for="producto_precio">Precio del Producto:</label>
+                                <input tpye="text" id="producto_precio" name="producto_precio">
                         </p>
-                        <input type="submit" value="Subir Articulo">
+                        <input type="submit" value="Subir Producto">
                 </form>
 
             </main>

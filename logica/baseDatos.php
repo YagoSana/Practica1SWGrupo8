@@ -24,11 +24,11 @@ class Database {
         }
     }
 
-    public function insertArticulo($articulo_id, $articulo_nombre, $articulo_descripcion, $articulo_precio) {
+    public function insertProducto($producto_id, $producto_nombre, $producto_descripcion, $producto_precio) {
         try {
-            $stmt = $this->connection->prepare("INSERT INTO articulos (articulo_id, articulo_nombre, articulo_descripcion, articulo_precio) VALUES (?, ?, ?, ?)");
-            $stmt->execute([$articulo_id, $articulo_nombre, $articulo_descripcion, $articulo_precio]);
-            echo "Se ha subido el articulo a la BD de manera exitosa";
+            $stmt = $this->connection->prepare("INSERT INTO productos (producto_id, producto_nombre, producto_descripcion, producto_precio) VALUES (?, ?, ?, ?)");
+            $stmt->execute([$producto_id, $producto_nombre, $producto_descripcion, $producto_precio]);
+            echo "Se ha subido el producto a la BD de manera exitosa";
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
@@ -42,12 +42,12 @@ class Database {
 $db = new Database('127.0.0.1', 'username', 'password', 'bd');
 $db->connect();
 
-$articulo_id = $_POST['articulo_id'];
-$articulo_nombre = $_POST['articulo_nombre'];
-$articulo_descripcion = $_POST['articulo_descripcion'];
-$articulo_precio = $_POST['articulo_precio'];
+$producto_id = $_POST['producto_id'];
+$producto_nombre = $_POST['producto_nombre'];
+$producto_descripcion = $_POST['producto_descripcion'];
+$producto_precio = $_POST['producto_precio'];
 
-$db->insertArticulo($articulo_id, $articulo_nombre, $articulo_descripcion, $articulo_precio);
+$db->insertProducto($producto_id, $producto_nombre, $producto_descripcion, $producto_precio);
 
 $db->close();
 

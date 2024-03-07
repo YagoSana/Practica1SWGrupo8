@@ -14,7 +14,7 @@
         <li><a href="../vistas/planificacion.php">Planificación</a></li>
         <?php
         if(isset($_SESSION["esAdmin"])) {
-            echo '<li><a href="../vistas/uploadArticulo.php">Añadir productos</a></li>';
+            echo '<li><a href="../vistas/uploadProducto.php">Añadir productos</a></li>';
         }
         ?>
         </ul>
