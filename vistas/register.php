@@ -1,8 +1,5 @@
 <?php
-
-    //Mover a procesar register
-
-    /*$db = new mysqli('127.0.0.1', 'username', 'password', 'bd');
+    $db = new mysqli('127.0.0.1', 'root', '', 'registro');
 
     if($db->connect_errno) {
         echo "Error al conectarse con la base de datos: " . $db -> connect_error;
@@ -21,7 +18,7 @@
         printf("%d Row inserted.\n", $db->affected_rows);
     }
 
-    $db->close();*/
+    $db->close();
 ?>
 
 <!DOCTYPE html>
