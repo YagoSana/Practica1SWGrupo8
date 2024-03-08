@@ -13,5 +13,5 @@
     }
 
 
-    header('Location: paginaConfirmacion.php');
+    header('Location: ../vistas/paginaConfirmacion.php');
 ?>
