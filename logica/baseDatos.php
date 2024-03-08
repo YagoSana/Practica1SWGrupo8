@@ -39,7 +39,7 @@ class Database {
     }
 }
 
-$db = new Database('127.0.0.1', 'username', 'password', 'bd');
+$db = new Database('127.0.0.1', 'username', 'password', 'bd_def');
 $db->connect();
 
 $producto_id = $_POST['producto_id'];
