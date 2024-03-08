@@ -13,8 +13,8 @@
     if($result->num_rows === 1) {
         $_SESSION["login"] = true;
         $_SESSION["nombre"] = $User;
-        $usuario = new Usuario("nombre_del_usuario");
-        $_SESSION['usuario'] = $usuario;
+        $usuario = new Usuario($User);
+        $_SESSION["usuario"] = $usuario;
     }
 
     $db->close();
