@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `pedidos` (
-  `ID_Pedido` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ID_Pedido` int(10) UNSIGNED NOT NULL /*AUTO_INCREMENT*/,
   `Fecha` date NOT NULL,
   `Cliente` varchar(20) NOT NULL,
   `Producto` int(10) UNSIGNED NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE `pedidos` (
 -- Se anade AUTOINCREMENT al id para que se lo asigne la base de datos
 
 CREATE TABLE `productos` (
-  `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, 
+  `ID` int(10) UNSIGNED NOT NULL /*AUTO_INCREMENT*/, 
   `Nombre` varchar(20) NOT NULL,
   `Descripcion` varchar(200) NOT NULL,
   `Precio` decimal(6,2) NOT NULL
