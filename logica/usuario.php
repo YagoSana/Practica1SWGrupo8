@@ -1,5 +1,5 @@
 <?php
-
+ include("../logica/carrito.php");
 class Usuario {
     private $nombre;
     private $carrito;

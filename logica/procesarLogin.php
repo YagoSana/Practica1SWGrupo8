@@ -1,26 +1,23 @@
 <?php   
+    session_start();
+    include("../logica/usuario.php");
     $db = new mysqli('127.0.0.1', 'username', 'password', 'bd_def');
 
     $User = $db -> real_escape_string($_POST['username']);
     $Pass = $db -> real_escape_string($_POST['password']);
 
-    $sql = "select * from usuario where User = '$User' and pass = '$Pass'";
-    $result = $conn->query($sql);
+    $sql = "SELECT * FROM usuario WHERE User = '$User' 
+    AND Pass = '$Pass'";
 
-    if($result->num_rows == 1) {
+    $result = $db->query($sql);
+    if($result->num_rows === 1) {
         $_SESSION["login"] = true;
         $_SESSION["nombre"] = $User;
+        $usuario = new Usuario("nombre_del_usuario");
+        $_SESSION['usuario'] = $usuario;
     }
 
-    /*
-    if ($username == "usuario" && $password == "usuariopass") {
-        $_SESSION["login"] = true;
-        $_SESSION["nombre"] = "Usuario";
-    } else if ($username == "admin"&& $password == "adminpass") {
-        $_SESSION["login"] = true;
-        $_SESSION["nombre"] = "Administador";
-        $_SESSION["esAdmin"] = true;
-    }*/
+    $db->close();
 ?>
 
 <!DOCTYPE html>
