@@ -17,6 +17,7 @@
             echo '<li><a href="../vistas/uploadProducto.php">Añadir productos</a></li>';
         }
         ?>
+        <li><a href="../vistas/mostrarCarrito.php">Carrito</a></li>
         </ul>
     </nav>
 </html>
