@@ -1,4 +1,5 @@
 <?php
+    require_once 'config.php';
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
@@ -14,7 +15,7 @@
         <div id="divInferior">
         <?php
             if (isset($_SESSION["login"])) {                
-                echo "Usuario registrado: ".$_SESSION["nombre"].". <a href='../logica/logout.php'>Logout</a>";
+                echo "Usuario registrado: ".$_SESSION["nombre"].". <a href='/logica/logout.php'>Logout</a>";
             } else {
                 echo "Usuario desconocido. <a href='../vistas/login.php'>Login</a>";
             }

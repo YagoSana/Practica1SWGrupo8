@@ -1,4 +1,5 @@
 <?php
+        require_once '../logica/config.php';
         session_start();
         //Comprobamos si el usuario es el dueño o admin
         if(!isset($_SESSION["esAdmin"])){

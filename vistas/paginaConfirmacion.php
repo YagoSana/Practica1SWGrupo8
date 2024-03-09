@@ -1,4 +1,5 @@
 <?php
+require_once '../logica/config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $mensaje = "Su procedimiento ha sido un éxito";

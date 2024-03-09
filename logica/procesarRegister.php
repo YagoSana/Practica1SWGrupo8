@@ -1,4 +1,5 @@
 <?php
+    require_once 'config.php';
     session_start();
     include(RUTA_APP."/logica/usuario.php");
     $db = new mysqli('127.0.0.1', 'username', 'password', 'bd_def');

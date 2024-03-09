@@ -1,4 +1,5 @@
 <?php
+    require_once 'config.php';
     require 'baseDatos.php';
     require 'Producto.php';
 

@@ -1,3 +1,6 @@
+<?php
+    require_once 'config.php';
+?>
 <!DOCTYPE html>
 <html>
     <link rel="icon" href="<?php echo RUTA_APP?>/img/simpleLogo.png">
