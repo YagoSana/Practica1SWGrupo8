@@ -1,4 +1,5 @@
 <?php
+        require_once '../logica/config.php';
         session_start();
         //Comprobamos si el usuario es el dueño o admin
         if(!isset($_SESSION["esAdmin"])){
@@ -8,17 +9,17 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <?php include("../logica/header.php"); ?>
+        <?php include(RUTA_APP ."/logica/header.php"); ?>
         <title>Login Back Music</title>
     </head>  
     <body>
         <div id="contenedor">
            
-            <?php include("../logica/cabecera.php"); ?>
-            <?php include("../logica/lateralIzq.php"); ?>
+            <?php include(RUTA_APP ."/logica/cabecera.php"); ?>
+            <?php include(RUTA_APP ."/logica/lateralIzq.php"); ?>
 
             <main>
-                <form action="../logica/procesarProducto.php" method="POST">
+                <form action="<?php echo RUTA_APP?>/logica/procesarProducto.php" method="POST">
                         <p>
                                 <label for="producto_id">Identificador:</label>
                                 <input type="text" id="producto_id" name="producto_id">
@@ -42,7 +43,7 @@
                 </form>
 
             </main>
-            <?php include("../logica/pieDePagina.php"); ?>
+            <?php include(RUTA_APP ."/logica/pieDePagina.php"); ?>
         </div>
     </body>
 </html>

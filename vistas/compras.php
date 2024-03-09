@@ -1,28 +1,13 @@
-<?php
-// Establish a connection to the database
-$db = new mysqli('127.0.0.1', 'username', 'password', 'bd_def');
-
-    if($db->connect_errno) {
-        echo "Error al conectarse con la base de datos: " . $db -> connect_error;
-        exit();
-    }
-
-// Retrieve the product data from the database
-$sql = "SELECT * FROM products";
-$result = $conn->query($sql);
-
-?>
-
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <?php include("../logica/header.php"); ?>
+        <?php include(RUTA_APP ."/logica/header.php"); ?>
         <title>Compras Back Music</title>
     </head>
     <body>
         <div id="contenedor">
-            <?php include("../logica/cabecera.php"); ?>
-            <?php include("../logica/lateralIzq.php"); ?>
+            <?php include(RUTA_APP ."/logica/cabecera.php"); ?>
+            <?php include(RUTA_APP ."/logica/lateralIzq.php"); ?>
 
             <main>
                 <article>
@@ -55,7 +40,7 @@ $result = $conn->query($sql);
                     </section>
                 </article>
             </main>
-            <?php include("../logica/pieDePagina.php"); ?>
+            <?php include(RUTA_APP ."/logica/pieDePagina.php"); ?>
         </div>
     </body>
 </html>

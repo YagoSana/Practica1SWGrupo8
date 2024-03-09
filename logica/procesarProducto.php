@@ -1,4 +1,5 @@
 <?php
+    require_once 'config.php';
     require 'baseDatos.php';
     require 'Producto.php';
 
@@ -22,6 +23,6 @@
         $producto->createProducto($ID, $Nombre, $Descripcion, $Precio);
     }
 
-    header('Location: ../vistas/paginaConfirmacion.php');
+    header('Location: '.RUTA_APP.'/vistas/paginaConfirmacion.php');
 ?>
 

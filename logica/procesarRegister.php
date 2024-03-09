@@ -1,6 +1,7 @@
 <?php
+    require_once 'config.php';
     session_start();
-    include("../logica/usuario.php");
+    include(RUTA_APP."/logica/usuario.php");
     $db = new mysqli('127.0.0.1', 'username', 'password', 'bd_def');
 
     if($db->connect_errno) {
@@ -35,14 +36,14 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <?php include("../logica/header.php"); ?>
+        <?php include(RUTA_APP."/logica/header.php"); ?>
         <title>Index Back Music</title>
     </head>  
     <body>
         <div id="contenedor">
            
-            <?php include("../logica/cabecera.php"); ?>
-            <?php include("../logica/lateralIzq.php"); ?>
+            <?php include(RUTA_APP."/logica/cabecera.php"); ?>
+            <?php include(RUTA_APP."/logica/lateralIzq.php"); ?>
 
             <main>
                 <?php
@@ -56,7 +57,7 @@
                     }
                 ?>
             </main>
-            <?php include("../logica/pieDePagina.php"); ?>
+            <?php include(RUTA_APP."/logica/pieDePagina.php"); ?>
         </div>
     </body>
 </html>
