@@ -1,9 +1,9 @@
 <?php
 // Incluye el archivo de la clase Database
 include("../logica/baseDatos.php");
-
+include("../logica/config.php");
 // Crea una nueva instancia de la clase Database
-$db = new Database('127.0.0.1', 'username', 'password', 'bd_def');
+$db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
 
 // Conecta a la base de datos
 $db->connect();
