@@ -1,9 +1,9 @@
 <?php
 // Incluye el archivo de la clase Database
-include "baseDatos.php";
+include("../logica/baseDatos.php");
 
 // Crea una nueva instancia de la clase Database
-$db = new Database('localhost', 'username', 'password', 'bd_def');
+$db = new Database('127.0.0.1', 'username', 'password', 'bd_def');
 
 // Conecta a la base de datos
 $db->connect();
@@ -54,7 +54,7 @@ $result = $db->getConnection()->query($sql);
                     </section>
                 </article>
             </main>
-            <?php include "pieDePagina.php"; ?>
+            <?php include("../logica/pieDePagina.php"); ?>
         </div>
     </body>
 </html>
