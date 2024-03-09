@@ -24,10 +24,10 @@ class Database {
         }
     }
 
-    public function insertProducto($producto_id, $producto_nombre, $producto_descripcion, $producto_precio) {
+    public function insertProducto($producto_id, $producto_nombre, $producto_descripcion, $producto_precio, $producto_imagen) {
         try {
-            $stmt = $this->connection->prepare("INSERT INTO productos (ID, Nombre, Descripcion, Precio) VALUES (?, ?, ?, ?)");
-            $stmt->execute([$producto_id, $producto_nombre, $producto_descripcion, $producto_precio]);
+            $stmt = $this->connection->prepare("INSERT INTO productos (ID, Nombre, Descripcion, Precio, Imagen) VALUES (?, ?, ?, ?, ?)");
+            $stmt->execute([$producto_id, $producto_nombre, $producto_descripcion, $producto_precio, $producto_imagen]);
             echo "Se ha subido el producto a la BD de manera exitosa";
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();

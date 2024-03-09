@@ -11,7 +11,7 @@
             <?php include("../logica/lateralIzq.php"); ?>
 
             <main>
-                <form action="../logica/procesarProducto.php" method="POST">
+                <form action="../logica/procesarProducto.php" method="POST" enctype="multipart/form-data">
                         <p>
                                 <label for="producto_id">Identificador:</label>
                                 <input type="text" id="producto_id" name="producto_id" required>
@@ -26,13 +26,14 @@
                         <p>
                                 <textarea id="producto_descripcion" name="producto_descripcion" rows="4" cols="50" required></textarea>
                         </p>
+                        <p>
                                 <label for="producto_precio">Precio del Producto:</label>
-                                <input tpye="text" id="producto_precio" name="producto_precio" required>
+                                <input type="text" id="producto_precio" name="producto_precio" required>
                         </p>
-                        <!--<p>
+                        <p>
                                 <label for="producto_imagen">Imagen del Producto:</label>
                                 <input type="file" id="producto_imagen" name="producto_imagen" required>
-                        </p>-->
+                        </p>
                         <input type="submit" value="Subir Producto">
                 </form>
 

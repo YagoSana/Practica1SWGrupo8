@@ -13,13 +13,23 @@
         $Descripcion = $_POST['producto_descripcion'];
         $Precio = $_POST['producto_precio'];
 
+        // Obtén la imagen y su nombre
+        $Imagen = $_FILES['producto_imagen']['name'];
+        $ruta = $_FILES['producto_imagen']['tmp_name'];
+
+        // Define la ruta donde se guardará la imagen en el servidor
+        $target = "../imagenes/".$Imagen;
+
+        // Mueve la imagen a la carpeta de destino
+        move_uploaded_file($ruta, $target);
+
         // Usa la instancia de Database que ya creaste en baseDatos.php
         $connection = $db->getConnection();
 
-        $producto = new Producto($ID, $Nombre, $Descripcion, $Precio, $connection);
-        $producto->createProducto($ID, $Nombre, $Descripcion, $Precio);
+        $producto = new Producto($ID, $Nombre, $Descripcion, $Precio, $target, $connection);
+
+        $producto->createProducto($ID, $Nombre, $Descripcion, $Precio, $target);
     }
 
     header('Location: ../vistas/paginaConfirmacion.php');
 ?>
-
