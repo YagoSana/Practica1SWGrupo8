@@ -15,7 +15,7 @@
         <div id="divInferior">
             <?php
                 if (isset($_SESSION["login"])) {                
-                    echo "Usuario registrado: ".$_SESSION["nombre"].". <a href='logout.php'>Logout</a>";
+                    echo "Usuario registrado: ".$_SESSION["nombre"].". <a href=".RUTA_APP."/logica/logout.php>Logout</a>";
                 } else {
                     echo "Usuario desconocido. <a href=".RUTA_APP."/vistas/login.php>Login</a>";
                 }

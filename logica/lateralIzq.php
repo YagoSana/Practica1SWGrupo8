@@ -16,10 +16,11 @@ require_once 'config.php';
         <li><a href="<?php echo RUTA_APP?>/vistas/bocetos.php">Bocetos</a></li>
         <li><a href="<?php echo RUTA_APP?>/vistas/planificacion.php">Planificación</a></li>
         <?php
-        if(isset($_SESSION["esAdmin"])) {
-            echo '<li><a href="<?php echo RUTA_APP?>/vistas/uploadProducto.php">Añadir productos</a></li>';
-        }
+            if(isset($_SESSION["esAdmin"])) {
+                echo '<li><a href="' . RUTA_APP . '/vistas/uploadProducto.php">Añadir productos</a></li>';
+            }
         ?>
+
         </ul>
     </nav>
 </html>
