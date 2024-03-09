@@ -13,15 +13,14 @@
             <h2>La mejor tienda de música</h2>
         </div>
         <div id="divInferior">
-        <?php
-            if (isset($_SESSION["login"])) {                
-                echo "Usuario registrado: ".$_SESSION["nombre"].". <a href='logout.php'>Logout</a>";
-            } else {
-                echo "Usuario desconocido. <a href=".RUTA_APP."/vistas/login.php>Login</a>";
-            }
-        ?>  
-            <a href="<?php echo RUTA_APP?>/vistas/mostrarCarrito.php" class='carrito'>TU CARRITO</a>';
-        
+            <?php
+                if (isset($_SESSION["login"])) {                
+                    echo "Usuario registrado: ".$_SESSION["nombre"].". <a href='logout.php'>Logout</a>";
+                } else {
+                    echo "Usuario desconocido. <a href=".RUTA_APP."/vistas/login.php>Login</a>";
+                }
+            ?>  
+            <a href="<?php echo RUTA_APP?>/vistas/mostrarCarrito.php" class='carrito'>TU CARRITO</a>        
         </div>
 	</header>
 </html>
