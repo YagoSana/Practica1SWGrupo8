@@ -1,5 +1,5 @@
 <?php
-    
+    require_once 'logica/config.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
