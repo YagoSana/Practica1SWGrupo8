@@ -6,13 +6,20 @@
     $User = $db -> real_escape_string($_POST['username']);
     $Pass = $db -> real_escape_string($_POST['password']);
 
-    $sql = "SELECT * FROM usuario WHERE User = '$User' 
-    AND Pass = '$Pass'";
+    if($User != "admin") {
+        $sql = "SELECT * FROM usuario WHERE User = '$User' AND Pass = '$Pass'";
 
-    $result = $db->query($sql);
-    if($result->num_rows === 1) {
+        $result = $db->query($sql);
+        if($result->num_rows === 1) {
+            $_SESSION["login"] = true;
+            $_SESSION["nombre"] = $User;
+            $usuario = new Usuario($User);
+            $_SESSION["usuario"] = $usuario;
+        }
+    } else if($Pass == "adminpass"){
         $_SESSION["login"] = true;
-        $_SESSION["nombre"] = $User;
+        $_SESSION["nombre"] = "Administrador";
+        $_SESSION["esAdmin"] = true;
         $usuario = new Usuario($User);
         $_SESSION["usuario"] = $usuario;
     }
