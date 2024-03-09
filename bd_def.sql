@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-03-2024 a las 10:28:41
+-- Tiempo de generación: 09-03-2024 a las 20:12:52
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `pedidos` (
-  `ID_Pedido` int(10) UNSIGNED NOT NULL /*AUTO_INCREMENT*/,
+  `ID_Pedido` int(10) UNSIGNED NOT NULL,
   `Fecha` date NOT NULL,
   `Cliente` varchar(20) NOT NULL,
   `Producto` int(10) UNSIGNED NOT NULL,
@@ -39,13 +39,14 @@ CREATE TABLE `pedidos` (
 
 --
 -- Estructura de tabla para la tabla `productos`
--- Se anade AUTOINCREMENT al id para que se lo asigne la base de datos
+--
 
 CREATE TABLE `productos` (
-  `ID` int(10) UNSIGNED NOT NULL /*AUTO_INCREMENT*/, 
+  `ID` int(10) UNSIGNED NOT NULL,
   `Nombre` varchar(20) NOT NULL,
   `Descripcion` varchar(200) NOT NULL,
-  `Precio` decimal(6,2) NOT NULL
+  `Precio` decimal(6,2) NOT NULL,
+  `Imagen` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -61,6 +62,13 @@ CREATE TABLE `usuario` (
   `Pass` varchar(9) NOT NULL,
   `Email` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`Apellido`, `Nombre`, `User`, `Pass`, `Email`) VALUES
+('El Farissi', 'Mohamed', 'llll', 'moha', 'mohamedelfarissi18@g');
 
 --
 -- Índices para tablas volcadas
@@ -102,7 +110,7 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

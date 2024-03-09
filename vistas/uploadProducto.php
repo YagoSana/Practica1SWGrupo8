@@ -26,14 +26,12 @@
                         <p>
                                 <textarea id="producto_descripcion" name="producto_descripcion" rows="4" cols="50" required></textarea>
                         </p>
-
-                        <p>
-                                <label for="producto_imagen">Imagen del Producto:</label>
-                                <input type="file" id="producto_imagen" name="producto_imagen" required>
-                       <!-- </p>
-                        
                                 <label for="producto_precio">Precio del Producto:</label>
                                 <input tpye="text" id="producto_precio" name="producto_precio" required>
+                        </p>
+                        <!--<p>
+                                <label for="producto_imagen">Imagen del Producto:</label>
+                                <input type="file" id="producto_imagen" name="producto_imagen" required>
                         </p>-->
                         <input type="submit" value="Subir Producto">
                 </form>
