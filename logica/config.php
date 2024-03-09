@@ -11,7 +11,7 @@ define('RUTA_CSS', RUTA_APP.'/estilos');
 // Parámetros de configuración de la BD
 define('BD_HOST', 'localhost');
 define('BD_NAME', 'bd_def');
-define('BD_USER', '');
+define('BD_USER', 'root');
 define('BD_PASS', '');
 
 
