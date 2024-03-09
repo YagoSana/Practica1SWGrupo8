@@ -2,32 +2,31 @@
     session_start();
     require_once 'config.php';
     require 'usuario.php';
-    $db = new mysqli(BD_HOST, BD_USER, BD_PASS, BD_NAME);
+    require 'baseDatos.php';
+    
+    $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
+    $db->connect();
 
-    if($db->connect_errno) {
-        echo "Error al conectarse con la base de datos: " . $db -> connect_error;
-        exit();
-    }
-
-    $Nombre = $db -> real_escape_string($_POST['Nombre']);
-    $Apellido = $db -> real_escape_string($_POST['Apellido']);
-    $Email = $db -> real_escape_string($_POST['Email']);
-    $User = $db -> real_escape_string($_POST['User']);
-    $Pass = $db -> real_escape_string($_POST['Pass']);
+    $Nombre = $_POST['Nombre'];
+    $Apellido = $_POST['Apellido'];
+    $Email = $_POST['Email'];
+    $User = $_POST['User'];
+    $Pass = $_POST['Pass'];
 
     $check_user = "SELECT * FROM usuario WHERE User = '$User'";
-    $result = $db->query($check_user);
-    if($result->num_rows == 0) {
-        $sql = "INSERT INTO usuario (Nombre, Apellido, Email, User, Pass) VALUES ('$Nombre', '$Apellido', '$Email', '$User', '$Pass')";
+    $result = $db->getConnection()->query($check_user);
 
-        if (!$db -> query($sql)) {
-            printf("%d Row inserted.\n", $db->affected_rows);
+    if($result->rowcount() == 0) {
+        $sql = "INSERT INTO usuario (Nombre, Apellido, Email, User, Pass) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $db->getConnection()->prepare($sql);
+        $stmt->execute([$Nombre, $Apellido, $Email, $User, $Pass]);
+
+        if ($stmt->rowCount() > 0) {
+            $_SESSION["login"] = true;
+            $_SESSION["nombre"] = $User;
+            $usuario = new Usuario($User);
+            $_SESSION["usuario"] = $usuario;
         }
-
-        $_SESSION["login"] = true;
-        $_SESSION["nombre"] = $User;
-        $usuario = new Usuario($User);
-        $_SESSION["usuario"] = $usuario;
     }
 
     $db->close();
