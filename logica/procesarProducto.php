@@ -1,5 +1,4 @@
 <?php
-    require_once 'config.php';
     require 'baseDatos.php';
     require 'Producto.php';
 
@@ -14,5 +13,5 @@
     }
 
 
-    header('Location: '.RUTA_APP.'/vistas/paginaConfirmacion.php');
+    header('Location: ../vistas/paginaConfirmacion.php');
 ?>

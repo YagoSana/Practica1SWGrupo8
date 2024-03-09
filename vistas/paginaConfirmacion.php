@@ -1,5 +1,4 @@
 <?php
-require_once '../logica/config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $mensaje = "Su procedimiento ha sido un éxito";
@@ -11,19 +10,19 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <?php include(RUTA_APP ."/logica/header.php"); ?>
+        <?php include("../logica/header.php"); ?>
         <title>Confirmación</title>
     </head>  
     <body>
         <div id="contenedor">
-            <?php include(RUTA_APP ."/logica/cabecera.php"); ?>
-            <?php include(RUTA_APP ."/logica/lateralIzq.php"); ?>
+            <?php include("../logica/cabecera.php"); ?>
+            <?php include("../logica/lateralIzq.php"); ?>
 
             <main>
                 <h1><?php echo $mensaje; ?></h1>
             </main>
 
-            <?php include(RUTA_APP ."/logica/pieDePagina.php"); ?>
+            <?php include("../logica/pieDePagina.php"); ?>
         </div>
     </body>
 </html>

@@ -1,16 +1,13 @@
-<?php
-    require_once '../logica/config.php';
-?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <?php include(RUTA_APP ."/logica/header.php"); ?>
+        <?php include("../logica/header.php"); ?>
         <title>Valoraciones Back Music</title>
     </head>
     <body>
         <div id="contenedor">
-            <?php include(RUTA_APP ."/logica/cabecera.php"); ?>
-            <?php include(RUTA_APP ."/logica/lateralIzq.php"); ?>
+            <?php include("../logica/cabecera.php"); ?>
+            <?php include("../logica/lateralIzq.php"); ?>
 
             <main>
                 <article>
@@ -22,7 +19,7 @@
                     </section>
                 </article>
             </main>
-            <?php include(RUTA_APP ."/logica/pieDePagina.php"); ?>
+            <?php include("../logica/pieDePagina.php"); ?>
         </div>
     </body>
 </html>

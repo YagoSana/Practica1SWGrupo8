@@ -1,25 +1,17 @@
-<?php
-        require_once '../logica/config.php';
-        session_start();
-        //Comprobamos si el usuario es el dueño o admin
-        if(!isset($_SESSION["esAdmin"])){
-                die('Acceso denegado, no posee los privilegios requeridos');
-        }
-?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <?php include(RUTA_APP ."/logica/header.php"); ?>
+        <?php include("../logica/header.php"); ?>
         <title>Login Back Music</title>
     </head>  
     <body>
         <div id="contenedor">
            
-            <?php include(RUTA_APP ."/logica/cabecera.php"); ?>
-            <?php include(RUTA_APP ."/logica/lateralIzq.php"); ?>
+            <?php include("../logica/cabecera.php"); ?>
+            <?php include("../logica/lateralIzq.php"); ?>
 
             <main>
-                <form action="<?php echo RUTA_APP?>/logica/procesarProducto.php" method="POST">
+                <form action="../logica/procesarProducto.php" method="POST">
                         <p>
                                 <label for="producto_nombre">Nombre del Producto:</label>
                                 <input type="text" id="producto_nombre" name="producto_nombre">
@@ -39,7 +31,7 @@
                 </form>
 
             </main>
-            <?php include(RUTA_APP ."/logica/pieDePagina.php"); ?>
+            <?php include("../logica/pieDePagina.php"); ?>
         </div>
     </body>
 </html>

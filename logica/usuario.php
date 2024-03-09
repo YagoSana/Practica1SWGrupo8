@@ -1,6 +1,5 @@
 <?php
-    require_once 'config.php';
-    include(RUTA_APP."/logica/carrito.php");
+    include("carrito.php");
 class Usuario {
     private $nombre;
     private $carrito;
