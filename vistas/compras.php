@@ -1,3 +1,18 @@
+<?php
+// Establish a connection to the database
+$db = new mysqli('127.0.0.1', 'username', 'password', 'bd_def');
+
+    if($db->connect_errno) {
+        echo "Error al conectarse con la base de datos: " . $db -> connect_error;
+        exit();
+    }
+
+// Retrieve the product data from the database
+$sql = "SELECT * FROM products";
+$result = $conn->query($sql);
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -13,7 +28,7 @@
                 <article>
                     <section>
                         <h2>Compras Back Music</h2>
-                        <p>Esta el la sección de compras de Back Music. Aquí podrís encontrar las compras de nuestros clientes.</p>
+                        <p>Esta el la sección de compras de Back Music. Aquí podrás encontrar las compras de nuestros clientes.</p>
                         <table>
                             <tr>
                                 <th>Imagen</th>
@@ -22,13 +37,18 @@
                                 <th>Precio</th>
                             </tr>
                             <?php
-                            for ($i = 0; $i < 6; $i++) {
-                                echo "<tr>";
-                                for ($j = 1; $j <= 4; $j++) {
-                                    $celda = 4*$i + $j;
-                                    echo "<td>N.$celda</td>";
+                            // Loop through the product data and display it in the table
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td><img src='" . $row['image'] . "' alt='Product Image'></td>";
+                                    echo "<td>" . $row['Nombre'] . "</td>";
+                                    echo "<td>" . $row['Descripcion'] . "</td>";
+                                    echo "<td>" . $row['Precio'] . "</td>";
+                                    echo "</tr>";
                                 }
-                                echo "</tr>";
+                            } else {
+                                echo "<tr><td colspan='4'>No products found</td></tr>";
                             }
                             ?>
                         </table>
@@ -39,3 +59,8 @@
         </div>
     </body>
 </html>
+
+<?php
+// Close the database connection
+$conn->close();
+?>

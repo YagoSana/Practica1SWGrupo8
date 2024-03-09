@@ -7,7 +7,8 @@ class Producto {
     private $Precio;
     private $pdo;
 
-    public function __construct($Nombre, $Descripcion, $Precio, $pdo) {
+    public function __construct($ID, $Nombre, $Descripcion, $Precio, $pdo) {
+        $this->ID = $ID;
         $this->Nombre = $Nombre;
         $this->Descripcion = $Descripcion;
         $this->Precio = $Precio;
@@ -25,9 +26,10 @@ class Producto {
         $this->Precio = $producto['Precio'];
     }
 
-    public function createProducto($Nombre, $Descripcion, $Precio) {
-        $stmt = $this->pdo->prepare('INSERT INTO productos (Nombre, Descripcion, Precio) VALUES (:Nombre, :Descripcion, :Precio)');
+    public function createProducto($ID, $Nombre, $Descripcion, $Precio) {
+        $stmt = $this->pdo->prepare('INSERT INTO productos (ID, Nombre, Descripcion, Precio) VALUES (:ID, :Nombre, :Descripcion, :Precio)');
         $stmt->execute([
+            'ID' => $ID,
             'Nombre' => $Nombre,
             'Descripcion' => $Descripcion,
             'Precio' => $Precio
