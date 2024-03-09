@@ -17,7 +17,7 @@
             if (isset($_SESSION["login"])) {                
                 echo "Usuario registrado: ".$_SESSION["nombre"].". <a href='logout.php'>Logout</a>";
             } else {
-                echo "Usuario desconocido. <a href='../vistas/login.php'>Login</a>";
+                echo "Usuario desconocido. <a href=".RUTA_APP."/vistas/login.php>Login</a>";
             }
         ?>  
             <a href="<?php echo RUTA_APP?>/vistas/mostrarCarrito.php" class='carrito'>TU CARRITO</a>';
