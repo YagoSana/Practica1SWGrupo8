@@ -9,10 +9,10 @@ define('RUTA_IMGS', RUTA_APP.'/img');
 define('RUTA_CSS', RUTA_APP.'/estilos');
 
 // Parámetros de configuración de la BD
-define('BD_HOST', 'localhost');
+define('BD_HOST', '127.0.0.1');
 define('BD_NAME', 'bd_def');
-define('BD_USER', 'root');
-define('BD_PASS', '');
+define('BD_USER', 'username');
+define('BD_PASS', 'password');
 
 
 /* */

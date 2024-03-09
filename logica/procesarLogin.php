@@ -1,7 +1,8 @@
 <?php 
     session_start();
-    include("usuario.php");
-    $db = new mysqli('127.0.0.1', 'username', 'password', 'bd_def');
+    require_once 'config.php';
+    require 'usuario.php';
+    $db = new mysqli(BD_HOST, BD_USER, BD_PASS, BD_NAME);
 
     $User = $db -> real_escape_string($_POST['username']);
     $Pass = $db -> real_escape_string($_POST['password']);

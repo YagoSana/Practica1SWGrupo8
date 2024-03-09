@@ -1,8 +1,9 @@
 <?php
+    require_once 'config.php'
     require 'baseDatos.php';
     require 'Producto.php';
 
-    $db = new Database('127.0.0.1', 'username', 'password', 'bd_def');
+    $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
     $db->connect(); 
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){ 
