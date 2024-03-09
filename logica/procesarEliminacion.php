@@ -7,17 +7,16 @@
     $db->connect(); 
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){ 
+
         // Recoge los datos del formulario
         $ID = $_POST['producto_id'];
-        $Nombre = $_POST['producto_nombre'];
-        $Descripcion = $_POST['producto_descripcion'];
-        $Precio = $_POST['producto_precio'];
 
         // Usa la instancia de Database que ya creaste en baseDatos.php
         $connection = $db->getConnection();
 
-        $producto = new Producto($ID, $Nombre, $Descripcion, $Precio, $connection);
-        $producto->createProducto($ID, $Nombre, $Descripcion, $Precio);
+        $producto = new Producto(null, null, null, null, $db->getConnection());
+        $producto->deleteProducto($ID);
+
     }
 
     header('Location: ../vistas/paginaConfirmacion.php');

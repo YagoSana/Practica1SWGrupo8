@@ -14,11 +14,11 @@
                 <form action="../logica/procesarProducto.php" method="POST">
                         <p>
                                 <label for="producto_id">Identificador:</label>
-                                <input type="text" id="producto_id" name="producto_id">
+                                <input type="text" id="producto_id" name="producto_id" required>
                         </p>
                         <p>
                                 <label for="producto_nombre">Nombre del Producto:</label>
-                                <input type="text" id="producto_nombre" name="producto_nombre">
+                                <input type="text" id="producto_nombre" name="producto_nombre" required>
                         </p>
                         <p>
                                 <label for="producto_descripcion">Descripcion del Producto:</label>
@@ -29,7 +29,7 @@
 
                         <p>
                                 <label for="producto_precio">Precio del Producto:</label>
-                                <input tpye="text" id="producto_precio" name="producto_precio">
+                                <input tpye="text" id="producto_precio" name="producto_precio" required>
                         </p>
                         <input type="submit" value="Subir Producto">
                 </form>

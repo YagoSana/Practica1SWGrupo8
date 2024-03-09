@@ -40,6 +40,11 @@ class Producto {
         $this->Descripcion = $Descripcion;
         $this->Precio = $Precio;
     }
+
+    public function deleteProducto($ID) {
+        $stmt = $this->pdo->prepare('DELETE FROM productos WHERE ID = :ID');
+        $stmt->execute(['ID' => $ID]);
+    }
 }
 
 ?>
