@@ -2,15 +2,18 @@
     require 'baseDatos.php';
     require 'Producto.php';
 
+    $db = new Database('127.0.0.1', 'username', 'password', 'bd_def');
+    $db->connect(); 
+
     if($_SERVER["REQUEST_METHOD"] == "POST"){ 
         // Comprueba si el campo 'ID' existe en el formulario enviado
-        if (!isset($_POST['ID'])) {
+        if (!isset($_POST['producto_id'])) {
             echo "El campo 'ID' es obligatorio.";
             exit;
         }
 
         // Recoge los datos del formulario
-        $ID = $_POST['ID'];
+        $ID = $_POST['producto_id'];
         $Nombre = $_POST['producto_nombre'];
         $Descripcion = $_POST['producto_descripcion'];
         $Precio = $_POST['producto_precio'];

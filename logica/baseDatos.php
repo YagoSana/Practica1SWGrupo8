@@ -26,7 +26,7 @@ class Database {
 
     public function insertProducto($producto_id, $producto_nombre, $producto_descripcion, $producto_precio) {
         try {
-            $stmt = $this->connection->prepare("INSERT INTO productos (producto_id, producto_nombre, producto_descripcion, producto_precio) VALUES (?, ?, ?, ?)");
+            $stmt = $this->connection->prepare("INSERT INTO productos (ID, Nombre, Descripcion, Precio) VALUES (?, ?, ?, ?)");
             $stmt->execute([$producto_id, $producto_nombre, $producto_descripcion, $producto_precio]);
             echo "Se ha subido el producto a la BD de manera exitosa";
         } catch (PDOException $e) {
@@ -37,18 +37,11 @@ class Database {
     public function close() {
         $this->connection = null;
     }
+
+    public function getConnection() {
+        return $this->connection;
+    }
 }
 
-$db = new Database('127.0.0.1', 'username', 'password', 'bd_def');
-$db->connect();
-
-$producto_id = $_POST['producto_id'];
-$producto_nombre = $_POST['producto_nombre'];
-$producto_descripcion = $_POST['producto_descripcion'];
-$producto_precio = $_POST['producto_precio'];
-
-$db->insertProducto($producto_id, $producto_nombre, $producto_descripcion, $producto_precio);
-
-$db->close();
 
 ?>
