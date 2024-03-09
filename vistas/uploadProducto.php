@@ -28,9 +28,13 @@
                         </p>
 
                         <p>
+                                <label for="producto_imagen">Imagen del Producto:</label>
+                                <input type="file" id="producto_imagen" name="producto_imagen" required>
+                       <!-- </p>
+                        
                                 <label for="producto_precio">Precio del Producto:</label>
                                 <input tpye="text" id="producto_precio" name="producto_precio" required>
-                        </p>
+                        </p>-->
                         <input type="submit" value="Subir Producto">
                 </form>
 
