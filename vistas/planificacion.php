@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <?php include("../logica/header.php"); ?>
+        <?php include(RUTA_APP ."/logica/header.php"); ?>
         <title>Planificación Back Music</title>
     </head>
     <body>
         <div id="contenedor">
-            <?php include("../logica/cabecera.php"); ?>
-            <?php include("../logica/lateralIzq.php"); ?>
+            <?php include(RUTA_APP ."/logica/cabecera.php"); ?>
+            <?php include(RUTA_APP ."/logica/lateralIzq.php"); ?>
 
             <main>
                 <article>
@@ -68,11 +68,11 @@
                         <p>Última fase. Realización del proyecto al completo.</p>
 
                         <h2 id="ap6">Diagrama de Gantt</h2>
-                        <img src="../img/gantt.jpg" alt="Diagrama de gantt" width="1000px">
+                        <img src="<?php echo RUTA_APP?>/img/gantt.jpg" alt="Diagrama de gantt" width="1000px">
                     </section>
                 </article>
             </main>
-            <?php include("../logica/pieDePagina.php"); ?>
+            <?php include(RUTA_APP ."/logica/pieDePagina.php"); ?>
         </div>
     </body>
 </html>

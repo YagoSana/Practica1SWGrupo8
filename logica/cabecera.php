@@ -7,7 +7,7 @@
 <html>
     <header>
         <div id="divSuperior">
-            <img src='../img/backMusicLogo.png' class="logoCabecera">
+            <img src="<?php echo RUTA_APP?>'/img/backMusicLogo.png'" class="logoCabecera">
             <h1 class="h1titulo">BACK MUSIC</h1>
             <h2>La mejor tienda de música</h2>
         </div>
@@ -18,9 +18,9 @@
             } else {
                 echo "Usuario desconocido. <a href='../vistas/login.php'>Login</a>";
             }
-            
-            echo "<a href='../vistas/mostrarCarrito.php' class='carrito'>TU CARRITO</a>";
-        ?>
+        ?>  
+            <a href="<?php echo RUTA_APP?>/vistas/mostrarCarrito.php" class='carrito'>TU CARRITO</a>';
+        
         </div>
 	</header>
 </html>

@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <?php include("../logica/header.php"); ?>
+        <?php include(RUTA_APP ."/logica/header.php"); ?>
         <title>Index Back Music</title>
     </head>  
     <body>
         <div id="contenedor">
            
-            <?php include("../logica/cabecera.php"); ?>
+            <?php include(RUTA_APP ."/logica/cabecera.php"); ?>
             <?php include("../logica/lateralIzq.php"); ?>
 
             <main>
                 <h2>Regístrate en BackMusic</h2>
-                <form action="../logica/procesarRegister.php" method="POST">
+                <form action="<?php echo RUTA_APP?>/logica/procesarRegister.php" method="POST">
                 <p>
                     <input type="text" id="User" name="User" placeholder="Nombre de usuario" size="30" required>
                 </p>
@@ -33,7 +33,7 @@
                     <input type="submit" value="Registrar">
                 </form>
             </main>
-            <?php include("../logica/pieDePagina.php"); ?>
+            <?php include(RUTA_APP ."/logica/pieDePagina.php"); ?>
         </div>
     </body>
 </html>

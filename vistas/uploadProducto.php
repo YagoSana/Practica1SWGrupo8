@@ -8,17 +8,17 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <?php include("../logica/header.php"); ?>
+        <?php include(RUTA_APP ."/logica/header.php"); ?>
         <title>Login Back Music</title>
     </head>  
     <body>
         <div id="contenedor">
            
-            <?php include("../logica/cabecera.php"); ?>
-            <?php include("../logica/lateralIzq.php"); ?>
+            <?php include(RUTA_APP ."/logica/cabecera.php"); ?>
+            <?php include(RUTA_APP ."/logica/lateralIzq.php"); ?>
 
             <main>
-                <form action="../logica/procesarProducto.php" method="POST">
+                <form action="<?php echo RUTA_APP?>/logica/procesarProducto.php" method="POST">
                         <p>
                                 <label for="producto_nombre">Nombre del Producto:</label>
                                 <input type="text" id="producto_nombre" name="producto_nombre">
@@ -38,7 +38,7 @@
                 </form>
 
             </main>
-            <?php include("../logica/pieDePagina.php"); ?>
+            <?php include(RUTA_APP ."/logica/pieDePagina.php"); ?>
         </div>
     </body>
 </html>

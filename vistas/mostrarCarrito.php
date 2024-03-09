@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <?php include("../logica/header.php"); include("../logica/usuario.php");?>
+        <?php 
+            include(RUTA_APP ."/logica/header.php");
+            include(RUTA_APP ."/logica/usuario.php");
+        ?>
         <title>Login Back Music</title>
     </head>  
     <body>
         <div id="contenedor">
-            <?php include("../logica/cabecera.php"); ?>
-            <?php include("../logica/lateralIzq.php"); ?>
+            <?php include(RUTA_APP ."/logica/cabecera.php"); ?>
+            <?php include(RUTA_APP ."/logica/lateralIzq.php"); ?>
 
             <main>
                 <?php
@@ -24,7 +27,7 @@
                 ?>
             </main>
 
-            <?php include("../logica/pieDePagina.php"); ?>
+            <?php include(RUTA_APP ."/logica/pieDePagina.php"); ?>
         </div>
     </body>
 </html>
