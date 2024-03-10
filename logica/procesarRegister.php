@@ -23,10 +23,7 @@
 
         if ($stmt->rowCount() > 0) {
             define('REGISTRADO', true);
-            //$_SESSION["login"] = false;
             $_SESSION["nombre"] = $User;
-            $usuario = new Usuario($User);
-            $_SESSION["usuario"] = $usuario;
         }
     }
 
