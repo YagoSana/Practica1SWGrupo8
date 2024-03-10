@@ -4,7 +4,7 @@
 /* */
 
 // Parámetros de configuración generales
-define('RUTA_APP', '/Practica1SWGrupo8-1'); //cada uno pone aqui el nombre del directorio donde tiene la web en localhost
+define('RUTA_APP', '/Practica2'); //cada uno pone aqui el nombre del directorio donde tiene la web en localhost
 define('RUTA_IMGS', RUTA_APP.'/img');
 define('RUTA_CSS', RUTA_APP.'/estilos');
 
