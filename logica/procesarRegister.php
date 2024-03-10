@@ -22,7 +22,8 @@
         $stmt->execute([$Nombre, $Apellido, $Email, $User, $Pass]);
 
         if ($stmt->rowCount() > 0) {
-            $_SESSION["login"] = false;
+            define('REGISTRADO', true);
+            //$_SESSION["login"] = false;
             $_SESSION["nombre"] = $User;
             $usuario = new Usuario($User);
             $_SESSION["usuario"] = $usuario;
@@ -46,7 +47,7 @@
 
             <main>
                 <?php
-                    if (!isset($_SESSION["login"])) {
+                    if (!REGISTRADO) {
                         echo "<h1>Error al registrarse</h1>";
                         echo "<p>El usuario indicado ya está registrado.</p>";
                     }
