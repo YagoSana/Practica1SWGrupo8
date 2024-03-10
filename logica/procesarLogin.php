@@ -10,23 +10,22 @@
     $User = $_POST['username'];
     $Pass = $_POST['password'];
 
-    if($User != "admin") {
-        $sql = "SELECT * FROM usuario WHERE User = '$User' AND Pass = '$Pass'";
-        $result = $db->getConnection()->query($sql);
+    
+    $sql = "SELECT * FROM usuario WHERE User = '$User' AND Pass = '$Pass'";
+    $result = $db->getConnection()->query($sql);
 
-        if($result->rowcount() == 1) {
-            $_SESSION["login"] = true;
-            $_SESSION["nombre"] = $User;
-            $usuario = new Usuario($User);
-            $_SESSION["usuario"] = $usuario;
-        }
-    } else if($Pass == "adminpass"){
+    if($result->rowcount() == 1) {
         $_SESSION["login"] = true;
-        $_SESSION["nombre"] = "Administrador";
-        $_SESSION["esAdmin"] = true;
+        $_SESSION["nombre"] = $User;
         $usuario = new Usuario($User);
         $_SESSION["usuario"] = $usuario;
+
+        $row = $result->fetch();
+        if($row["User"] == "admin") {
+            $_SESSION["esAdmin"] = true;
+        }
     }
+
 
     $db->close();
 ?>
