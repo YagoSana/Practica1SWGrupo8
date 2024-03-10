@@ -22,7 +22,7 @@
         $stmt->execute([$Nombre, $Apellido, $Email, $User, $Pass]);
 
         if ($stmt->rowCount() > 0) {
-            $_SESSION["login"] = true;
+            $_SESSION["login"] = false;
             $_SESSION["nombre"] = $User;
             $usuario = new Usuario($User);
             $_SESSION["usuario"] = $usuario;
@@ -52,7 +52,7 @@
                     }
                     else {
                         echo "<h1>Bienvenido {$_SESSION['nombre']}</h1>";
-                        echo "<p>Usa el menú de la izquierda para navegar.</p>";
+                        echo "<p>Ahora ya puedes iniciar sesión en nuestra tienda.</p>";
                     }
                 ?>
             </main>
