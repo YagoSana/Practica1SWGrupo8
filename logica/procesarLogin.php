@@ -2,16 +2,19 @@
     session_start();
     require_once 'config.php';
     require 'usuario.php';
-    $db = new mysqli(BD_HOST, BD_USER, BD_PASS, BD_NAME);
+    require 'baseDatos.php';
 
-    $User = $db -> real_escape_string($_POST['username']);
-    $Pass = $db -> real_escape_string($_POST['password']);
+    $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
+    $db->connect();
+
+    $User = $_POST['username'];
+    $Pass = $_POST['password'];
 
     if($User != "admin") {
         $sql = "SELECT * FROM usuario WHERE User = '$User' AND Pass = '$Pass'";
+        $result = $db->getConnection()->query($sql);
 
-        $result = $db->query($sql);
-        if($result->num_rows === 1) {
+        if($result->rowcount() == 1) {
             $_SESSION["login"] = true;
             $_SESSION["nombre"] = $User;
             $usuario = new Usuario($User);
