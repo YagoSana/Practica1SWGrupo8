@@ -47,7 +47,7 @@ CREATE TABLE `productos` (
   `Descripcion` varchar(200) NOT NULL,
   `Precio` decimal(6,2) NOT NULL,
   `Imagen` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
@@ -70,7 +70,7 @@ CREATE TABLE `usuario` (
   `User` varchar(20) NOT NULL,
   `Pass` varchar(9) NOT NULL,
   `Email` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
