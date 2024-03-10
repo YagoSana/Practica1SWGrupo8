@@ -14,7 +14,7 @@
         // Usa la instancia de Database que ya creaste en baseDatos.php
         $connection = $db->getConnection();
 
-        $producto = new Producto(null, null, null, null, $db->getConnection());
+        $producto = new Producto(null, null, null, null, null, $db->getConnection());
         $producto->deleteProducto($ID);
 
     }
