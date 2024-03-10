@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-03-2024 a las 20:12:52
+-- Tiempo de generación: 10-03-2024 a las 15:38:00
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -49,6 +49,15 @@ CREATE TABLE `productos` (
   `Imagen` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`ID`, `Nombre`, `Descripcion`, `Precio`, `Imagen`) VALUES
+(1, 'Guitarra Acústica', 'Instrumento musical de alta calidad, con cuerdas de acero y un sonido resonante y claro. Ideal para músicos de todos los niveles. Cuerpo de madera pulida para una estética elegante.', 299.99, '../imagenes/Guitarra.jpg'),
+(2, 'Tambor', 'Instrumento de percusión de sonido profundo y resonante. Cuerpo de madera con parches de piel ajustables. Perfecto para ritmos enérgicos y actuaciones en vivo.', 99.99, '../imagenes/Tambor.jpg'),
+(3, 'Arpa', 'Instrumento musical elegante con cuerdas tensadas que se tocan con los dedos. Produce sonidos melodiosos y suaves. Ideal para música clásica y celta. Cuerpo de madera de alta calidad para una resonanc', 629.99, '../imagenes/Arpa.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -68,7 +77,11 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`Apellido`, `Nombre`, `User`, `Pass`, `Email`) VALUES
-('El Farissi', 'Mohamed', 'llll', 'moha', 'mohamedelfarissi18@g');
+('A', 'Administrador', 'admin', 'adminpass', 'admin@ucm.es'),
+('Félix', 'Álvaro', 'alfelix', 'alf', 'alfelix@ucm.es'),
+('Reyes', 'Laura', 'laurreye', 'lau', 'laurreye@ucm.es'),
+('El Farissi', 'Mohamed', 'melfaris', 'mel', 'melfaris@ucm.es'),
+('Sanabria', 'Yago', 'yagosana', 'yag', 'yagosana@ucm.es');
 
 --
 -- Índices para tablas volcadas
@@ -110,7 +123,7 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
