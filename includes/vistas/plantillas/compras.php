@@ -46,6 +46,13 @@ if ($result === false) {
                                 echo "<h3>" . $row['Nombre'] . "</h3>";
                                 echo "<p>" . $row['Descripcion'] . "</p>";
                                 echo "<p>" . $row['Precio'] . "</p>";
+                                if($_SESSION["esAdmin"]) {
+                                    echo "<form action='procesarEliminacion.php' method='post'>";
+                                    echo "<input type='hidden' name='producto_id' value='" . $row['ID'] . "'>";
+                                    echo "<button type='submit' name='eliminar_producto'>Eliminar</button>";
+                                    echo "</form>";
+                                }
+    
                                 echo "</div>";
                                 echo "</div>";
                             }
