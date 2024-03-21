@@ -26,17 +26,16 @@ class Usuario
     public static function buscaUsuario($nombreUsuario)
     {
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf("SELECT * FROM Usuarios U WHERE U.nombreUsuario='%s'", $conn->real_escape_string($nombreUsuario));
+        $query = sprintf("SELECT * FROM Usuarios U WHERE U.nombreUsuario='%s'", $conn->quote($nombreUsuario));
         $rs = $conn->query($query);
         $result = false;
         if ($rs) {
-            $fila = $rs->fetch_assoc();
+            $fila = $rs->fetch(PDO::FETCH_ASSOC);
             if ($fila) {
                 $result = new Usuario($fila['nombreUsuario'], $fila['password'], $fila['nombre'], $fila['id']);
             }
-            $rs->free();
         } else {
-            error_log("Error BD ({$conn->errno}): {$conn->error}");
+            error_log("Error BD ({$conn->errorCode()}): {$conn->errorInfo()}");
         }
         return $result;
     }
@@ -48,13 +47,12 @@ class Usuario
         $rs = $conn->query($query);
         $result = false;
         if ($rs) {
-            $fila = $rs->fetch_assoc();
+            $fila = $rs->fetch(PDO::FETCH_ASSOC);
             if ($fila) {
                 $result = new Usuario($fila['nombreUsuario'], $fila['password'], $fila['nombre'], $fila['id']);
             }
-            $rs->free();
         } else {
-            error_log("Error BD ({$conn->errno}): {$conn->error}");
+            error_log("Error BD ({$conn->errorCode()}): {$conn->errorInfo()}");
         }
         return $result;
     }
@@ -74,8 +72,7 @@ class Usuario
         );
         $rs = $conn->query($query);
         if ($rs) {
-            $roles = $rs->fetch_all(MYSQLI_ASSOC);
-            $rs->free();
+            $roles = $rs->fetchAll(PDO::FETCH_ASSOC);
 
             $usuario->roles = [];
             foreach($roles as $rol) {
@@ -84,7 +81,7 @@ class Usuario
             return $usuario;
 
         } else {
-            error_log("Error BD ({$conn->errno}): {$conn->error}");
+            error_log("Error BD ({$conn->errorCode()}): {$conn->errorInfo()}");
         }
         return false;
     }
@@ -94,15 +91,15 @@ class Usuario
         $result = false;
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query=sprintf("INSERT INTO Usuarios(nombreUsuario, nombre, password) VALUES ('%s', '%s', '%s')"
-            , $conn->real_escape_string($usuario->nombreUsuario)
-            , $conn->real_escape_string($usuario->nombre)
-            , $conn->real_escape_string($usuario->password)
+            , $conn->quote($usuario->nombreUsuario)
+            , $conn->quote($usuario->nombre)
+            , $conn->quote($usuario->password)
         );
-        if ( $conn->query($query) ) {
-            $usuario->id = $conn->insert_id;
+        if ( $conn->exec($query) ) {
+            $usuario->id = $conn->lastInsertId();
             $result = self::insertaRoles($usuario);
         } else {
-            error_log("Error BD ({$conn->errno}): {$conn->error}");
+            error_log("Error BD ({$conn->errorCode()}): {$conn->errorInfo()}");
         }
         return $result;
     }
@@ -115,31 +112,119 @@ class Usuario
                 , $usuario->id
                 , $rol
             );
-            if ( ! $conn->query($query) ) {
-                error_log("Error BD ({$conn->errno}): {$conn->error}");
+            if ( ! $conn->exec($query) ) {
+                error_log("Error BD ({$conn->errorCode()}): {$conn->errorInfo()}");
                 return false;
             }
         }
         return $usuario;
     }
     
+    <?php
+    include("carrito.php");
+class Usuario
+{
+
+    public const ADMIN_ROLE = 1;
+
+    public const USER_ROLE = 2;
+
+    public static function login($nombreUsuario, $password)
+    {
+        $usuario = self::buscaUsuario($nombreUsuario);
+        if ($usuario && $usuario->compruebaPassword($password)) {
+            return self::cargaRoles($usuario);
+        }
+        return false;
+    }
+    
+    public static function crea($nombreUsuario, $password, $nombre, $rol)
+    {
+        $user = new Usuario($nombreUsuario, self::hashPassword($password), $nombre);
+        $user->añadeRol($rol);
+        return $user->guarda();
+    }
+
+    public static function buscaUsuario($nombreUsuario)
+    {
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("SELECT * FROM Usuarios U WHERE U.nombreUsuario=%s", $conn->quote($nombreUsuario));
+        $rs = $conn->query($query);
+        $result = false;
+        if ($rs) {
+            $fila = $rs->fetch(PDO::FETCH_ASSOC);
+            if ($fila) {
+                $result = new Usuario($fila['nombreUsuario'], $fila['password'], $fila['nombre'], $fila['id']);
+            }
+        } else {
+            error_log("Error BD ({$conn->errorCode()}): {$conn->errorInfo()}");
+        }
+        return $result;
+    }
+
+    public static function buscaPorId($idUsuario)
+    {
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("SELECT * FROM Usuarios WHERE id=%d", $idUsuario);
+        $rs = $conn->query($query);
+        $result = false;
+        if ($rs) {
+            $fila = $rs->fetch(PDO::FETCH_ASSOC);
+            if ($fila) {
+                $result = new Usuario($fila['nombreUsuario'], $fila['password'], $fila['nombre'], $fila['id']);
+            }
+        } else {
+            error_log("Error BD ({$conn->errorCode()}): {$conn->errorInfo()}");
+        }
+        return $result;
+    }
+    
+    private static function hashPassword($password)
+    {
+        return password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    private static function cargaRoles($usuario)
+    {
+        $roles=[];
+            
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("SELECT RU.rol FROM RolesUsuario RU WHERE RU.usuario=%d"
+            , $usuario->id
+        );
+        $rs = $conn->query($query);
+        if ($rs) {
+            $roles = $rs->fetchAll(PDO::FETCH_ASSOC);
+
+            $usuario->roles = [];
+            foreach($roles as $rol) {
+                $usuario->roles[] = $rol['rol'];
+            }
+            return $usuario;
+
+        } else {
+            error_log("Error BD ({$conn->errorCode()}): {$conn->errorInfo()}");
+        }
+        return false;
+    }
+   
     private static function actualiza($usuario)
     {
         $result = false;
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query=sprintf("UPDATE Usuarios U SET nombreUsuario = '%s', nombre='%s', password='%s' WHERE U.id=%d"
-            , $conn->real_escape_string($usuario->nombreUsuario)
-            , $conn->real_escape_string($usuario->nombre)
-            , $conn->real_escape_string($usuario->password)
+        $query=sprintf("UPDATE Usuarios U SET nombreUsuario = %s, nombre=%s, password=%s WHERE U.id=%d"
+            , $conn->quote($usuario->nombreUsuario)
+            , $conn->quote($usuario->nombre)
+            , $conn->quote($usuario->password)
             , $usuario->id
         );
-        if ( $conn->query($query) ) {
+        if ( $conn->exec($query) ) {
             $result = self::borraRoles($usuario);
             if ($result) {
                 $result = self::insertaRoles($usuario);
             }
         } else {
-            error_log("Error BD ({$conn->errno}): {$conn->error}");
+            error_log("Error BD ({$conn->errorCode()}): {$conn->errorInfo()}");
         }
         
         return $result;
@@ -151,8 +236,8 @@ class Usuario
         $query = sprintf("DELETE FROM RolesUsuario RU WHERE RU.usuario = %d"
             , $usuario->id
         );
-        if ( ! $conn->query($query) ) {
-            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        if ( ! $conn->exec($query) ) {
+            error_log("Error BD ({$conn->errorCode()}): {$conn->errorInfo()}");
             return false;
         }
         return $usuario;
@@ -175,8 +260,8 @@ class Usuario
         $query = sprintf("DELETE FROM Usuarios U WHERE U.id = %d"
             , $idUsuario
         );
-        if ( ! $conn->query($query) ) {
-            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        if ( ! $conn->exec($query) ) {
+            error_log("Error BD ({$conn->errorCode()}): {$conn->errorInfo()}");
             return false;
         }
         return true;
@@ -199,17 +284,17 @@ class Usuario
     private $roles;
 
     private function __construct($nombreUsuario, $password, $nombre, $apellido, $email, $id = null, $roles = [])
-    {
-        $this->id = $id;
-        $this->nombreUsuario = $nombreUsuario;
-        $this->password = $password;
-        $this->nombre = $nombre;
-        $this->apellido = $apellido;
-        $this->$email = $email;
-        $this->roles = $roles;
+{
+        $this->$id = $id;
+        $this->$nombreUsuario = $nombreUsuario;
+        $this->$password = $password;
+        $this->$nombre = $nombre;
+        $this->$apellido = $apellido;
+        $this->$email = $email; // Aquí estaba el error, debería ser $this->email en lugar de $this->$email
+        $this->$roles = $roles;
 
         $this->carrito = new Carrito();
-    }
+}
 
     public function getId()
     {
