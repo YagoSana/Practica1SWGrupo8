@@ -8,10 +8,19 @@
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){ 
         // Recoge los datos del formulario
-        $ID = $_POST['producto_id'];
         $Nombre = $_POST['producto_nombre'];
         $Descripcion = $_POST['producto_descripcion'];
         $Precio = $_POST['producto_precio'];
+
+        // Valida que el nombre tenga al menos 5 caracteres
+        if (strlen($Nombre) < 5) {
+            die('El nombre del producto debe tener al menos 5 caracteres.');
+        }
+
+        // Valida que el precio sea un número
+        if (!is_numeric($Precio)) {
+            die('El precio debe ser un número.');
+        }
 
         // Obtén la imagen y su nombre
         $Imagen = $_FILES['producto_imagen']['name'];
@@ -26,9 +35,9 @@
         // Usa la instancia de Database que ya creaste en baseDatos.php
         $connection = $db->getConnection();
 
-        $producto = new Producto($ID, $Nombre, $Descripcion, $Precio, $target, $connection);
+        $producto = new Producto(null, $Nombre, $Descripcion, $Precio, $target, $connection);
 
-        $producto->createProducto($ID, $Nombre, $Descripcion, $Precio, $target);
+        $producto->createProducto($Nombre, $Descripcion, $Precio, $target);
     }
 
     header('Location: ../vistas/paginaConfirmacion.php');
