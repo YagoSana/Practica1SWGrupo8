@@ -28,15 +28,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `pedidos` (
-  `ID_Pedido` int(10) UNSIGNED NOT NULL,
+  `ID_Pedido` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 4,
   `Fecha` date NOT NULL,
   `Cliente` varchar(20) NOT NULL,
   `Producto` int(10) UNSIGNED NOT NULL,
   `Cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-ALTER TABLE `productos`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 4;
 
 -- --------------------------------------------------------
 
