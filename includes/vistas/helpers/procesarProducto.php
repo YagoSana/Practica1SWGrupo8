@@ -26,9 +26,9 @@
         // Usa la instancia de Database que ya creaste en baseDatos.php
         $connection = $db->getConnection();
 
-        $producto = new Producto($ID, $Nombre, $Descripcion, $Precio, $target, $connection);
+        $producto = new Producto(null, $Nombre, $Descripcion, $Precio, $target, $connection);
 
-        $producto->createProducto($ID, $Nombre, $Descripcion, $Precio, $target);
+        $producto->createProducto($Nombre, $Descripcion, $Precio, $target);
     }
 
     header('Location: ../vistas/paginaConfirmacion.php');

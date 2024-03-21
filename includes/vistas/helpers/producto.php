@@ -30,10 +30,9 @@ class Producto {
         $this->Imagen = $producto['Imagen'];
     }
 
-    public function createProducto($ID, $Nombre, $Descripcion, $Precio) {
-        $stmt = $this->pdo->prepare('INSERT INTO productos (ID, Nombre, Descripcion, Precio, Imagen) VALUES (:ID, :Nombre, :Descripcion, :Precio, :Imagen)');
+    public function createProducto($Nombre, $Descripcion, $Precio) {
+        $stmt = $this->pdo->prepare('INSERT INTO productos (Nombre, Descripcion, Precio, Imagen) VALUES (:Nombre, :Descripcion, :Precio, :Imagen)');
         $stmt->execute([
-            'ID' => $ID,
             'Nombre' => $Nombre,
             'Descripcion' => $Descripcion,
             'Precio' => $Precio,
@@ -46,6 +45,7 @@ class Producto {
         $this->Precio = $Precio;
         $this->Imagen = $this->Imagen;
     }
+    
 
     public function deleteProducto($ID) {
         $stmt = $this->pdo->prepare('DELETE FROM productos WHERE ID = :ID');
