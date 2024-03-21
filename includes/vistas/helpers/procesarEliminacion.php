@@ -19,6 +19,6 @@
 
     }
 
-    header('Location: ../vistas/paginaConfirmacion.php');
+    header('Location: '.RUTA_APP. '/includes/vistas/plantillas/paginaConfirmacion.php');
 ?>
 
