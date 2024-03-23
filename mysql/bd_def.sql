@@ -32,7 +32,8 @@ CREATE TABLE `pedidos` (
   `Fecha` date NOT NULL,
   `Cliente` varchar(20) NOT NULL,
   `Producto` int(10) UNSIGNED NOT NULL,
-  `Cantidad` int(11) NOT NULL
+  `Cantidad` int(11) NOT NULL,
+  PRIMARY KEY (`ID_Pedido`),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -91,7 +92,6 @@ INSERT INTO `usuario` (`Apellido`, `Nombre`, `User`, `Pass`, `Email`) VALUES
 -- Indices de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  ADD PRIMARY KEY (`ID_Pedido`),
   ADD KEY `Cliente` (`Cliente`),
   ADD KEY `Producto` (`Producto`);
 

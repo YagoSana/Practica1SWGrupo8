@@ -1,7 +1,7 @@
 <?php
 // Incluye el archivo de la clase Database
 include ("../helpers/baseDatos.php");
-require ("../config.php");
+require ("../../config.php");
 
 // Crea una nueva instancia de la clase Database
 $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
@@ -47,8 +47,8 @@ if ($result === false) {
                             echo "<h3>" . $row['Nombre'] . "</h3>";
                             echo "<p>" . $row['Descripcion'] . "</p>";
                             echo "<p>" . $row['Precio'] . "</p>";
-                            if ($_SESSION["esAdmin"]) {
-                                echo "<form action='procesarEliminacion.php' method='post'>";
+                            if (isset($_SESSION["esAdmin"]) && $_SESSION["esAdmin"]) {
+                                echo "<form action='../helpers/procesarEliminacion.php' method='post'>";
                                 echo "<input type='hidden' name='producto_id' value='" . $row['ID'] . "'>";
                                 echo "<button type='submit' name='eliminar_producto'>Eliminar</button>";
                                 echo "</form>";

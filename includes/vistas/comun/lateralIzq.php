@@ -15,8 +15,7 @@
         <li><a href="<?php echo RUTA_VISTAS?>/plantillas/planificacion.php">Planificación</a></li>
         <?php
             if(isset($_SESSION["esAdmin"])) {
-                echo '<li><a href="' . RUTA_APP . '/vistas/uploadProducto.php">Añadir productos</a></li>';
-                echo '<li><a href="' . RUTA_APP . '/vistas/eliminarProducto.php">Eliminar productos</a></li>';
+                echo '<li><a href="' . RUTA_VISTAS . '/plantillas/uploadProducto.php">Añadir productos</a></li>';
             }
         ?>
 

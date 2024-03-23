@@ -17,13 +17,12 @@ $result = $db->getConnection()->query($sql);
 if ($result->rowcount() == 1) {
     $_SESSION["login"] = true;
     $_SESSION["nombre"] = $User;
-    $usuario = new Usuario($User);
-    $_SESSION["usuario"] = $usuario;
-
     $row = $result->fetch();
     if ($row["User"] == "admin") {
         $_SESSION["esAdmin"] = true;
     }
+    $usuario = usuario::login($User, $Pass);
+    $_SESSION["usuario"] = $usuario;
 }
 
 
