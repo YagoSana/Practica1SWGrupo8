@@ -1,5 +1,5 @@
 <?php
-    require_once(RUTA_INCL."/config.php");
+    require_once("../config.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">

@@ -10,19 +10,19 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <?php include("../logica/header.php"); ?>
+        <?php include("../comun/header.php"); ?>
         <title>Confirmación</title>
     </head>  
     <body>
         <div id="contenedor">
-            <?php include("../logica/cabecera.php"); ?>
-            <?php include("../logica/lateralIzq.php"); ?>
+            <?php include("../comun/cabecera.php"); ?>
+            <?php include("../comun/lateralIzq.php"); ?>
 
             <main>
                 <h1><?php echo $mensaje; ?></h1>
             </main>
 
-            <?php include("../logica/pieDePagina.php"); ?>
+            <?php include("../comun/pieDePagina.php"); ?>
         </div>
     </body>
 </html>

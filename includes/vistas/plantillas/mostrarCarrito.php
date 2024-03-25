@@ -2,15 +2,15 @@
 <html lang="es">
     <head>
         <?php 
-            include("../logica/header.php");
-            include("../logica/usuario.php");
+            include("../comun/header.php");
+            include("../comun/usuario.php");
         ?>
         <title>Login Back Music</title>
     </head>  
     <body>
         <div id="contenedor">
-            <?php include("../logica/cabecera.php"); ?>
-            <?php include("../logica/lateralIzq.php"); ?>
+            <?php include("../comun/cabecera.php"); ?>
+            <?php include("../comun/lateralIzq.php"); ?>
 
             <main>
                 <?php
@@ -27,7 +27,7 @@
                 ?>
             </main>
 
-            <?php include("../logica/pieDePagina.php"); ?>
+            <?php include("../comun/pieDePagina.php"); ?>
         </div>
     </body>
 </html>

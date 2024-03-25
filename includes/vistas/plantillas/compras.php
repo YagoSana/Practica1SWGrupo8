@@ -1,7 +1,7 @@
 <?php
 // Incluye el archivo de la clase Database
-include("../logica/baseDatos.php");
-include("../logica/config.php");
+include("../helpers/baseDatos.php");
+include("../config.php");
 
 // Crea una nueva instancia de la clase Database
 $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
@@ -21,14 +21,14 @@ if ($result === false) {
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <?php include("../logica/header.php"); ?>
+        <?php include("../comun/header.php"); ?>
         <title>Compras Back Music</title>
         <link rel="stylesheet" href="estilos.css"> 
     </head>
     <body>
         <div id="contenedor">
-            <?php include("../logica/cabecera.php"); ?>
-            <?php include("../logica/lateralIzq.php"); ?>
+            <?php include("../comun/cabecera.php"); ?>
+            <?php include("../comun/lateralIzq.php"); ?>
 
             <main>
                 <article>
@@ -63,7 +63,7 @@ if ($result === false) {
                     </section>
                 </article>
             </main>
-            <?php include("../logica/pieDePagina.php"); ?>
+            <?php include("../comun/pieDePagina.php"); ?>
         </div>
     </body>
 </html>

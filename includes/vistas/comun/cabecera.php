@@ -1,5 +1,5 @@
 <?php
-    require_once 'config.php';
+    require_once __DIR__ . '/../../config.php';
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
@@ -15,12 +15,12 @@
         <div id="divInferior">
             <?php
                 if (isset($_SESSION["login"])) {                
-                    echo "Usuario registrado: ".$_SESSION["nombre"].". <a href=".RUTA_APP."/logica/logout.php>Logout</a>";
+                    echo "Usuario registrado: ".$_SESSION["nombre"].". <a href=".RUTA_SRC."/usuarios/logout.php>Logout</a>";
                 } else {
-                    echo "Usuario desconocido. <a href=".RUTA_APP."/vistas/login.php>Login</a>";
+                    echo "Usuario desconocido. <a href=".RUTA_SRC."/login.php>Login</a>";
                 }
             ?>  
-            <a href="<?php echo RUTA_APP?>/vistas/mostrarCarrito.php" class='carrito'>TU CARRITO</a>        
+            <a href="<?php echo RUTA_VISTAS?>/plantillas/mostrarCarrito.php" class='carrito'>TU CARRITO</a>        
         </div>
 	</header>
 </html>
