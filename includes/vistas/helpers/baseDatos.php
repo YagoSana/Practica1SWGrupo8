@@ -34,6 +34,28 @@ class Database {
         }
     }
 
+    public function agregarValoracion($productoID, $nuevaPuntuacion) {
+        // Recuperar la puntuación media y el número de valoraciones actuales de la base de datos
+        $stmt = $this->connection->prepare('SELECT puntuacionMedia, numeroDeValoraciones FROM valoraciones WHERE producto_id = :ID');
+        $stmt->execute(['ID' => $productoID]);
+        $valoracion = $stmt->fetch();
+    
+        $puntuacionMedia = $valoracion['puntuacionMedia'];
+        $numeroDeValoraciones = $valoracion['numeroDeValoraciones'];
+    
+        // Calcular la nueva puntuación media
+        $puntuacionMedia = ($puntuacionMedia * $numeroDeValoraciones + $nuevaPuntuacion) / ($numeroDeValoraciones + 1);
+        $numeroDeValoraciones++;
+    
+        // Actualizar la puntuación media y el número de valoraciones en la base de datos
+        $stmt = $this->connection->prepare('UPDATE valoraciones SET puntuacionMedia = :puntuacionMedia, numeroDeValoraciones = :numeroDeValoraciones WHERE producto_id = :ID');
+        $stmt->execute([
+            'ID' => $productoID,
+            'puntuacionMedia' => $puntuacionMedia,
+            'numeroDeValoraciones' => $numeroDeValoraciones
+        ]);
+    }
+
     public function close() {
         $this->connection = null;
     }

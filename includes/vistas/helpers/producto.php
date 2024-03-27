@@ -19,9 +19,7 @@ class Producto {
         $this->valoracion = new Valoracion();
     }
     
-    public function agregarValoracion($puntuacion) {
-        $this->valoracion->agregarValoracion($puntuacion);
-    }
+   
 
     public function getProducto($ID) {
         $stmt = $this->pdo->prepare('SELECT * FROM productos WHERE ID = :ID');
