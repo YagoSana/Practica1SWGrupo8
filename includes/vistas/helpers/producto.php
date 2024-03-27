@@ -7,6 +7,7 @@ class Producto {
     private $Precio;
     private $pdo;
     private $Imagen;
+    private $Valoracion;
 
     public function __construct($ID, $Nombre, $Descripcion, $Precio, $Imagen, $pdo) {
         $this->ID = $ID;
@@ -15,8 +16,12 @@ class Producto {
         $this->Precio = $Precio;
         $this->Imagen = $Imagen;
         $this->pdo = $pdo;
+        $this->valoracion = new Valoracion();
     }
     
+    public function agregarValoracion($puntuacion) {
+        $this->valoracion->agregarValoracion($puntuacion);
+    }
 
     public function getProducto($ID) {
         $stmt = $this->pdo->prepare('SELECT * FROM productos WHERE ID = :ID');
@@ -28,6 +33,11 @@ class Producto {
         $this->Descripcion = $producto['Descripcion'];
         $this->Precio = $producto['Precio'];
         $this->Imagen = $producto['Imagen'];
+
+        $stmt = $this->pdo->prepare('SELECT AVG(puntuacion) as media FROM valoraciones WHERE producto_id = :ID');
+        $stmt->execute(['ID' => $ID]);
+        $valoracion = $stmt->fetch();
+        $this->valoracion->setPuntuacion($valoracion['media']);
     }
 
     public function createProducto($Nombre, $Descripcion, $Precio) {
