@@ -156,6 +156,19 @@ class Usuario
         return true;
     }
 
+    public function obtenerProductosDelUsuario() {
+        foreach ($this->pedidos as $pedido) {
+            foreach ($pedido->getProductos() as $producto) {
+                echo "Nombre del producto: " . $producto->getNombre() . "\n";
+                echo "Estado del pedido: " . $pedido->getEstado() . "\n";
+                if ($pedido->getEstado() === 'entregado') {
+                    echo "<button onclick='valorar(\"{$producto->getID()}\")'>Valorar</button>\n";
+                }
+                echo "------------------------\n";
+            }
+        }
+    }
+
     private $id;
 
     private $nombreUsuario;
