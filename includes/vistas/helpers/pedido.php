@@ -44,6 +44,51 @@ class Pedido {
     }
 }
 
+public function mostrarPedidos() {
+    $pedidos = $this->obtenerProductosDelUsuario();
+    foreach ($pedidos as $pedido) {
+        echo "<p>Pedido ID: " . $pedido->ID_Pedido . "</p>";
+        echo "<p>Fecha: " . $pedido->Fecha . "</p>";
+        echo "<p>Cliente: " . $pedido->Cliente . "</p>";
+        echo "<p>Producto: " . $pedido->Producto . "</p>";
+        echo "<p>Cantidad: " . $pedido->Cantidad . "</p>";
+        echo "<p>Estado: " . $pedido->Estado . "</p>";
+        if ($pedido->Estado == 'Entregado') {
+            if (!$this->yaValorado($pedido->ID_Pedido)) {
+                echo "<p><button onclick='valorar(\"{$pedido->ID_Pedido}\")'>Valorar</button></p>";
+            } else {
+                echo "<p>Ya has valorado este producto.</p>";
+            }
+        }
+        echo "<hr>";
+    }
+}
+
+
+//Funcion que aun hay que editar
+private function yaValorado($pedidoId) {
+    // Conexión a la base de datos
+    $db = new PDO('mysql:host=localhost;dbname=tu_base_de_datos', 'tu_usuario', 'tu_contraseña');
+
+    // Consulta SQL para verificar si el usuario ya ha valorado el pedido
+    $sql = "SELECT COUNT(*) FROM valoraciones WHERE usuario_id = :usuario_id AND pedido_id = :pedido_id";
+
+    // Preparar la consulta
+    $stmt = $db->prepare($sql);
+
+    // Vincular los parámetros
+    $stmt->bindParam(':usuario_id', $this->usuario->getId());
+    $stmt->bindParam(':pedido_id', $pedidoId);
+
+    // Ejecutar la consulta
+    $stmt->execute();
+
+    // Obtener el resultado
+    $count = $stmt->fetchColumn();
+
+    // Si el conteo es mayor que 0, significa que el usuario ya ha valorado el pedido
+    return $count > 0;
+}
 
 
 ?>
