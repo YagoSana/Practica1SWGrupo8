@@ -1,7 +1,7 @@
 <?php
-    require_once '../config.php';
+    require_once '../../config.php';
     require 'baseDatos.php';
-    require 'Producto.php';
+    require 'producto.php';
 
     $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
     $db->connect(); 
@@ -21,4 +21,3 @@
 
     header('Location: '.RUTA_APP. '/includes/vistas/plantillas/paginaConfirmacion.php');
 ?>
-

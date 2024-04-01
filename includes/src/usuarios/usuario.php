@@ -1,5 +1,6 @@
 <?php
-include ("carrito.php");
+require_once '../../config.php';
+include RAIZ_APP . '/includes/vistas/helpers/carrito.php';
 class Usuario
 {
 
@@ -156,7 +157,8 @@ class Usuario
         return true;
     }
 
-    public function obtenerProductosDelUsuario() {
+    public function obtenerProductosDelUsuario()
+    {
         foreach ($this->pedidos as $pedido) {
             foreach ($pedido->getProductos() as $producto) {
                 echo "Nombre del producto: " . $producto->getNombre() . "\n";

@@ -4,9 +4,9 @@
 /* */
 
 // Parámetros de configuración generales
+define('RAIZ_APP',dirname(__DIR__)); //ruta absoluta a donde está index.php
 define('RUTA_APP','/Practica1SWGrupo8'); //cada uno pone aqui el nombre del directorio donde tiene la web en localhost
 define('RUTA_IMGS',RUTA_APP.'/img');
-define('RUTA_FOTOS',RUTA_APP.'/imagenes');
 define('RUTA_CSS',RUTA_APP.'/css');
 define('RUTA_INCL',RUTA_APP.'/includes');
 define('RUTA_SQL',RUTA_APP.'/mysql');

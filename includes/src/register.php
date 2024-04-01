@@ -1,21 +1,21 @@
 <?php
-    require_once("../config.php");
+require_once ("../config.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <?php include(RUTA_VISTAS."/comun/header.php"); ?>
-        <title>Index Back Music</title>
-    </head>  
-    <body>
-        <div id="contenedor">
-           
-            <?php include(RUTA_VISTAS."/comun/cabecera.php"); ?>
-            <?php include(RUTA_VISTAS."/comun/lateralIzq.php"); ?>
 
-            <main>
-                <h2>Regístrate en BackMusic</h2>
-                <form action=<?php echo RUTA_USU."/procesarRegister.php"; ?> method="POST">
+<head>
+    <?php include RAIZ_APP . '/includes/vistas/comun/header.php'; ?>
+    <title>Index Back Music</title>
+</head>
+
+<body>
+    <div id="contenedor">
+        <?php include RAIZ_APP . '/includes/vistas/comun/cabecera.php'; ?>
+        <?php include RAIZ_APP . '/includes/vistas/comun/lateralIzq.php'; ?>
+        <main>
+            <h2>Regístrate en BackMusic</h2>
+            <form action=<?php echo RUTA_USU . "/procesarRegister.php"; ?> method="POST">
                 <p>
                     <input type="text" id="User" name="User" placeholder="Nombre de usuario" size="30" required>
                 </p>
@@ -31,12 +31,14 @@
                 </p>
                 <p>
                     <input type="checkbox" id="terminos" name="terminos" required>
-                    <label for="terminos">Marque esta casilla para verificar que ha leído nuestros términos y condiciones del servicio</label>
+                    <label for="terminos">Marque esta casilla para verificar que ha leído nuestros términos y
+                        condiciones del servicio</label>
                 </p>
-                    <input type="submit" value="Registrar">
-                </form>
-            </main>
-            <?php include(RUTA_VISTAS."/comun/pieDePagina.php"); ?>
-        </div>
-    </body>
+                <input type="submit" value="Registrar">
+            </form>
+        </main>
+        <?php include RAIZ_APP . '/includes/vistas/comun/header.php'; ?>
+    </div>
+</body>
+
 </html>

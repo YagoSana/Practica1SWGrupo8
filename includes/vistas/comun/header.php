@@ -1,6 +1,3 @@
-<?php
-    require_once __DIR__ . '/../../config.php';
-?>
 <!DOCTYPE html>
 <html>
     <link rel="icon" href="<?php echo RUTA_IMGS?>/simpleLogo.png">

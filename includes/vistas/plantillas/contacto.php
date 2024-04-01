@@ -1,13 +1,16 @@
+<?php
+require '../../config.php';
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <?php include("../comun/header.php"); ?>
+        <?php include RAIZ_APP . '/includes/vistas/comun/header.php'; ?>
         <title>Contacto Back Music</title>
     </head>
     <body>
         <div id="contenedor">
-            <?php include("../comun/cabecera.php"); ?>
-            <?php include("../comun/lateralIzq.php"); ?>
+            <?php include RAIZ_APP . '/includes/vistas/comun/cabecera.php'; ?>
+            <?php include RAIZ_APP . '/includes/vistas/comun/lateralIzq.php'; ?>
             <main>
                 <article>
                     <section>
@@ -52,7 +55,7 @@
                     </section>
                 </article>
             </main>
-            <?php include("../comun/pieDePagina.php"); ?>
+            <?php include RAIZ_APP . '/includes/vistas/comun/pieDePagina.php'; ?>
         </div>
     </body>
 </html>
