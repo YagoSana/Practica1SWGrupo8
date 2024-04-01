@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `pedidos` (
-  `ID_Pedido` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 4,
+  `ID_Pedido` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `Fecha` date NOT NULL,
   `Cliente` varchar(20) NOT NULL,
   `Producto` int(10) UNSIGNED NOT NULL,
