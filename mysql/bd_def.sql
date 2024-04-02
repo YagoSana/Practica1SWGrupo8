@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
---
+--  
 -- Estructura de tabla para la tabla `pedidos`
 --
 
@@ -33,7 +33,7 @@ CREATE TABLE `pedidos` (
   `Cliente` varchar(20) NOT NULL,
   `Producto` int(10) UNSIGNED NOT NULL,
   `Cantidad` int(11) NOT NULL,
-  PRIMARY KEY (`ID_Pedido`),
+  PRIMARY KEY (`ID_Pedido`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -55,9 +55,21 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`ID`, `Nombre`, `Descripcion`, `Precio`, `Imagen`) VALUES
-(1, 'Guitarra Acústica', 'Instrumento musical de alta calidad, con cuerdas de acero y un sonido resonante y claro. Ideal para músicos de todos los niveles. Cuerpo de madera pulida para una estética elegante.', 299.99, '../imagenes/Guitarra.jpg'),
-(2, 'Tambor', 'Instrumento de percusión de sonido profundo y resonante. Cuerpo de madera con parches de piel ajustables. Perfecto para ritmos enérgicos y actuaciones en vivo.', 99.99, '../imagenes/Tambor.jpg'),
-(3, 'Arpa', 'Instrumento musical elegante con cuerdas tensadas que se tocan con los dedos. Produce sonidos melodiosos y suaves. Ideal para música clásica y celta. Cuerpo de madera de alta calidad para una resonanc', 629.99, '../imagenes/Arpa.jpg');
+(1,
+'Guitarra Acústica',
+'Instrumento musical de alta calidad, con cuerdas de acero y un sonido resonante y claro. Ideal para músicos de todos los niveles. Cuerpo de madera pulida para una estética elegante.',
+299.99,
+'../img/imagenesBD/Guitarra.jpg'),
+(2,
+'Tambor',
+'Instrumento de percusión de sonido profundo y resonante. Cuerpo de madera con parches de piel ajustables. Perfecto para ritmos enérgicos y actuaciones en vivo.',
+99.99,
+'../img/imagenesBD/Tambor.jpg'),
+(3,
+'Arpa',
+'Instrumento musical elegante con cuerdas tensadas que se tocan con los dedos. Produce sonidos melodiosos y suaves. Ideal para música clásica y celta. Cuerpo de madera de alta calidad para una resonanc',
+629.99,
+'../img/imagenesBD/Arpa.jpg');
 
 -- --------------------------------------------------------
 

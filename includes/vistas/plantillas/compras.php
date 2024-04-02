@@ -14,7 +14,7 @@ $sql = "SELECT * FROM productos";
 $result = $db->getConnection()->query($sql);
 
 if ($result === false) {
-    die('Error en la consulta SQL: ' . $db->getConnection()->error);
+    die('Error en la consulta SQL: ' . $db->getConnection()->$error);
 }
 ?>
 
