@@ -14,7 +14,7 @@
         <li><a href="<?php echo RUTA_VISTAS?>/plantillas/bocetos.php">Bocetos</a></li>
         <li><a href="<?php echo RUTA_VISTAS?>/plantillas/planificacion.php">Planificación</a></li>
         <?php
-            if(isset($_SESSION["esAdmin"])) {
+            if(isset($_SESSION["esEmpleado"]) || isset($_SESSION["esAdmin"])) {
                 echo '<li><a href="' . RUTA_VISTAS . '/plantillas/uploadProducto.php">Añadir productos</a></li>';
             }
         ?>

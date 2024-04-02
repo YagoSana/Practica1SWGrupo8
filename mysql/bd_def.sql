@@ -59,17 +59,17 @@ INSERT INTO `productos` (`ID`, `Nombre`, `Descripcion`, `Precio`, `Imagen`) VALU
 'Guitarra Acústica',
 'Instrumento musical de alta calidad, con cuerdas de acero y un sonido resonante y claro. Ideal para músicos de todos los niveles. Cuerpo de madera pulida para una estética elegante.',
 299.99,
-'../img/imagenesBD/Guitarra.jpg'),
+'/img/imagenesBD/Guitarra.jpg'),
 (2,
 'Tambor',
 'Instrumento de percusión de sonido profundo y resonante. Cuerpo de madera con parches de piel ajustables. Perfecto para ritmos enérgicos y actuaciones en vivo.',
 99.99,
-'../img/imagenesBD/Tambor.jpg'),
+'/img/imagenesBD/Tambor.jpg'),
 (3,
 'Arpa',
 'Instrumento musical elegante con cuerdas tensadas que se tocan con los dedos. Produce sonidos melodiosos y suaves. Ideal para música clásica y celta. Cuerpo de madera de alta calidad para una resonanc',
 629.99,
-'../img/imagenesBD/Arpa.jpg');
+'/img/imagenesBD/Arpa.jpg');
 
 -- --------------------------------------------------------
 
@@ -81,20 +81,21 @@ CREATE TABLE `usuario` (
   `Apellido` text NOT NULL,
   `Nombre` text NOT NULL,
   `User` varchar(20) NOT NULL,
-  `Pass` varchar(9) NOT NULL,
-  `Email` varchar(20) NOT NULL
+  `Pass` varchar(20) NOT NULL,
+  `Email` varchar(20) NOT NULL,
+  `rol`varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`Apellido`, `Nombre`, `User`, `Pass`, `Email`) VALUES
-('A', 'Administrador', 'admin', 'adminpass', 'admin@ucm.es'),
-('Félix', 'Álvaro', 'alfelix', 'alf', 'alfelix@ucm.es'),
-('Reyes', 'Laura', 'laurreye', 'lau', 'laurreye@ucm.es'),
-('El Farissi', 'Mohamed', 'melfaris', 'mel', 'melfaris@ucm.es'),
-('Sanabria', 'Yago', 'yagosana', 'yag', 'yagosana@ucm.es');
+INSERT INTO `usuario` (`Apellido`, `Nombre`, `User`, `Pass`, `Email`, `rol`) VALUES
+('Empleado', 'Empleado', 'empleado', 'empleadopass', 'empleado@ucm.es', 'empleado'),
+('Félix', 'Álvaro', 'alfelix', 'alf', 'alfelix@ucm.es', 'admin'),
+('Reyes', 'Laura', 'laurreye', 'lau', 'laurreye@ucm.es', 'admin'),
+('El Farissi', 'Mohamed', 'melfaris', 'mel', 'melfaris@ucm.es', 'admin'),
+('Sanabria', 'Yago', 'yagosana', 'yag', 'yagosana@ucm.es', 'admin');
 
 --
 -- Índices para tablas volcadas

@@ -12,14 +12,15 @@ $Apellido = $_POST['Apellido'];
 $Email = $_POST['Email'];
 $User = $_POST['User'];
 $Pass = $_POST['Pass'];
+$rol = $_POST['rol'];
 
 $check_user = "SELECT * FROM usuario WHERE User = '$User'";
 $result = $db->getConnection()->query($check_user);
 
 if ($result->rowcount() == 0) {
-    $sql = "INSERT INTO usuario (Nombre, Apellido, Email, User, Pass) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO usuario (Nombre, Apellido, Email, User, Pass, rol) VALUES (?, ?, ?, ?, ?, usuario)";
     $stmt = $db->getConnection()->prepare($sql);
-    $stmt->execute([$Nombre, $Apellido, $Email, $User, $Pass]);
+    $stmt->execute([$Nombre, $Apellido, $Email, $User, $Pass, $rol]);
 
     if ($stmt->rowCount() > 0) {
         define('REGISTRADO', true);

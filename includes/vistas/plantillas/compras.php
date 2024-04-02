@@ -34,21 +34,21 @@ if ($result === false) {
             <article>
                 <section>
                     <h2>Compras Back Music</h2>
-                    <p>Esta el la sección de compras de Back Music. Aquí podrás encontrar las compras de nuestros
-                        clientes.</p>
+                    <p>Esta el la sección de compras de Back Music. Aquí podrás encontrar todo lo que tenemos a la
+                        venta.</p>
                     <?php
                     // Verifica si la consulta devolvió resultados
                     if ($result->rowCount() > 0) {
                         // Itera sobre los resultados y los muestra en la tabla
                         while ($row = $result->fetch()) {
                             echo "<div class='producto'>";
-                            echo "<img src='" . $row['Imagen'] . "' alt='Imagen del producto'>";
+                            echo "<img src='" . RUTA_APP . $row['Imagen'] . "' alt='Imagen del producto'>";
                             echo "<div>";
                             echo "<h3>" . $row['Nombre'] . "</h3>";
                             echo "<p>" . $row['Descripcion'] . "</p>";
                             echo "<p>" . $row['Precio'] . "</p>";
                             if (isset($_SESSION["esAdmin"]) && $_SESSION["esAdmin"]) {
-                                echo "<form action='../helpers/procesarEliminacion.php' method='post'>";
+                                echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarEliminacion.php' method='post'>";
                                 echo "<input type='hidden' name='producto_id' value='" . $row['ID'] . "'>";
                                 echo "<button type='submit' name='eliminar_producto'>Eliminar</button>";
                                 echo "</form>";

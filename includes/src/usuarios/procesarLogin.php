@@ -18,7 +18,10 @@ if ($result->rowcount() == 1) {
     $_SESSION["login"] = true;
     $_SESSION["nombre"] = $User;
     $row = $result->fetch();
-    if ($row["User"] == "admin") {
+    if ($row["rol"] == "empleado") {
+        $_SESSION["esEmpleado"] = true;
+    }
+    if ($row["rol"] == "admin") {
         $_SESSION["esAdmin"] = true;
     }
     $usuario = usuario::login($User, $Pass);
