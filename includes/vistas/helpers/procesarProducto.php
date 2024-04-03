@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ruta = $_FILES['producto_imagen']['tmp_name'];
 
     // Define la ruta donde se guardará la imagen en el servidor
-    $target = RUTA_APP. "/img/imagenesBD/" . $Imagen;
+    $target = "/img/imagenesBD/" . $Imagen;
 
     // Mueve la imagen a la carpeta de destino
     move_uploaded_file($ruta, $target);
@@ -40,5 +40,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $producto->createProducto($Nombre, $Descripcion, $Precio, $target);
 }
 
-header('Location: ' . RUTA_APP . 'includes/vistas/plantillas/paginaConfirmacion.php');
+header('Location: ' . RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php');
 ?>
