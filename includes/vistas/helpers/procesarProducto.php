@@ -27,7 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ruta = $_FILES['producto_imagen']['tmp_name'];
 
     // Define la ruta donde se guardará la imagen en el servidor
-    $target = "/img/imagenesBD/" . $Imagen;
+    $target = $_SERVER['DOCUMENT_ROOT'] . RUTA_APP."/img/imagenesBD/" . $Imagen;
+
 
     // Mueve la imagen a la carpeta de destino
     move_uploaded_file($ruta, $target);
