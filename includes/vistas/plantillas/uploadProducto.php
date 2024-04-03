@@ -16,10 +16,10 @@ require '../../config.php';
                 <main>
                         <form action="<?= RUTA_APP . '/includes/vistas/helpers/procesarProducto.php'?>"
                                 method="POST" enctype="multipart/form-data">
-                                <p>
+                                <!--<p>
                                         <label for="producto_id">Identificador:</label>
                                         <input type="text" id="producto_id" name="producto_id" required>
-                                </p>
+                                </p>-->
                                 <p>
                                         <label for="producto_nombre">Nombre del Producto:</label>
                                         <input type="text" id="producto_nombre" name="producto_nombre" required>
