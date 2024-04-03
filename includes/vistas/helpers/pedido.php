@@ -2,19 +2,19 @@
 
 class Pedido
 {
-    private $ID_Pedido;
-    private $Fecha;
-    private $Cliente;
-    private $Producto;
-    private $Cantidad;
-    private $Estado;
+    private $idPedido;
+    private $fechaEntrega;
+    private $cliente;
+    private $productos = array();
+    private $productosEntregados = array(); //Hay que implementar que cada vez que el pedido se entregue todos
+                                            //los productos que habia en la variable producto se guarden aqui, para luego poder valorarlos y etc
+    private $cantidad;
+    private $estado;
 
     public function __construct($usuario)
     {
         $this->usuario = $usuario;
-        $this->productos = [];
-        $this->Fecha = date('Y-m-d', strtotime('+2 days'));
-        $this->Estado = 'Pendiente';
+        $this->estado = 'Nulo';
     }
 
     public function agregarProducto($productoId)
@@ -24,10 +24,8 @@ class Pedido
 
     public function obtenerProductosDelUsuario()
     {
-        // Aquí puedes implementar la lógica para obtener los ids de los productos relacionados con el usuario
-        // Por ejemplo, puedes consultar una base de datos o hacer alguna otra operación
-
         // En este ejemplo, simplemente devolvemos los productos agregados al pedido
+        //Devolvemos el array con los productos del usuario
         return $this->productos;
     }
 
@@ -95,6 +93,24 @@ class Pedido
 
         // Si el conteo es mayor que 0, significa que el usuario ya ha valorado el pedido
         return $count > 0;
+    }
+
+    public function confirmarPedido() {
+        if($this->estado == 'Nulo') {
+
+            $this->estado = 'Pendiente';
+
+            //Se establece la fecha de entrega para dentro de un par de dias
+            $diasParaEntrega = rand(2, 5);
+            $this->fechaEntrega = date('Y-m-d', strtotime("+$diasParaEntrega days"));
+            
+            echo "Pedido confirmado. Estado del pedido: " . $this->estado;
+        }
+        else {
+
+            echo "No se puede confirmar el pedido. Estado actual del pedido: " . $this->estado;
+        }
+
     }
 
 }

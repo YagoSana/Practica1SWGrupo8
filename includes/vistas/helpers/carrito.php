@@ -1,15 +1,24 @@
 <?php
 class Carrito {
-    private $productos = array();
-    private $estado = 'pendiente';
+    private $productos = array(); //Es un array con los productos
+    private $estado = 'Pendiente';
+    private $pedido;
+    //Hacer un construct de la clase carrito???
+    //Para hacer un new del pedido
+
+    public function __construct($usuario){
+        $this->usuario = $usuario; //el this hace referencia a la clase padre "Usuario"
+        $this->pedido = new Pedido($usuario); //Y hacemos el new del pedido
+    }
 
     public function agregarProducto($producto) {
         $this->productos[] = $producto;
     }
 
-    public function eliminarProducto($productoID) {
+    //Revisar
+    public function eliminarProducto($productoId) {
         foreach ($this->productos as $key => $producto) {
-            if ($producto->getID() == $productoID) {
+            if ($producto->getID() == $productoId) {
                 unset($this->productos[$key]);
             }
         }
@@ -28,8 +37,22 @@ class Carrito {
     }
 
     public function confirmarPedido() {
-        $this->estado = 'enviado';
-        echo "Pedido confirmado. Estado del pedido: " . $this->estado;
+        if ($this->pedido->getEstado() == 'Pendiente') {
+
+            echo "Tienes un pedido pendiente de entrega. Por favor espera hasta que se entregue antes de realizar una nueva compra.";
+        }
+        else {
+
+            foreach($this->productos as $productoID){
+
+                $this->pedido->agregarProducto($productoID);
+            }
+
+            $this->productos = [];
+            // $this->pedido->confir
+            $this->estado = 'Enviado';
+            echo "Pedido confirmado. Estado del pedido: " . $this->estado;
+        }
     }
 }
 ?>

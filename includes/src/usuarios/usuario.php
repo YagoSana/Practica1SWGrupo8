@@ -199,7 +199,7 @@ class Usuario
         $this->$email = $email; // Aquí estaba el error, debería ser $this->email en lugar de $this->$email
         $this->$roles = $roles;
 
-        $this->carrito = new Carrito();
+        $this->$carrito = new Carrito();
     }
 
     public function getId()

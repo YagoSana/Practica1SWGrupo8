@@ -41,12 +41,15 @@ if ($result === false) {
                     if ($result->rowCount() > 0) {
                         // Itera sobre los resultados y los muestra en la tabla
                         while ($row = $result->fetch()) {
+                            //Esto se hace para pasar luego el producto entero al carrito
+                            $producto = new Producto($row['ID'], $row['Nombre'], $row['Descripcion'], $row['Precio'], $row['Imagen']);
                             echo "<div class='producto'>";
                             echo "<img src='" . RUTA_APP . $row['Imagen'] . "' alt='Imagen del producto'>";
                             echo "<div>";
                             echo "<h3>" . $row['Nombre'] . "</h3>";
                             echo "<p>" . $row['Descripcion'] . "</p>";
                             echo "<p>" . $row['Precio'] . "</p>";
+                            echo "<button onclick='agregarProducto(" . json_encode($producto) . ")'>Agregar al carrito</button>"; //Boton para agregar el producto al carrito
                             if (isset($_SESSION["esAdmin"]) && $_SESSION["esAdmin"]) {
                                 echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarEliminacion.php' method='post'>";
                                 echo "<input type='hidden' name='producto_id' value='" . $row['ID'] . "'>";
