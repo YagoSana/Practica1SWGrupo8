@@ -8,7 +8,7 @@ class Carrito {
 
     public function __construct($usuario){
         $this->usuario = $usuario; //el this hace referencia a la clase padre "Usuario"
-        //$this->pedido = new Pedido($usuario); //Y hacemos el new del pedido
+    
     }
 
     public function agregarProducto($producto) {
