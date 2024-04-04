@@ -8,7 +8,7 @@ class Carrito {
 
     public function __construct($usuario){
         $this->usuario = $usuario; //el this hace referencia a la clase padre "Usuario"
-        $this->pedido = new Pedido($usuario); //Y hacemos el new del pedido
+        //$this->pedido = new Pedido($usuario); //Y hacemos el new del pedido
     }
 
     public function agregarProducto($producto) {
@@ -37,22 +37,20 @@ class Carrito {
     }
 
     public function confirmarPedido() {
-        if ($this->pedido->getEstado() == 'Pendiente') {
-
-            echo "Tienes un pedido pendiente de entrega. Por favor espera hasta que se entregue antes de realizar una nueva compra.";
+        // Creamos un nuevo pedido
+        $this->pedido = new Pedido($this->usuario);
+    
+        // Agregamos los productos al pedido
+        foreach($this->productos as $productoID){
+            $this->pedido->agregarProducto($productoID);
         }
-        else {
-
-            foreach($this->productos as $productoID){
-
-                $this->pedido->agregarProducto($productoID);
-            }
-
-            $this->productos = [];
-            // $this->pedido->confir
-            $this->estado = 'Enviado';
-            echo "Pedido confirmado. Estado del pedido: " . $this->estado;
-        }
-    }
+    
+        // Vaciamos el carrito
+        $this->productos = [];
+    
+        // Cambiamos el estado del carrito a 'Enviado'
+        $this->estado = 'Enviado';
+    
+        echo "Pedido confirmado. Estado del pedido: " . $this->estado;
 }
 ?>

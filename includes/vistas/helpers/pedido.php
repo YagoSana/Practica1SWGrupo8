@@ -5,38 +5,50 @@ class Pedido
     private $idPedido;
     private $fechaEntrega;
     private $cliente;
-    private $productos = array();
+    private $productos = array(); //Hay que guardarlos en la base de datos los productos y los productos entregados
     private $productosEntregados = array(); //Hay que implementar que cada vez que el pedido se entregue todos
                                             //los productos que habia en la variable producto se guarden aqui, para luego poder valorarlos y etc
     private $cantidad;
     private $estado;
 
-    public function __construct($usuario)
-    {
+    public function __construct($usuario) {
+        
         $this->usuario = $usuario;
         $this->estado = 'Nulo';
     }
 
-    public function agregarProducto($productoId)
-    {
-        $this->productos[] = $productoId;
+    public function agregarProducto($producto) {
+        
+        $this->productos[] = $producto;
+
+        // Agregar el producto a la base de datos
+        $db = new PDO('mysql:host=localhost;dbname=tu_base_de_datos', 'tu_usuario', 'tu_contraseña');
+        $sql = "INSERT INTO productos_pedido (pedido_id, producto_id) VALUES (:pedido_id, :producto_id)";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':pedido_id', $this->idPedido);
+        $stmt->bindParam(':producto_id', $producto);
+        $stmt->execute();
     }
 
-    public function obtenerProductosDelUsuario()
-    {
-        // En este ejemplo, simplemente devolvemos los productos agregados al pedido
-        //Devolvemos el array con los productos del usuario
-        return $this->productos;
+    public function obtenerProductosDelUsuario($usuario_id) {
+        // Conexión a la base de datos
+        $db = new PDO('mysql:host=localhost;dbname=tu_base_de_datos', 'tu_usuario', 'tu_contraseña');
+
+        // Consulta SQL para obtener todos los productos del usuario
+        $sql = "SELECT * FROM productos_pedido WHERE usuario_id = :usuario_id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':usuario_id', $usuario_id);
+        $stmt->execute();
+        $productos = $stmt->fetchAll();
+
+        // Devolvemos todos los productos del usuario
+        return $productos;
     }
 
 
-    public function entregarPedido()
-    {
+    public function entregarPedido() {
         if ($this->fechaEntrega <= date('Y-m-d')) {
             $this->estado = 'entregado';
-            foreach ($this->productos as $producto) {
-                echo "<button onclick='valorar(\"{$producto->getID()}\")'>Valorar</button>";
-            }
         } else {
             echo "Aún no has recibido tu pedido.";
         }
@@ -44,25 +56,26 @@ class Pedido
 
     public function getEstado()
     {
-        return $this->Estado;
+        return $this->estado;
     }
 
-    public function mostrarPedidos()
-    {
-        $pedidos = $this->obtenerProductosDelUsuario();
+    public function mostrarPedidos() {
+        $pedidos = $this->obtenerProductosDelUsuario($this->usuario->getId());
         foreach ($pedidos as $pedido) {
             echo "<p>Pedido ID: " . $pedido->ID_Pedido . "</p>";
-            echo "<p>Fecha: " . $pedido->Fecha . "</p>";
             echo "<p>Cliente: " . $pedido->Cliente . "</p>";
             echo "<p>Producto: " . $pedido->Producto . "</p>";
             echo "<p>Cantidad: " . $pedido->Cantidad . "</p>";
-            echo "<p>Estado: " . $pedido->Estado . "</p>";
-            if ($pedido->Estado == 'Entregado') {
+            if ($pedido->Fecha <= date('Y-m-d')) {
+                echo "<p>Estado: Entregado</p>";
                 if (!$this->yaValorado($pedido->ID_Pedido)) {
                     echo "<p><button onclick='valorar(\"{$pedido->ID_Pedido}\")'>Valorar</button></p>";
                 } else {
                     echo "<p>Ya has valorado este producto.</p>";
                 }
+            } else {
+                echo "<p>Estado: Pendiente</p>";
+                echo "<p>Fecha de Entrega: " . $pedido->Fecha . "</p>";
             }
             echo "<hr>";
         }
