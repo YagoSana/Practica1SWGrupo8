@@ -2,7 +2,7 @@
 /* */
 /* Parámetros de configuración de la aplicación */
 /* */
-
+require_once 'aplicacion.php';
 // Parámetros de configuración generales
 define('RAIZ_APP',dirname(__DIR__)); //ruta absoluta a donde está index.php
 define('RUTA_APP','/Practica1SWGrupo8'); //cada uno pone aqui el nombre del directorio donde tiene la web en localhost
@@ -21,7 +21,8 @@ define('BD_NAME', 'bd_def');
 define('BD_USER', 'root');
 define('BD_PASS', '');
 
-
+$app = Aplicacion::getInstance();
+$app->init(['host'=>BD_HOST, 'bd'=>BD_NAME, 'user'=>BD_USER, 'pass'=>BD_PASS]);
 /* */
 /* Configuración de Codificación y timezone */
 /* */

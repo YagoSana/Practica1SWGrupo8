@@ -81,6 +81,7 @@ CREATE TABLE `usuario` (
   `Apellido` text NOT NULL,
   `Nombre` text NOT NULL,
   `User` varchar(20) NOT NULL,
+  `Idusuario`int(20) NOT NULL AUTO_INCREMENT,
   `Pass` varchar(20) NOT NULL,
   `Email` varchar(20) NOT NULL,
   `rol`varchar(20) NOT NULL
@@ -90,12 +91,12 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`Apellido`, `Nombre`, `User`, `Pass`, `Email`, `rol`) VALUES
-('Empleado', 'Empleado', 'empleado', 'empleadopass', 'empleado@ucm.es', 'empleado'),
-('Félix', 'Álvaro', 'alfelix', 'alf', 'alfelix@ucm.es', 'admin'),
-('Reyes', 'Laura', 'laurreye', 'lau', 'laurreye@ucm.es', 'admin'),
-('El Farissi', 'Mohamed', 'melfaris', 'mel', 'melfaris@ucm.es', 'admin'),
-('Sanabria', 'Yago', 'yagosana', 'yag', 'yagosana@ucm.es', 'admin');
+INSERT INTO `usuario` (`Apellido`, `Nombre`, `User`, `Idusuario`, `Pass`, `Email`, `rol`) VALUES
+('Empleado', 'Empleado', 'empleado', 1,'empleadopass', 'empleado@ucm.es', 'empleado'),
+('Félix', 'Álvaro', 'alfelix', 2, 'alf', 'alfelix@ucm.es', 'admin'),
+('Reyes', 'Laura', 'laurreye', 3, 'lau', 'laurreye@ucm.es', 'admin'),
+('El Farissi', 'Mohamed', 'melfaris', 4, 'mel', 'melfaris@ucm.es', 'admin'),
+('Sanabria', 'Yago', 'yagosana', 5,'yag', 'yagosana@ucm.es', 'admin');
 
 --
 -- Índices para tablas volcadas
@@ -120,6 +121,7 @@ ALTER TABLE `productos`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`User`),
+  ADD KEY `Idusuario` (`Idusuario`),
   ADD KEY `Apellido` (`Nombre`(1024));
 
 --

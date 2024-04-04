@@ -2,7 +2,7 @@
 // Incluye el archivo de la clase Database
 include ("../helpers/baseDatos.php");
 require ("../../config.php");
-
+require ("../helpers/producto.php");
 // Crea una nueva instancia de la clase Database
 $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
 
@@ -42,7 +42,7 @@ if ($result === false) {
                         // Itera sobre los resultados y los muestra en la tabla
                         while ($row = $result->fetch()) {
                             //Esto se hace para pasar luego el producto entero al carrito
-                            $producto = new Producto($row['ID'], $row['Nombre'], $row['Descripcion'], $row['Precio'], $row['Imagen']);
+                            $producto = new Producto($row['ID'], $row['Nombre'], $row['Descripcion'], $row['Precio'], $row['Imagen'], $db);
                             echo "<div class='producto'>";
                             echo "<img src='" . RUTA_APP . $row['Imagen'] . "' alt='Imagen del producto'>";
                             echo "<div>";
