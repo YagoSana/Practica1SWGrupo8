@@ -13,7 +13,6 @@ class Usuario
     {
         $usuario = self::buscaUsuario($nombreUsuario);
         if ($usuario && $usuario->compruebaPassword($password)) {
-            echo "<p>hola</p>";
             return self::cargaRoles($usuario);
         }
         return false;
