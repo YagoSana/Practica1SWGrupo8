@@ -49,7 +49,13 @@ if ($result === false) {
                             echo "<h3>" . $row['Nombre'] . "</h3>";
                             echo "<p>" . $row['Descripcion'] . "</p>";
                             echo "<p>" . $row['Precio'] . "</p>";
-                            echo "<button onclick='agregarProducto(" . json_encode($producto) . ")'>Agregar al carrito</button>"; //Boton para agregar el producto al carrito
+                            if (isset($_SESSION["usuario"])) {
+                                // El usuario ha iniciado sesión, muestra el botón "Agregar al carrito"
+                                echo "<button onclick='agregarProducto(" . json_encode($producto) . ")'>Agregar al carrito</button>";
+                            } else {
+                                // El usuario no ha iniciado sesión, muestra un enlace para iniciar sesión
+                                echo "<a href=".RUTA_SRC."/login.php>Iniciar sesión</a> para agregar al carrito";
+                            } //Boton para agregar el producto al carrito
                             if (isset($_SESSION["esAdmin"]) && $_SESSION["esAdmin"]) {
                                 echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarEliminacion.php' method='post'>";
                                 echo "<input type='hidden' name='producto_id' value='" . $row['ID'] . "'>";

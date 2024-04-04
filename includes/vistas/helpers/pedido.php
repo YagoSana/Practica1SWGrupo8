@@ -109,21 +109,14 @@ class Pedido
     }
 
     public function confirmarPedido() {
-        if($this->estado == 'Nulo') {
-
-            $this->estado = 'Pendiente';
-
-            //Se establece la fecha de entrega para dentro de un par de dias
-            $diasParaEntrega = rand(2, 5);
-            $this->fechaEntrega = date('Y-m-d', strtotime("+$diasParaEntrega days"));
-            
-            echo "Pedido confirmado. Estado del pedido: " . $this->estado;
-        }
-        else {
-
-            echo "No se puede confirmar el pedido. Estado actual del pedido: " . $this->estado;
-        }
-
+        // Cambiamos el estado del pedido a 'Pendiente'
+        $this->estado = 'Pendiente';
+    
+        // Establecemos la fecha de entrega para dentro de un par de días
+        $diasParaEntrega = rand(2, 5);
+        $this->fechaEntrega = date('Y-m-d', strtotime("+$diasParaEntrega days"));
+        
+        echo "Pedido confirmado. Estado del pedido: " . $this->estado;
     }
 
 }
