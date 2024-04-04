@@ -13,6 +13,7 @@ class Usuario
     {
         $usuario = self::buscaUsuario($nombreUsuario);
         if ($usuario && $usuario->compruebaPassword($password)) {
+            echo "<p>hola</p>";
             return self::cargaRoles($usuario);
         }
         return false;
@@ -34,7 +35,7 @@ class Usuario
         if ($rs) {
             $fila = $rs->fetch(PDO::FETCH_ASSOC);
             if ($fila) {
-                $result = new Usuario($fila['nombreUsuario'], $fila['password'], $fila['nombre'], $fila['id']);
+                $result = new Usuario($fila['User'], $fila['Pass'], $fila['Nombre'], $fila['Apellido'], $fila['Email'], $fila['Rol'], $fila['Idusuario']);
             }
         } else {
             error_log("Error BD ({$conn->errorCode()}): {$conn->errorInfo()}");
@@ -45,7 +46,7 @@ class Usuario
     public static function buscaPorId($idUsuario)
     {
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf("SELECT * FROM Usuarios WHERE id=%d", $idUsuario);
+        $query = sprintf("SELECT * FROM usuario WHERE id=%d", $idUsuario);
         $rs = $conn->query($query);
         $result = false;
         if ($rs) {
@@ -188,7 +189,7 @@ class Usuario
 
     private $roles;
 
-    private function __construct($nombreUsuario, $password, $nombre, $apellido, $email, $id = null, $roles = [])
+    private function __construct($nombreUsuario, $password, $nombre, $apellido, $email, $roles, $id)
     {
         $this->$id = $id;
         $this->$nombreUsuario = $nombreUsuario;
