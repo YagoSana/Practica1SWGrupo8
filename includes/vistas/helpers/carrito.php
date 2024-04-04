@@ -52,5 +52,6 @@ class Carrito {
         $this->estado = 'Enviado';
     
         echo "Pedido confirmado. Estado del pedido: " . $this->estado;
+    }
 }
 ?>
