@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $target = "/img/imagenesBD/" . $Imagen;
 
     // Mueve la imagen a la carpeta de destino
-    move_uploaded_file($ruta, $target);
+    move_uploaded_file($ruta,RAIZ_APP."$target");
 
     // Usa la instancia de Database que ya creaste en baseDatos.php
     $connection = $db->getConnection();
