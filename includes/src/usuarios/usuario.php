@@ -1,6 +1,6 @@
 <?php
 require_once '../../config.php';
-require '../../aplicacion.php';
+require_once '../../aplicacion.php';
 include RAIZ_APP . '/includes/vistas/helpers/carrito.php';
 class Usuario
 {
@@ -27,9 +27,8 @@ class Usuario
 
     public static function buscaUsuario($nombreUsuario)
     {
-        //Aplicacion::getInstance()->init($bdDatosConexion);
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf("SELECT * FROM Usuarios U WHERE U.nombreUsuario=%s", $conn->quote($nombreUsuario));
+        $query = sprintf("SELECT * FROM usuario U WHERE U.Nombre=%s", $conn->quote($nombreUsuario));
         $rs = $conn->query($query);
         $result = false;
         if ($rs) {
