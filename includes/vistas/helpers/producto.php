@@ -17,7 +17,7 @@ class Producto {
         $this->Precio = $Precio;
         $this->Imagen = $Imagen;
         $this->pdo = $pdo;
-        //$this->valoracion = new Valoracion();
+    
     }
     
    
