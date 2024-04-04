@@ -81,7 +81,7 @@ CREATE TABLE `usuario` (
   `Apellido` text NOT NULL,
   `Nombre` text NOT NULL,
   `User` varchar(20) NOT NULL,
-  `Idusuario`int(20) NOT NULL AUTO_INCREMENT,
+  `Idusuario`int(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `Pass` varchar(20) NOT NULL,
   `Email` varchar(20) NOT NULL,
   `rol`varchar(20) NOT NULL
@@ -120,8 +120,7 @@ ALTER TABLE `productos`
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`User`),
-  ADD KEY `Idusuario` (`Idusuario`),
+  ADD KEY `User` (`User`),
   ADD KEY `Apellido` (`Nombre`(1024));
 
 --
