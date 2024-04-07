@@ -27,6 +27,8 @@ if ($result->rowcount() == 1) {
     }
     $usuario = usuario::login($User, $Pass);
     $_SESSION["usuario"] = $usuario;
+    //Devuelve el usuario completo
+    $_SESSION["usuCompleto"] = $usuario->getUsuarioCompleto();
 }
 
 

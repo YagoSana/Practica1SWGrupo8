@@ -274,4 +274,17 @@ class Usuario
         }
         return false;
     }
+
+    public function getUsuarioCompleto()
+    {
+        return array(
+            "id" => $this->id,
+            "nombreUsuario" => $this->nombreUsuario,
+            "nombre" => $this->nombre,
+            "apellido" => $this->apellido,
+            "email" => $this->email,
+            "carrito" => $this->carrito,
+            "roles" => $this->roles
+        );
+    }
 }
