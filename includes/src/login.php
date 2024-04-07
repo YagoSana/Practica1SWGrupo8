@@ -15,6 +15,7 @@ require_once ("../config.php");
         <?php include RAIZ_APP . '/includes/vistas/comun/lateralIzq.php'; ?>
         <main>
             <h2>Inicio de sesión en BackMusic</h2>
+
             <form action="<?php echo RUTA_SRC ?>/usuarios/procesarLogin.php" method="POST">
                 <p>
                     <label for="username">Username:</label>

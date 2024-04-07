@@ -22,6 +22,7 @@ if ($result->rowcount() == 1) {
         $_SESSION["esEmpleado"] = true;
     }
     if ($row["rol"] == "admin") {
+        $_SESSION["esEmpleado"] = true;
         $_SESSION["esAdmin"] = true;
     }
     $usuario = usuario::login($User, $Pass);
@@ -29,34 +30,28 @@ if ($result->rowcount() == 1) {
 }
 
 
-$db->close();
-?>
+if (isset($_SESSION["login"])) {
+    header('Location: ' . RUTA_APP . '/index.php');
+} else {
+    $ruta = RUTA_SRC;   
+    $contenido = <<<EOS
+    <h2> Error en el inicio de sesión </h2>
+    <h2>Inicio de sesión en BackMusic</h2>
 
-<!DOCTYPE html>
-<html lang="es">
+            <form action="$ruta/usuarios/procesarLogin.php" method="POST">
+                <p>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </p>
+                <p>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </p>
+                <input type="submit" value="Login">
+            </form>
 
-<head>
-    <?php include RAIZ_APP . '/includes/vistas/comun/header.php'; ?>
-    <title>Index Back Music</title>
-</head>
-
-<body>
-    <div id="contenedor">
-        <?php include RAIZ_APP . '/includes/vistas/comun/cabecera.php'; ?>
-        <?php include RAIZ_APP . '/includes/vistas/comun/lateralIzq.php'; ?>
-        <main>
-            <?php
-            if (!isset($_SESSION["login"])) {
-                echo "<h1>Error en el login</h1>";
-                echo "<p>El usuario o la contraseña no son validos.</p>";
-            } else {
-                echo "<h1>Bienvenido {$_SESSION['nombre']}</h1>";
-                echo "<p>Usa el menú de la izquierda para navegar.</p>";
-            }
-            ?>
-        </main>
-        <?php include RAIZ_APP . '/includes/vistas/comun/pieDePagina.php'; ?>
-    </div>
-</body>
-
-</html>
+            <h3>¿No tienes cuenta en nuestra web?</h3>
+            <p>Regístrate como un nuevo usuario <a href="./register.php">aquí</a></p>
+    EOS;
+    require_once RAIZ_APP . '/includes/vistas/plantillas/plantilla.php';
+}

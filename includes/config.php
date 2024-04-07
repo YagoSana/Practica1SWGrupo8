@@ -14,6 +14,7 @@ define('RUTA_SRC',RUTA_INCL.'/src');
 define('RUTA_VISTAS',RUTA_INCL.'/vistas');
 define('RUTA_USU',RUTA_SRC.'/usuarios');
 
+$errorlogin = "";
 
 // Parámetros de configuración de la BD
 define('BD_HOST', '127.0.0.1');
@@ -31,4 +32,3 @@ ini_set('default_charset', 'UTF-8');
 setLocale(LC_ALL, 'es_ES.UTF.8');
 date_default_timezone_set('Europe/Madrid');
 
-//no es necesario cerrar los php

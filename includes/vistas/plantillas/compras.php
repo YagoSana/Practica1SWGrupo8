@@ -54,7 +54,8 @@ if ($result === false) {
                                 echo "<button onclick='agregarProducto(" . json_encode($producto) . ")'>Agregar al carrito</button>";
                             } else {
                                 // El usuario no ha iniciado sesión, muestra un enlace para iniciar sesión
-                                echo "<a href=".RUTA_SRC."/login.php>Iniciar sesión</a> para agregar al carrito";
+                                echo '<button onclick="window.location.href=\''.RUTA_SRC.'/login.php\'">Agregar al carrito</button>';
+
                             } //Boton para agregar el producto al carrito
                             if (isset($_SESSION["esAdmin"]) && $_SESSION["esAdmin"]) {
                                 echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarEliminacion.php' method='post'>";

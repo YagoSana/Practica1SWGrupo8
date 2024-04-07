@@ -12,7 +12,7 @@ $Apellido = $_POST['Apellido'] ?? null;
 $Email = $_POST['Email'] ?? null;
 $User = $_POST['User'] ?? null;
 $Pass = $_POST['Pass'] ?? null;
-$rol = ;
+$rol = "cliente";
 
 if ($User) {
     $query = Usuario::buscaUsuario($User);
@@ -29,5 +29,5 @@ if ($User) {
 }
 
 $db->close();
-header('Location: ' . RUTA_APP . '/includes/vistas/plantillas/principal.php');
+header('Location: ' . RUTA_APP . '/index.php');
 ?>
