@@ -54,11 +54,6 @@ class Pedido
         }
     }
 
-    public function getEstado()
-    {
-        return $this->estado;
-    }
-
     public function mostrarPedidos() {
         $pedidos = $this->obtenerProductosDelUsuario($this->usuario->getId());
         foreach ($pedidos as $pedido) {
@@ -117,6 +112,12 @@ class Pedido
         $this->fechaEntrega = date('Y-m-d', strtotime("+$diasParaEntrega days"));
         
         echo "Pedido confirmado. Estado del pedido: " . $this->estado;
+    }
+
+
+    public function getEstado()
+    {
+        return $this->estado;
     }
 
 }

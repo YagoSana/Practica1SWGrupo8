@@ -53,5 +53,10 @@ class Carrito {
     
         echo "Pedido confirmado. Estado del pedido: " . $this->estado;
     }
+
+    public function getPedido() {
+
+        return $this->pedido;
+    }
 }
 ?>

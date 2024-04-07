@@ -19,8 +19,8 @@ require '../../config.php';
             // Comprobamos que el usuario ha iniciado sesion
             if (isset($_SESSION['login'])) {
                 // Obtiene los pedidos del usuario
-                $pedido = $_SESSION['usuario']->getPedido(); // Asegúrate de que este método existe y devuelve un objeto de tipo Pedido
-            
+                $carrito = $_SESSION['usuario']->getCarrito();
+                $pedido = $carrito->getPedido(); //Devuelve el pedido
                 // Muestra los pedidos
                 $pedido->mostrarPedidos();
             } else {

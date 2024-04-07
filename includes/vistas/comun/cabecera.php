@@ -19,7 +19,9 @@ if (session_status() === PHP_SESSION_NONE) {
             echo "Usuario desconocido. <a href=" . RUTA_SRC . "/login.php>Login</a>";
         }
         ?>
-        <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarCarrito.php" class='carrito'>TU CARRITO</a>
+        <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarCarrito.php" class='carrito'>CARRITO</a>
+        <span class="carrito"> | </span>
+        <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarPedidos.php" class='carrito'>PEDIDOS</a>
     </div>
 </header>
 
