@@ -22,8 +22,16 @@ require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
                 // Obtiene los pedidos del usuario
                 $carrito = $_SESSION['usuario']->getCarrito();
                 $pedido = $carrito->getPedido(); //Devuelve el pedido
-                // Muestra los pedidos
-                $pedido->mostrarPedidos();
+                
+                if($pedido != null){
+                    // Muestra los pedidos
+                    $pedido->mostrarPedidos();
+                }
+                else {
+                    
+                    echo "<p>No existen pedidos.</p>";
+                }
+                
             } else {
                 echo "<p>Debes iniciar sesión para ver tus pedidos.</p>";
             }
