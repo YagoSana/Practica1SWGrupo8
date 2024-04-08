@@ -26,18 +26,17 @@ class Producto {
         $stmt = $this->pdo->prepare('SELECT * FROM productos WHERE ID = :ID');
         $stmt->execute(['ID' => $ID]);
         $producto = $stmt->fetch();
-
-        $this->ID = $producto['ID'];
-        $this->Nombre = $producto['Nombre'];
-        $this->Descripcion = $producto['Descripcion'];
-        $this->Precio = $producto['Precio'];
-        $this->Imagen = $producto['Imagen'];
-
-        $stmt = $this->pdo->prepare('SELECT AVG(puntuacion) as media FROM valoraciones WHERE producto_id = :ID');
-        $stmt->execute(['ID' => $ID]);
-        $valoracion = $stmt->fetch();
-        $this->$valoracion->setPuntuacion($valoracion['media']);
+    
+        return new Producto(
+            $producto['ID'],
+            $producto['Nombre'],
+            $producto['Descripcion'],
+            $producto['Precio'],
+            $producto['Imagen'],
+            $this->pdo
+        );
     }
+    
 
     public function createProducto($Nombre, $Descripcion, $Precio, $Imagen) {
         $stmt = $this->pdo->prepare('INSERT INTO productos (Nombre, Descripcion, Precio, Imagen) VALUES (:Nombre, :Descripcion, :Precio, :Imagen)');

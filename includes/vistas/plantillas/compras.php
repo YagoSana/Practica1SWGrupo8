@@ -51,7 +51,7 @@ if ($result === false) {
                             echo "<p>" . $row['Precio'] . "</p>";
                             if (isset($_SESSION["login"])) {
                                 // El usuario ha iniciado sesión, muestra el botón "Agregar al carrito"
-                                echo "<form action='includes\vistas\helpers\procesarCarrito.php' method='post'>"; //Procesa la adicion al carro
+                                echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarCarrito.php' method='post'>"; //Procesa la adicion al carro
                                 echo "<input type='hidden' name='producto_id' value='" . $row['ID'] . "'>";
                                 echo "<button type='submit' name='agregar_producto'>Agregar al carrito</button>";
                                 echo "</form>";
