@@ -50,7 +50,7 @@ if (isset($_SESSION["login"])) {
             </form>
 
             <h3>¿No tienes cuenta en nuestra web?</h3>
-            <p>Regístrate como un nuevo usuario <a href="./register.php">aquí</a></p>
+            <p>Regístrate como un nuevo usuario <a href="../register.php">aquí</a></p>
     EOS;
     require_once RAIZ_APP . '/includes/vistas/plantillas/plantilla.php';
 }
