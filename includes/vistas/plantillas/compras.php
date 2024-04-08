@@ -49,7 +49,7 @@ if ($result === false) {
                             echo "<h3>" . $row['Nombre'] . "</h3>";
                             echo "<p>" . $row['Descripcion'] . "</p>";
                             echo "<p>" . $row['Precio'] . "</p>";
-                            if (isset($_SESSION["usuario"])) {
+                            if (isset($_SESSION["login"])) {
                                 // El usuario ha iniciado sesión, muestra el botón "Agregar al carrito"
                                 echo "<button onclick='agregarProducto(" . json_encode($producto) . ")'>Agregar al carrito</button>";
                             } else {
