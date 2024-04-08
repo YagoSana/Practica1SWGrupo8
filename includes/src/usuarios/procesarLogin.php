@@ -10,11 +10,10 @@ $db->connect();
 $User = $_POST['username'];
 $Pass = $_POST['password'];
 
-
 $sql = "SELECT * FROM usuario WHERE User = '$User' AND Pass = '$Pass'";
 $result = $db->getConnection()->query($sql);
 
-if ($result->rowcount() == 1) {
+if ($result->rowCount() == 1) {
     $_SESSION["login"] = true;
     $_SESSION["nombre"] = $User;
     $row = $result->fetch();
@@ -25,10 +24,8 @@ if ($result->rowcount() == 1) {
         $_SESSION["esEmpleado"] = true;
         $_SESSION["esAdmin"] = true;
     }
-    $usuario = usuario::login($User, $Pass);
-    $_SESSION["usuario"] = $usuario;
-    //Devuelve el usuario completo
-    $_SESSION["usuCompleto"] = $usuario->getUsuarioCompleto();
+    
+    usuario::login($User, $Pass);
 }
 
 
@@ -57,3 +54,6 @@ if (isset($_SESSION["login"])) {
     EOS;
     require_once RAIZ_APP . '/includes/vistas/plantillas/plantilla.php';
 }
+
+$db->close();
+?>

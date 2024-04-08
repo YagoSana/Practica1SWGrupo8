@@ -12,6 +12,7 @@ class Usuario
     public static function login($nombreUsuario, $password)
     {
         $usuario = self::buscaUsuario($nombreUsuario);
+    
         if ($usuario && $usuario->compruebaPassword($password)) {
             return self::cargaRoles($usuario);
         }
@@ -21,6 +22,7 @@ class Usuario
     public static function crea($nombreUsuario, $password, $nombre, $rol)
     {
         $user = new Usuario($nombreUsuario, self::hashPassword($password), $nombre);
+        $_SESSION["usuario"] = $user;
         $user->añadeRol($rol);
         return $user->guarda();
     }
@@ -28,17 +30,17 @@ class Usuario
     public static function buscaUsuario($nombreUsuario)
     {
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf("SELECT * FROM usuario U WHERE U.Nombre=%s", $conn->quote($nombreUsuario));
-        $rs = $conn->query($query);
+        $query = "SELECT * FROM usuario U WHERE U.User=:nombreUsuario";
+        $stmt = $conn->prepare($query);
+        $stmt->execute(['nombreUsuario' => $nombreUsuario]);
         $result = false;
-        if ($rs) {
-            $fila = $rs->fetch(PDO::FETCH_ASSOC);
-            if ($fila) {
-                $result = new Usuario($fila['User'], $fila['Pass'], $fila['Nombre'], $fila['Apellido'], $fila['Email'], $fila['Rol'], $fila['Idusuario']);
-            }
-        } else {
-            error_log("Error BD ({$conn->errorCode()}): {$conn->errorInfo()}");
+        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($fila) {
+            $result = new Usuario($fila['User'], $fila['Pass'], $fila['Nombre'], $fila['Apellido'], $fila['Email'], $fila['rol'], $fila['Idusuario']);
+            $result->inicializarCarrito();
+            $_SESSION['usuario'] = $result;
         }
+        
         return $result;
     }
 
@@ -172,6 +174,11 @@ class Usuario
         }
     }
 
+    private function inicializarCarrito()
+    {
+        $this->carrito = new Carrito($this);
+    }
+
     private $id;
 
     private $nombreUsuario;
@@ -190,15 +197,14 @@ class Usuario
 
     private function __construct($nombreUsuario, $password, $nombre, $apellido, $email, $roles, $id)
     {
-        $this->$id = $id;
-        $this->$nombreUsuario = $nombreUsuario;
-        $this->$password = $password;
-        $this->$nombre = $nombre;
-        $this->$apellido = $apellido;
-        $this->$email = $email; // Aquí estaba el error, debería ser $this->email en lugar de $this->$email
-        $this->$roles = $roles;
+        $this->id = $id;
+        $this->nombreUsuario = $nombreUsuario;
+        $this->password = $password;
+        $this->nombre = $nombre;
+        $this->apellido = $apellido;
+        $this->email = $email; // Aquí estaba el error, debería ser $this->email en lugar de $this->$email
+        $this->roles = $roles;
 
-        $this->$carrito = new Carrito();
     }
 
     public function getId()
