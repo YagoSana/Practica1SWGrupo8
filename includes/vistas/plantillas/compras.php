@@ -57,7 +57,7 @@ if ($result === false) {
                                 echo '<button onclick="window.location.href=\''.RUTA_SRC.'/login.php\'">Agregar al carrito</button>';
 
                             } //Boton para agregar el producto al carrito
-                            if (isset($_SESSION["esAdmin"]) && $_SESSION["esAdmin"]) {
+                            if (isset($_SESSION["esEmpleado"])) {
                                 echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarEliminacion.php' method='post'>";
                                 echo "<input type='hidden' name='producto_id' value='" . $row['ID'] . "'>";
                                 echo "<button type='submit' name='eliminar_producto'>Eliminar</button>";
