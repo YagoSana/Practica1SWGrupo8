@@ -2,7 +2,7 @@
 // Incluye el archivo de la clase Database
 include ("../helpers/baseDatos.php");
 require ("../../config.php");
-require ("../helpers/producto.php");
+require_once ("../helpers/producto.php");
 require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
 require_once ("../helpers/carrito.php");
 
@@ -45,7 +45,7 @@ if ($result === false) {
                         // Itera sobre los resultados y los muestra en la tabla
                         while ($row = $result->fetch()) {
                             //Esto se hace para pasar luego el producto entero al carrito
-                            $producto = new Producto($row['ID'], $row['Nombre'], $row['Descripcion'], $row['Precio'], $row['Imagen'], $db);
+                            $producto = new Producto($row['ID'], $row['Nombre'], $row['Descripcion'], $row['Precio'], $row['Imagen']);
                             echo "<div class='producto'>";
                             echo "<img src='" . RUTA_APP . $row['Imagen'] . "' alt='Imagen del producto'>";
                             echo "<div>";

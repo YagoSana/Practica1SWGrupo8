@@ -6,24 +6,24 @@ class Producto {
     private $Nombre;
     private $Descripcion;
     private $Precio;
-    private $pdo;
+    //private $pdo;
     private $Imagen;
     private $Valoracion;
 
-    public function __construct($ID, $Nombre, $Descripcion, $Precio, $Imagen, $pdo) {
+    public function __construct($ID, $Nombre, $Descripcion, $Precio, $Imagen) {
         $this->ID = $ID;
         $this->Nombre = $Nombre;
         $this->Descripcion = $Descripcion;
         $this->Precio = $Precio;
         $this->Imagen = $Imagen;
-        $this->pdo = $pdo;
+        //$this->pdo = $pdo;
     
     }
     
    
 
-    public function getProducto($ID) {
-        $stmt = $this->pdo->prepare('SELECT * FROM productos WHERE ID = :ID');
+    public function getProducto($ID, $pdo) {
+        $stmt = $pdo->prepare('SELECT * FROM productos WHERE ID = :ID');
         $stmt->execute(['ID' => $ID]);
         $producto = $stmt->fetch();
     
@@ -32,14 +32,13 @@ class Producto {
             $producto['Nombre'],
             $producto['Descripcion'],
             $producto['Precio'],
-            $producto['Imagen'],
-            $this->pdo
+            $producto['Imagen']
         );
     }
     
 
-    public function createProducto($Nombre, $Descripcion, $Precio, $Imagen) {
-        $stmt = $this->pdo->prepare('INSERT INTO productos (Nombre, Descripcion, Precio, Imagen) VALUES (:Nombre, :Descripcion, :Precio, :Imagen)');
+    public function createProducto($Nombre, $Descripcion, $Precio, $Imagen, $pdo) {
+        $stmt = $pdo->prepare('INSERT INTO productos (Nombre, Descripcion, Precio, Imagen) VALUES (:Nombre, :Descripcion, :Precio, :Imagen)');
         $stmt->execute([
             'Nombre' => $Nombre,
             'Descripcion' => $Descripcion,
@@ -47,7 +46,7 @@ class Producto {
             'Imagen' => $this->Imagen 
         ]);
     
-        $this->ID = $this->pdo->lastInsertId();
+        $this->ID = $pdo->lastInsertId();
         $this->Nombre = $Nombre;
         $this->Descripcion = $Descripcion;
         $this->Precio = $Precio;
@@ -55,9 +54,17 @@ class Producto {
     }
     
 
-    public function deleteProducto($ID) {
-        $stmt = $this->pdo->prepare('DELETE FROM productos WHERE ID = :ID');
+    public function deleteProducto($ID, $pdo) {
+        $stmt = $pdo->prepare('DELETE FROM productos WHERE ID = :ID');
         $stmt->execute(['ID' => $ID]);
+    }
+
+    public function getNombre() {
+        return $this->Nombre;
+    }
+
+    public function getID() {
+        return $this->ID;
     }
 }
 

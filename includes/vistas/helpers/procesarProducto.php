@@ -35,9 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Usa la instancia de Database que ya creaste en baseDatos.php
     $connection = $db->getConnection();
 
-    $producto = new Producto(null, $Nombre, $Descripcion, $Precio, $target, $connection);
+    $producto = new Producto(null, $Nombre, $Descripcion, $Precio, $target);
 
-    $producto->createProducto($Nombre, $Descripcion, $Precio, $target);
+    $producto->createProducto($Nombre, $Descripcion, $Precio, $target, $connection);
 }
 
 header('Location: ' . RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php');

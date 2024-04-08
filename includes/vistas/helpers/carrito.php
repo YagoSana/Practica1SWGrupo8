@@ -1,4 +1,6 @@
 <?php
+require_once 'producto.php';
+
 class Carrito {
     private $productos = array(); //Es un array con los productos
     private $estado = 'Pendiente';
@@ -29,8 +31,10 @@ class Carrito {
             echo "El carrito está vacío.";
         } else {
             foreach ($this->productos as $producto) {
+                echo "<div>";
                 echo "Producto: " . $producto->getNombre();
                 echo "<button onclick='eliminarProducto(" . $producto->getID() . ")'>Eliminar</button>";
+                echo "</div>";
             }
             echo "<button onclick='confirmarPedido()'>Confirmar Pedido</button>";
         }
