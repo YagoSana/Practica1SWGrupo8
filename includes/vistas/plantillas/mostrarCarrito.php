@@ -19,7 +19,7 @@ require '../../config.php';
             // Comprobamos que el usuario ha iniciado sesion
             if (isset($_SESSION['login'])) {
                 // Obtiene el carrito de compras del usuario
-                $carrito = $_SESSION['usuario']->getCarrito(); //!!!!!Hay que cambiar esto a user no puede ser el la busqueda por el nombre¡¡¡¡¡¡ Tiene que devolver un objeto de tipo usuario
+                $carrito = $_SESSION['usuCompleto']->getCarrito(); //!!!!!Hay que cambiar esto a user no puede ser el la busqueda por el nombre¡¡¡¡¡¡ Tiene que devolver un objeto de tipo usuario
             
                 // Muestra los productos en el carrito
                 $carrito->mostrarProductos();

@@ -35,6 +35,7 @@ class Usuario
             $fila = $rs->fetch(PDO::FETCH_ASSOC);
             if ($fila) {
                 $result = new Usuario($fila['User'], $fila['Pass'], $fila['Nombre'], $fila['Apellido'], $fila['Email'], $fila['Rol'], $fila['Idusuario']);
+                $_SESSION["usuCompleto"] = $result;
             }
         } else {
             error_log("Error BD ({$conn->errorCode()}): {$conn->errorInfo()}");
