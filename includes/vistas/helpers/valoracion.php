@@ -14,3 +14,4 @@ class Valoracion {
         return $this->puntuacionMedia;
     }
 }
+?>

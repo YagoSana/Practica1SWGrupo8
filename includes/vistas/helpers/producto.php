@@ -1,5 +1,5 @@
 <?php
-require "valoracion.php";
+require_once "valoracion.php";
 
 class Producto {
     private $ID;

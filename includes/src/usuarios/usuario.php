@@ -37,6 +37,7 @@ class Usuario
         $fila = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($fila) {
             $result = new Usuario($fila['User'], $fila['Pass'], $fila['Nombre'], $fila['Apellido'], $fila['Email'], $fila['rol'], $fila['Idusuario']);
+            $result->inicializarCarrito();
             $_SESSION['usuario'] = $result; //Se guarda la variable de tipo usuario
         }
         
@@ -173,10 +174,10 @@ class Usuario
         }
     }
 
-    //private function inicializarCarrito()
-    //{
-    //    $this->carrito = new Carrito($this);
-    //}
+    private function inicializarCarrito()
+    {
+        $this->carrito = new Carrito($this);
+    }
 
     private $id;
 
@@ -203,7 +204,7 @@ class Usuario
         $this->apellido = $apellido;
         $this->email = $email; // Aquí estaba el error, debería ser $this->email en lugar de $this->$email
         $this->roles = $roles;
-        $this->carrito = new Carrito($this);
+        //$this->carrito = new Carrito($this);
     }
 
     public function getId()

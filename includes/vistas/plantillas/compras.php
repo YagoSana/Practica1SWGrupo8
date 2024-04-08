@@ -3,6 +3,9 @@
 include ("../helpers/baseDatos.php");
 require ("../../config.php");
 require ("../helpers/producto.php");
+require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
+require_once ("../helpers/carrito.php");
+
 // Crea una nueva instancia de la clase Database
 $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
 
