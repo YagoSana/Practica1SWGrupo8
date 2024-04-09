@@ -2,7 +2,7 @@
 require '../../config.php';
 require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['login'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtiene el carrito de compras del usuario
     $carrito = $_SESSION['usuario']->getCarrito();
 
