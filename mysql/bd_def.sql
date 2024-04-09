@@ -88,6 +88,29 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Estructura de tabla para la tabla `carrito`
+--
+
+CREATE TABLE `carrito` (
+  `ID_Carrito` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `Idusuario` int(20) UNSIGNED NOT NULL,
+  PRIMARY KEY (`ID_Carrito`),
+  FOREIGN KEY (`Idusuario`) REFERENCES `usuario`(`Idusuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Estructura de tabla para la tabla `carrito_producto`
+--
+
+CREATE TABLE `carrito_producto` (
+  `ID_Carrito` int(10) UNSIGNED NOT NULL,
+  `ID` int(10) UNSIGNED NOT NULL,
+  `Cantidad` int(11) NOT NULL,
+  PRIMARY KEY (`ID_Carrito`, `ID`),
+  FOREIGN KEY (`ID_Carrito`) REFERENCES `carrito`(`ID_Carrito`),
+  FOREIGN KEY (`ID`) REFERENCES `productos`(`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+--
 -- Volcado de datos para la tabla `usuario`
 --
 

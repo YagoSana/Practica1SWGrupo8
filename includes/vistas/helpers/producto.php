@@ -66,6 +66,14 @@ class Producto {
     public function getID() {
         return $this->ID;
     }
+
+    public function getImagen(){
+        return $this->Imagen;
+    }
+
+    public function getPrecio(){
+        return $this->Precio;
+    }
 }
 
 ?>

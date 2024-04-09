@@ -27,18 +27,34 @@ class Carrito {
     }
 
     public function mostrarProductos() {
-        if (empty($this->productos)) {
-            echo "El carrito está vacío.";
-        } else {
-            foreach ($this->productos as $producto) {
-                echo "<div>";
-                echo "Producto: " . $producto->getNombre();
-                echo "<button onclick='eliminarProducto(" . $producto->getID() . ")'>Eliminar</button>";
-                echo "</div>";
+    if (empty($this->productos)) {
+        echo "El carrito está vacío.";
+    } else {
+        foreach ($this->productos as $producto) {
+            echo "<div class='producto'>";
+            echo "<img src='" . RUTA_APP . $producto->getImagen() . "' alt='Imagen del producto'>";
+            echo "<div>";
+            echo "<h3>" . $producto->getNombre() . "</h3>";
+            // Aquí asumimos que el producto tiene un método getDescripcion()
+            echo "<p>" . $producto->getPrecio() . "</p>";
+            if (isset($_SESSION["login"])) {
+                // El usuario ha iniciado sesión, muestra el botón "Eliminar"
+                echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarCarrito.php' method='post'>";
+                echo "<input type='hidden' name='productoId' value='" . $producto->getID() . "'>";
+                echo "<button type='submit' name='eliminar'>Eliminar</button>";
+                echo "</form>";
             }
-            echo "<button onclick='confirmarPedido()'>Confirmar Pedido</button>";
+            echo "</div>";
+            echo "</div>";
+        }
+        if (isset($_SESSION["login"])) {
+            // El usuario ha iniciado sesión, muestra el botón "Confirmar Pedido"
+            echo '<form action="' . RUTA_APP . '/includes/vistas/helpers/procesarCompra.php" method="POST">
+                <input type="submit" name="confirmar" value="Confirmar Pedido">
+            </form>';
         }
     }
+}
 
     public function confirmarPedido() {
         // Creamos un nuevo pedido
