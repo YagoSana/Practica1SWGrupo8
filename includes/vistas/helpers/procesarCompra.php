@@ -1,8 +1,9 @@
 <?php
 
+require_once '../plantillas/mostrarCarrito.php';
 require_once '../../config.php';
 require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
-require_once RAIZ_APP. '/includes/vistas/helpers/carrito.php';
+require_once 'carrito.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['login'])) {
     // Obtiene el carrito de compras del usuario
@@ -27,3 +28,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['login'])) {
     header("Location: ". RUTA_APP ."/includes/src/login.php");
     exit;
 }
+?>
