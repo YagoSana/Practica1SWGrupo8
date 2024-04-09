@@ -69,6 +69,7 @@ class Carrito {
         // Vaciamos el carrito
         $this->productos = [];
     
+        $this->pedido->confirmarPedido();
         // Cambiamos el estado del carrito a 'Enviado'
         $this->estado = 'Enviado';
     

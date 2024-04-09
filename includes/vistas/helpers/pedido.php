@@ -13,21 +13,26 @@ class Pedido
 
     public function __construct($usuario) {
         
-        $this->usuario = $usuario;
+        $this->cliente = $usuario;
         $this->estado = 'Nulo';
     }
 
     public function agregarProducto($producto) {
-        
         $this->productos[] = $producto;
-
+    
         // Agregar el producto a la base de datos
-        $db = new PDO('mysql:host=localhost;dbname=tu_base_de_datos', 'tu_usuario', 'tu_contraseña');
-        $sql = "INSERT INTO productos_pedido (pedido_id, producto_id) VALUES (:pedido_id, :producto_id)";
-        $stmt = $db->prepare($sql);
-        $stmt->bindParam(':pedido_id', $this->idPedido);
-        $stmt->bindParam(':producto_id', $producto);
-        $stmt->execute();
+        try {
+            $db = new PDO('mysql:host=localhost;dbname=tu_base_de_datos', 'nombre_de_usuario_correcto', 'contraseña_correcta');
+            $sql = "INSERT INTO pedidos (Fecha, Cliente, Producto, Cantidad) VALUES (:fecha, :cliente, :producto_id, :cantidad)";
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':fecha', date('Y-m-d')); // Usa la fecha actual
+            $stmt->bindParam(':cliente', $this->cliente->Idusuario); // Usa el ID del usuario de la sesión actual
+            $stmt->bindParam(':producto_id', $producto->getID());
+            $stmt->bindParam(':cantidad', $cantidad); // Asegúrate de definir $cantidad
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
     }
 
     public function obtenerProductosDelUsuario($usuario_id) {
