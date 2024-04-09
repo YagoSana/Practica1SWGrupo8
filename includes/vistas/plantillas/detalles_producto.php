@@ -1,8 +1,9 @@
 <?php
-// Incluye el archivo de la clase Database
+// Incluye el archivo de la clase Database, Usuario y Producto
 include ("../helpers/baseDatos.php");
 require ("../../config.php");
 require_once ("../helpers/producto.php");
+require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
 
 // Crea una nueva instancia de la clase Database
 $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
@@ -13,17 +14,19 @@ $db->connect();
 // Obtiene el ID del producto de la URL
 $producto_id = $_GET['id'];
 
-// Realiza la consulta para obtener los detalles del producto
-$sql = "SELECT * FROM productos WHERE ID = $producto_id";
-$result = $db->getConnection()->query($sql);
+// Usa el método getProducto de la clase Producto para obtener los detalles del producto
+$producto = Producto::getProducto($producto_id, $db->getConnection());
 
-if ($result === false) {
+// Realiza la consulta para obtener las valoraciones del producto
+$sql = "SELECT * FROM valoraciones WHERE ID = $producto_id";
+$resultValoraciones = $db->getConnection()->query($sql);
+
+if ($resultValoraciones === false) {
     die('Error en la consulta SQL: ' . $db->getConnection()->$error);
 }
 
-// Obtiene los detalles del producto
-$producto = $result->fetch();
-
+// Obtiene las valoraciones del producto
+$valoraciones = $resultValoraciones->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -43,11 +46,20 @@ $producto = $result->fetch();
                 <section>
                     <h2>Detalles del producto</h2>
                     <div class='producto'>
-                        <img src='<?php echo RUTA_APP . $producto['Imagen']; ?>' alt='Imagen del producto'>
+                        <img src='<?php echo RUTA_APP . $producto->getImagen(); ?>' alt='Imagen del producto'>
                         <div>
-                            <h3><?php echo $producto['Nombre']; ?></h3>
-                            <p><?php echo $producto['Descripcion']; ?></p>
-                            <p><?php echo $producto['Precio']; ?></p>
+                            <h3><?php echo $producto->getNombre(); ?></h3>
+                            <p><?php echo $producto->getDescripcion(); ?></p>
+                            <h4>Valoraciones</h4>
+                            <?php foreach ($valoraciones as $valoracion) { 
+                                $usuario = Usuario::buscaPorId($valoracion['Idusuario']);
+                            ?>
+                                <div class='valoracion'>
+                                    <p>Usuario: <?php echo $usuario->getNombre(); ?></p>
+                                    <p>Valoración: <?php echo $valoracion['Valoracion']; ?></p>
+                                    <p>Comentario: <?php echo $valoracion['Comentario']; ?></p>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </section>

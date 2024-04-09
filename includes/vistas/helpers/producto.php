@@ -22,7 +22,7 @@ class Producto {
     
    
 
-    public function getProducto($ID, $pdo) {
+    public static function getProducto($ID, $pdo) {
         $stmt = $pdo->prepare('SELECT * FROM productos WHERE ID = :ID');
         $stmt->execute(['ID' => $ID]);
         $producto = $stmt->fetch();
@@ -73,6 +73,10 @@ class Producto {
 
     public function getPrecio(){
         return $this->Precio;
+    }
+
+    public function getDescripcion() {
+        return $this->Descripcion;
     }
 }
 

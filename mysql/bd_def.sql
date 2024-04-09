@@ -23,6 +23,22 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
+-- Estructura de tabla para la tabla `valoraciones`
+CREATE TABLE `valoraciones` (
+  `ID_Valoracion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `Idusuario` int(20) UNSIGNED NOT NULL,
+  `ID` int(10) UNSIGNED NOT NULL,
+  `Valoracion` int(11) NOT NULL,
+  `Comentario` varchar(255) NOT NULL,
+  PRIMARY KEY (`ID_Valoracion`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Inserta las valoraciones para la guitarra acústica
+INSERT INTO `valoraciones` (`Idusuario`, `ID`, `Valoracion`, `Comentario`) VALUES
+(1, 1, 5, 'Excelente guitarra. El sonido es claro y resonante, y el cuerpo de madera pulida es absolutamente hermoso.'),
+(2, 1, 4, 'Buena guitarra para su precio. Las cuerdas de acero producen un sonido brillante y la guitarra en sí es bastante duradera.');
+
+
 --  
 -- Estructura de tabla para la tabla `pedidos`
 --
@@ -57,7 +73,7 @@ CREATE TABLE `productos` (
 INSERT INTO `productos` (`ID`, `Nombre`, `Descripcion`, `Precio`, `Imagen`) VALUES
 (1,
 'Guitarra Acústica',
-'Instrumento musical de alta calidad, con cuerdas de acero y un sonido resonante y claro. Ideal para músicos de todos los niveles. Cuerpo de madera pulida para una estética elegante.',
+'Instrumento musical de alta calidad, con cuerdas de acero y un sonido resonante y claro. Ideal para músicos de todos los niveles. Cuerpo de madera pulida para una estética elegante. Esta guitarra acústica cuenta con un mástil de madera de arce, un diapasón de palisandro y un puente de madera de ébano. Con una longitud de escala de 650 mm y 20 trastes, es perfecta para una amplia gama de estilos musicales.',
 299.99,
 '/img/imagenesBD/Guitarra.jpg'),
 (2,

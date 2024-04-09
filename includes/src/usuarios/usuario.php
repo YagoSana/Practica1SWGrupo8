@@ -47,19 +47,20 @@ class Usuario
     public static function buscaPorId($idUsuario)
     {
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf("SELECT * FROM usuario WHERE id=%d", $idUsuario);
+        $query = sprintf("SELECT * FROM usuario WHERE Idusuario=%d", $idUsuario);
         $rs = $conn->query($query);
         $result = false;
         if ($rs) {
             $fila = $rs->fetch(PDO::FETCH_ASSOC);
             if ($fila) {
-                $result = new Usuario($fila['nombreUsuario'], $fila['password'], $fila['nombre'], $fila['id']);
+                $result = new Usuario($fila['User'], $fila['Pass'], $fila['Nombre'], $fila['Apellido'], $fila['Email'], $fila['rol'], $fila['Idusuario']);
             }
         } else {
             error_log("Error BD ({$conn->errorCode()}): {$conn->errorInfo()}");
         }
         return $result;
     }
+
 
     private static function hashPassword($password)
     {

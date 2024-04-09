@@ -13,5 +13,15 @@ class Valoracion {
     public function getPuntuacion() {
         return $this->puntuacionMedia;
     }
+
+    public function calcularPuntuacionMedia($producto_id) {
+        $stmt = $this->pdo->prepare('SELECT AVG(Valoracion) as media FROM valoraciones WHERE ID = :ID');
+        $stmt->execute(['ID' => $producto_id]);
+        $resultado = $stmt->fetch();
+
+        $this->puntuacionMedia = $resultado['media'];
+        return $this->puntuacionMedia;
+    }
 }
+
 ?>
