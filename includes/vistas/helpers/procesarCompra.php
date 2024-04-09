@@ -1,5 +1,4 @@
 <?php
-session_start(); // Inicia la sesión
 
 require_once '../../config.php';
 require RAIZ_APP. '/includes/src/usuarios/usuario.php';
