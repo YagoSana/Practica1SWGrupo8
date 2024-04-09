@@ -13,8 +13,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Accede al usuario y a su carrito desde la sesión
     $carrito = $_SESSION['usuario']->getCarrito();
 
-    // Elimina el producto del carrito
-    $carrito->eliminarProducto($producto_id, $db);
+    $stmt = $db->getConnection()->prepare('SELECT Cantidad FROM carrito WHERE Producto = :ID');
+    $stmt->execute(['ID' => $producto_id]);
+    $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+    $cantidad = $resultado['Cantidad'];
+    
+    if($cantidad > 1) {
+        $carrito->restarCantidad($producto_id, $db);
+    } else {
+        $carrito->eliminarProducto($producto_id, $db);
+    }
 
     echo "Producto eliminado del carrito";
 }
+?>

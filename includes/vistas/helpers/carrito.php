@@ -60,6 +60,13 @@ class Carrito {
         $stmt->execute(['ID' => $productoId]);
     }
 
+    public function restarCantidad($productoId, $db) {
+        $sql = "UPDATE carrito SET Cantidad = Cantidad - 1 WHERE Producto = :ID";
+        $stmt = $db->getConnection()->prepare($sql);
+        $stmt->execute(['ID' => $productoId]);
+
+    }
+
     public function mostrarProductos() {
         $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
         $db->connect();
