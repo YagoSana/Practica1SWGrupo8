@@ -22,5 +22,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
     echo "Producto agregado al carrito";
 }
-    //header('Location: '.RUTA_APP. '/includes/vistas/plantillas/paginaConfirmacion.php');
-?>
