@@ -37,7 +37,8 @@ class Pedido
 
     public function obtenerProductosDelUsuario($usuario_id) {
         // Conexión a la base de datos
-        $db = new PDO('mysql:host=localhost;dbname=tu_base_de_datos', 'tu_usuario', 'tu_contraseña');
+        
+        $db = new PDO('mysql:host=localhost;dbname=bd_def', 'root', '');
 
         // Consulta SQL para obtener todos los productos del usuario
         $sql = "SELECT * FROM productos_pedido WHERE usuario_id = :usuario_id";
@@ -60,7 +61,7 @@ class Pedido
     }
 
     public function mostrarPedidos() {
-        $pedidos = $this->obtenerProductosDelUsuario($this->usuario->getId());
+        $pedidos = $this->obtenerProductosDelUsuario($this->cliente->getId());
         foreach ($pedidos as $pedido) {
             echo "<p>Pedido ID: " . $pedido->ID_Pedido . "</p>";
             echo "<p>Cliente: " . $pedido->Cliente . "</p>";
@@ -80,6 +81,7 @@ class Pedido
             echo "<hr>";
         }
     }
+    
 
 
     //Funcion que aun hay que editar

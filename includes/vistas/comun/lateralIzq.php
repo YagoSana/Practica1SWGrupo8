@@ -7,7 +7,6 @@
         <li><a href="<?php echo RUTA_VISTAS?>/plantillas/principal.php">Página principal</a></li>
         <li><a href="<?php echo RUTA_VISTAS?>/plantillas/compras.php">Sección de Compra</a></li>
         <li><a href="<?php echo RUTA_VISTAS?>/plantillas/ventas.php">Sección de Venta</a></li>
-        <li><a href="<?php echo RUTA_VISTAS?>/plantillas/valoraciones.php">Sección de Valoraciones</a></li>
         <li><a href="<?php echo RUTA_VISTAS?>/plantillas/contacto.php">Contacto</a></li>
         <li><a href="<?php echo RUTA_VISTAS?>/plantillas/detalles.php">Detalles</a></li>
         <li><a href="<?php echo RUTA_VISTAS?>/plantillas/miembros.php">Miembros</a></li>
