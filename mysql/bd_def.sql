@@ -35,8 +35,8 @@ CREATE TABLE `valoraciones` (
 
 -- Inserta las valoraciones para la guitarra acústica
 INSERT INTO `valoraciones` (`Idusuario`, `ID`, `Valoracion`, `Comentario`) VALUES
-(1, 1, 5, 'Excelente guitarra. El sonido es claro y resonante, y el cuerpo de madera pulida es absolutamente hermoso.'),
-(2, 1, 4, 'Buena guitarra para su precio. Las cuerdas de acero producen un sonido brillante y la guitarra en sí es bastante duradera.');
+(2, 1, 5, 'Excelente guitarra. El sonido es claro y resonante, y el cuerpo de madera pulida es absolutamente hermoso.'),
+(3, 1, 4, 'Buena guitarra para su precio. Las cuerdas de acero producen un sonido brillante y la guitarra en sí es bastante duradera.');
 
 
 --  

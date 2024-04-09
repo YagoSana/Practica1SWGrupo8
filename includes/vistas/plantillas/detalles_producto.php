@@ -35,6 +35,7 @@ $valoraciones = $resultValoraciones->fetchAll();
 <head>
     <?php include RAIZ_APP . '/includes/vistas/comun/header.php'; ?>
     <title>Detalles del producto</title>
+    <link rel="stylesheet" type="text/css" href="<?php echo RUTA_CSS?>/estilos.css" />
 </head>
 
 <body>

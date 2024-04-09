@@ -37,7 +37,6 @@ header a:hover {
 	text-decoration: underline;
 } 
 
-
 nav {
 	color: #d86767;
 	padding: 10px;
@@ -106,4 +105,35 @@ button {
     font-size: 1.2em;
     font-weight: bold;
     margin-bottom: 10px;
+}
+
+
+.producto {
+    display: flex;
+    margin-bottom: 2em;
+}
+.producto img {
+    width: 50%;
+    height: auto;
+    margin-right: 2em;
+}
+.valoracion {
+    border: 1px solid #ccc;
+    padding: 1em;
+    margin-bottom: 1em;
+    overflow: auto;
+    max-height: 200px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.valoracion p {
+    margin: 0 0 1em;
+    padding-left: 2em;
+    text-indent: -2em;
+    font-size: 1.1em;
+}
+
+.valoracion p:first-child {
+    font-weight: bold;
 }
