@@ -94,6 +94,7 @@ class Pedido
             echo "<hr>";
         }
     }
+    
 
 
     private function yaValorado($pedidoId) {

@@ -17,16 +17,9 @@ $producto_id = $_GET['id'];
 // Usa el método getProducto de la clase Producto para obtener los detalles del producto
 $producto = Producto::getProducto($producto_id, $db->getConnection());
 
-// Realiza la consulta para obtener las valoraciones del producto
-$sql = "SELECT * FROM valoraciones WHERE ID = $producto_id";
-$resultValoraciones = $db->getConnection()->query($sql);
+// Usa el método getValoracion para obtener las valoraciones del producto
+$valoraciones = valoracion::getValoracion($producto_id, $db->getConnection());
 
-if ($resultValoraciones === false) {
-    die('Error en la consulta SQL: ' . $db->getConnection()->$error);
-}
-
-// Obtiene las valoraciones del producto
-$valoraciones = $resultValoraciones->fetchAll();
 ?>
 
 <!DOCTYPE html>

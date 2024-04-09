@@ -53,7 +53,7 @@ if ($result === false) {
                             echo "<h3>" . $row['Nombre'] . "</h3>";
                             echo "</a>";//Solo la imagen y el nombre son clickeables
                             echo "<p>" . substr($row['Descripcion'], 0, 121) . " <strong>Leer más...</strong></p>";//Solo muestra los primeros 100 caracteres
-                            echo "<p>" . $row['Precio'] . "</p>";
+                            echo "<p>" . $row['Precio'] . " €</p>";
                             if (isset($_SESSION["login"])) {
                                 // El usuario ha iniciado sesión, muestra el botón "Agregar al carrito"
                                 echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarCarrito.php' method='post'>"; //Procesa la adicion al carro
