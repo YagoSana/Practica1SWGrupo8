@@ -109,18 +109,11 @@ CREATE TABLE `usuario` (
 
 CREATE TABLE `carrito` (
   `ID_Carrito` int(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `Idusuario` int(20) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Estructura de tabla para la tabla `carrito_producto`
---
-
-CREATE TABLE `carrito_producto` (
-  `ID_Carrito` int(10) UNSIGNED NOT NULL,
-  `ID` int(10) UNSIGNED NOT NULL,
+  `Cliente` varchar(20) NOT NULL,
+  `Producto` int(10) UNSIGNED NOT NULL,
   `Cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Volcado de datos para la tabla `usuario`
 --
@@ -157,13 +150,6 @@ ALTER TABLE `usuario`
   ADD KEY `User` (`User`),
   ADD KEY `Apellido` (`Nombre`(1024));
 
-ALTER TABLE `carrito`
-  ADD FOREIGN KEY (`Idusuario`) REFERENCES `usuario`(`Idusuario`);
-
-ALTER TABLE `carrito_producto`
-  ADD PRIMARY KEY (`ID_Carrito`, `ID`),
-  ADD FOREIGN KEY (`ID_Carrito`) REFERENCES `carrito`(`ID_Carrito`),
-  ADD FOREIGN KEY (`ID`) REFERENCES `productos`(`ID`);
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
 --

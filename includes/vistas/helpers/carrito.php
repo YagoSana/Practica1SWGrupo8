@@ -7,32 +7,55 @@ class Carrito {
     private $productos = array(); //Es un array con los productos
     private $estado = 'Pendiente';
     private $pedido;
+
     //Hacer un construct de la clase carrito???
     //Para hacer un new del pedido
 
     public function __construct($usuario){
         $this->usuario = $usuario; //el this hace referencia a la clase padre "Usuario"
-    
     }
 
-    public function agregarProducto($producto) {
+    public function agregarProducto($producto, $db) {
         $this->productos[] = $producto;
+
+        try {
+            $sql = "INSERT INTO carrito (Cliente, Producto, Cantidad) VALUES (:cliente, :producto_id, :cantidad)";
+            $stmt = $db->prepare($sql);
+
+            // Asignar los resultados a variables
+            $cliente = $this->usuario->getId();
+            $producto_id = $producto->getID();
+            $cantidad = 1; // Asegúrate de definir $cantidad
+
+            // Pasar las variables a bindParam
+            $stmt->bindParam(':cliente', $cliente);
+            $stmt->bindParam(':producto_id', $producto_id);
+            $stmt->bindParam(':cantidad', $cantidad);
+
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+
     }
 
     //Revisar
-    public function eliminarProducto($productoId) {
-        foreach ($this->productos as $key => $producto) {
-            if ($producto->getID() == $productoId) {
-                unset($this->productos[$key]);
-            }
-        }
+    public function eliminarProducto($productoId, $db) {
+        $stmt = $db->getConnection()->prepare('DELETE FROM carrito WHERE Producto = :ID');
+        $stmt->execute(['ID' => $productoId]);
     }
 
     public function mostrarProductos() {
-        if (empty($this->productos)) {
+        $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
+        $db->connect();
+
+        $productos_id = $this->obtenerCarritoDelUsuario($this->usuario->getId());
+
+        if ($productos_id == null) {
             echo "El carrito está vacío.";
         } else {
-            foreach ($this->productos as $producto) {
+            foreach ($productos_id as $producto_id) {
+                $producto = Producto::getProducto($producto_id['Producto'], $db->getConnection());
                 echo "<div class='producto'>";
                 echo "<img src='" . RUTA_APP . $producto->getImagen() . "' alt='Imagen del producto'>";
                 echo "<div>";
@@ -57,6 +80,26 @@ class Carrito {
             }
         }
     }
+
+    public function obtenerCarritoDelUsuario($usuario_id) {
+        // Abrir la conexión a la base de datos
+        $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
+        $db->connect();
+    
+        // Consulta SQL para obtener todos los productos del usuario
+        $sql = "SELECT * FROM carrito WHERE Cliente = :usuario_id";
+        $stmt = $db->getConnection()->prepare($sql);
+        $stmt->bindParam(':usuario_id', $usuario_id);
+        $stmt->execute();
+        $productos = $stmt->fetchAll();
+    
+        // Cerrar la conexión a la base de datos
+        $db->close();
+    
+        // Devolvemos todos los productos del usuario
+        return $productos;
+    }
+
 
     public function confirmarPedido() {
         // Creamos un nuevo pedido

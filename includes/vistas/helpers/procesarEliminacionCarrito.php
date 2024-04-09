@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $carrito = $_SESSION['usuario']->getCarrito();
 
     // Elimina el producto del carrito
-    $carrito->eliminarProducto($producto_id);
+    $carrito->eliminarProducto($producto_id, $db);
 
     echo "Producto eliminado del carrito";
 }
