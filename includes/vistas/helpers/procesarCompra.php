@@ -13,8 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['login'])) {
     // Por ejemplo, podrías mover los productos del carrito a la tabla de pedidos,
     // y luego vaciar el carrito en la base de datos.
 
-    // Redirige al usuario a una página de confirmación
-    header("Location: confirmacionPedido.php");
+    // Muestra un mensaje de confirmación
+    echo "Tu pedido ha quedado registrado.";
+
+    // Redirige al usuario a una página de confirmación después de un retraso
+    header("refresh:5;url=confirmacionPedido.php");
     exit;
 } else {
     // Si el usuario no ha iniciado sesión o si la solicitud no es POST,
@@ -22,4 +25,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['login'])) {
     header("Location: login.php");
     exit;
 }
-?>
