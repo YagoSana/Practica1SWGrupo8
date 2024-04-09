@@ -1,6 +1,6 @@
 <?php
     require_once '../../config.php';
-    require 'baseDatos.php';
+    require_once 'baseDatos.php';
     require 'producto.php';
 
     $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
