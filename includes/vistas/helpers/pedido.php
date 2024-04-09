@@ -91,7 +91,7 @@ class Pedido
             echo "<img src='" . $producto['Imagen'] . "' alt='Imagen del producto'>";
             echo "<p>Cantidad: " . $pedido['Cantidad'] . "</p>";
             echo "<p>Fecha: " . $pedido['Fecha'] . "</p>";
-            if ($pedido['Fecha'] >= date('Y-m-d')) {
+            if ($pedido['Fecha'] <= date('Y-m-d')) {
                 echo "<p>Estado: Entregado</p>";
                 if (!$this->yaValorado($pedido['ID_Pedido'])) {
                     echo "<p><button onclick='valorar(\"{$pedido['ID_Pedido']}\")'>Valorar</button></p>";
@@ -112,13 +112,14 @@ class Pedido
         $db->connect();
     
         // Consulta SQL para verificar si el usuario ya ha valorado el pedido
-        $sql = "SELECT COUNT(*) FROM valoraciones WHERE usuario_id = :usuario_id AND pedido_id = :pedido_id";
+        $sql = "SELECT COUNT(*) FROM valoraciones WHERE Idusuario = :usuario_id AND ID = :pedido_id";
     
         // Preparar la consulta
         $stmt = $db->getConnection()->prepare($sql);
     
         // Vincular los parámetros
-        $stmt->bindParam(':usuario_id', $this->cliente->getId());
+        $usuario_id = $this->cliente->getId();
+        $stmt->bindParam(':usuario_id', $usuario_id);
         $stmt->bindParam(':pedido_id', $pedidoId);
     
         // Ejecutar la consulta
