@@ -17,7 +17,7 @@ class Pedido
         $this->estado = 'Nulo';
     }
 
-    public function agregarProducto($producto, $db) {
+    public function agregarProducto($producto, $cantidad, $db) {
         $this->productos[] = $producto;
 
         // Agregar el producto a la base de datos
@@ -29,8 +29,7 @@ class Pedido
             $fecha = $this->fechaEntrega;
             $cliente = $this->cliente->getId();
             $producto_id = $producto->getID();
-            $cantidad = 1; // Asegúrate de definir $cantidad
-
+            
             // Pasar las variables a bindParam
             $stmt->bindParam(':fecha', $fecha);
             $stmt->bindParam(':cliente', $cliente);
@@ -38,11 +37,11 @@ class Pedido
             $stmt->bindParam(':cantidad', $cantidad);
 
             $stmt->execute();
+            
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
     }
-
 
     public function obtenerProductosDelUsuario($usuario_id) {
         // Abrir la conexión a la base de datos

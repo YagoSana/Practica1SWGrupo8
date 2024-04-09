@@ -15,12 +15,13 @@ class Carrito {
         $this->usuario = $usuario; //el this hace referencia a la clase padre "Usuario"
     }
 
-    public function agregarProducto($producto, $db) {
+    public function agregarProducto($producto, $pdo) {
         $this->productos[] = $producto;
-
+        
         try {
+            if(!$this->comprobarProducto($pdo, $producto->getID())) {
             $sql = "INSERT INTO carrito (Cliente, Producto, Cantidad) VALUES (:cliente, :producto_id, :cantidad)";
-            $stmt = $db->prepare($sql);
+            $stmt = $pdo->prepare($sql);
 
             // Asignar los resultados a variables
             $cliente = $this->usuario->getId();
@@ -33,12 +34,26 @@ class Carrito {
             $stmt->bindParam(':cantidad', $cantidad);
 
             $stmt->execute();
+            }
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
 
     }
 
+    public function comprobarProducto($pdo, $productoID) {
+        $sql = "UPDATE carrito SET Cantidad = Cantidad + 1 WHERE Producto = :ID";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['ID' => $productoID]);
+        
+        if($stmt->rowCount() > 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
     //Revisar
     public function eliminarProducto($productoId, $db) {
         $stmt = $db->getConnection()->prepare('DELETE FROM carrito WHERE Producto = :ID');
@@ -61,7 +76,9 @@ class Carrito {
                 echo "<div>";
                 echo "<h3>" . $producto->getNombre() . "</h3>";
                 // Aquí asumimos que el producto tiene un método getDescripcion()
+                echo "<p>" . $producto_id['Cantidad'] . "</p>";
                 echo "<p>" . $producto->getPrecio() . "</p>";
+                
                 if (isset($_SESSION["login"])) {
                     // El usuario ha iniciado sesión, muestra el botón "Eliminar"
                     echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarEliminacionCarrito.php' method='post'>";
@@ -114,19 +131,29 @@ class Carrito {
         $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
         $db->connect();
     
+        $productos_id = $this->obtenerCarritoDelUsuario($this->usuario->getId());
+
         // Agregamos los productos al pedido
-        foreach($this->productos as $productoID){
-            $this->pedido->agregarProducto($productoID, $db);
+        foreach($productos_id as $productoID){
+            $producto = Producto::getProducto($productoID['Producto'], $db->getConnection());
+            $this->pedido->agregarProducto($producto, $productoID['Cantidad'], $db);
         }
     
         // Vaciamos el carrito
         $this->productos = [];
+
+        $this->vaciarCarrito($db);
     
         $this->pedido->confirmarPedido();
         // Cambiamos el estado del carrito a 'Enviado'
         $this->estado = 'Enviado';
         // Cerrar la conexión a la base de datos
         $db->close();
+    }
+
+    public function vaciarCarrito($db) {
+        $stmt = $db->getConnection()->prepare('DELETE FROM carrito');
+        $stmt->execute();
     }
 
     public function getPedido() {
