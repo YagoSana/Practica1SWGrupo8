@@ -26,7 +26,7 @@ class Pedido
             $stmt = $db->getConnection()->prepare($sql);
 
             // Asignar los resultados a variables
-            $fecha = date('Y-m-d');
+            $fecha = $this->fechaEntrega;
             $cliente = $this->cliente->getId();
             $producto_id = $producto->getID();
             $cantidad = 1; // Asegúrate de definir $cantidad
@@ -74,13 +74,24 @@ class Pedido
     }
 
     public function mostrarPedidos() {
+        // Abrir la conexión a la base de datos
+        $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
+        $db->connect();
+
         $pedidos = $this->obtenerProductosDelUsuario($this->cliente->getId());
         foreach ($pedidos as $pedido) {
-            echo "<p>Pedido ID: " . $pedido['ID_Pedido'] . "</p>";
-            echo "<p>Cliente: " . $pedido['Cliente'] . "</p>";
-            echo "<p>Producto: " . $pedido['Producto'] . "</p>";
+            // Consulta SQL para obtener los detalles del producto
+            $sql = "SELECT * FROM productos WHERE ID = :producto_id";
+            $stmt = $db->getConnection()->prepare($sql);
+            $stmt->bindParam(':producto_id', $pedido['Producto']);
+            $stmt->execute();
+            $producto = $stmt->fetch();
+
+            echo "<p>Producto: " . $producto['Nombre'] . "</p>";
+            echo "<img src='" . $producto['Imagen'] . "' alt='Imagen del producto'>";
             echo "<p>Cantidad: " . $pedido['Cantidad'] . "</p>";
-            if ($pedido['Fecha'] <= date('Y-m-d')) {
+            echo "<p>Fecha: " . $pedido['Fecha'] . "</p>";
+            if ($pedido['Fecha'] >= date('Y-m-d')) {
                 echo "<p>Estado: Entregado</p>";
                 if (!$this->yaValorado($pedido['ID_Pedido'])) {
                     echo "<p><button onclick='valorar(\"{$pedido['ID_Pedido']}\")'>Valorar</button></p>";
@@ -89,11 +100,9 @@ class Pedido
                 }
             } else {
                 echo "<p>Estado: Pendiente</p>";
-                echo "<p>Fecha de Entrega: " . $pedido['Fecha'] . "</p>";
             }
-            echo "<hr>";
         }
-    }
+    }   
     
 
 
@@ -128,10 +137,6 @@ class Pedido
     public function confirmarPedido() {
         // Cambiamos el estado del pedido a 'Pendiente'
         $this->estado = 'Pendiente';
-    
-        // Establecemos la fecha de entrega para dentro de un par de días
-        $diasParaEntrega = rand(2, 5);
-        $this->fechaEntrega = date('Y-m-d', strtotime("+$diasParaEntrega days"));
         
         echo "Pedido confirmado. Estado del pedido: " . $this->estado;
         echo "Su pedido llegara el: " . $this->fechaEntrega;
@@ -151,6 +156,11 @@ class Pedido
     public function setCliente($usuario){
 
         $this->cliente = $usuario;
+    }
+
+    public function setFecha($fecha){
+
+        $this->fechaEntrega = $fecha;
     }
 }
 ?>

@@ -61,7 +61,12 @@ class Carrito {
     public function confirmarPedido() {
         // Creamos un nuevo pedido
         $this->pedido = new Pedido($this->usuario);
-    
+        // Establecemos la fecha de entrega para dentro de un par de días
+        $dias = rand(2, 5);
+        $fecha = date('Y-m-d', strtotime("+$dias days"));
+
+        $this->pedido->setFecha($fecha);
+
         // Abrir la conexión a la base de datos
         $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
         $db->connect();
