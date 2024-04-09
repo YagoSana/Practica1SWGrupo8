@@ -39,7 +39,7 @@ class Carrito {
             echo "<p>" . $producto->getPrecio() . "</p>";
             if (isset($_SESSION["login"])) {
                 // El usuario ha iniciado sesión, muestra el botón "Eliminar"
-                echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarCarrito.php' method='post'>";
+                echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarEliminacionCarrito.php' method='post'>";
                 echo "<input type='hidden' name='productoId' value='" . $producto->getID() . "'>";
                 echo "<button type='submit' name='eliminar'>Eliminar</button>";
                 echo "</form>";
