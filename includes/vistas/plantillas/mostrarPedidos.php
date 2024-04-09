@@ -25,6 +25,11 @@ require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
                 
                 if($pedido != null){
                     // Muestra los pedidos
+                    if($pedido->getCliente() == null) {
+                        $usu = $_SESSION['usuario'];
+                        $pedido->setCliente($usu);
+                    }
+                    
                     $pedido->mostrarPedidos();
                 }
                 else {

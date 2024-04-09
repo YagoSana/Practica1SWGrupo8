@@ -1,6 +1,7 @@
 <?php
 require_once 'producto.php';
 require_once 'pedido.php';
+require_once 'baseDatos.php';
 
 class Carrito {
     private $productos = array(); //Es un array con los productos
@@ -61,9 +62,13 @@ class Carrito {
         // Creamos un nuevo pedido
         $this->pedido = new Pedido($this->usuario);
     
+        // Abrir la conexión a la base de datos
+        $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
+        $db->connect();
+    
         // Agregamos los productos al pedido
         foreach($this->productos as $productoID){
-            $this->pedido->agregarProducto($productoID);
+            $this->pedido->agregarProducto($productoID, $db);
         }
     
         // Vaciamos el carrito
@@ -72,8 +77,8 @@ class Carrito {
         $this->pedido->confirmarPedido();
         // Cambiamos el estado del carrito a 'Enviado'
         $this->estado = 'Enviado';
-    
-        echo "Pedido confirmado. Estado del pedido: " . $this->estado;
+        // Cerrar la conexión a la base de datos
+        $db->close();
     }
 
     public function getPedido() {
