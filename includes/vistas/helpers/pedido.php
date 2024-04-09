@@ -79,28 +79,32 @@ class Pedido
         $db->connect();
 
         $pedidos = $this->obtenerProductosDelUsuario($this->cliente->getId());
-        foreach ($pedidos as $pedido) {
+        if($pedidos != null) {
+            foreach ($pedidos as $pedido) {
             // Consulta SQL para obtener los detalles del producto
-            $sql = "SELECT * FROM productos WHERE ID = :producto_id";
-            $stmt = $db->getConnection()->prepare($sql);
-            $stmt->bindParam(':producto_id', $pedido['Producto']);
-            $stmt->execute();
-            $producto = $stmt->fetch();
+                $sql = "SELECT * FROM productos WHERE ID = :producto_id";
+                $stmt = $db->getConnection()->prepare($sql);
+                $stmt->bindParam(':producto_id', $pedido['Producto']);
+                $stmt->execute();
+                $producto = $stmt->fetch();
 
-            echo "<p>Producto: " . $producto['Nombre'] . "</p>";
-            echo "<img src='" . $producto['Imagen'] . "' alt='Imagen del producto'>";
-            echo "<p>Cantidad: " . $pedido['Cantidad'] . "</p>";
-            echo "<p>Fecha: " . $pedido['Fecha'] . "</p>";
-            if ($pedido['Fecha'] <= date('Y-m-d')) {
-                echo "<p>Estado: Entregado</p>";
-                if (!$this->yaValorado($pedido['ID_Pedido'])) {
-                    echo "<p><button onclick='valorar(\"{$pedido['ID_Pedido']}\")'>Valorar</button></p>";
+                echo "<p>Producto: " . $producto['Nombre'] . "</p>";
+                echo "<img src='" . $producto['Imagen'] . "' alt='Imagen del producto'>";
+                echo "<p>Cantidad: " . $pedido['Cantidad'] . "</p>";
+                echo "<p>Fecha: " . $pedido['Fecha'] . "</p>";
+                if ($pedido['Fecha'] <= date('Y-m-d')) {
+                    echo "<p>Estado: Entregado</p>";
+                    if (!$this->yaValorado($pedido['ID_Pedido'])) {
+                        echo "<p><button onclick='valorar(\"{$pedido['ID_Pedido']}\")'>Valorar</button></p>";
+                    } else {
+                        echo "<p>Ya has valorado este producto.</p>";
+                    }
                 } else {
-                    echo "<p>Ya has valorado este producto.</p>";
+                    echo "<p>Estado: Pendiente</p>";
                 }
-            } else {
-                echo "<p>Estado: Pendiente</p>";
             }
+        } else {
+            echo "<p>No existen pedidos.</p>";
         }
     }   
     
