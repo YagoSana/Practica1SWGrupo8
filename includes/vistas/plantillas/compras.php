@@ -47,9 +47,11 @@ if ($result === false) {
                             //Esto se hace para pasar luego el producto entero al carrito
                             $producto = new Producto($row['ID'], $row['Nombre'], $row['Descripcion'], $row['Precio'], $row['Imagen']);
                             echo "<div class='producto'>";
+                            echo "<a href='detalles_producto.php?id=" . $row['ID'] . "'>"; // Enlace a la página de detalles del producto
                             echo "<img src='" . RUTA_APP . $row['Imagen'] . "' alt='Imagen del producto'>";
                             echo "<div>";
                             echo "<h3>" . $row['Nombre'] . "</h3>";
+                            echo "</a>";//Solo la imagen y el nombre son clickeables
                             echo "<p>" . $row['Descripcion'] . "</p>";
                             echo "<p>" . $row['Precio'] . "</p>";
                             if (isset($_SESSION["login"])) {
