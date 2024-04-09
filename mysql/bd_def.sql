@@ -92,10 +92,8 @@ CREATE TABLE `usuario` (
 --
 
 CREATE TABLE `carrito` (
-  `ID_Carrito` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `Idusuario` int(20) UNSIGNED NOT NULL,
-  PRIMARY KEY (`ID_Carrito`),
-  FOREIGN KEY (`Idusuario`) REFERENCES `usuario`(`Idusuario`)
+  `ID_Carrito` int(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `Idusuario` int(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -105,10 +103,7 @@ CREATE TABLE `carrito` (
 CREATE TABLE `carrito_producto` (
   `ID_Carrito` int(10) UNSIGNED NOT NULL,
   `ID` int(10) UNSIGNED NOT NULL,
-  `Cantidad` int(11) NOT NULL,
-  PRIMARY KEY (`ID_Carrito`, `ID`),
-  FOREIGN KEY (`ID_Carrito`) REFERENCES `carrito`(`ID_Carrito`),
-  FOREIGN KEY (`ID`) REFERENCES `productos`(`ID`)
+  `Cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 --
 -- Volcado de datos para la tabla `usuario`
@@ -146,10 +141,13 @@ ALTER TABLE `usuario`
   ADD KEY `User` (`User`),
   ADD KEY `Apellido` (`Nombre`(1024));
 
---
--- AUTO_INCREMENT de las tablas volcadas
---
+ALTER TABLE `carrito`
+  ADD FOREIGN KEY (`Idusuario`) REFERENCES `usuario`(`Idusuario`);
 
+ALTER TABLE `carrito_producto`
+  ADD PRIMARY KEY (`ID_Carrito`, `ID`),
+  ADD FOREIGN KEY (`ID_Carrito`) REFERENCES `carrito`(`ID_Carrito`),
+  ADD FOREIGN KEY (`ID`) REFERENCES `productos`(`ID`);
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
