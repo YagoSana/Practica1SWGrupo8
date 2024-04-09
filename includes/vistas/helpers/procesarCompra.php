@@ -2,7 +2,7 @@
 
 require_once '../../config.php';
 require RAIZ_APP. '/includes/src/usuarios/usuario.php';
-require RAIZ_APP. '/includes/src/vistas/helpers/carrito.php';
+require RAIZ_APP. '/includes/vistas/helpers/carrito.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['login'])) {
     // Obtiene el carrito de compras del usuario
