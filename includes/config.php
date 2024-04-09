@@ -14,7 +14,6 @@ define('RUTA_SRC',RUTA_INCL.'/src');
 define('RUTA_VISTAS',RUTA_INCL.'/vistas');
 define('RUTA_USU',RUTA_SRC.'/usuarios');
 
-$errorlogin = "";
 
 // Parámetros de configuración de la BD
 define('BD_HOST', '127.0.0.1');
