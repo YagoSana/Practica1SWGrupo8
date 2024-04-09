@@ -22,6 +22,21 @@ class Valoracion {
         $this->puntuacionMedia = $resultado['media'];
         return $this->puntuacionMedia;
     }
+
+   
+      
+    
+    public static function getValoracion($producto_id, $pdo) {
+        $stmt = $pdo->prepare('SELECT * FROM valoraciones WHERE ID = :ID');
+        $stmt->execute(['ID' => $producto_id]);
+        $valoraciones = $stmt->fetchAll();
+    
+        return $valoraciones;
+    }
+    
+        
+    
+    
 }
 
 ?>
