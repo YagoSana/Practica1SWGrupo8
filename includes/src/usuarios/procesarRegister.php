@@ -15,13 +15,12 @@ $Pass = $_POST['Pass'] ?? null;
 $rol = "cliente";
 
 $query = Usuario::buscaUsuario($User);
-if (!empty($query)) {
-    $result = $db->getConnection()->query($query);
-    if ($result->rowcount() == 0 && $Nombre && $Apellido && $Email && $Pass && $rol) {
-        Usuario::insertaUsuario($Nombre, $Apellido, $Email, $User, $Pass, $rol);
-    }
+
+if (!$query) {
+    Usuario::insertaUsuario($Nombre, $Apellido, $Email, $User, $Pass, $rol);
 }
 
 
 $db->close();
 header('Location: ' . RUTA_APP . '/index.php');
+?>
