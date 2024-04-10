@@ -89,7 +89,7 @@ class Pedido
 
                 echo "<p>Producto: " . $producto['Nombre'] . "</p>";
                 echo "<div class='producto'>";
-                echo "<img src='" . RUTA_APP . $producto['Imagen'] . "' alt='Imagen del producto' id='imgCompras'>";
+                echo "<img src='" . RUTA_APP . $producto['Imagen'] . "' alt='Imagen del producto' id='imgPedidos'>";
                 echo "</div>";
                 echo "<p>Cantidad: " . $pedido['Cantidad'] . "</p>";
                 echo "<p>Fecha: " . $pedido['Fecha'] . "</p>";
