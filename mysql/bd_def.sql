@@ -86,6 +86,11 @@ INSERT INTO `productos` (`ID`, `Nombre`, `Descripcion`, `Precio`, `Imagen`) VALU
 'Instrumento musical elegante con cuerdas tensadas que se tocan con los dedos. Produce sonidos melodiosos y suaves. Ideal para música clásica y celta. Cuerpo de madera de alta calidad para una resonanc',
 629.99,
 '/img/imagenesBD/Arpa.jpg');
+(4,
+'Armónica',
+'diseñada para practicantes, principiantes e intermedios. Gran sistema de armónica adecuado para blues, folk, música clásica pop, jazz, country y rock & roll',
+68.20,
+'/img/imagenesBD/armonica.jpg');
 
 -- --------------------------------------------------------
 

@@ -83,8 +83,8 @@ class Carrito {
                 echo "<div>";
                 echo "<h3>" . $producto->getNombre() . "</h3>";
                 // Aquí asumimos que el producto tiene un método getDescripcion()
-                echo "<p>" . $producto_id['Cantidad'] . "</p>";
-                echo "<p>" . $producto->getPrecio() . "</p>";
+                echo "<p>Unidades: " . $producto_id['Cantidad'] . "</p>";
+                echo "<p>Precio: " . $producto->getPrecio() . " €</p>";
                 
                 if (isset($_SESSION["login"])) {
                     // El usuario ha iniciado sesión, muestra el botón "Eliminar"

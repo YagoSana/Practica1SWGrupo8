@@ -47,31 +47,35 @@ if ($result === false) {
                             //Esto se hace para pasar luego el producto entero al carrito
                             $producto = new Producto($row['ID'], $row['Nombre'], $row['Descripcion'], $row['Precio'], $row['Imagen']);
                             echo "<div class='producto'>";
-                            echo "<a href='detalles_producto.php?id=" . $row['ID'] . "'>"; // Enlace a la página de detalles del producto
+                            echo "<a class='subr' href='detalles_producto.php?id=" . $row['ID'] . "'>"; // Enlace a la página de detalles del producto
                             echo "<img src='" . RUTA_APP . $row['Imagen'] . "' alt='Imagen del producto' id='imgCompras'>";
-                            echo "<div>";
+                            echo "<div class ='detalles'>";
                             echo "<h3>" . $row['Nombre'] . "</h3>";
                             echo "</a>";//Solo la imagen y el nombre son clickeables
-                            echo "<p>" . substr($row['Descripcion'], 0, 121) . " <strong>Leer más...</strong></p>";//Solo muestra los primeros 100 caracteres
                             echo "<p>" . $row['Precio'] . " €</p>";
+                            //echo "<p>" . substr($row['Descripcion'], 0, 121) . " <strong>Leer más...</strong></p>";//Solo muestra los primeros 100 caracteres
+                
+                            echo "<div class='botones'>";
                             if (isset($_SESSION["login"])) {
-                                // El usuario ha iniciado sesión, muestra el botón "Agregar al carrito"
-                                echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarCarrito.php' method='post'>"; //Procesa la adicion al carro
+                                // El usuario ha iniciado sesión, muestra el botón "Agregar al carrito" dentro de un formulario
+                                echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarCarrito.php' method='post'>"; //Procesa la adición al carro
                                 echo "<input type='hidden' name='producto_id' value='" . $row['ID'] . "'>";
-                                echo "<button type='submit' name='agregar_producto'>Agregar al carrito</button>";
+                                echo "<button class='agregar' type='submit' name='agregar_producto'>Agregar al carrito</button>";
                                 echo "</form>";
                             } else {
                                 // El usuario no ha iniciado sesión, muestra un enlace para iniciar sesión
-                                echo '<button onclick="window.location.href=\''.RUTA_SRC.'/login.php\'">Agregar al carrito</button>';
+                                echo "<button class='agregar' onclick=\"window.location.href='" . RUTA_SRC . "/login.php'\">Agregar al carrito</button>";
+                            }
 
-                            } //Boton para eliminar el producto de la tienda
+                            // Botón para eliminar el producto de la tienda, dentro de un formulario
                             if (isset($_SESSION["esEmpleado"])) {
                                 echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarEliminacion.php' method='post'>";
                                 echo "<input type='hidden' name='producto_id' value='" . $row['ID'] . "'>";
-                                echo "<button type='submit' name='eliminar_producto'>Eliminar</button>";
+                                echo "<button class='borrar' type='submit' name='eliminar_producto'>Eliminar</button>";
                                 echo "</form>";
                             }
-
+                            
+                            echo "</div>";
                             echo "</div>";
                             echo "</div>";
                         }

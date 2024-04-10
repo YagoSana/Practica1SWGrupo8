@@ -60,7 +60,7 @@ main {
 	padding: 20px;
 	float: right;
 	min-height: 600px;
-	width: 75%;
+	width: 80%;
 	background-color: white;
 }
 
@@ -91,27 +91,74 @@ button {
 }
 
 .producto {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+	display: inline-block;
+    border: 1px solid #ccc;
+    padding: 1em;
+    margin-bottom: 1em;
+    overflow: auto;
+    max-height: 50%;
+	width: 19%;
+	margin: 1%;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+
 }
+
 .producto img {
+	display: block;
     height: 100px;
     width: 100px;
     object-fit: cover;
     margin-right: 20px;
 }
+.producto .detalles {
+	text-align: center;
+}
 .producto h3 {
     font-size: 1.2em;
+	color: black;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.producto {
+.subr {
+	text-decoration: none;
+}
+
+.botones {
+    bottom: 10px; /* Ajusta la posición de los botones desde la parte inferior */
+    left: 0;
+    width: 1%;
+    display: flex;
+    justify-content: space-between; /* Distribuye los botones horizontalmente */
+}
+
+.botones button {
+    flex: 1; /* Hace que los botones ocupen el mismo ancho */
+	margin: 0 5px;
+	white-space: nowrap;
+}
+
+.agregar {
+    order: 1; /* Cambia el orden del botón Agregar al carrito */
+	background-color: rgb(76, 195, 195);
+	border-color: rgb(76, 195, 195);
+	color: white;
+	border-radius: 5%;
+}
+
+.borrar {
+	background-color: red;
+	border-color: red;
+	color: white;
+}
+
+
+.detalle_producto {
     display: flex;
     margin-bottom: 2em;
 }
-.producto img {
+.detalle_producto img {
     width: 50%;
     height: auto;
     margin-right: 2em;

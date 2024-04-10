@@ -26,7 +26,7 @@ ob_start();
 <article>
     <section>
         <h2>Detalles del producto</h2>
-        <div class='producto'>
+        <div class='detalle_producto'>
             <img src='<?php echo $ruta . $producto->getImagen(); ?>' alt='Imagen del producto'>
             <div>
                 <h3><?php echo $producto->getNombre(); ?></h3>
