@@ -34,7 +34,10 @@ class Valoracion {
         return $valoraciones;
     }
     
+    public static function setValoracion($producto_id, $usuario_id) {
+
         
+    }
     
     
 }
