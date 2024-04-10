@@ -86,7 +86,8 @@ INSERT INTO `usuario` (`Apellido`, `Nombre`, `User`, `Idusuario`, `Pass`, `Email
 ('Félix', 'Álvaro', 'alfelix', 2, 'alf', 'alfelix@ucm.es', 'admin'),
 ('Reyes', 'Laura', 'laurreye', 3, 'lau', 'laurreye@ucm.es', 'admin'),
 ('El Farissi', 'Mohamed', 'melfaris', 4, 'mel', 'melfaris@ucm.es', 'admin'),
-('Sanabria', 'Yago', 'yagosana', 5,'yag', 'yagosana@ucm.es', 'admin');
+('Sanabria', 'Yago', 'yagosana', 5,'yag', 'yagosana@ucm.es', 'admin'),
+('clienteprueba', 'clienteprueba', 'cliente', 6, 'clientepass', 'cliente@ucm.es', 'cliente');
 
 
 INSERT INTO `productos` (`ID`, `Nombre`, `Descripcion`, `Precio`, `Imagen`) VALUES
@@ -104,7 +105,7 @@ INSERT INTO `productos` (`ID`, `Nombre`, `Descripcion`, `Precio`, `Imagen`) VALU
 'Arpa',
 'Instrumento musical elegante con cuerdas tensadas que se tocan con los dedos. Produce sonidos melodiosos y suaves. Ideal para música clásica y celta. Cuerpo de madera de alta calidad para una resonanc',
 629.99,
-'/img/imagenesBD/Arpa.jpg');
+'/img/imagenesBD/Arpa.jpg'),
 (4,
 'Armónica',
 'diseñada para practicantes, principiantes e intermedios. Gran sistema de armónica adecuado para blues, folk, música clásica pop, jazz, country y rock & roll',
