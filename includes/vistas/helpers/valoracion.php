@@ -4,10 +4,9 @@ class Valoracion {
     private $numeroDeValoraciones;
     private $pdo;
 
-    public function __construct($pdo) {
+    public function __construct() {
         $this->puntuacionMedia = 0;
         $this->numeroDeValoraciones = 0;
-        $this->pdo = $pdo;
     }
 
     public function getPuntuacion() {
@@ -24,8 +23,6 @@ class Valoracion {
     }
 
    
-      
-    
     public static function getValoracion($producto_id, $pdo) {
         $stmt = $pdo->prepare('SELECT * FROM valoraciones WHERE ID = :ID');
         $stmt->execute(['ID' => $producto_id]);
