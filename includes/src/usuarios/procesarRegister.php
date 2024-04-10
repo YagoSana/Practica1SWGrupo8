@@ -1,8 +1,8 @@
 <?php
 session_start();
 require_once '../../config.php';
-require 'usuario.php';
-require RAIZ_APP . '/includes/vistas/helpers/baseDatos.php';
+require_once 'usuario.php';
+require_once RAIZ_APP . '/includes/vistas/helpers/baseDatos.php';
 
 $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
 $db->connect();
@@ -25,6 +25,8 @@ if ($User) {
             if ($usuario) {
                 define('REGISTRADO', true);
                 $_SESSION["nombre"] = $User;
+                //insertar en la bd
+                $db->getConnection()->query($usuario->insertarUsuario($Nombre, $Apellido, $Email, $User, $Pass, $rol));
             }
         }
     }
@@ -32,4 +34,3 @@ if ($User) {
 
 $db->close();
 header('Location: ' . RUTA_APP . '/index.php');
-?>
