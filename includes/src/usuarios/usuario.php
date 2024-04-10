@@ -9,6 +9,35 @@ class Usuario
 
     public const USER_ROLE = 2;
 
+    private $id;
+
+    private $nombreUsuario;
+
+    private $password;
+
+    private $nombre;
+
+    private $apellido;
+
+    private $email;
+
+    private $carrito;
+
+    private $roles;
+
+    private $valoracion;
+
+    private function __construct($nombreUsuario, $password, $nombre, $apellido, $email, $roles, $id)
+    {
+        $this->id = $id;
+        $this->nombreUsuario = $nombreUsuario;
+        $this->password = $password;
+        $this->nombre = $nombre;
+        $this->apellido = $apellido;
+        $this->email = $email;
+        $this->roles = $roles;
+    }
+
     public static function login($nombreUsuario, $password)
     {
         $usuario = self::buscaUsuario($nombreUsuario);
@@ -181,34 +210,13 @@ class Usuario
         $this->carrito = new Carrito($this);
     }
 
-    private $id;
+    //Funcion para valorar el producto
+    public function valorarProducto($producto_id, $usuario_id, $valoracion, $comentario) {
 
-    private $nombreUsuario;
-
-    private $password;
-
-    private $nombre;
-
-    private $apellido;
-
-    private $email;
-
-    private $carrito;
-
-    private $roles;
-
-    private function __construct($nombreUsuario, $password, $nombre, $apellido, $email, $roles, $id)
-    {
-        $this->id = $id;
-        $this->nombreUsuario = $nombreUsuario;
-        $this->password = $password;
-        $this->nombre = $nombre;
-        $this->apellido = $apellido;
-        $this->email = $email; // Aquí estaba el error, debería ser $this->email en lugar de $this->$email
-        $this->roles = $roles;
-        //$this->carrito = new Carrito($this);
+        $valoracion = new Valoracion();
+        $valoracion->setValoracion($producto_id, $usuario_id, $valoracion, $comentario);
     }
-
+    
     public function getId()
     {
         return $this->id;
@@ -282,7 +290,7 @@ class Usuario
             'Apellido' => $Apellido,
             'Nombre' => $Nombre,
             'User' => $User,
-            'Pass' => $Pass,
+            'Pass' => self::hashPassword($password),
             'Email' => $Email,
             'Rol' => $rol
         ]);

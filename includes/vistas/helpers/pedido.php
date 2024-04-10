@@ -88,13 +88,15 @@ class Pedido
                 $producto = $stmt->fetch();
 
                 echo "<p>Producto: " . $producto['Nombre'] . "</p>";
+                echo "<div class='producto'>";
                 echo "<img src='" . RUTA_APP . $producto['Imagen'] . "' alt='Imagen del producto' id='imgCompras'>";
+                echo "</div>";
                 echo "<p>Cantidad: " . $pedido['Cantidad'] . "</p>";
                 echo "<p>Fecha: " . $pedido['Fecha'] . "</p>";
                 if ($pedido['Fecha'] <= date('Y-m-d')) {
                     echo "<p>Estado: Entregado</p>";
                     if (!$this->yaValorado($pedido['ID_Pedido'])) {
-                        echo "<p><button onclick='valorar(\"{$pedido['ID_Pedido']}\")'>Valorar</button></p>";
+                        echo "<p><button onclick='window.location.href=\"" . RUTA_APP . "/includes/vistas/plantillas/mostrarValoracion.php?id={$pedido['ID_Pedido']}\"'>Valorar</button></p>";
                     } else {
                         echo "<p>Ya has valorado este producto.</p>";
                     }
@@ -114,8 +116,8 @@ class Pedido
         $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
         $db->connect();
     
-        // Consulta SQL para verificar si el usuario ya ha valorado el pedido
-        $sql = "SELECT COUNT(*) FROM valoraciones WHERE Idusuario = :usuario_id AND ID = :pedido_id";
+        // Consulta SQL para obtener la valoración del usuario para el pedido
+        $sql = "SELECT Valoracion FROM valoraciones WHERE Idusuario = :usuario_id AND ID = :pedido_id";
     
         // Preparar la consulta
         $stmt = $db->getConnection()->prepare($sql);
@@ -129,14 +131,15 @@ class Pedido
         $stmt->execute();
     
         // Obtener el resultado
-        $count = $stmt->fetchColumn();
+        $valoracion = $stmt->fetchColumn();
     
         // Cerrar la conexión a la base de datos
         $db->close();
     
-        // Si el conteo es mayor que 0, significa que el usuario ya ha valorado el pedido
-        return $count > 0;
+        // Si la valoración es igual a 0, significa que el usuario no ha valorado el pedido
+        return $valoracion == 0;
     }
+    
     
     public function confirmarPedido() {
         // Cambiamos el estado del pedido a 'Pendiente'
