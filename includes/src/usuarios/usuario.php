@@ -282,7 +282,7 @@ class Usuario
             'Apellido' => $Apellido,
             'Nombre' => $Nombre,
             'User' => $User,
-            'Pass' => $Pass,
+            'Pass' => self::hashPassword($password),
             'Email' => $Email,
             'Rol' => $rol
         ]);
