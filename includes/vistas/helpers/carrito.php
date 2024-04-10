@@ -20,20 +20,20 @@ class Carrito {
         
         try {
             if(!$this->comprobarProducto($pdo, $producto->getID())) {
-            $sql = "INSERT INTO carrito (Cliente, Producto, Cantidad) VALUES (:cliente, :producto_id, :cantidad)";
-            $stmt = $pdo->prepare($sql);
+                $sql = "INSERT INTO carrito (Cliente, Producto, Cantidad) VALUES (:cliente, :producto_id, :cantidad)";
+                $stmt = $pdo->prepare($sql);
 
-            // Asignar los resultados a variables
-            $cliente = $this->usuario->getId();
-            $producto_id = $producto->getID();
-            $cantidad = 1; // Asegúrate de definir $cantidad
+                // Asignar los resultados a variables
+                $cliente = $this->usuario->getId();
+                $producto_id = $producto->getID();
+                $cantidad = 1; // Asegúrate de definir $cantidad
 
-            // Pasar las variables a bindParam
-            $stmt->bindParam(':cliente', $cliente);
-            $stmt->bindParam(':producto_id', $producto_id);
-            $stmt->bindParam(':cantidad', $cantidad);
+                // Pasar las variables a bindParam
+                $stmt->bindParam(':cliente', $cliente);
+                $stmt->bindParam(':producto_id', $producto_id);
+                $stmt->bindParam(':cantidad', $cantidad);
 
-            $stmt->execute();
+                $stmt->execute();
             }
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
