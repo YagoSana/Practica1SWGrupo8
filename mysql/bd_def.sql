@@ -17,31 +17,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
--- Base de datos: `bd_def`
---
-
--- --------------------------------------------------------
-
--- Estructura de tabla para la tabla `valoraciones`
-CREATE TABLE `valoraciones` (
-  `ID_Valoracion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `Idusuario` int(20) UNSIGNED NOT NULL,
-  `ID` int(10) UNSIGNED NOT NULL,
-  `Valoracion` int(11) NOT NULL,
-  `Comentario` varchar(255) NOT NULL,
-  PRIMARY KEY (`ID_Valoracion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Inserta las valoraciones para la guitarra acústica
-INSERT INTO `valoraciones` (`Idusuario`, `ID`, `Valoracion`, `Comentario`) VALUES
-(2, 1, 5, 'Excelente guitarra. El sonido es claro y resonante, y el cuerpo de madera pulida es absolutamente hermoso.'),
-(3, 1, 4, 'Buena guitarra para su precio. Las cuerdas de acero producen un sonido brillante y la guitarra en sí es bastante duradera.');
-
-
---  
--- Estructura de tabla para la tabla `pedidos`
---
 
 CREATE TABLE `pedidos` (
   `ID_Pedido` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -52,12 +27,6 @@ CREATE TABLE `pedidos` (
   PRIMARY KEY (`ID_Pedido`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `productos`
---
-
 CREATE TABLE `productos` (
   `ID` int(10) UNSIGNED NOT NULL,
   `Nombre` varchar(20) NOT NULL,
@@ -66,9 +35,59 @@ CREATE TABLE `productos` (
   `Imagen` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `productos`
---
+CREATE TABLE `usuario` (
+  `Apellido` text NOT NULL,
+  `Nombre` text NOT NULL,
+  `User` varchar(20) NOT NULL,
+  `Idusuario`int(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `Pass` varchar(20) NOT NULL,
+  `Email` varchar(20) NOT NULL,
+  `rol`varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `carrito` (
+  `ID_Carrito` int(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `Cliente` varchar(20) NOT NULL,
+  `Producto` int(10) UNSIGNED NOT NULL,
+  `Cantidad` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `valoraciones` (
+  `ID_Valoracion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `Idusuario` int(20) UNSIGNED NOT NULL,
+  `ID` int(10) UNSIGNED NOT NULL,
+  `Valoracion` int(11) NOT NULL,
+  `Comentario` varchar(255) NOT NULL,
+  PRIMARY KEY (`ID_Valoracion`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `pedidos`
+  ADD KEY `Cliente` (`Cliente`),
+  ADD KEY `Producto` (`Producto`);
+
+ALTER TABLE `productos`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Nombre` (`Nombre`);
+
+ALTER TABLE `usuario`
+  ADD KEY `User` (`User`),
+  ADD KEY `Apellido` (`Nombre`(1024));
+
+ALTER TABLE `pedidos`
+  MODIFY `ID_Pedido` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `productos`
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
+
+
+INSERT INTO `usuario` (`Apellido`, `Nombre`, `User`, `Idusuario`, `Pass`, `Email`, `rol`) VALUES
+('Empleado', 'Empleado', 'empleado', 1,'empleadopass', 'empleado@ucm.es', 'empleado'),
+('Félix', 'Álvaro', 'alfelix', 2, 'alf', 'alfelix@ucm.es', 'admin'),
+('Reyes', 'Laura', 'laurreye', 3, 'lau', 'laurreye@ucm.es', 'admin'),
+('El Farissi', 'Mohamed', 'melfaris', 4, 'mel', 'melfaris@ucm.es', 'admin'),
+('Sanabria', 'Yago', 'yagosana', 5,'yag', 'yagosana@ucm.es', 'admin');
+
 
 INSERT INTO `productos` (`ID`, `Nombre`, `Descripcion`, `Precio`, `Imagen`) VALUES
 (1,
@@ -87,81 +106,10 @@ INSERT INTO `productos` (`ID`, `Nombre`, `Descripcion`, `Precio`, `Imagen`) VALU
 629.99,
 '/img/imagenesBD/Arpa.jpg');
 
--- --------------------------------------------------------
+INSERT INTO `valoraciones` (`Idusuario`, `ID`, `Valoracion`, `Comentario`) VALUES
+(2, 1, 5, 'Excelente guitarra. El sonido es claro y resonante, y el cuerpo de madera pulida es absolutamente hermoso.'),
+(3, 1, 4, 'Buena guitarra para su precio. Las cuerdas de acero producen un sonido brillante y la guitarra en sí es bastante duradera.');
 
---
--- Estructura de tabla para la tabla `usuario`
---
-
-CREATE TABLE `usuario` (
-  `Apellido` text NOT NULL,
-  `Nombre` text NOT NULL,
-  `User` varchar(20) NOT NULL,
-  `Idusuario`int(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `Pass` varchar(20) NOT NULL,
-  `Email` varchar(20) NOT NULL,
-  `rol`varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Estructura de tabla para la tabla `carrito`
---
-
-CREATE TABLE `carrito` (
-  `ID_Carrito` int(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `Cliente` varchar(20) NOT NULL,
-  `Producto` int(10) UNSIGNED NOT NULL,
-  `Cantidad` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `usuario`
---
-
-INSERT INTO `usuario` (`Apellido`, `Nombre`, `User`, `Idusuario`, `Pass`, `Email`, `rol`) VALUES
-('Empleado', 'Empleado', 'empleado', 1,'empleadopass', 'empleado@ucm.es', 'empleado'),
-('Félix', 'Álvaro', 'alfelix', 2, 'alf', 'alfelix@ucm.es', 'admin'),
-('Reyes', 'Laura', 'laurreye', 3, 'lau', 'laurreye@ucm.es', 'admin'),
-('El Farissi', 'Mohamed', 'melfaris', 4, 'mel', 'melfaris@ucm.es', 'admin'),
-('Sanabria', 'Yago', 'yagosana', 5,'yag', 'yagosana@ucm.es', 'admin');
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `pedidos`
---
-ALTER TABLE `pedidos`
-  ADD KEY `Cliente` (`Cliente`),
-  ADD KEY `Producto` (`Producto`);
-
---
--- Indices de la tabla `productos`
---
-ALTER TABLE `productos`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `Nombre` (`Nombre`);
-
---
--- Indices de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD KEY `User` (`User`),
-  ADD KEY `Apellido` (`Nombre`(1024));
-
---
--- AUTO_INCREMENT de la tabla `pedidos`
---
-ALTER TABLE `pedidos`
-  MODIFY `ID_Pedido` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `productos`
---
-ALTER TABLE `productos`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
