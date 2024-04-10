@@ -83,15 +83,19 @@ class Carrito {
                 echo "<div>";
                 echo "<h3>" . $producto->getNombre() . "</h3>";
                 // Aquí asumimos que el producto tiene un método getDescripcion()
-                echo "<p>Unidades: " . $producto_id['Cantidad'] . "</p>";
                 echo "<p>Precio: " . $producto->getPrecio() . " €</p>";
                 
                 if (isset($_SESSION["login"])) {
                     // El usuario ha iniciado sesión, muestra el botón "Eliminar"
-                    echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarEliminacionCarrito.php' method='post'>";
-                    echo "<input type='hidden' name='productoId' value='" . $producto->getID() . "'>";
-                    echo "<button type='submit' name='eliminar'>Eliminar</button>";
-                    echo "</form>";
+                    echo '<div class="form-container">';
+                        echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarEliminacionCarrito.php' method='post'>";
+                            echo "<input type='hidden' name='productoId' value='" . $producto->getID() . "'>";
+                            echo '<button type="submit" class="btn" name="accion" value="decrementar">-</button>';
+                            echo '<span id="contador">' .$producto_id['Cantidad'].'</span>';
+                            echo '<button type="submit" class="btn" name="accion" value="incrementar">+</button>';
+                            echo "<button class='borrar' type='submit' name='accion' value='eliminar'>Eliminar</button>";
+                        echo "</form>";
+                    echo "</div>";
                 }
                 echo "</div>";
                 echo "</div>";
