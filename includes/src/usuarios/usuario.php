@@ -19,11 +19,12 @@ class Usuario
         return false;
     }
 
-    public static function crea($nombreUsuario, $password, $nombre, $rol)
+    public static function crea($nombreUsuario, $password, $nombre, $apellido, $email)
     {
-        $user = new Usuario($nombreUsuario, self::hashPassword($password), $nombre);
+        //esta mal
+        $user = new Usuario($nombreUsuario, self::hashPassword($password), $nombre, $apellido, $email, "clinete", null);
         $_SESSION["usuario"] = $user;
-        $user->añadeRol($rol);
+        $user->añadeRol("cliente");
         return $user->guarda();
     }
 

@@ -14,21 +14,14 @@ $User = $_POST['User'] ?? null;
 $Pass = $_POST['Pass'] ?? null;
 $rol = "cliente";
 
-if ($User) {
-    $query = Usuario::buscaUsuario($User);
-    if (!empty($query)) {
-        $result = $db->getConnection()->query($query);
-        if ($result->rowcount() == 0 && $Nombre && $Apellido && $Email && $Pass && $rol) {
-            $usuario = Usuario::crea($User, $Pass, $Nombre, $rol);
-            if ($usuario) {
-                define('REGISTRADO', true);
-                $_SESSION["nombre"] = $User;
-                //insertar en la bd
-                $db->getConnection()->query($usuario->insertarUsuario($Nombre, $Apellido, $Email, $User, $Pass, $rol));
-            }
-        }
+$query = Usuario::buscaUsuario($User);
+if (!empty($query)) {
+    $result = $db->getConnection()->query($query);
+    if ($result->rowcount() == 0 && $Nombre && $Apellido && $Email && $Pass && $rol) {
+        Usuario::insertaUsuario($Nombre, $Apellido, $Email, $User, $Pass, $rol);
     }
 }
+
 
 $db->close();
 header('Location: ' . RUTA_APP . '/index.php');
