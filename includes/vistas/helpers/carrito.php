@@ -72,7 +72,7 @@ class Carrito {
         $db->connect();
 
         $productos_id = $this->obtenerCarritoDelUsuario($this->usuario->getId());
-
+        $total = 0;
         if ($productos_id == null) {
             echo "El carrito está vacío.";
         } else {
@@ -84,7 +84,7 @@ class Carrito {
                 echo "<h3>" . $producto->getNombre() . "</h3>";
                 // Aquí asumimos que el producto tiene un método getDescripcion()
                 echo "<p>Precio: " . $producto->getPrecio() . " €</p>";
-                
+                $total += $producto->getPrecio() * $producto_id['Cantidad'];
                 if (isset($_SESSION["login"])) {
                     // El usuario ha iniciado sesión, muestra el botón "Eliminar"
                     echo '<div class="form-container">';
@@ -102,9 +102,12 @@ class Carrito {
             }
             if (isset($_SESSION["login"])) {
                 // El usuario ha iniciado sesión, muestra el botón "Confirmar Pedido"
+                echo "<div class='cont'>";
+                echo '<span class="total">Total: ' .$total.' €</span>';
                 echo '<form action="' . RUTA_APP . '/includes/vistas/helpers/procesarCompra.php" method="POST">
-                    <input type="submit" name="confirmar" value="Confirmar Pedido">
+                    <input type="submit" name="confirmar" value="Confirmar Pedido" class="boton-confirmar">
                 </form>';
+                echo '</div>';
             }
         }
     }
