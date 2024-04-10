@@ -21,16 +21,11 @@ require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
             if (isset($_SESSION['login'])) {
                 // Obtiene los pedidos del usuario
                 $carrito = $_SESSION['usuario']->getCarrito();
-                $pedido = $carrito->getPedido(); //Devuelve el pedido
+                $pedido = $carrito->getPedido(); //Devuelve el pedido del usuario
 
                 if($pedido == null) {
                     $pedido = new Pedido($_SESSION['usuario']);
                 }
-                    // Muestra los pedidos
-                    //if($pedido->getCliente() == null) {
-                       // $usu = $_SESSION['usuario'];
-                        //$pedido->setCliente($usu);
-                    //}
                     
                 $pedido->mostrarPedidos();
               

@@ -95,7 +95,7 @@ class Pedido
                 echo "<p>Fecha: " . $pedido['Fecha'] . "</p>";
                 if ($pedido['Fecha'] <= date('Y-m-d')) {
                     echo "<p>Estado: Entregado</p>";
-                    if (!$this->yaValorado($pedido['ID_Pedido'])) {
+                    if ($this->yaValorado($pedido['ID_Pedido'])) {
                         echo "<p><button onclick='window.location.href=\"" . RUTA_APP . "/includes/vistas/plantillas/mostrarValoracion.php?id={$pedido['ID_Pedido']}\"'>Valorar</button></p>";
                     } else {
                         echo "<p>Ya has valorado este producto.</p>";
