@@ -274,6 +274,27 @@ class Usuario
         return self::inserta($this);
     }
 
+    public function insertaUsuario($Nombre, $Apellido, $Email, $User, $Pass, $rol){
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $stmt = $conn->prepare('INSERT INTO usuario (Apellido, Nombre, User, Pass, Email, Rol) VALUES (:Apellido, :Nombre, :User, :Pass, :Email, :Rol)');
+        $stmt->execute([
+            'Apellido' => $Apellido,
+            'Nombre' => $Nombre,
+            'User' => $User,
+            'Pass' => $Pass,
+            'Email' => $Email,
+            'Rol' => $rol
+        ]);
+    
+        $this->ID = $conn->lastInsertId();
+        $this->Nombre = $Nombre;
+        $this->Apellido = $Apellido;
+        $this->User = $User;
+        $this->Pass = $Pass;
+        $this->Email = $Email;
+        $this->Rol = $rol;
+    }
+
     public function borrate()
     {
         if ($this->id !== null) {
