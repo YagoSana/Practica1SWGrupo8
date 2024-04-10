@@ -19,47 +19,33 @@ $producto = Producto::getProducto($producto_id, $db->getConnection());
 
 // Usa el método getValoracion para obtener las valoraciones del producto
 $valoraciones = valoracion::getValoracion($producto_id, $db->getConnection());
+$ruta = RUTA_APP;
 
+ob_start();
 ?>
-
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <?php include RAIZ_APP . '/includes/vistas/comun/header.php'; ?>
-    <title>Detalles del producto</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo RUTA_CSS?>/estilos.css" />
-</head>
-
-<body>
-    <div id="contenedor">
-        <?php include RAIZ_APP . '/includes/vistas/comun/cabecera.php'; ?>
-        <?php include RAIZ_APP . '/includes/vistas/comun/lateralIzq.php'; ?>
-        <main>
-            <article>
-                <section>
-                    <h2>Detalles del producto</h2>
-                    <div class='producto'>
-                        <img src='<?php echo RUTA_APP . $producto->getImagen(); ?>' alt='Imagen del producto'>
-                        <div>
-                            <h3><?php echo $producto->getNombre(); ?></h3>
-                            <p><?php echo $producto->getDescripcion(); ?></p>
-                            <h4>Valoraciones</h4>
-                            <?php foreach ($valoraciones as $valoracion) { 
-                                $usuario = Usuario::buscaPorId($valoracion['Idusuario']);
-                            ?>
-                                <div class='valoracion'>
-                                    <p>Usuario: <?php echo $usuario->getNombre(); ?></p>
-                                    <p>Valoración: <?php echo $valoracion['Valoracion']; ?></p>
-                                    <p>Comentario: <?php echo $valoracion['Comentario']; ?></p>
-                                </div>
-                            <?php } ?>
-                        </div>
+<article>
+    <section>
+        <h2>Detalles del producto</h2>
+        <div class='producto'>
+            <img src='<?php echo $ruta . $producto->getImagen(); ?>' alt='Imagen del producto'>
+            <div>
+                <h3><?php echo $producto->getNombre(); ?></h3>
+                <p><?php echo $producto->getDescripcion(); ?></p>
+                <h4>Valoraciones</h4>
+                <?php foreach ($valoraciones as $valoracion) { 
+                    $usuario = Usuario::buscaPorId($valoracion["Idusuario"]);
+                ?>
+                    <div class='valoracion'>
+                        <p>Usuario: <?php echo $usuario->getNombre(); ?></p>
+                        <p>Valoración: <?php echo $valoracion['Valoracion']; ?></p>
+                        <p>Comentario: <?php echo $valoracion['Comentario']; ?></p>
                     </div>
-                </section>
-            </article>
-        </main>
-    </div>
-</body>
-
-</html>
+                <?php } ?>
+            </div>
+        </div>
+    </section>
+</article>
+<?php
+$contenido = ob_get_clean();
+require_once RAIZ_APP . '/includes/vistas/plantillas/plantilla.php';
+?>
