@@ -88,7 +88,7 @@ class Pedido
                 $producto = $stmt->fetch();
 
                 echo "<p>Producto: " . $producto['Nombre'] . "</p>";
-                echo "<img src='" . $producto['Imagen'] . "' alt='Imagen del producto'>";
+                echo "<img src='" . RUTA_APP . $producto['Imagen'] . "' alt='Imagen del producto' id='imgCompras'>";
                 echo "<p>Cantidad: " . $pedido['Cantidad'] . "</p>";
                 echo "<p>Fecha: " . $pedido['Fecha'] . "</p>";
                 if ($pedido['Fecha'] <= date('Y-m-d')) {

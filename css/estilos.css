@@ -137,3 +137,8 @@ button {
 .valoracion p:first-child {
     font-weight: bold;
 }
+
+img#imgCompras{
+	width: 200px;
+	height: 200px;
+}

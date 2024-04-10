@@ -19,7 +19,9 @@ if ($User) {
     if (!empty($query)) {
         $result = $db->getConnection()->query($query);
         if ($result->rowcount() == 0 && $Nombre && $Apellido && $Email && $Pass && $rol) {
-            $usuario = Usuario::crea($User, $Pass, $Nombre, $rol);
+            
+            $hashedPass = Usuario::hashPassword($Pass);
+            $usuario = Usuario::crea($User, $hashedPass, $Nombre, $rol);
             if ($usuario) {
                 define('REGISTRADO', true);
                 $_SESSION["nombre"] = $User;
