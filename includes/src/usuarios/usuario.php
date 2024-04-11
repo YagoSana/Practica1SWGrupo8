@@ -290,7 +290,7 @@ class Usuario
             'Apellido' => $Apellido,
             'Nombre' => $Nombre,
             'User' => $User,
-            'Pass' => self::hashPassword($password),
+            'Pass' => self::hashPassword($Pass),
             'Email' => $Email,
             'Rol' => $rol
         ]);

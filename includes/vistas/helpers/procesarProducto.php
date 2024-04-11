@@ -3,9 +3,6 @@ require_once '../../config.php';
 require_once 'baseDatos.php';
 require 'producto.php';
 
-$db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
-$db->connect();
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recoge los datos del formulario
     $Nombre = $_POST['producto_nombre'];
@@ -32,13 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Mueve la imagen a la carpeta de destino
     move_uploaded_file($ruta,RAIZ_APP."$target");
 
-    // Usa la instancia de Database que ya creaste en baseDatos.php
-    $connection = $db->getConnection();
-
     $producto = new Producto(null, $Nombre, $Descripcion, $Precio, $target);
 
-    $producto->createProducto($Nombre, $Descripcion, $Precio, $target, $connection);
+    $producto->createProducto($Nombre, $Descripcion, $Precio, $target);
 }
 
 header('Location: ' . RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php');
-?>
