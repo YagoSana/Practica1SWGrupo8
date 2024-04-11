@@ -22,17 +22,25 @@ CREATE TABLE `pedidos` (
   `ID_Pedido` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `Fecha` date NOT NULL,
   `Cliente` varchar(20) NOT NULL,
-  `Producto` int(10) UNSIGNED NOT NULL,
-  `Cantidad` int(11) NOT NULL,
+  `Importe` double NOT NULL,
   PRIMARY KEY (`ID_Pedido`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `productos` (
-  `ID` int(10) UNSIGNED NOT NULL,
+  `ID_Producto` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(20) NOT NULL,
   `Descripcion` varchar(200) NOT NULL,
   `Precio` decimal(6,2) NOT NULL,
-  `Imagen` varchar(255) NOT NULL
+  `Imagen` varchar(255) NOT NULL,
+  PRIMARY KEY (`ID_Producto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `productos_pedidos` (
+  `ID_Pedido` int(10) UNSIGNED NOT NULL,
+  `ID_Producto` int(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`ID_Pedido`, `ID_Producto`),
+  FOREIGN KEY (`ID_Pedido`) REFERENCES `pedidos` (`ID_Pedido`),
+  FOREIGN KEY (`ID_Producto`) REFERENCES `productos` (`ID_Producto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `usuario` (
@@ -62,23 +70,15 @@ CREATE TABLE `valoraciones` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 ALTER TABLE `pedidos`
-  ADD KEY `Cliente` (`Cliente`),
-  ADD KEY `Producto` (`Producto`);
+  ADD KEY `Cliente` (`Cliente`);
 
 ALTER TABLE `productos`
-  ADD PRIMARY KEY (`ID`),
   ADD KEY `Nombre` (`Nombre`);
 
 ALTER TABLE `usuario`
   ADD KEY `User` (`User`),
   ADD KEY `Apellido` (`Nombre`(1024));
 
-ALTER TABLE `pedidos`
-  MODIFY `ID_Pedido` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
-ALTER TABLE `productos`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-COMMIT;
 
 
 INSERT INTO `usuario` (`Apellido`, `Nombre`, `User`, `Idusuario`, `Pass`, `Email`, `rol`) VALUES
@@ -90,7 +90,7 @@ INSERT INTO `usuario` (`Apellido`, `Nombre`, `User`, `Idusuario`, `Pass`, `Email
 ('clienteprueba', 'clienteprueba', 'cliente', 6, 'clientepass', 'cliente@ucm.es', 'cliente');
 
 
-INSERT INTO `productos` (`ID`, `Nombre`, `Descripcion`, `Precio`, `Imagen`) VALUES
+INSERT INTO `productos` (`ID_Producto`, `Nombre`, `Descripcion`, `Precio`, `Imagen`) VALUES
 (1,
 'Guitarra Acústica',
 'Instrumento musical de alta calidad, con cuerdas de acero y un sonido resonante y claro. Ideal para músicos de todos los niveles. Cuerpo de madera pulida para una estética elegante. Esta guitarra acústica cuenta con un mástil de madera de arce, un diapasón de palisandro y un puente de madera de ébano. Con una longitud de escala de 650 mm y 20 trastes, es perfecta para una amplia gama de estilos musicales.',
