@@ -1,4 +1,5 @@
 <?php
+ob_start(); // Start output buffering
 require_once 'producto.php';
 require_once 'pedido.php';
 
@@ -138,9 +139,9 @@ class Carrito {
         $this->pedido = new Pedido($this->usuario);
         // Establecemos la fecha de entrega para dentro de un par de dias
         $dias = rand(2, 5);
-        $fecha = date('Y-m-d', strtotime("+$dias days"));
+        //$fecha = date('Y-m-d', strtotime("+$dias days"));
 
-        //$fecha = date('Y-m-d'); //Para prueba con las valoraciones (tema dias)
+        $fecha = date('Y-m-d'); //Para prueba con las valoraciones (tema dias)
         $this->pedido->setFecha($fecha);
 
         $db = Aplicacion::getInstance()->getConexionBd();
@@ -186,4 +187,6 @@ class Carrito {
         return $cantidad;
     }
 }
+
+ob_end_flush();
 ?>
