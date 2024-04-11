@@ -20,12 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cantidad = $resultado['Cantidad'];
     
     if($accion == 'incrementar') {
-        $carrito->comprobarProducto($db->getConnection(), $producto_id);
+        $carrito->comprobarProducto($producto_id);
     }
     elseif($cantidad > 1 && $accion == 'decrementar') {
-        $carrito->restarCantidad($producto_id, $db);
+        $carrito->restarCantidad($producto_id);
     } else {
-        $carrito->eliminarProducto($producto_id, $db);
+        $carrito->eliminarProducto($producto_id);
     }
 }
 ?>

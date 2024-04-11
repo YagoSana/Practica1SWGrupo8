@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Accede al usuario y a su carrito desde la 
     $carrito = $_SESSION['usuario']->getCarrito();
     // Agrega el producto al carrito
-    $carrito->agregarProducto($producto_act, $connection);
+    $carrito->agregarProducto($producto_act);
    
     
 }
