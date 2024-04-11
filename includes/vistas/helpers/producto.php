@@ -16,13 +16,10 @@ class Producto {
         $this->Descripcion = $Descripcion;
         $this->Precio = $Precio;
         $this->Imagen = $Imagen;
-        //$this->pdo = $pdo;
-    
-    }
-    
-   
+        }   
 
-    public static function getProducto($ID, $pdo) {
+    public static function getProducto($ID) {
+        $pdo = Aplicacion::getInstance()->getConexionBd();
         $stmt = $pdo->prepare('SELECT * FROM productos WHERE ID = :ID');
         $stmt->execute(['ID' => $ID]);
         $producto = $stmt->fetch();
@@ -37,7 +34,8 @@ class Producto {
     }
     
 
-    public function createProducto($Nombre, $Descripcion, $Precio, $Imagen, $pdo) {
+    public function createProducto($Nombre, $Descripcion, $Precio, $Imagen) {
+        $pdo = Aplicacion::getInstance()->getConexionBd();
         $stmt = $pdo->prepare('INSERT INTO productos (Nombre, Descripcion, Precio, Imagen) VALUES (:Nombre, :Descripcion, :Precio, :Imagen)');
         $stmt->execute([
             'Nombre' => $Nombre,
@@ -54,7 +52,8 @@ class Producto {
     }
     
 
-    public function deleteProducto($ID, $pdo) {
+    public function deleteProducto($ID) {
+        $pdo = Aplicacion::getInstance()->getConexionBd();
         $stmt = $pdo->prepare('DELETE FROM productos WHERE ID = :ID');
         $stmt->execute(['ID' => $ID]);
     }
@@ -79,5 +78,3 @@ class Producto {
         return $this->Descripcion;
     }
 }
-
-?>

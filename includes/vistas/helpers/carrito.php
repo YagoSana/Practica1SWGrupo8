@@ -164,7 +164,7 @@ class Carrito {
 
     public function vaciarCarrito() {
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $stmt = $db->prepare('DELETE FROM carrito');
+        $stmt = $conn->prepare('DELETE FROM carrito');
         $stmt->execute();
     }
 
@@ -172,5 +172,16 @@ class Carrito {
 
         return $this->pedido;
     }
+
+    public function getCantidadProducto($producto_id) {
+        $db = Aplicacion::getInstance()->getConexionBd();
+        $stmt = $db->prepare('SELECT Cantidad FROM carrito WHERE Producto = :ID');
+        $stmt->execute(['ID' => $producto_id]);
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+        $cantidad = $resultado['Cantidad'];
+        return $cantidad;
+    }
+    
+
 }
 ?>
