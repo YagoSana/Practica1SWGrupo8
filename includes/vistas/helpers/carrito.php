@@ -1,6 +1,9 @@
 <?php
-require_once 'producto.php';
-require_once 'pedido.php';
+namespace es\ucm\fdi\sw\vistas\helpers;
+use es\ucm\fdi\sw\vistas\helpers\producto;
+use es\ucm\fdi\sw\vistas\helpers\pedido;
+use es\ucm\fdi\sw\aplicacion;
+use PDO;
 
 class Carrito {
     private $productos = array(); //Es un array con los productos

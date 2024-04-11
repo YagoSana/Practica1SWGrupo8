@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../../config.php';
-require_once 'usuario.php';
+use es\ucm\fdi\sw\src\usuarios\usuario;
 
 $Nombre = $_POST['Nombre'] ?? null;
 $Apellido = $_POST['Apellido'] ?? null;
