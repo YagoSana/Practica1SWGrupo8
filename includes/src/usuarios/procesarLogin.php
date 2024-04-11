@@ -1,22 +1,22 @@
 <?php
 session_start();
 require_once '../../config.php';
-//require 'Usuario.php';
-use es\ucm\fdi\sw\src\usuarios\Usuario;
-use es\ucm\fdi\sw\vistas\helpers\Database;
-//require_once RAIZ_APP . '/includes/vistas/helpers/Database.php';
+require 'usuario.php';
+require_once RAIZ_APP . '/includes/vistas/helpers/baseDatos.php';
 
+$db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
+$db->connect();
 
 $User = $_POST['username'];
 $Pass = $_POST['password'];
 
-$usuario = Usuario::login($User, $Pass);
+$sql = "SELECT * FROM usuario WHERE User = '$User' AND Pass = '$Pass'";
+$result = $db->getConnection()->query($sql);
 
-if ($usuario) {
-    echo "entra en usuario";
+if ($result->rowCount() == 1) {
     $_SESSION["login"] = true;
     $_SESSION["nombre"] = $User;
-    
+    $row = $result->fetch();
     if ($row["rol"] == "empleado") {
         $_SESSION["esEmpleado"] = true;
     }
@@ -28,6 +28,7 @@ if ($usuario) {
     usuario::login($User, $Pass);
 }
 
+
 if (isset($_SESSION["login"])) {
     header('Location: ' . RUTA_APP . '/index.php');
 } else {
@@ -36,7 +37,7 @@ if (isset($_SESSION["login"])) {
     <h2> Error en el inicio de sesión </h2>
     <h2>Inicio de sesión en BackMusic</h2>
 
-            <form action="$ruta/Usuarios/procesarLogin.php" method="POST">
+            <form action="$ruta/usuarios/procesarLogin.php" method="POST">
                 <p>
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" required>
@@ -49,9 +50,10 @@ if (isset($_SESSION["login"])) {
             </form>
 
             <h3>¿No tienes cuenta en nuestra web?</h3>
-            <p>Regístrate como un nuevo Usuario <a href="../register.php">aquí</a></p>
+            <p>Regístrate como un nuevo usuario <a href="../register.php">aquí</a></p>
     EOS;
     require_once RAIZ_APP . '/includes/vistas/plantillas/plantilla.php';
 }
 
+$db->close();
 ?>

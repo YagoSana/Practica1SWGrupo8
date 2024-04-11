@@ -14,13 +14,13 @@ require '../../config.php';
         <?php include RAIZ_APP . '/includes/vistas/comun/cabecera.php'; ?>
         <?php include RAIZ_APP . '/includes/vistas/comun/lateralIzq.php'; ?>
         <main>
-            <h2>Indique el Producto a eliminar</h2>
+            <h2>Indique el producto a eliminar</h2>
             <form action="<?= RUTA_APP . '/includes/vistas/helpers/procesarEliminacion.php' ?>" method="POST">
                 <p>
-                    <label for="Producto_id">Identificador:</label>
-                    <input type="text" id="Producto_id" name="Producto_id" required>
+                    <label for="producto_id">Identificador:</label>
+                    <input type="text" id="producto_id" name="producto_id" required>
                 </p>
-                <input type="submit" value="Eliminar Producto">
+                <input type="submit" value="Eliminar producto">
             </form>
 
         </main>

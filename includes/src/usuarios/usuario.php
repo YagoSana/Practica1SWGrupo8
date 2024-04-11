@@ -1,13 +1,7 @@
 <?php
-namespace es\ucm\fdi\sw\src\usuarios;
-//require_once '../../config.php';
-//require_once '../../aplicacion.php';
-use es\ucm\fdi\sw\Aplicacion;
-//include RAIZ_APP . '/includes/vistas/helpers/Carrito.php';
-use es\ucm\fdi\sw\vistas\helpers\Carrito;
-
-use PDO;
-
+require_once '../../config.php';
+require_once '../../aplicacion.php';
+include RAIZ_APP . '/includes/vistas/helpers/carrito.php';
 class Usuario
 {
 
@@ -47,9 +41,9 @@ class Usuario
     public static function login($nombreUsuario, $password)
     {
         $usuario = self::buscaUsuario($nombreUsuario);
-
+    
         if ($usuario && $usuario->compruebaPassword($password)) {
-            return $usuario;
+            return self::cargaRoles($usuario);
         }
         return false;
     }
@@ -273,14 +267,7 @@ class Usuario
 
     public function compruebaPassword($password)
     {
-        //la funcion password_verify no está funcionando correctamente y no nos comprueba las contraseñas hasheadas
-        //return password_verify($password, $this->password);
-        if  ($password == $this->password) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return password_verify($password, $this->password);
     }
 
     public function cambiaPassword($nuevoPassword)
@@ -303,7 +290,7 @@ class Usuario
             'Apellido' => $Apellido,
             'Nombre' => $Nombre,
             'User' => $User,
-            'Pass' => /*self::hashPassword($Pass)*/ $Pass, //debido a que no nos está verificando bien las contraseñas, quitamos el hash muy a nuestro pesar
+            'Pass' => self::hashPassword($Pass),
             'Email' => $Email,
             'Rol' => $rol
         ]);

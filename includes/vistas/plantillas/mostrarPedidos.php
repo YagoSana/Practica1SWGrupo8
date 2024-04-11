@@ -1,7 +1,6 @@
 <?php
 require '../../config.php';
-//require_once RAIZ_APP. '/includes/src/Usuarios/Usuario.php';
-use es\ucm\fdi\sw\usuarios\Usuario;
+require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
 ?>
 
 <!DOCTYPE html>
@@ -18,20 +17,20 @@ use es\ucm\fdi\sw\usuarios\Usuario;
         <?php include RAIZ_APP . '/includes/vistas/comun/lateralIzq.php'; ?>
         <main>
             <?php
-            // Comprobamos que el Usuario ha iniciado sesion
+            // Comprobamos que el usuario ha iniciado sesion
             if (isset($_SESSION['login'])) {
-                // Obtiene los Pedidos del Usuario
-                $Carrito = $_SESSION['usuario']->getCarrito();
-                $Pedido = $Carrito->getPedido(); //Devuelve el Pedido del Usuario
+                // Obtiene los pedidos del usuario
+                $carrito = $_SESSION['usuario']->getCarrito();
+                $pedido = $carrito->getPedido(); //Devuelve el pedido del usuario
 
-                if($Pedido == null) {
-                    $Pedido = new Pedido($_SESSION['usuario']);
+                if($pedido == null) {
+                    $pedido = new Pedido($_SESSION['usuario']);
                 }
                     
-                $Pedido->mostrarPedidos();
+                $pedido->mostrarPedidos();
               
             } else {
-                echo "<p>Debes iniciar sesión para ver tus Pedidos.</p>";
+                echo "<p>Debes iniciar sesión para ver tus pedidos.</p>";
             }
             ?>
         </main>

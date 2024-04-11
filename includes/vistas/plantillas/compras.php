@@ -1,27 +1,22 @@
 <?php
 // Incluye el archivo de la clase Database
-//include ("../helpers/Database.php");
-use es\ucm\fdi\sw\vistas\helpers\Database;
+include ("../helpers/baseDatos.php");
 require ("../../config.php");
-//require_once ("../helpers/Producto.php");
-use es\ucm\fdi\sw\vistas\helpers\Producto;
-use es\ucm\fdi\sw\usuarios\Usuario;
-//require_once RAIZ_APP. '/includes/src/Usuarios/Usuario.php';
-//require_once ("../helpers/Carrito.php");
-use es\ucm\fdi\sw\vistas\helpers\Carrito;
+require_once ("../helpers/producto.php");
+require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
+require_once ("../helpers/carrito.php");
 
+// Crea un array para almacenar los productos
+$productos = [];
 
-// Crea un array para almacenar los Productos
-$Productos = [];
+// Obtén todos los productos de la base de datos
+$producto = new Producto(null, null, null, null, null);
+$productos_data = $producto->getAllProductos();
 
-// Obtén todos los Productos de la base de datos
-$Producto = new Producto(null, null, null, null, null);
-$Productos_data = $Producto->getAllProductos();
-
-// Recorre los datos de los Productos y crea objetos Producto
-foreach ($Productos_data as $Producto_data) {
-    $Producto = new Producto($Producto_data['ID_Producto'], $Producto_data['Nombre'], $Producto_data['Descripcion'], $Producto_data['Precio'], $Producto_data['Imagen']);
-    $Productos[] = $Producto;
+// Recorre los datos de los productos y crea objetos Producto
+foreach ($productos_data as $producto_data) {
+    $producto = new Producto($producto_data['ID_Producto'], $producto_data['Nombre'], $producto_data['Descripcion'], $producto_data['Precio'], $producto_data['Imagen']);
+    $productos[] = $producto;
 }
 ?>
 
@@ -44,35 +39,35 @@ foreach ($Productos_data as $Producto_data) {
                     <p>Esta el la sección de compras de Back Music. Aquí podrás encontrar todo lo que tenemos a la
                         venta.</p>
                     <?php
-                    // Verifica si hay Productos para mostrar
-                    if (!empty($Productos)) {
-                        // Itera sobre los Productos y muestra la información
-                        foreach ($Productos as $Producto) {
-                            echo "<div class='Producto'>";
-                            echo "<a class='subr' href='detalles_Producto.php?id=" . $Producto->getID() . "'>"; // Enlace a la página de detalles del Producto
-                            echo "<img src='" . RUTA_APP . $Producto->getImagen() . "' alt='Imagen del Producto' id='imgCompras'>";
+                    // Verifica si hay productos para mostrar
+                    if (!empty($productos)) {
+                        // Itera sobre los productos y muestra la información
+                        foreach ($productos as $producto) {
+                            echo "<div class='producto'>";
+                            echo "<a class='subr' href='detalles_producto.php?id=" . $producto->getID() . "'>"; // Enlace a la página de detalles del producto
+                            echo "<img src='" . RUTA_APP . $producto->getImagen() . "' alt='Imagen del producto' id='imgCompras'>";
                             echo "<div class ='detalles'>";
-                            echo "<h3>" . $Producto->getNombre() . "</h3>";
+                            echo "<h3>" . $producto->getNombre() . "</h3>";
                             echo "</a>";//Solo la imagen y el nombre son clickeables
-                            echo "<p>" . $Producto->getPrecio() . " €</p>";
+                            echo "<p>" . $producto->getPrecio() . " €</p>";
                 
                             echo "<div class='botones'>";
                             if (isset($_SESSION["login"])) {
-                                // El Usuario ha iniciado sesión, muestra el botón "Agregar al Carrito" dentro de un formulario
+                                // El usuario ha iniciado sesión, muestra el botón "Agregar al carrito" dentro de un formulario
                                 echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarCarrito.php' method='post'>"; //Procesa la adición al carro
-                                echo "<input type='hidden' name='Producto_id' value='" . $Producto->getID() . "'>";
-                                echo "<button class='agregar' type='submit' name='agregar_Producto'>Agregar al Carrito</button>";
+                                echo "<input type='hidden' name='producto_id' value='" . $producto->getID() . "'>";
+                                echo "<button class='agregar' type='submit' name='agregar_producto'>Agregar al carrito</button>";
                                 echo "</form>";
                             } else {
-                                // El Usuario no ha iniciado sesión, muestra un enlace para iniciar sesión
-                                echo "<button class='agregar' onclick=\"window.location.href='" . RUTA_SRC . "/login.php'\">Agregar al Carrito</button>";
+                                // El usuario no ha iniciado sesión, muestra un enlace para iniciar sesión
+                                echo "<button class='agregar' onclick=\"window.location.href='" . RUTA_SRC . "/login.php'\">Agregar al carrito</button>";
                             }
 
-                            // Botón para eliminar el Producto de la tienda, dentro de un formulario
+                            // Botón para eliminar el producto de la tienda, dentro de un formulario
                             if (isset($_SESSION["esEmpleado"])) {
                                 echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarEliminacion.php' method='post'>";
-                                echo "<input type='hidden' name='Producto_id' value='" . $Producto->getID() . "'>";
-                                echo "<button class='borrar' type='submit' name='eliminar_Producto'>Eliminar</button>";
+                                echo "<input type='hidden' name='producto_id' value='" . $producto->getID() . "'>";
+                                echo "<button class='borrar' type='submit' name='eliminar_producto'>Eliminar</button>";
                                 echo "</form>";
                             }
                             
@@ -81,7 +76,7 @@ foreach ($Productos_data as $Producto_data) {
                             echo "</div>";
                         }
                     } else {
-                        echo "<p>No se encontraron Productos</p>";
+                        echo "<p>No se encontraron productos</p>";
                     }
                     ?>
                 </section>

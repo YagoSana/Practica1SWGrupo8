@@ -58,8 +58,8 @@ require '../../config.php';
                     <h2 id="ap1">Etapa 0: Sales pitch</h2>
                     <p>Redacción breve sobre una primera propuesta del proyecto a realizar que conste de: un título,
                         corto y pegadizo; los autores, nombre y apellidos de los participantes; el concepto,
-                        presentación de la idea en menos de 150 palabras; y los Usuarios y tareas, quiénes son los
-                        distintos Usuarios y lo que podrá realizar cada uno en la web.</p>
+                        presentación de la idea en menos de 150 palabras; y los usuarios y tareas, quiénes son los
+                        distintos usuarios y lo que podrá realizar cada uno en la web.</p>
                     <h2 id="ap2">Práctica 1: Descripción del proyecto.</h2>
                     <p>Presentación detallada del proyecto a desarrollar dividido en las siguientes secciones:</p>
                     <ul>

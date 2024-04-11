@@ -28,15 +28,15 @@ require_once 'includes/config.php';
                         amplificadores, partituras, etc.
                     </p>
                     <p>
-                        Cada uno de los clientes que compren algún articulo de nuestra tienda, podrá valorar el Producto 
-                        adquirido en nuestra sección de Valoraciones. De esta manera, los futuros compradores de dicho 
+                        Cada uno de los clientes que compren algún articulo de nuestra tienda, podrá valorar el producto 
+                        adquirido en nuestra sección de valoraciones. De esta manera, los futuros compradores de dicho 
                         artículo tengan retroalimentación sobre lo que quieren adquirir. Cabe destacar que, en las 
-                        páginas individuales de venta de cada Producto, aparecerán las Valoraciones de ese artículo en concreto.
+                        páginas individuales de venta de cada producto, aparecerán las valoraciones de ese artículo en concreto.
                     </p>
                     <p>    
                         Por otro lado, nuestros clientes también serán capaces de publicar en nuestra web instrumentos 
-                        u objetos que quieran vender a otros Usuarios, siendo esto, una seccion de venta de 
-                        artículos de segunda mano. De esta manera, estos Usuarios recibirán parte del dinero de 
+                        u objetos que quieran vender a otros usuarios, siendo esto, una seccion de venta de 
+                        artículos de segunda mano. De esta manera, estos usuarios recibirán parte del dinero de 
                         sus ventas en forma de saldo en un monedero virtual "wallet" que podrán usar posteriormente 
                         para comprar en nuestra tienda.
                     </p>

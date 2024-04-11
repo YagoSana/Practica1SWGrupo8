@@ -86,11 +86,11 @@ button {
 	height: 150px;
 }
 
-.Carrito {
+.carrito {
     float: right;
 }
 
-.Producto {
+.producto {
 	display: inline-block;
     border: 1px solid #ccc;
     padding: 1em;
@@ -104,17 +104,17 @@ button {
 
 }
 
-.Producto img {
+.producto img {
 	display: block;
     height: 100px;
     width: 100px;
     object-fit: cover;
     margin-right: 20px;
 }
-.Producto .detalles {
+.producto .detalles {
 	text-align: center;
 }
-.Producto h3 {
+.producto h3 {
     font-size: 1.2em;
 	color: black;
     font-weight: bold;
@@ -140,7 +140,7 @@ button {
 }
 
 .agregar {
-    order: 1; /* Cambia el orden del botón Agregar al Carrito */
+    order: 1; /* Cambia el orden del botón Agregar al carrito */
 	background-color: rgb(76, 195, 195);
 	border-color: rgb(76, 195, 195);
 	color: white;
@@ -155,17 +155,17 @@ button {
 }
 
 
-.detalle_Producto {
+.detalle_producto {
     display: flex;
     margin-bottom: 2em;
 }
-.detalle_Producto img {
+.detalle_producto img {
     width: 50%;
     height: auto;
     margin-right: 2em;
 }
 
-.Valoracion {
+.valoracion {
     border: 1px solid #ccc;
     padding: 1em;
     margin-bottom: 1em;
@@ -175,14 +175,14 @@ button {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
-.Valoracion p {
+.valoracion p {
     margin: 0 0 1em;
     padding-left: 2em;
     text-indent: -2em;
     font-size: 1.1em;
 }
 
-.Valoracion p:first-child {
+.valoracion p:first-child {
     font-weight: bold;
 }
 

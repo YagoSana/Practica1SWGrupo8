@@ -1,6 +1,4 @@
 <?php
-namespace es\ucm\fdi\sw\vistas\helpers;
-
 class Valoracion {
     private $puntuacionMedia;
     private $numeroDeValoraciones;
@@ -15,9 +13,9 @@ class Valoracion {
         return $this->puntuacionMedia;
     }
 
-    public function calcularPuntuacionMedia($Producto_id) {
-        $stmt = $this->pdo->prepare('SELECT AVG(Valoracion) as media FROM Valoraciones WHERE ID = :ID');
-        $stmt->execute(['ID' => $Producto_id]);
+    public function calcularPuntuacionMedia($producto_id) {
+        $stmt = $this->pdo->prepare('SELECT AVG(Valoracion) as media FROM valoraciones WHERE ID = :ID');
+        $stmt->execute(['ID' => $producto_id]);
         $resultado = $stmt->fetch();
 
         $this->puntuacionMedia = $resultado['media'];
@@ -25,25 +23,25 @@ class Valoracion {
     }
 
    
-    public static function getValoracion($Producto_id, $pdo) {
-        $stmt = $pdo->prepare('SELECT * FROM Valoraciones WHERE ID = :ID');
-        $stmt->execute(['ID' => $Producto_id]);
-        $Valoraciones = $stmt->fetchAll();
+    public static function getValoracion($producto_id, $pdo) {
+        $stmt = $pdo->prepare('SELECT * FROM valoraciones WHERE ID = :ID');
+        $stmt->execute(['ID' => $producto_id]);
+        $valoraciones = $stmt->fetchAll();
     
-        return $Valoraciones;
+        return $valoraciones;
     }
     
-    //Es la funcion para valorar un Producto
-    public static function setValoracion($Producto_id, $Usuario_id, $Valoracion, $comentario) {
+    //Es la funcion para valorar un producto
+    public static function setValoracion($producto_id, $usuario_id, $valoracion, $comentario) {
         $db = Aplicacion::getInstance()->getConexionBd();
 
-        $sql = "INSERT INTO Valoraciones (IdUsuario, ID, Valoracion, Comentario) VALUES (:Usuario_id, :Producto_id, :Valoracion, :comentario)";
+        $sql = "INSERT INTO valoraciones (Idusuario, ID, Valoracion, Comentario) VALUES (:usuario_id, :producto_id, :valoracion, :comentario)";
 
         $stmt = $db->prepare($sql);
 
-        $stmt->bindParam(':Usuario_id', $Usuario_id);
-        $stmt->bindParam(':Producto_id', $Producto_id);
-        $stmt->bindParam(':Valoracion', $Valoracion);
+        $stmt->bindParam(':usuario_id', $usuario_id);
+        $stmt->bindParam(':producto_id', $producto_id);
+        $stmt->bindParam(':valoracion', $valoracion);
         $stmt->bindParam(':comentario', $comentario);
 
         $stmt->execute();

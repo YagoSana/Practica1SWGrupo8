@@ -14,14 +14,14 @@ if (session_status() === PHP_SESSION_NONE) {
     <div id="divInferior">
         <?php
         if (isset($_SESSION["login"])) {
-            echo "Usuario registrado: " . $_SESSION["nombre"] . ". <a href=" . RUTA_SRC . "/Usuarios/logout.php>Logout</a>";
+            echo "Usuario registrado: " . $_SESSION["nombre"] . ". <a href=" . RUTA_SRC . "/usuarios/logout.php>Logout</a>";
         } else {
             echo "Usuario desconocido. <a href=" . RUTA_SRC . "/login.php>Login</a>";
         }
         ?>
-        <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarCarrito.php" class='Carrito'>CARRITO</a>
-        <span class="Carrito"> | </span>
-        <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarPedidos.php" class='Carrito'>PEDIDOS</a>
+        <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarCarrito.php" class='carrito'>CARRITO</a>
+        <span class="carrito"> | </span>
+        <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarPedidos.php" class='carrito'>PEDIDOS</a>
     </div>
 </header>
 

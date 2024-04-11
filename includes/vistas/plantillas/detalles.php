@@ -23,22 +23,22 @@ require '../../config.php';
                         reproducción musical.
                         Desde vinilos hasta cassettes, tenemos algo para cada melómano. Lo que nos hace únicos es
                         nuestra dedicación a la música y a
-                        nuestros Usuarios.
-                        Ofrecemos una amplia gama de Productos para satisfacer todas tus necesidades musicales. Pero eso
+                        nuestros usuarios.
+                        Ofrecemos una amplia gama de productos para satisfacer todas tus necesidades musicales. Pero eso
                         no es todo, también ofrecemos la posibilidad de alquilar instrumentos y plataformas de
                         reproducción musical,
                         permitiéndote explorar y experimentar con diferentes géneros y estilos.
                     </p>
                 </section>
                 <section>
-                    <h2>Guia de Usuarios</h2>
+                    <h2>Guia de usuarios</h2>
                     <p>
-                        Para nuestros Usuarios registrados, ofrecemos una experiencia aún más personalizada. Cada
+                        Para nuestros usuarios registrados, ofrecemos una experiencia aún más personalizada. Cada
                         cliente registrado tiene a su disposición un <strong><em>"wallet"</em></strong> que almacena
                         dinero para descuentos en futuras compras. De esta manera, cada vez que compras o vendes en
                         nuestra plataforma, estás invirtiendo en tu próxima gran aventura musical.
-                        Pero no te preocupes si no estás registrado. También ofrecemos una selección de Productos para
-                        nuestros Usuarios no registrados. Así, todos pueden disfrutar de la música, sin importar su
+                        Pero no te preocupes si no estás registrado. También ofrecemos una selección de productos para
+                        nuestros usuarios no registrados. Así, todos pueden disfrutar de la música, sin importar su
                         nivel de compromiso.
                     </p>
                 </section>
@@ -53,12 +53,12 @@ require '../../config.php';
                 <section>
                     <ol>
                         <li><em><strong>Gestión</strong></em> de stock de artículos de la tienda online.</li>
-                        <li><em><strong>Compra</strong></em> de los artículos, guardando los Pedidos de los Usuarios
-                            registrados en un Carrito y un listado de Pedidos realizados.</li>
+                        <li><em><strong>Compra</strong></em> de los artículos, guardando los pedidos de los usuarios
+                            registrados en un carrito y un listado de pedidos realizados.</li>
                         <li><em><strong>Venta</strong></em> de artículos a la tienda para que esta los pueda adquirir
-                            para su posible futura venta. Que se comporte como un chat entre dos Usuarios.</li>
-                        <li><em><strong>Sistema de Valoraciones y comentarios</strong></em> por parte de los compradores
-                            de cierto Producto para que los futuros compradores sean informados.</li>
+                            para su posible futura venta. Que se comporte como un chat entre dos usuarios.</li>
+                        <li><em><strong>Sistema de valoraciones y comentarios</strong></em> por parte de los compradores
+                            de cierto producto para que los futuros compradores sean informados.</li>
                     </ol>
                 </section>
                 <p>

@@ -17,7 +17,7 @@ require_once ("../config.php");
             <h2>Regístrate en BackMusic</h2>
             <form action=<?php echo RUTA_USU . "/procesarRegister.php"; ?> method="POST">
                 <p>
-                    <input type="text" id="User" name="User" placeholder="Nombre de Usuario" size="30" required>
+                    <input type="text" id="User" name="User" placeholder="Nombre de usuario" size="30" required>
                 </p>
                 <p>
                     <input type="text" id="Nombre" name="Nombre" placeholder="Nombre" size="12" required>
