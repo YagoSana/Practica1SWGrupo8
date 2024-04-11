@@ -115,7 +115,7 @@ class Pedido
                     if ($pedido['Fecha'] <= date('Y-m-d')) {
                         echo "<p class='entregado'>Entregado</p>";
                         if ($this->yaValorado($pedido['ID_Pedido'])) {
-                            echo "<button class='valorar-btn' onclick='window.location.href=\"" . RUTA_APP . "/includes/vistas/plantillas/mostrarValoracion.php?id={$producto['ID_Producto']}\"'>Valorar</button>";
+                            echo "<button class='valorar-btn' onclick='window.location.href=\"" . RUTA_APP . "/includes/vistas/plantillas/mostrarValoracion.php?id={$pedido['ID_Pedido']}\"'>Valorar</button>";
                         } else {
                             echo "<p>Ya has valorado este producto.</p>";
                         }
@@ -171,7 +171,7 @@ class Pedido
     
         // Obtener el resultado
         $valoracion = $stmt->fetchColumn();
-    
+        
         // Cerrar la conexión a la base de datos
     
         // Si la valoración es igual a 0, significa que el usuario no ha valorado el pedido

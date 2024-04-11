@@ -72,6 +72,18 @@ class Producto {
         $this->Precio = $Precio;
         $this->Imagen = $this->$Imagen;
     }
+
+    public static function obtenerPedidosDeProducto($producto) {
+        $db = Aplicacion::getInstance()->getConexionBd();
+
+        $sql = "SELECT * FROM productos_pedidos WHERE ID_Producto = :producto_id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':producto_id', $producto);
+        $stmt->execute();
+        $pedidos = $stmt->fetchAll();
+
+        return $pedidos;
+    }
     
 
     public function deleteProducto($ID) {
