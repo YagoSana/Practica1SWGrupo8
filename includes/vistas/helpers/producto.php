@@ -32,13 +32,13 @@ class Producto {
             $Producto['Imagen']
         );
     }
-    
+        
     public function getAllProductos() {
         // Obtener la instancia de la conexión a la base de datos
         $pdo = Aplicacion::getInstance()->getConexionBd();
     
-        // Preparar la consulta SQL para seleccionar todos los productos
-        $stmt = $pdo->prepare('SELECT * FROM productos');
+        // Preparar la consulta SQL para seleccionar todos los Productos
+        $stmt = $pdo->prepare('SELECT * FROM Productos');
         
         // Ejecutar la consulta
         $stmt->execute();
