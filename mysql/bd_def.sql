@@ -38,6 +38,7 @@ CREATE TABLE `productos` (
 CREATE TABLE `productos_pedidos` (
   `ID_Pedido` int(10) UNSIGNED NOT NULL,
   `ID_Producto` int(10) UNSIGNED NOT NULL,
+  `Cantidad` double NOT NULL,
   PRIMARY KEY (`ID_Pedido`, `ID_Producto`),
   FOREIGN KEY (`ID_Pedido`) REFERENCES `pedidos` (`ID_Pedido`),
   FOREIGN KEY (`ID_Producto`) REFERENCES `productos` (`ID_Producto`)

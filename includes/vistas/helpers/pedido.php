@@ -7,7 +7,7 @@ class Pedido
     private $cliente;
     private $productos = array(); //Hay que guardarlos en la base de datos los productos y los productos entregados
     private $productosEntregados = array(); //Hay que implementar que cada vez que el pedido se entregue todos
-                                            //los productos que habia en la variable producto se guarden aqui, para luego poder valorarlos y etc
+    private $total;
     private $cantidad;
     private $estado;
 
@@ -15,6 +15,24 @@ class Pedido
         
         $this->cliente = $usuario;
         $this->estado = 'Nulo';
+    }
+
+    public function agregarPedido() {
+        $db = Aplicacion::getInstance()->getConexionBd();
+        $sql = "INSERT INTO pedidos (Fecha, Cliente, Importe) VALUES (:fecha, :cliente, :importe)";
+        $stmt = $db->prepare($sql);
+
+        $fecha = $this->fechaEntrega;
+        $cliente = $this->cliente->getId();
+        $importe = $this->total;
+
+        $stmt->bindParam(':fecha', $fecha);
+        $stmt->bindParam(':cliente', $cliente);
+        $stmt->bindParam(':importe', $importe);
+
+        $stmt->execute();
+
+        $idPedido = $db->lastInsertid();
     }
 
     public function agregarProducto($producto, $cantidad) {
@@ -76,7 +94,7 @@ class Pedido
         if($pedidos != null) {
             foreach ($pedidos as $pedido) {
             // Consulta SQL para obtener los detalles del producto
-                $sql = "SELECT * FROM productos WHERE ID = :producto_id";
+                $sql = "SELECT * FROM productos WHERE ID_Producto = :producto_id";
                 $stmt = $db->prepare($sql);
                 $stmt->bindParam(':producto_id', $pedido['Producto']);
                 $stmt->execute();
@@ -161,6 +179,11 @@ class Pedido
     public function setFecha($fecha){
 
         $this->fechaEntrega = $fecha;
+    }
+
+    public function setImporte($totalPedido){
+
+        $this->total = $totalPedido;
     }
 }
 ?>

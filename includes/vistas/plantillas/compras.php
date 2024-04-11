@@ -45,9 +45,9 @@ if ($result === false) {
                         // Itera sobre los resultados y los muestra en la tabla
                         while ($row = $result->fetch()) {
                             //Esto se hace para pasar luego el producto entero al carrito
-                            $producto = new Producto($row['ID'], $row['Nombre'], $row['Descripcion'], $row['Precio'], $row['Imagen']);
+                            $producto = new Producto($row['ID_Producto'], $row['Nombre'], $row['Descripcion'], $row['Precio'], $row['Imagen']);
                             echo "<div class='producto'>";
-                            echo "<a class='subr' href='detalles_producto.php?id=" . $row['ID'] . "'>"; // Enlace a la página de detalles del producto
+                            echo "<a class='subr' href='detalles_producto.php?id=" . $row['ID_Producto'] . "'>"; // Enlace a la página de detalles del producto
                             echo "<img src='" . RUTA_APP . $row['Imagen'] . "' alt='Imagen del producto' id='imgCompras'>";
                             echo "<div class ='detalles'>";
                             echo "<h3>" . $row['Nombre'] . "</h3>";
@@ -59,7 +59,7 @@ if ($result === false) {
                             if (isset($_SESSION["login"])) {
                                 // El usuario ha iniciado sesión, muestra el botón "Agregar al carrito" dentro de un formulario
                                 echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarCarrito.php' method='post'>"; //Procesa la adición al carro
-                                echo "<input type='hidden' name='producto_id' value='" . $row['ID'] . "'>";
+                                echo "<input type='hidden' name='producto_id' value='" . $row['ID_Producto'] . "'>";
                                 echo "<button class='agregar' type='submit' name='agregar_producto'>Agregar al carrito</button>";
                                 echo "</form>";
                             } else {
@@ -70,7 +70,7 @@ if ($result === false) {
                             // Botón para eliminar el producto de la tienda, dentro de un formulario
                             if (isset($_SESSION["esEmpleado"])) {
                                 echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarEliminacion.php' method='post'>";
-                                echo "<input type='hidden' name='producto_id' value='" . $row['ID'] . "'>";
+                                echo "<input type='hidden' name='producto_id' value='" . $row['ID_Producto'] . "'>";
                                 echo "<button class='borrar' type='submit' name='eliminar_producto'>Eliminar</button>";
                                 echo "</form>";
                             }
