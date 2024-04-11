@@ -2,7 +2,8 @@
 namespace es\ucm\fdi\sw\vistas\helpers;
 use es\ucm\fdi\sw\Aplicacion;
 use PDO;
-require_once "Valoracion.php";
+//require_once "Valoracion.php";
+use es\ucm\fdi\sw\vistas\helpers\Valoracion;
 
 
 class Producto {
@@ -83,7 +84,7 @@ class Producto {
     public function deleteProducto($ID) {
         $pdo = Aplicacion::getInstance()->getConexionBd();
         $stmt = $pdo->prepare('DELETE FROM Productos WHERE ID = :ID');
-        $stmt->execute(['ID' => $ID]);
+        $stmt->execute(['ID_Producto' => $ID]);
     }
 
     public function getNombre() {
