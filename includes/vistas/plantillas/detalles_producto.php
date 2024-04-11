@@ -2,7 +2,7 @@
 // Incluye el archivo de la clase Database, Usuario y Producto
 require ("../../config.php");
 use es\ucm\fdi\sw\vistas\helpers\producto;
-use es\ucm\fdi\sw\usuarios\usuario;
+use es\ucm\fdi\sw\src\usuarios\usuario;
 use es\ucm\fdi\sw\vistas\helpers\valoracion;
 
 // Obtiene el ID del producto de la URL
