@@ -13,15 +13,13 @@ if ($usuario) {
     $_SESSION["login"] = true;
     $_SESSION["nombre"] = $User;
     
-    if ($row["rol"] == "empleado") {
+    if ($usuario->getRoles() == "empleado") {
         $_SESSION["esEmpleado"] = true;
     }
-    if ($row["rol"] == "admin") {
+    if ($usuario->getRoles() == "admin") {
         $_SESSION["esEmpleado"] = true;
         $_SESSION["esAdmin"] = true;
     }
-    
-    usuario::login($User, $Pass);
 }
 
 if (isset($_SESSION["login"])) {
@@ -49,5 +47,3 @@ if (isset($_SESSION["login"])) {
     EOS;
     require_once RAIZ_APP . '/includes/vistas/plantillas/plantilla.php';
 }
-
-?>
