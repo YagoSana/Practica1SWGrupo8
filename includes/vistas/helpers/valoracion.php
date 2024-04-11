@@ -1,4 +1,6 @@
 <?php
+namespace es\ucm\fdi\sw\vistas\helpers;
+use es\ucm\fdi\sw\aplicacion;
 class Valoracion {
     private $puntuacionMedia;
     private $numeroDeValoraciones;

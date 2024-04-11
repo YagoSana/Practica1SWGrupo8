@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../../config.php';
-require 'usuario.php';
+use es\ucm\fdi\sw\src\usuarios\usuario;
 
 $User = $_POST['username'];
 $Pass = $_POST['password'];

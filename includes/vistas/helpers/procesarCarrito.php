@@ -2,7 +2,7 @@
 require_once '../../config.php';
 header("Location: " . RUTA_APP . "/includes/vistas/plantillas/compras.php");
 require_once '../plantillas/compras.php';
-require_once 'producto.php';
+use es\ucm\fdi\sw\vistas\helpers\producto;
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

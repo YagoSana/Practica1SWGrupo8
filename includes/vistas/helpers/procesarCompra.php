@@ -2,8 +2,8 @@
 
 require_once '../plantillas/mostrarCarrito.php';
 require_once '../../config.php';
-require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
-require_once 'carrito.php';
+use es\ucm\fdi\sw\src\usuarios\usuario;
+use es\ucm\fdi\sw\vistas\helpers\carrito;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['login'])) {
     // Obtiene el carrito de compras del usuario

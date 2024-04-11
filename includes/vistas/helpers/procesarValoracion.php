@@ -2,7 +2,7 @@
 
 require_once '../plantillas/mostrarValoracion.php';
 require_once '../../config.php';
-require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
+use es\ucm\fdi\sw\src\usuarios\usuario;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $producto_id = $_POST['producto_id']; // Recupera el ID del producto enviado desde el cliente
