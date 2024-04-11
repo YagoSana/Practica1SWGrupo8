@@ -266,16 +266,10 @@ class Usuario
     }
 
     public function compruebaPassword($password)
-    {
-        //la funcion password_verify no está funcionando correctamente y no nos comprueba las contraseñas hasheadas
-        //return password_verify($password, $this->password);
-        if  ($password == $this->password) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+{
+    // Ahora sí podemos usar password_verify para comprobar las contraseñas hasheadas
+    return password_verify($password, $this->password);
+}
 
     public function cambiaPassword($nuevoPassword)
     {
@@ -297,7 +291,7 @@ class Usuario
             'Apellido' => $Apellido,
             'Nombre' => $Nombre,
             'User' => $User,
-            'Pass' => /*self::hashPassword($Pass)*/ $Pass, //debido a que no nos está verificando bien las contraseñas, quitamos el hash muy a nuestro pesar
+            'Pass' => password_hash($Pass, PASSWORD_DEFAULT), // Hasheamos la contraseña
             'Email' => $Email,
             'Rol' => $rol
         ]);

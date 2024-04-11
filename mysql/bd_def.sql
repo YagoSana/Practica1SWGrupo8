@@ -48,10 +48,10 @@ CREATE TABLE `usuario` (
   `Apellido` text NOT NULL,
   `Nombre` text NOT NULL,
   `User` varchar(20) NOT NULL,
-  `Idusuario`int(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `Pass` varchar(20) NOT NULL,
+  `Idusuario` int(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `Pass` varchar(60) NOT NULL,  -- Aquí cambiamos la longitud a 60
   `Email` varchar(20) NOT NULL,
-  `rol`varchar(20) NOT NULL
+  `rol` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `carrito` (
