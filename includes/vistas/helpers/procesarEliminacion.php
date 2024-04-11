@@ -1,15 +1,17 @@
 <?php
     require_once '../../config.php';
-    require_once 'baseDatos.php';
-    require 'producto.php';
+    //require_once 'Database.php';
+    use es\ucm\fdi\sw\vistas\helpers\Database;
+    //require 'Producto.php';
+    use es\ucm\fdi\sw\vistas\helpers\Producto;
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){ 
 
         // Recoge los datos del formulario
-        $ID = $_POST['producto_id'];
+        $ID = $_POST['Producto_id'];
 
-        $producto = new Producto(null, null, null, null, null);
-        $producto->deleteProducto($ID);
+        $Producto = new Producto(null, null, null, null, null);
+        $Producto->deleteProducto($ID);
 
     }
 
