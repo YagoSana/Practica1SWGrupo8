@@ -164,7 +164,7 @@ class Carrito {
 
     public function vaciarCarrito() {
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $stmt = $db->prepare('DELETE FROM carrito');
+        $stmt = $conn->prepare('DELETE FROM carrito');
         $stmt->execute();
     }
 
