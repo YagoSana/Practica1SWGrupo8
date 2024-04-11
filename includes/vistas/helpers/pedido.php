@@ -34,33 +34,14 @@ class Pedido
 
         $stmt->execute();
 
-        $idPedido = $db->lastInsertid();
+        return $db->lastInsertid();
     }
 
-    public function agregarProducto($producto, $cantidad) {
+    public function agregarProducto($pedidoId, $producto, $cantidad) {
         $this->productos[] = $producto;
         $db = Aplicacion::getInstance()->getConexionBd();
         // Agregar el producto a la base de datos
         try {
-            // Primero, insertamos el pedido en la tabla 'pedidos'
-            $sqlPedido = "INSERT INTO pedidos (Fecha, Cliente, Importe) VALUES (:fecha, :cliente, :importe)";
-            $stmtPedido = $db->prepare($sqlPedido);
-    
-            // Asignar los resultados a variables
-            $fecha = $this->fechaEntrega;
-            $cliente = $this->cliente->getId();
-            $importe = $producto->getPrecio() * $cantidad;
-    
-            // Pasar las variables a bindParam
-            $stmtPedido->bindParam(':fecha', $fecha);
-            $stmtPedido->bindParam(':cliente', $cliente);
-            $stmtPedido->bindParam(':importe', $importe);
-    
-            $stmtPedido->execute();
-    
-            // Luego, obtenemos el ID del pedido que acabamos de insertar
-            $pedidoId = $db->lastInsertId();
-    
             // Finalmente, insertamos el producto en la tabla 'productos_pedidos'
             $sqlProducto = "INSERT INTO productos_pedidos (ID_Pedido, ID_Producto, Cantidad) VALUES (:pedido_id, :producto_id, :cantidad)";
             $stmtProducto = $db->prepare($sqlProducto);
@@ -81,7 +62,7 @@ class Pedido
     }
     
 
-    public function obtenerProductosDelUsuario($usuario_id) {
+    public function obtenerPedidosDelUsuario($usuario_id) {
         // Abrir la conexión a la base de datos
         $db = Aplicacion::getInstance()->getConexionBd();
     
@@ -93,6 +74,18 @@ class Pedido
         $productos = $stmt->fetchAll();
     
         // Devolvemos todos los productos del usuario
+        return $productos;
+    }
+
+    public function obtenerProductosDelPedido($pedido) {
+        $db = Aplicacion::getInstance()->getConexionBd();
+
+        $sql = "SELECT * FROM productos_pedidos WHERE ID_Pedido = :pedido_id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':pedido_id', $pedido);
+        $stmt->execute();
+        $productos = $stmt->fetchAll();
+
         return $productos;
     }
     
@@ -110,21 +103,23 @@ class Pedido
         // Abrir la conexión a la base de datos
         $db = Aplicacion::getInstance()->getConexionBd();
 
-        $pedidos = $this->obtenerProductosDelUsuario($this->cliente->getId());
+        $pedidos = $this->obtenerPedidosDelUsuario($this->cliente->getId());
         if($pedidos != null) {
             foreach ($pedidos as $pedido) {
             // Consulta SQL para obtener los detalles del Producto
+            $productos = $this->obtenerProductosDelPedido($pedido['ID_Pedido']);
+            foreach($productos as $producto) {
                 $sql = "SELECT * FROM productos WHERE ID_Producto = :producto_id";
                 $stmt = $db->prepare($sql);
-                $stmt->bindParam(':producto_id', $pedido['Producto']);
+                $stmt->bindParam(':producto_id', $producto['ID_Producto']);
                 $stmt->execute();
-                $producto = $stmt->fetch();
+                $prod = $stmt->fetch();
 
-                echo "<p>Producto: " . $producto['Nombre'] . "</p>";
+                echo "<p>Producto: " . $prod['Nombre'] . "</p>";
                 echo "<div class='producto'>";
-                echo "<img src='" . RUTA_APP . $producto['Imagen'] . "' alt='Imagen del producto' id='imgPedidos'>";
+                echo "<img src='" . RUTA_APP . $prod['Imagen'] . "' alt='Imagen del producto' id='imgPedidos'>";
                 echo "</div>";
-                echo "<p>Cantidad: " . $pedido['Cantidad'] . "</p>";
+                echo "<p>Cantidad: " . $producto['Cantidad'] . "</p>";
                 echo "<p>Fecha: " . $pedido['Fecha'] . "</p>";
                 if ($pedido['Fecha'] <= date('Y-m-d')) {
                     echo "<p>Estado: Entregado</p>";
@@ -137,6 +132,7 @@ class Pedido
                     echo "<p>Estado: Pendiente</p>";
                 }
             }
+        }
         } else {
             echo "<p>No existen pedidos.</p>";
         }

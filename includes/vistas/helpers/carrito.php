@@ -150,11 +150,11 @@ class Carrito {
 
         $this->pedido->setImporte($this->total);
 
-        $this->pedido->agregarPedido();
+        $idPedido = $this->pedido->agregarPedido();
         // Agregamos los Productos al Pedido
         foreach($productos_id as $productoID){
             $producto = Producto::getProducto($productoID['Producto']);
-            $this->pedido->agregarProducto($producto, $productoID['Cantidad']);
+            $this->pedido->agregarProducto($idPedido, $producto, $productoID['Cantidad']);
         }
     
         $this->productos = [];
