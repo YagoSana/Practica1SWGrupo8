@@ -6,18 +6,17 @@ require_once ("../helpers/producto.php");
 require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
 require_once ("../helpers/carrito.php");
 
-// Crea una nueva instancia de la clase Database
-$db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
+// Crea un array para almacenar los productos
+$productos = [];
 
-// Conecta a la base de datos
-$db->connect();
+// Obtén todos los productos de la base de datos
+$producto = new Producto(null, null, null, null, null);
+$productos_data = $producto->getAllProductos();
 
-// Realiza la consulta para obtener todos los productos
-$sql = "SELECT * FROM productos";
-$result = $db->getConnection()->query($sql);
-
-if ($result === false) {
-    die('Error en la consulta SQL: ' . $db->getConnection()->$error);
+// Recorre los datos de los productos y crea objetos Producto
+foreach ($productos_data as $producto_data) {
+    $producto = new Producto($producto_data['ID'], $producto_data['Nombre'], $producto_data['Descripcion'], $producto_data['Precio'], $producto_data['Imagen']);
+    $productos[] = $producto;
 }
 ?>
 
@@ -40,26 +39,23 @@ if ($result === false) {
                     <p>Esta el la sección de compras de Back Music. Aquí podrás encontrar todo lo que tenemos a la
                         venta.</p>
                     <?php
-                    // Verifica si la consulta devolvió resultados
-                    if ($result->rowCount() > 0) {
-                        // Itera sobre los resultados y los muestra en la tabla
-                        while ($row = $result->fetch()) {
-                            //Esto se hace para pasar luego el producto entero al carrito
-                            $producto = new Producto($row['ID'], $row['Nombre'], $row['Descripcion'], $row['Precio'], $row['Imagen']);
+                    // Verifica si hay productos para mostrar
+                    if (!empty($productos)) {
+                        // Itera sobre los productos y muestra la información
+                        foreach ($productos as $producto) {
                             echo "<div class='producto'>";
-                            echo "<a class='subr' href='detalles_producto.php?id=" . $row['ID'] . "'>"; // Enlace a la página de detalles del producto
-                            echo "<img src='" . RUTA_APP . $row['Imagen'] . "' alt='Imagen del producto' id='imgCompras'>";
+                            echo "<a class='subr' href='detalles_producto.php?id=" . $producto->getID() . "'>"; // Enlace a la página de detalles del producto
+                            echo "<img src='" . RUTA_APP . $producto->getImagen() . "' alt='Imagen del producto' id='imgCompras'>";
                             echo "<div class ='detalles'>";
-                            echo "<h3>" . $row['Nombre'] . "</h3>";
+                            echo "<h3>" . $producto->getNombre() . "</h3>";
                             echo "</a>";//Solo la imagen y el nombre son clickeables
-                            echo "<p>" . $row['Precio'] . " €</p>";
-                            //echo "<p>" . substr($row['Descripcion'], 0, 121) . " <strong>Leer más...</strong></p>";//Solo muestra los primeros 100 caracteres
+                            echo "<p>" . $producto->getPrecio() . " €</p>";
                 
                             echo "<div class='botones'>";
                             if (isset($_SESSION["login"])) {
                                 // El usuario ha iniciado sesión, muestra el botón "Agregar al carrito" dentro de un formulario
                                 echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarCarrito.php' method='post'>"; //Procesa la adición al carro
-                                echo "<input type='hidden' name='producto_id' value='" . $row['ID'] . "'>";
+                                echo "<input type='hidden' name='producto_id' value='" . $producto->getID() . "'>";
                                 echo "<button class='agregar' type='submit' name='agregar_producto'>Agregar al carrito</button>";
                                 echo "</form>";
                             } else {
@@ -70,7 +66,7 @@ if ($result === false) {
                             // Botón para eliminar el producto de la tienda, dentro de un formulario
                             if (isset($_SESSION["esEmpleado"])) {
                                 echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarEliminacion.php' method='post'>";
-                                echo "<input type='hidden' name='producto_id' value='" . $row['ID'] . "'>";
+                                echo "<input type='hidden' name='producto_id' value='" . $producto->getID() . "'>";
                                 echo "<button class='borrar' type='submit' name='eliminar_producto'>Eliminar</button>";
                                 echo "</form>";
                             }
@@ -91,8 +87,3 @@ if ($result === false) {
 </body>
 
 </html>
-
-<?php
-// Cierra la conexión a la base de datos
-$db->close();
-?>
