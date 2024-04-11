@@ -144,7 +144,7 @@ class Carrito {
         //$fecha = date('Y-m-d'); //Para prueba con las valoraciones (tema dias)
         $this->pedido->setFecha($fecha);
 
-        $db = Aplicacion::getInstance()->getConexionBd();$db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
+        $db = Aplicacion::getInstance()->getConexionBd();
     
         $productos_id = $this->obtenerCarritoDelUsuario($this->usuario->getId());
 
@@ -153,7 +153,7 @@ class Carrito {
         $this->pedido->agregarPedido();
         // Agregamos los Productos al Pedido
         foreach($productos_id as $productoID){
-            $producto = Producto::getProducto($productoID['Producto'], $db);
+            $producto = Producto::getProducto($productoID['Producto']);
             $this->pedido->agregarProducto($producto, $productoID['Cantidad']);
         }
     

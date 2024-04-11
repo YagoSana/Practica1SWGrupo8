@@ -42,26 +42,44 @@ class Pedido
         $db = Aplicacion::getInstance()->getConexionBd();
         // Agregar el producto a la base de datos
         try {
-            $sql = "INSERT INTO pedidos (Fecha, Cliente, Producto, Cantidad) VALUES (:fecha, :cliente, :producto_id, :cantidad)";
-            $stmt = $db->prepare($sql);
-
+            // Primero, insertamos el pedido en la tabla 'pedidos'
+            $sqlPedido = "INSERT INTO pedidos (Fecha, Cliente, Importe) VALUES (:fecha, :cliente, :importe)";
+            $stmtPedido = $db->prepare($sqlPedido);
+    
             // Asignar los resultados a variables
             $fecha = $this->fechaEntrega;
             $cliente = $this->cliente->getId();
-            $producto_id = $producto->getID();
-            
+            $importe = $producto->getPrecio() * $cantidad;
+    
             // Pasar las variables a bindParam
-            $stmt->bindParam(':fecha', $fecha);
-            $stmt->bindParam(':cliente', $cliente);
-            $stmt->bindParam(':producto_id', $producto_id);
-            $stmt->bindParam(':cantidad', $cantidad);
-
-            $stmt->execute();
-            
+            $stmtPedido->bindParam(':fecha', $fecha);
+            $stmtPedido->bindParam(':cliente', $cliente);
+            $stmtPedido->bindParam(':importe', $importe);
+    
+            $stmtPedido->execute();
+    
+            // Luego, obtenemos el ID del pedido que acabamos de insertar
+            $pedidoId = $db->lastInsertId();
+    
+            // Finalmente, insertamos el producto en la tabla 'productos_pedidos'
+            $sqlProducto = "INSERT INTO productos_pedidos (ID_Pedido, ID_Producto, Cantidad) VALUES (:pedido_id, :producto_id, :cantidad)";
+            $stmtProducto = $db->prepare($sqlProducto);
+    
+            // Asignar los resultados a variables
+            $producto_id = $producto->getID();
+    
+            // Pasar las variables a bindParam
+            $stmtProducto->bindParam(':pedido_id', $pedidoId);
+            $stmtProducto->bindParam(':producto_id', $producto_id);
+            $stmtProducto->bindParam(':cantidad', $cantidad);
+    
+            $stmtProducto->execute();
+    
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
     }
+    
 
     public function obtenerProductosDelUsuario($usuario_id) {
         // Abrir la conexión a la base de datos
