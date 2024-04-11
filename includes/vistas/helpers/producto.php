@@ -1,5 +1,9 @@
 <?php
-require_once "valoracion.php";
+namespace es\ucm\fdi\sw\vistas\helpers;
+use es\ucm\fdi\sw\Aplicacion;
+use PDO;
+require_once "Valoracion.php";
+
 
 class Producto {
     private $ID;
@@ -20,16 +24,16 @@ class Producto {
 
     public static function getProducto($ID) {
         $pdo = Aplicacion::getInstance()->getConexionBd();
-        $stmt = $pdo->prepare('SELECT * FROM productos WHERE ID = :ID');
+        $stmt = $pdo->prepare('SELECT * FROM Productos WHERE ID = :ID');
         $stmt->execute(['ID' => $ID]);
-        $producto = $stmt->fetch();
+        $Producto = $stmt->fetch();
     
         return new Producto(
-            $producto['ID'],
-            $producto['Nombre'],
-            $producto['Descripcion'],
-            $producto['Precio'],
-            $producto['Imagen']
+            $Producto['ID'],
+            $Producto['Nombre'],
+            $Producto['Descripcion'],
+            $Producto['Precio'],
+            $Producto['Imagen']
         );
     }
     
@@ -37,8 +41,8 @@ class Producto {
         // Obtener la instancia de la conexión a la base de datos
         $pdo = Aplicacion::getInstance()->getConexionBd();
     
-        // Preparar la consulta SQL para seleccionar todos los productos
-        $stmt = $pdo->prepare('SELECT * FROM productos');
+        // Preparar la consulta SQL para seleccionar todos los Productos
+        $stmt = $pdo->prepare('SELECT * FROM Productos');
         
         // Ejecutar la consulta
         $stmt->execute();
@@ -49,7 +53,7 @@ class Producto {
         // Verificar si se obtuvieron resultados
         if ($result === false) {
             // Si no hay resultados, mostrar un mensaje de error
-            die('Error al obtener los productos de la base de datos');
+            die('Error al obtener los Productos de la base de datos');
         }
     
         // Devolver el resultado
@@ -60,7 +64,7 @@ class Producto {
 
     public function createProducto($Nombre, $Descripcion, $Precio, $Imagen) {
         $pdo = Aplicacion::getInstance()->getConexionBd();
-        $stmt = $pdo->prepare('INSERT INTO productos (Nombre, Descripcion, Precio, Imagen) VALUES (:Nombre, :Descripcion, :Precio, :Imagen)');
+        $stmt = $pdo->prepare('INSERT INTO Productos (Nombre, Descripcion, Precio, Imagen) VALUES (:Nombre, :Descripcion, :Precio, :Imagen)');
         $stmt->execute([
             'Nombre' => $Nombre,
             'Descripcion' => $Descripcion,
@@ -78,7 +82,7 @@ class Producto {
 
     public function deleteProducto($ID) {
         $pdo = Aplicacion::getInstance()->getConexionBd();
-        $stmt = $pdo->prepare('DELETE FROM productos WHERE ID = :ID');
+        $stmt = $pdo->prepare('DELETE FROM Productos WHERE ID = :ID');
         $stmt->execute(['ID' => $ID]);
     }
 

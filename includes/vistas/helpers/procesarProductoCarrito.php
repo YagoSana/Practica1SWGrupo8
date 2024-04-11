@@ -2,22 +2,24 @@
 require_once '../../config.php';
 header('Location: ' . RUTA_VISTAS . '/plantillas/mostrarCarrito.php');
 require_once '../plantillas/compras.php';
-require_once 'baseDatos.php';
-require_once 'producto.php';
+//require_once 'Database.php';
+use es\ucm\fdi\sw\vistas\helpers\Database;
+//require_once 'Producto.php';
+use es\ucm\fdi\sw\vistas\helpers\Producto;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $producto_id = $_POST['productoId']; // Recupera el ID del producto enviado desde el cliente
+    $Producto_id = $_POST['ProductoId']; // Recupera el ID del Producto enviado desde el cliente
     $accion = $_POST['accion'];
-    // Accede al usuario y a su carrito desde la sesión
-    $carrito = $_SESSION['usuario']->getCarrito();
-    $cantidad = $carrito->getCantidadProducto($producto_id);
+    // Accede al Usuario y a su Carrito desde la sesión
+    $Carrito = $_SESSION['usuario']->getCarrito();
+    $cantidad = $Carrito->getCantidadProducto($Producto_id);
     
     if($accion == 'incrementar') {
-        $carrito->comprobarProducto($producto_id);
+        $Carrito->comprobarProducto($Producto_id);
     }
     elseif($cantidad > 1 && $accion == 'decrementar') {
-        $carrito->restarCantidad($producto_id);
+        $Carrito->restarCantidad($Producto_id);
     } else {
-        $carrito->eliminarProducto($producto_id);
+        $Carrito->eliminarProducto($Producto_id);
     }
 }

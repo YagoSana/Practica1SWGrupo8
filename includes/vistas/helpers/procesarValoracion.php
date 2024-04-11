@@ -2,16 +2,17 @@
 
 require_once '../plantillas/mostrarValoracion.php';
 require_once '../../config.php';
-require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
+//require_once RAIZ_APP. '/includes/src/Usuarios/Usuario.php';
+use es\ucm\fdi\sw\src\usuarios\Usuario;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $producto_id = $_POST['producto_id']; // Recupera el ID del producto enviado desde el cliente
-    $valoracion = $_POST['valoracion']; // Recupera la valoración enviada desde el cliente
+    $Producto_id = $_POST['Producto_id']; // Recupera el ID del Producto enviado desde el cliente
+    $Valoracion = $_POST['Valoracion']; // Recupera la valoración enviada desde el cliente
     $comentario = $_POST['comentario']; // Recupera el comentario enviado desde el cliente
-    usuario::valorarProducto($producto_id, $_SESSION['usuario']->getId(), $valoracion, $comentario);
+    Usuario::valorarProducto($Producto_id, $_SESSION['Usuario']->getId(), $Valoracion, $comentario);
 }
 
-// Redirige al usuario a la página principal
+// Redirige al Usuario a la página principal
 header("Location: " . RUTA_APP . "/index.php");
 exit;
 

@@ -16,7 +16,7 @@ require_once ("../config.php");
         <main>
             <h2>Inicio de sesión en BackMusic</h2>
 
-            <form action="<?php echo RUTA_SRC ?>/usuarios/procesarLogin.php" method="POST">
+            <form action="<?php echo RUTA_SRC ?>/Usuarios/procesarLogin.php" method="POST">
                 <p>
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" required>
@@ -29,7 +29,7 @@ require_once ("../config.php");
             </form>
 
             <h3>¿No tienes cuenta en nuestra web?</h3>
-            <p>Regístrate como un nuevo usuario <a href="./register.php">aquí</a></p>
+            <p>Regístrate como un nuevo Usuario <a href="./register.php">aquí</a></p>
         </main>
         <?php include RAIZ_APP . '/includes/vistas/comun/pieDePagina.php'; ?>
     </div>
