@@ -10,8 +10,9 @@ $producto_id = $_GET['id'];
 // Usa el método getProducto de la clase Producto para obtener los detalles del producto
 $producto = Producto::getProducto($producto_id);
 
+$pedidos = Producto::obtenerPedidosDeProducto($producto_id);
 // Usa el método getValoracion para obtener las valoraciones del producto
-$valoraciones = valoracion::getValoracion($producto_id);
+
 $ruta = RUTA_APP;
 
 ob_start();
@@ -25,15 +26,19 @@ ob_start();
                 <h3><?php echo $producto->getNombre(); ?></h3>
                 <p><?php echo $producto->getDescripcion(); ?></p>
                 <h4>Valoraciones</h4>
-                <?php foreach ($valoraciones as $valoracion) { 
-                    $usuario = Usuario::buscaPorId($valoracion["Idusuario"]);
+                <?php foreach($pedidos as $pedido) {
+                    $valoracion = valoracion::getValoracion($pedido['ID_Pedido']);
+                    if($valoracion != null) {
+                        
+                        $usuario = Usuario::buscaPorId($valoracion["Idusuario"]);
+                
                 ?>
                     <div class='valoracion'>
                         <p>Usuario: <?php echo $usuario->getNombre(); ?></p>
                         <p>Valoración: <?php echo $valoracion['Valoracion']; ?></p>
                         <p>Comentario: <?php echo $valoracion['Comentario']; ?></p>
                     </div>
-                <?php } ?>
+                <?php } }?>
             </div>
         </div>
     </section>

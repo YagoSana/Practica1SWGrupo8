@@ -23,7 +23,7 @@ class Valoracion {
     }
 
    
-    public static function getValoracion($producto_id) {
+    public static function getValoracion($pedido_id) {
         // Obtener la conexión a la base de datos
         $db = Aplicacion::getInstance()->getConexionBd();
     
@@ -31,25 +31,25 @@ class Valoracion {
         $stmt = $db->prepare('SELECT * FROM valoraciones WHERE ID = :ID');
     
         // Ejecutar la consulta
-        $stmt->execute(['ID' => $producto_id]);
+        $stmt->execute(['ID' => $pedido_id]);
     
         // Obtener todas las valoraciones
-        $valoraciones = $stmt->fetchAll();
+        $valoraciones = $stmt->fetch();
     
         // Devolver las valoraciones
         return $valoraciones;
     }
     
     //Es la funcion para valorar un producto
-    public static function setValoracion($producto_id, $usuario_id, $valoracion, $comentario) {
+    public static function setValoracion($pedido_id, $usuario_id, $valoracion, $comentario) {
         $db = Aplicacion::getInstance()->getConexionBd();
 
-        $sql = "INSERT INTO valoraciones (Idusuario, ID, Valoracion, Comentario) VALUES (:usuario_id, :producto_id, :valoracion, :comentario)";
+        $sql = "INSERT INTO valoraciones (Idusuario, ID, Valoracion, Comentario) VALUES (:usuario_id, :pedido_id, :valoracion, :comentario)";
 
         $stmt = $db->prepare($sql);
 
         $stmt->bindParam(':usuario_id', $usuario_id);
-        $stmt->bindParam(':producto_id', $producto_id);
+        $stmt->bindParam(':pedido_id', $pedido_id);
         $stmt->bindParam(':valoracion', $valoracion);
         $stmt->bindParam(':comentario', $comentario);
 

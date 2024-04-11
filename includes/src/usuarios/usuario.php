@@ -203,11 +203,11 @@ class Usuario
     }
 
     //Funcion para valorar el producto
-    public static function valorarProducto($producto_id, $usuario_id, $valoracion, $comentario)
+    public static function valorarProducto($pedido_id, $usuario_id, $valoracion, $comentario)
     {
 
         $valoracionProducto = new Valoracion();
-        $valoracionProducto->setValoracion($producto_id, $usuario_id, $valoracion, $comentario);
+        $valoracionProducto->setValoracion($pedido_id, $usuario_id, $valoracion, $comentario);
     }
 
     public function getId()

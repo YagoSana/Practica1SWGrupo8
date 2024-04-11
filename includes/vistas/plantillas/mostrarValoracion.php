@@ -20,7 +20,7 @@ echo $_GET['id'];
             <h2>Valore nuestro producto :D</h2>
             
             <form action="<?php echo RUTA_APP; ?>/includes/vistas/helpers/procesarValoracion.php" method="POST">
-                <input type="hidden" name="producto_id" value="<?php echo $_GET['id']; ?>">
+                <input type="hidden" name="pedido_id" value="<?php echo $_GET['id']; ?>">
                 <label>
                     <input type="radio" name="valoracion" value="1"> 1
                 </label>
