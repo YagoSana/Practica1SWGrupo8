@@ -2,7 +2,6 @@
 require_once '../../config.php';
 header('Location: ' . RUTA_VISTAS . '/plantillas/mostrarCarrito.php');
 require_once '../plantillas/compras.php';
-require_once 'baseDatos.php';
 require_once 'producto.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

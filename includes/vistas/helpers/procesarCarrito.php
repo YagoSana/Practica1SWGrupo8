@@ -2,7 +2,6 @@
 require_once '../../config.php';
 header("Location: " . RUTA_APP . "/includes/vistas/plantillas/compras.php");
 require_once '../plantillas/compras.php';
-require_once 'baseDatos.php';
 require_once 'producto.php';
 
 

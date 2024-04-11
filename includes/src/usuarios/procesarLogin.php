@@ -2,7 +2,6 @@
 session_start();
 require_once '../../config.php';
 require 'usuario.php';
-require_once RAIZ_APP . '/includes/vistas/helpers/baseDatos.php';
 
 $User = $_POST['username'];
 $Pass = $_POST['password'];

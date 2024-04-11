@@ -2,7 +2,6 @@
 session_start();
 require_once '../../config.php';
 require_once 'usuario.php';
-require_once RAIZ_APP . '/includes/vistas/helpers/baseDatos.php';
 
 $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
 $db->connect();

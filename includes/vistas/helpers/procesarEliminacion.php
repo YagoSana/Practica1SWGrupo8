@@ -1,6 +1,5 @@
 <?php
     require_once '../../config.php';
-    require_once 'baseDatos.php';
     require 'producto.php';
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){ 
