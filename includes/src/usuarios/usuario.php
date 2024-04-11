@@ -41,7 +41,7 @@ class Usuario
     public static function login($nombreUsuario, $password)
     {
         $usuario = self::buscaUsuario($nombreUsuario);
-    
+
         if ($usuario && $usuario->compruebaPassword($password)) {
             return $usuario;
         }
@@ -70,7 +70,7 @@ class Usuario
             $result->inicializarCarrito();
             $_SESSION['usuario'] = $result; //Se guarda la variable de tipo usuario
         }
-        
+
         return $result;
     }
 
@@ -103,8 +103,7 @@ class Usuario
 
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf(
-            "SELECT RU.rol FROM RolesUsuario RU WHERE RU.usuario=%d"
-            ,
+            "SELECT RU.rol FROM RolesUsuario RU WHERE RU.usuario=%d",
             $usuario->id
         );
         $rs = $conn->query($query);
@@ -116,7 +115,6 @@ class Usuario
                 $usuario->roles[] = $rol['rol'];
             }
             return $usuario;
-
         } else {
             error_log("Error BD ({$conn->errorCode()}): {$conn->errorInfo()}");
         }
@@ -128,14 +126,10 @@ class Usuario
         $result = false;
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf(
-            "UPDATE Usuarios U SET nombreUsuario = %s, nombre=%s, password=%s WHERE U.id=%d"
-            ,
-            $conn->quote($usuario->nombreUsuario)
-            ,
-            $conn->quote($usuario->nombre)
-            ,
-            $conn->quote($usuario->password)
-            ,
+            "UPDATE Usuarios U SET nombreUsuario = %s, nombre=%s, password=%s WHERE U.id=%d",
+            $conn->quote($usuario->nombreUsuario),
+            $conn->quote($usuario->nombre),
+            $conn->quote($usuario->password),
             $usuario->id
         );
         if ($conn->exec($query)) {
@@ -154,8 +148,7 @@ class Usuario
     {
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf(
-            "DELETE FROM RolesUsuario RU WHERE RU.usuario = %d"
-            ,
+            "DELETE FROM RolesUsuario RU WHERE RU.usuario = %d",
             $usuario->id
         );
         if (!$conn->exec($query)) {
@@ -180,8 +173,7 @@ class Usuario
          */
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf(
-            "DELETE FROM Usuarios U WHERE U.id = %d"
-            ,
+            "DELETE FROM Usuarios U WHERE U.id = %d",
             $idUsuario
         );
         if (!$conn->exec($query)) {
@@ -211,12 +203,13 @@ class Usuario
     }
 
     //Funcion para valorar el producto
-    public static function valorarProducto($producto_id, $usuario_id, $valoracion, $comentario) {
+    public static function valorarProducto($producto_id, $usuario_id, $valoracion, $comentario)
+    {
 
         $valoracionProducto = new Valoracion();
         $valoracionProducto->setValoracion($producto_id, $usuario_id, $valoracion, $comentario);
     }
-    
+
     public function getId()
     {
         return $this->id;
@@ -266,10 +259,10 @@ class Usuario
     }
 
     public function compruebaPassword($password)
-{
-    // Ahora sí podemos usar password_verify para comprobar las contraseñas hasheadas
-    return password_verify($password, $this->password);
-}
+    {
+        // Ahora sí podemos usar password_verify para comprobar las contraseñas hasheadas
+        return password_verify($password, $this->password);
+    }
 
     public function cambiaPassword($nuevoPassword)
     {
@@ -284,7 +277,8 @@ class Usuario
         return self::inserta($this);
     }
 
-    public static function insertaUsuario($Nombre, $Apellido, $Email, $User, $Pass, $rol){
+    public static function insertaUsuario($Nombre, $Apellido, $Email, $User, $Pass, $rol)
+    {
         $conn = Aplicacion::getInstance()->getConexionBd();
         $stmt = $conn->prepare('INSERT INTO usuario (Apellido, Nombre, User, Pass, Email, Rol) VALUES (:Apellido, :Nombre, :User, :Pass, :Email, :Rol)');
         $stmt->execute([
