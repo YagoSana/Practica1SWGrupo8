@@ -1,7 +1,8 @@
 <?php
-//Para acceder al id del producto que voy a valorar se utiliza $_GET['id']
+//Para acceder al id del Producto que voy a valorar se utiliza $_GET['id']
 require '../../config.php';
-require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
+//require_once RAIZ_APP. '/includes/src/Usuarios/Usuario.php';
+use es\ucm\fdi\sw\usuarios\Usuario;
 echo $_GET['id'];
 ?>
 <!DOCTYPE html>
@@ -17,24 +18,24 @@ echo $_GET['id'];
         <?php include RAIZ_APP . '/includes/vistas/comun/cabecera.php'; ?>
         <?php include RAIZ_APP . '/includes/vistas/comun/lateralIzq.php'; ?>
         <main>
-            <h2>Valore nuestro producto :D</h2>
+            <h2>Valore nuestro Producto :D</h2>
             
             <form action="<?php echo RUTA_APP; ?>/includes/vistas/helpers/procesarValoracion.php" method="POST">
-                <input type="hidden" name="producto_id" value="<?php echo $_GET['id']; ?>">
+                <input type="hidden" name="Producto_id" value="<?php echo $_GET['id']; ?>">
                 <label>
-                    <input type="radio" name="valoracion" value="1"> 1
+                    <input type="radio" name="Valoracion" value="1"> 1
                 </label>
                 <label>
-                    <input type="radio" name="valoracion" value="2"> 2
+                    <input type="radio" name="Valoracion" value="2"> 2
                 </label>
                 <label>
-                    <input type="radio" name="valoracion" value="3"> 3
+                    <input type="radio" name="Valoracion" value="3"> 3
                 </label>
                 <label>
-                    <input type="radio" name="valoracion" value="4"> 4
+                    <input type="radio" name="Valoracion" value="4"> 4
                 </label>
                 <label>
-                    <input type="radio" name="valoracion" value="5"> 5
+                    <input type="radio" name="Valoracion" value="5"> 5
                 </label>
                 <textarea name="comentario" minlength="50" maxlength="1500" required></textarea>
                 <input type="submit" value="Enviar valoración">

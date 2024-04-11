@@ -1,3 +1,4 @@
+
 <?php
 require '../../config.php';
 ?>
@@ -17,23 +18,23 @@ require '../../config.php';
                         <form action="<?= RUTA_APP . '/includes/vistas/helpers/procesarProducto.php'?>"
                                 method="POST" enctype="multipart/form-data">
                                 <p>
-                                        <label for="producto_nombre">Nombre del Producto:</label>
-                                        <input type="text" id="producto_nombre" name="producto_nombre" required>
+                                        <label for="Producto_nombre">Nombre del Producto:</label>
+                                        <input type="text" id="Producto_nombre" name="Producto_nombre" required>
                                 </p>
                                 <p>
-                                        <label for="producto_descripcion">Descripcion del Producto:</label>
+                                        <label for="Producto_descripcion">Descripcion del Producto:</label>
                                 </p>
                                 <p>
-                                        <textarea id="producto_descripcion" name="producto_descripcion" rows="4"
+                                        <textarea id="Producto_descripcion" name="Producto_descripcion" rows="4"
                                                 cols="50" required></textarea>
                                 </p>
                                 <p>
-                                        <label for="producto_precio">Precio del Producto:</label>
-                                        <input type="text" id="producto_precio" name="producto_precio" required>
+                                        <label for="Producto_precio">Precio del Producto:</label>
+                                        <input type="text" id="Producto_precio" name="Producto_precio" required>
                                 </p>
                                 <p>
-                                        <label for="producto_imagen">Imagen del Producto:</label>
-                                        <input type="file" id="producto_imagen" name="producto_imagen" required>
+                                        <label for="Producto_imagen">Imagen del Producto:</label>
+                                        <input type="file" id="Producto_imagen" name="Producto_imagen" required>
                                 </p>
                                 <input type="submit" value="Subir Producto">
                         </form>

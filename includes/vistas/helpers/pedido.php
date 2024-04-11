@@ -1,19 +1,22 @@
 <?php
+namespace es\ucm\fdi\sw\vistas\helpers;
 
 class Pedido
 {
     private $idPedido;
     private $fechaEntrega;
     private $cliente;
-    private $productos = array(); //Hay que guardarlos en la base de datos los productos y los productos entregados
-    private $productosEntregados = array(); //Hay que implementar que cada vez que el pedido se entregue todos
+    //Hay que implementar que cada vez que el pedido se entregue todos
     private $total;
+    private $Productos = array(); //Hay que guardarlos en la base de datos los Productos y los Productos entregados
+    private $ProductosEntregados = array(); //Hay que implementar que cada vez que el Pedido se entregue todos
+                                            //los Productos que habia en la variable Producto se guarden aqui, para luego poder valorarlos y etc
     private $cantidad;
     private $estado;
 
-    public function __construct($usuario) {
+    public function __construct($Usuario) {
         
-        $this->cliente = $usuario;
+        $this->cliente = $Usuario;
         $this->estado = 'Nulo';
     }
 
@@ -38,20 +41,20 @@ class Pedido
     public function agregarProducto($producto, $cantidad) {
         $this->productos[] = $producto;
         $db = Aplicacion::getInstance()->getConexionBd();
-        // Agregar el producto a la base de datos
+        // Agregar el Producto a la base de datos
         try {
-            $sql = "INSERT INTO pedidos (Fecha, Cliente, Producto, Cantidad) VALUES (:fecha, :cliente, :producto_id, :cantidad)";
+            $sql = "INSERT INTO Pedidos (Fecha, Cliente, Producto, Cantidad) VALUES (:fecha, :cliente, :Producto_id, :cantidad)";
             $stmt = $db->prepare($sql);
 
             // Asignar los resultados a variables
             $fecha = $this->fechaEntrega;
             $cliente = $this->cliente->getId();
-            $producto_id = $producto->getID();
+            $Producto_id = $Producto->getID();
             
             // Pasar las variables a bindParam
             $stmt->bindParam(':fecha', $fecha);
             $stmt->bindParam(':cliente', $cliente);
-            $stmt->bindParam(':producto_id', $producto_id);
+            $stmt->bindParam(':Producto_id', $Producto_id);
             $stmt->bindParam(':cantidad', $cantidad);
 
             $stmt->execute();
@@ -61,19 +64,19 @@ class Pedido
         }
     }
 
-    public function obtenerProductosDelUsuario($usuario_id) {
+    public function obtenerProductosDelUsuario($Usuario_id) {
         // Abrir la conexión a la base de datos
         $db = Aplicacion::getInstance()->getConexionBd();
     
-        // Consulta SQL para obtener todos los productos del usuario
-        $sql = "SELECT * FROM pedidos WHERE Cliente = :usuario_id";
+        // Consulta SQL para obtener todos los Productos del Usuario
+        $sql = "SELECT * FROM Pedidos WHERE Cliente = :Usuario_id";
         $stmt = $db->prepare($sql);
-        $stmt->bindParam(':usuario_id', $usuario_id);
+        $stmt->bindParam(':Usuario_id', $Usuario_id);
         $stmt->execute();
-        $productos = $stmt->fetchAll();
+        $Productos = $stmt->fetchAll();
     
-        // Devolvemos todos los productos del usuario
-        return $productos;
+        // Devolvemos todos los Productos del Usuario
+        return $Productos;
     }
     
 
@@ -82,7 +85,7 @@ class Pedido
         if ($this->fechaEntrega <= date('Y-m-d')) {
             $this->estado = 'entregado';
         } else {
-            echo "Aún no has recibido tu pedido.";
+            echo "Aún no has recibido tu Pedido.";
         }
     }
 
@@ -90,74 +93,74 @@ class Pedido
         // Abrir la conexión a la base de datos
         $db = Aplicacion::getInstance()->getConexionBd();
 
-        $pedidos = $this->obtenerProductosDelUsuario($this->cliente->getId());
-        if($pedidos != null) {
-            foreach ($pedidos as $pedido) {
-            // Consulta SQL para obtener los detalles del producto
-                $sql = "SELECT * FROM productos WHERE ID_Producto = :producto_id";
+        $Pedidos = $this->obtenerProductosDelUsuario($this->cliente->getId());
+        if($Pedidos != null) {
+            foreach ($Pedidos as $Pedido) {
+            // Consulta SQL para obtener los detalles del Producto
+                $sql = "SELECT * FROM Productos WHERE ID_Producto = :Producto_id";
                 $stmt = $db->prepare($sql);
-                $stmt->bindParam(':producto_id', $pedido['Producto']);
+                $stmt->bindParam(':Producto_id', $Pedido['Producto']);
                 $stmt->execute();
-                $producto = $stmt->fetch();
+                $Producto = $stmt->fetch();
 
-                echo "<p>Producto: " . $producto['Nombre'] . "</p>";
-                echo "<div class='producto'>";
-                echo "<img src='" . RUTA_APP . $producto['Imagen'] . "' alt='Imagen del producto' id='imgPedidos'>";
+                echo "<p>Producto: " . $Producto['Nombre'] . "</p>";
+                echo "<div class='Producto'>";
+                echo "<img src='" . RUTA_APP . $Producto['Imagen'] . "' alt='Imagen del Producto' id='imgPedidos'>";
                 echo "</div>";
-                echo "<p>Cantidad: " . $pedido['Cantidad'] . "</p>";
-                echo "<p>Fecha: " . $pedido['Fecha'] . "</p>";
-                if ($pedido['Fecha'] <= date('Y-m-d')) {
+                echo "<p>Cantidad: " . $Pedido['Cantidad'] . "</p>";
+                echo "<p>Fecha: " . $Pedido['Fecha'] . "</p>";
+                if ($Pedido['Fecha'] <= date('Y-m-d')) {
                     echo "<p>Estado: Entregado</p>";
-                    if ($this->yaValorado($pedido['ID_Pedido'])) {
-                        echo "<p><button onclick='window.location.href=\"" . RUTA_APP . "/includes/vistas/plantillas/mostrarValoracion.php?id={$pedido['Producto']}\"'>Valorar</button></p>";
+                    if ($this->yaValorado($Pedido['ID_Pedido'])) {
+                        echo "<p><button onclick='window.location.href=\"" . RUTA_APP . "/includes/vistas/plantillas/mostrarValoracion.php?id={$Pedido['Producto']}\"'>Valorar</button></p>";
                     } else {
-                        echo "<p>Ya has valorado este producto.</p>";
+                        echo "<p>Ya has valorado este Producto.</p>";
                     }
                 } else {
                     echo "<p>Estado: Pendiente</p>";
                 }
             }
         } else {
-            echo "<p>No existen pedidos.</p>";
+            echo "<p>No existen Pedidos.</p>";
         }
     }   
     
 
 
-    private function yaValorado($pedidoId) {
+    private function yaValorado($PedidoId) {
         // Abrir la conexión a la base de datos
         $db = Aplicacion::getInstance()->getConexionBd();
     
-        // Consulta SQL para obtener la valoración del usuario para el pedido
-        $sql = "SELECT Valoracion FROM valoraciones WHERE Idusuario = :usuario_id AND ID = :pedido_id";
+        // Consulta SQL para obtener la valoración del Usuario para el Pedido
+        $sql = "SELECT Valoracion FROM Valoraciones WHERE IdUsuario = :Usuario_id AND ID = :Pedido_id";
     
         // Preparar la consulta
         $stmt = $db->prepare($sql);
     
         // Vincular los parámetros
-        $usuario_id = $this->cliente->getId();
-        $stmt->bindParam(':usuario_id', $usuario_id);
-        $stmt->bindParam(':pedido_id', $pedidoId);
+        $Usuario_id = $this->cliente->getId();
+        $stmt->bindParam(':Usuario_id', $Usuario_id);
+        $stmt->bindParam(':Pedido_id', $PedidoId);
     
         // Ejecutar la consulta
         $stmt->execute();
     
         // Obtener el resultado
-        $valoracion = $stmt->fetchColumn();
+        $Valoracion = $stmt->fetchColumn();
     
         // Cerrar la conexión a la base de datos
     
-        // Si la valoración es igual a 0, significa que el usuario no ha valorado el pedido
-        return $valoracion == 0;
+        // Si la valoración es igual a 0, significa que el Usuario no ha valorado el Pedido
+        return $Valoracion == 0;
     }
     
     
     public function confirmarPedido() {
-        // Cambiamos el estado del pedido a 'Pendiente'
+        // Cambiamos el estado del Pedido a 'Pendiente'
         $this->estado = 'Pendiente';
         
-        echo "Pedido confirmado. Estado del pedido: " . $this->estado;
-        echo "Su pedido llegara el: " . $this->fechaEntrega;
+        echo "Pedido confirmado. Estado del Pedido: " . $this->estado;
+        echo "Su Pedido llegara el: " . $this->fechaEntrega;
     }
 
 
@@ -171,9 +174,9 @@ class Pedido
         return $this->cliente;
     }
 
-    public function setCliente($usuario){
+    public function setCliente($Usuario){
 
-        $this->cliente = $usuario;
+        $this->cliente = $Usuario;
     }
 
     public function setFecha($fecha){
