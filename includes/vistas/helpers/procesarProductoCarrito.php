@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $accion = $_POST['accion'];
     // Accede al usuario y a su carrito desde la sesión
     $carrito = $_SESSION['usuario']->getCarrito();
-    $$cantidad = $carrito->getCantidadProducto($producto_id);
+    $cantidad = $carrito->getCantidadProducto($producto_id);
     
     if($accion == 'incrementar') {
         $carrito->comprobarProducto($producto_id);
