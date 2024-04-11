@@ -128,7 +128,6 @@ class Pedido
         $valoracion = $stmt->fetchColumn();
     
         // Cerrar la conexión a la base de datos
-        $db->close();
     
         // Si la valoración es igual a 0, significa que el usuario no ha valorado el pedido
         return $valoracion == 0;
