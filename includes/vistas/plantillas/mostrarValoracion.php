@@ -2,6 +2,7 @@
 //Para acceder al id del producto que voy a valorar se utiliza $_GET['id']
 require '../../config.php';
 require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
+echo $_GET['id'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -17,6 +18,7 @@ require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
         <?php include RAIZ_APP . '/includes/vistas/comun/lateralIzq.php'; ?>
         <main>
             <h2>Valore nuestro producto :D</h2>
+            
             <form action="<?php echo RUTA_APP; ?>/includes/vistas/helpers/procesarValoracion.php" method="POST">
                 <input type="hidden" name="producto_id" value="<?php echo $_GET['id']; ?>">
                 <label>
