@@ -107,33 +107,44 @@ class Pedido
         $pedidos = $this->obtenerPedidosDelUsuario($this->cliente->getId());
         if($pedidos != null) {
             foreach ($pedidos as $pedido) {
-            // Consulta SQL para obtener los detalles del Producto
-            $productos = $this->obtenerProductosDelPedido($pedido['ID_Pedido']);
-            foreach($productos as $producto) {
-                $sql = "SELECT * FROM productos WHERE ID_Producto = :producto_id";
-                $stmt = $db->prepare($sql);
-                $stmt->bindParam(':producto_id', $producto['ID_Producto']);
-                $stmt->execute();
-                $prod = $stmt->fetch();
-
-                echo "<p>Producto: " . $prod['Nombre'] . "</p>";
-                echo "<div class='producto'>";
-                echo "<img src='" . RUTA_APP . $prod['Imagen'] . "' alt='Imagen del producto' id='imgPedidos'>";
-                echo "</div>";
-                echo "<p>Cantidad: " . $producto['Cantidad'] . "</p>";
-                echo "<p>Fecha: " . $pedido['Fecha'] . "</p>";
-                if ($pedido['Fecha'] <= date('Y-m-d')) {
-                    echo "<p>Estado: Entregado</p>";
-                    if ($this->yaValorado($pedido['ID_Pedido'])) {
-                        echo "<p><button onclick='window.location.href=\"" . RUTA_APP . "/includes/vistas/plantillas/mostrarValoracion.php?id={$producto['ID_Producto']}\"'>Valorar</button></p>";
+                echo "<div class='pedido'>";
+                echo "<div class='infoPedido'>";
+                echo "<p class='ped'>Pedido: #" .$pedido['ID_Pedido']. "</p>";
+                echo "<p class='info'>Total: " .$pedido['Importe']. " €</p>";
+                echo "<p class='info'>Fecha: " . $pedido['Fecha'] . "</p>";
+                echo "<div class='estado'>";
+                    if ($pedido['Fecha'] <= date('Y-m-d')) {
+                        echo "<p class='entregado'>Entregado</p>";
+                        if ($this->yaValorado($pedido['ID_Pedido'])) {
+                            echo "<button class='valorar-btn' onclick='window.location.href=\"" . RUTA_APP . "/includes/vistas/plantillas/mostrarValoracion.php?id={$producto['ID_Producto']}\"'>Valorar</button>";
+                        } else {
+                            echo "<p>Ya has valorado este producto.</p>";
+                        }
                     } else {
-                        echo "<p>Ya has valorado este producto.</p>";
+                        echo "<p class='pend'>Pendiente</p>";
                     }
-                } else {
-                    echo "<p>Estado: Pendiente</p>";
+                echo "</div>";    
+                echo "</div>";
+                $productos = $this->obtenerProductosDelPedido($pedido['ID_Pedido']);
+                echo "<div class='productosPedido'>";
+                foreach($productos as $producto) {
+                    $sql = "SELECT * FROM productos WHERE ID_Producto = :producto_id";
+                    $stmt = $db->prepare($sql);
+                    $stmt->bindParam(':producto_id', $producto['ID_Producto']);
+                    $stmt->execute();
+                    $prod = $stmt->fetch();
+
+                    echo "<div class='prodPedido'>";
+                    //echo "<p>Producto: " . $prod['Nombre'] . "</p>";
+                    echo "<p><img src='" . RUTA_APP . $prod['Imagen'] . "' alt='Imagen del producto' id='imgPedidos'>x" . $producto['Cantidad'] . "</p>";
+                    //echo "<img src='" . RUTA_APP . $prod['Imagen'] . "' alt='Imagen del producto' id='imgPedidos'>";
+                    echo "</div>";
+                    //echo "<p>Cantidad: " . $producto['Cantidad'] . "</p>";
                 }
+                echo "</div>";
+                
+                echo "</div>";
             }
-        }
         } else {
             echo "<p>No existen pedidos.</p>";
         }
