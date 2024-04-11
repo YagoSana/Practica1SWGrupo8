@@ -1,7 +1,6 @@
 <?php
 require_once 'producto.php';
 require_once 'pedido.php';
-require_once 'baseDatos.php';
 
 class Carrito {
     private $productos = array(); //Es un array con los productos

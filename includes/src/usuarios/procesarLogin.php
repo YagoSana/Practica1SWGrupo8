@@ -2,16 +2,15 @@
 session_start();
 require_once '../../config.php';
 require 'usuario.php';
-require_once RAIZ_APP . '/includes/vistas/helpers/baseDatos.php';
 
-$db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
-$db->connect();
+
+$db = Aplicacion::getInstance()->getConexionBd();
 
 $User = $_POST['username'];
 $Pass = $_POST['password'];
 
 $sql = "SELECT * FROM usuario WHERE User = '$User' AND Pass = '$Pass'";
-$result = $db->getConnection()->query($sql);
+$result = $db->query($sql);
 
 if ($result->rowCount() == 1) {
     $_SESSION["login"] = true;
@@ -55,5 +54,4 @@ if (isset($_SESSION["login"])) {
     require_once RAIZ_APP . '/includes/vistas/plantillas/plantilla.php';
 }
 
-$db->close();
 ?>

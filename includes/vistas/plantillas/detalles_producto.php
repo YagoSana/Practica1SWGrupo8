@@ -1,24 +1,17 @@
 <?php
 // Incluye el archivo de la clase Database, Usuario y Producto
-include ("../helpers/baseDatos.php");
 require ("../../config.php");
 require_once ("../helpers/producto.php");
 require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
-
-// Crea una nueva instancia de la clase Database
-$db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
-
-// Conecta a la base de datos
-$db->connect();
 
 // Obtiene el ID del producto de la URL
 $producto_id = $_GET['id'];
 
 // Usa el método getProducto de la clase Producto para obtener los detalles del producto
-$producto = Producto::getProducto($producto_id, $db->getConnection());
+$producto = Producto::getProducto($producto_id);
 
 // Usa el método getValoracion para obtener las valoraciones del producto
-$valoraciones = valoracion::getValoracion($producto_id, $db->getConnection());
+$valoraciones = valoracion::getValoracion($producto_id);
 $ruta = RUTA_APP;
 
 ob_start();

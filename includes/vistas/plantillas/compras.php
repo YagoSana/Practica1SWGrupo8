@@ -1,6 +1,5 @@
 <?php
 // Incluye el archivo de la clase Database
-include ("../helpers/baseDatos.php");
 require ("../../config.php");
 require_once ("../helpers/producto.php");
 require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';

@@ -23,11 +23,20 @@ class Valoracion {
     }
 
    
-    public static function getValoracion($producto_id, $pdo) {
-        $stmt = $pdo->prepare('SELECT * FROM valoraciones WHERE ID = :ID');
+    public static function getValoracion($producto_id) {
+        // Obtener la conexión a la base de datos
+        $db = Aplicacion::getInstance()->getConexionBd();
+    
+        // Preparar la consulta SQL
+        $stmt = $db->prepare('SELECT * FROM valoraciones WHERE ID = :ID');
+    
+        // Ejecutar la consulta
         $stmt->execute(['ID' => $producto_id]);
+    
+        // Obtener todas las valoraciones
         $valoraciones = $stmt->fetchAll();
     
+        // Devolver las valoraciones
         return $valoraciones;
     }
     
