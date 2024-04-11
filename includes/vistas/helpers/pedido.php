@@ -1,5 +1,6 @@
 <?php
-
+namespace es\ucm\fdi\sw\vistas\helpers;
+use es\ucm\fdi\sw\aplicacion;
 class Pedido
 {
     private $idPedido;
