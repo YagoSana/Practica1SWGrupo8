@@ -14,8 +14,7 @@ require '../../config.php';
                 <?php include RAIZ_APP . '/includes/vistas/comun/cabecera.php'; ?>
                 <?php include RAIZ_APP . '/includes/vistas/comun/lateralIzq.php'; ?>
                 <main>
-                        <form action="<?= RUTA_APP . '/includes/vistas/helpers/procesarProducto.php'?>"
-                                method="POST" enctype="multipart/form-data">
+                        <form action="<?= RUTA_APP . '/includes/vistas/helpers/procesarProducto.php'?>" method="POST" enctype="multipart/form-data">
                                 <p>
                                         <label for="producto_nombre">Nombre del Producto:</label>
                                         <input type="text" id="producto_nombre" name="producto_nombre" required>

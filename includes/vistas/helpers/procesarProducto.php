@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $ruta = RUTA_APP; 
         $contenido = <<<EOS
         <h2> El nombre debe tener al menos 5 caracteres </h2>
-            <form action="$ruta/includes/vistas/helpers/procesarProducto.php.php" enctype="multipart/form-data">
+            <form action="$ruta/includes/vistas/helpers/procesarProducto.php" method="POST" enctype="multipart/form-data">
                     <p>
                             <label for="producto_nombre">Nombre del Producto:</label>
                             <input type="text" id="producto_nombre" name="producto_nombre" required>
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $ruta = RUTA_APP; 
         $contenido = <<<EOS
         <h2> El precio debe ser un número </h2>
-            <form action="$ruta/includes/vistas/helpers/procesarProducto.php.php" enctype="multipart/form-data">
+            <form action="$ruta/includes/vistas/helpers/procesarProducto.php" method="POST" enctype="multipart/form-data">
                     <p>
                             <label for="producto_nombre">Nombre del Producto:</label>
                             <input type="text" id="producto_nombre" name="producto_nombre" required>
