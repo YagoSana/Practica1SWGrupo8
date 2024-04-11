@@ -17,13 +17,13 @@ class Pedido
         $this->estado = 'Nulo';
     }
 
-    public function agregarProducto($producto, $cantidad, $db) {
+    public function agregarProducto($producto, $cantidad) {
         $this->productos[] = $producto;
-
+        $db = Aplicacion::getInstance()->getConexionBd();
         // Agregar el producto a la base de datos
         try {
             $sql = "INSERT INTO pedidos (Fecha, Cliente, Producto, Cantidad) VALUES (:fecha, :cliente, :producto_id, :cantidad)";
-            $stmt = $db->getConnection()->prepare($sql);
+            $stmt = $db->prepare($sql);
 
             // Asignar los resultados a variables
             $fecha = $this->fechaEntrega;
@@ -45,18 +45,17 @@ class Pedido
 
     public function obtenerProductosDelUsuario($usuario_id) {
         // Abrir la conexión a la base de datos
-        $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
-        $db->connect();
+        $db = Aplicacion::getInstance()->getConexionBd();
     
         // Consulta SQL para obtener todos los productos del usuario
         $sql = "SELECT * FROM pedidos WHERE Cliente = :usuario_id";
-        $stmt = $db->getConnection()->prepare($sql);
+        $stmt = $db->prepare($sql);
         $stmt->bindParam(':usuario_id', $usuario_id);
         $stmt->execute();
         $productos = $stmt->fetchAll();
     
         // Cerrar la conexión a la base de datos
-        $db->close();
+        //$db->close();
     
         // Devolvemos todos los productos del usuario
         return $productos;
@@ -74,15 +73,14 @@ class Pedido
 
     public function mostrarPedidos() {
         // Abrir la conexión a la base de datos
-        $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
-        $db->connect();
+        $db = Aplicacion::getInstance()->getConexionBd();
 
         $pedidos = $this->obtenerProductosDelUsuario($this->cliente->getId());
         if($pedidos != null) {
             foreach ($pedidos as $pedido) {
             // Consulta SQL para obtener los detalles del producto
                 $sql = "SELECT * FROM productos WHERE ID = :producto_id";
-                $stmt = $db->getConnection()->prepare($sql);
+                $stmt = $db->prepare($sql);
                 $stmt->bindParam(':producto_id', $pedido['Producto']);
                 $stmt->execute();
                 $producto = $stmt->fetch();
@@ -113,14 +111,13 @@ class Pedido
 
     private function yaValorado($pedidoId) {
         // Abrir la conexión a la base de datos
-        $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
-        $db->connect();
+        $db = Aplicacion::getInstance()->getConexionBd();
     
         // Consulta SQL para obtener la valoración del usuario para el pedido
         $sql = "SELECT Valoracion FROM valoraciones WHERE Idusuario = :usuario_id AND ID = :pedido_id";
     
         // Preparar la consulta
-        $stmt = $db->getConnection()->prepare($sql);
+        $stmt = $db->prepare($sql);
     
         // Vincular los parámetros
         $usuario_id = $this->cliente->getId();
