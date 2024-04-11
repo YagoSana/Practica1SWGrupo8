@@ -6,19 +6,17 @@ use es\ucm\fdi\sw\src\usuarios\Usuario;
 use es\ucm\fdi\sw\vistas\helpers\Database;
 //require_once RAIZ_APP . '/includes/vistas/helpers/Database.php';
 
-$db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
-$db->connect();
 
 $User = $_POST['username'];
 $Pass = $_POST['password'];
 
-$sql = "SELECT * FROM Usuario WHERE User = '$User' AND Pass = '$Pass'";
-$result = $db->getConnection()->query($sql);
+$usuario = Usuario::login($User, $Pass);
 
-if ($result->rowCount() == 1) {
+if ($usuario) {
+    echo "entra en usuario";
     $_SESSION["login"] = true;
     $_SESSION["nombre"] = $User;
-    $row = $result->fetch();
+    
     if ($row["rol"] == "empleado") {
         $_SESSION["esEmpleado"] = true;
     }
@@ -27,9 +25,8 @@ if ($result->rowCount() == 1) {
         $_SESSION["esAdmin"] = true;
     }
     
-    Usuario::login($User, $Pass);
+    usuario::login($User, $Pass);
 }
-
 
 if (isset($_SESSION["login"])) {
     header('Location: ' . RUTA_APP . '/index.php');
@@ -57,5 +54,4 @@ if (isset($_SESSION["login"])) {
     require_once RAIZ_APP . '/includes/vistas/plantillas/plantilla.php';
 }
 
-$db->close();
 ?>

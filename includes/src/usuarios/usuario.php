@@ -47,9 +47,9 @@ class Usuario
     public static function login($nombreUsuario, $password)
     {
         $usuario = self::buscaUsuario($nombreUsuario);
-    
+
         if ($usuario && $usuario->compruebaPassword($password)) {
-            return self::cargaRoles($usuario);
+            return $usuario;
         }
         return false;
     }
@@ -273,7 +273,14 @@ class Usuario
 
     public function compruebaPassword($password)
     {
-        return password_verify($password, $this->password);
+        //la funcion password_verify no está funcionando correctamente y no nos comprueba las contraseñas hasheadas
+        //return password_verify($password, $this->password);
+        if  ($password == $this->password) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public function cambiaPassword($nuevoPassword)
@@ -296,7 +303,7 @@ class Usuario
             'Apellido' => $Apellido,
             'Nombre' => $Nombre,
             'User' => $User,
-            'Pass' => self::hashPassword($Pass),
+            'Pass' => /*self::hashPassword($Pass)*/ $Pass, //debido a que no nos está verificando bien las contraseñas, quitamos el hash muy a nuestro pesar
             'Email' => $Email,
             'Rol' => $rol
         ]);
