@@ -6,7 +6,7 @@ require_once 'baseDatos.php';
 class Carrito {
     private $productos = array(); //Es un array con los productos
     private $estado = 'Pendiente';
-    private $Pedido;
+    private $pedido;
     private $total = 0;
 
     //Hacer un construct de la clase carrito???
@@ -74,7 +74,7 @@ class Carrito {
     public function mostrarProductos() {
         $db = Aplicacion::getInstance()->getConexionBd();
 
-        $Productos_id = $this->obtenerCarritoDelUsuario($this->Usuario->getId());
+        $Productos_id = $this->obtenerCarritoDelUsuario($this->usuario->getId());
         $this->total = 0;
         if ($Productos_id == null) {
             echo "El Carrito está vacío.";
