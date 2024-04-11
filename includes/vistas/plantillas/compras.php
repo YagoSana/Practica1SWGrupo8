@@ -15,7 +15,7 @@ $productos_data = $producto->getAllProductos();
 
 // Recorre los datos de los productos y crea objetos Producto
 foreach ($productos_data as $producto_data) {
-    $producto = new Producto($producto_data['ID'], $producto_data['Nombre'], $producto_data['Descripcion'], $producto_data['Precio'], $producto_data['Imagen']);
+    $producto = new Producto($producto_data['ID_Producto'], $producto_data['Nombre'], $producto_data['Descripcion'], $producto_data['Precio'], $producto_data['Imagen']);
     $productos[] = $producto;
 }
 ?>
