@@ -20,16 +20,16 @@ class Producto {
 
     public static function getProducto($ID) {
         $pdo = Aplicacion::getInstance()->getConexionBd();
-        $stmt = $pdo->prepare('SELECT * FROM productos WHERE ID = :ID');
+        $stmt = $pdo->prepare('SELECT * FROM Productos WHERE ID_Producto = :ID');
         $stmt->execute(['ID' => $ID]);
         $producto = $stmt->fetch();
     
         return new Producto(
-            $producto['ID'],
-            $producto['Nombre'],
-            $producto['Descripcion'],
-            $producto['Precio'],
-            $producto['Imagen']
+            $Producto['ID_Producto'],
+            $Producto['Nombre'],
+            $Producto['Descripcion'],
+            $Producto['Precio'],
+            $Producto['Imagen']
         );
     }
     
@@ -50,6 +50,54 @@ class Producto {
         if ($result === false) {
             // Si no hay resultados, mostrar un mensaje de error
             die('Error al obtener los productos de la base de datos');
+        }
+    
+        // Devolver el resultado
+        return $result;
+    }
+    
+    
+    public function getAllProductos() {
+        // Obtener la instancia de la conexión a la base de datos
+        $pdo = Aplicacion::getInstance()->getConexionBd();
+    
+        // Preparar la consulta SQL para seleccionar todos los Productos
+        $stmt = $pdo->prepare('SELECT * FROM Productos');
+        
+        // Ejecutar la consulta
+        $stmt->execute();
+    
+        // Obtener todos los resultados como un array asociativo
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        // Verificar si se obtuvieron resultados
+        if ($result === false) {
+            // Si no hay resultados, mostrar un mensaje de error
+            die('Error al obtener los Productos de la base de datos');
+        }
+    
+        // Devolver el resultado
+        return $result;
+    }
+    
+    
+    public function getAllProductos() {
+        // Obtener la instancia de la conexión a la base de datos
+        $pdo = Aplicacion::getInstance()->getConexionBd();
+    
+        // Preparar la consulta SQL para seleccionar todos los Productos
+        $stmt = $pdo->prepare('SELECT * FROM Productos');
+        
+        // Ejecutar la consulta
+        $stmt->execute();
+    
+        // Obtener todos los resultados como un array asociativo
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        // Verificar si se obtuvieron resultados
+        if ($result === false) {
+            // Si no hay resultados, mostrar un mensaje de error
+            die('Error al obtener los Productos de la base de datos');
         }
     
         // Devolver el resultado
@@ -78,8 +126,8 @@ class Producto {
 
     public function deleteProducto($ID) {
         $pdo = Aplicacion::getInstance()->getConexionBd();
-        $stmt = $pdo->prepare('DELETE FROM productos WHERE ID = :ID');
-        $stmt->execute(['ID' => $ID]);
+        $stmt = $pdo->prepare('DELETE FROM Productos WHERE ID_Producto = :ID');
+        $stmt->execute(['ID_Producto' => $ID]);
     }
 
     public function getNombre() {

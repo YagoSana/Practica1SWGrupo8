@@ -6,7 +6,8 @@ require_once 'baseDatos.php';
 class Carrito {
     private $productos = array(); //Es un array con los productos
     private $estado = 'Pendiente';
-    private $pedido;
+    private $Pedido;
+    private $total = 0;
 
     //Hacer un construct de la clase carrito???
     //Para hacer un new del pedido
@@ -73,20 +74,22 @@ class Carrito {
     public function mostrarProductos() {
         $db = Aplicacion::getInstance()->getConexionBd();
 
-        $productos_id = $this->obtenerCarritoDelUsuario($this->usuario->getId());
-        $total = 0;
-        if ($productos_id == null) {
-            echo "El carrito está vacío.";
+        $Productos_id = $this->obtenerCarritoDelUsuario($this->Usuario->getId());
+        $this->total = 0;
+        if ($Productos_id == null) {
+            echo "El Carrito está vacío.";
         } else {
-            foreach ($productos_id as $producto_id) {
-                $producto = Producto::getProducto($producto_id['Producto']);
-                echo "<div class='producto'>";
-                echo "<img src='" . RUTA_APP . $producto->getImagen() . "' alt='Imagen del producto'>";
+            foreach ($Productos_id as $Producto_id) {
+                echo $this->total;
+                $Producto = Producto::getProducto($Producto_id['Producto']);
+                echo "<div class='Producto'>";
+                echo "<img src='" . RUTA_APP . $Producto->getImagen() . "' alt='Imagen del Producto'>";
                 echo "<div>";
-                echo "<h3>" . $producto->getNombre() . "</h3>";
-                // Aquí asumimos que el producto tiene un método getDescripcion()
-                echo "<p>Precio: " . $producto->getPrecio() . " €</p>";
-                $total += $producto->getPrecio() * $producto_id['Cantidad'];
+                echo "<h3>" . $Producto->getNombre() . "</h3>";
+                // Aquí asumimos que el Producto tiene un método getDescripcion()
+                echo "<p>Precio: " . $Producto->getPrecio() . " €</p>";
+                $this->total += $Producto->getPrecio() * $Producto_id['Cantidad'];
+               
                 if (isset($_SESSION["login"])) {
                     // El usuario ha iniciado sesión, muestra el botón "Eliminar"
                     echo '<div class="form-container">';
@@ -105,7 +108,7 @@ class Carrito {
             if (isset($_SESSION["login"])) {
                 // El usuario ha iniciado sesión, muestra el botón "Confirmar Pedido"
                 echo "<div class='cont'>";
-                echo '<span class="total">Total: ' .$total.' €</span>';
+                echo '<span class="total">Total: ' .$this->total.' €</span>';
                 echo '<form action="' . RUTA_APP . '/includes/vistas/helpers/procesarCompra.php" method="POST">
                     <input type="submit" name="confirmar" value="Confirmar Pedido" class="boton-confirmar">
                 </form>';
@@ -146,10 +149,13 @@ class Carrito {
     
         $productos_id = $this->obtenerCarritoDelUsuario($this->usuario->getId());
 
-        // Agregamos los productos al pedido
-        foreach($productos_id as $productoID){
-            $producto = Producto::getProducto($productoID['Producto'], $db);
-            $this->pedido->agregarProducto($producto, $productoID['Cantidad']);
+        $this->Pedido->setImporte($this->total);
+
+        $this->Pedido->agregarPedido();
+        // Agregamos los Productos al Pedido
+        foreach($Productos_id as $ProductoID){
+            $Producto = Producto::getProducto($ProductoID['Producto'], $db);
+            $this->Pedido->agregarProducto($Producto, $ProductoID['Cantidad']);
         }
     
         $this->productos = [];
