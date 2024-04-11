@@ -111,6 +111,21 @@ INSERT INTO `productos` (`ID`, `Nombre`, `Descripcion`, `Precio`, `Imagen`) VALU
 'diseñada para practicantes, principiantes e intermedios. Gran sistema de armónica adecuado para blues, folk, música clásica pop, jazz, country y rock & roll',
 68.20,
 '/img/imagenesBD/armonica.jpg');
+(5,
+'PinkFloydVinile',
+'Vinilo de la banda Pink Floyd, con su álbum más famoso, The Dark Side of the Moon. Un clásico de la música rock que no puede faltar en tu colección.',
+35.99,
+'/img/imagenesBD/PinkFloydVinile.jpg');
+(6,
+'PumpUpTheJam',
+'Vinilo de la banda Technotronic, con su álbum más famoso, Pump Up The Jam. Un clásico de la música electrónica que conquistó las pistas de baile en los años 90.',
+35.99,
+'/img/imagenesBD/PinkFloydVinile.jpg');
+(7,
+'Ramones',
+'Camiseta de la banda Ramones, con su icónico logo en la parte delantera. Fabricada en algodón 100% para una mayor comodidad y durabilidad. Disponible unicamente en talla L. (Más tallas próximamente)',
+12.99,
+'/img/imagenesBD/PinkFloydVinile.jpg');
 
 INSERT INTO `valoraciones` (`Idusuario`, `ID`, `Valoracion`, `Comentario`) VALUES
 (2, 1, 5, 'Excelente guitarra. El sonido es claro y resonante, y el cuerpo de madera pulida es absolutamente hermoso.'),
