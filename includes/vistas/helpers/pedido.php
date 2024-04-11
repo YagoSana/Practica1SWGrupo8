@@ -118,7 +118,7 @@ class Pedido
                         if ($this->yaValorado($pedido['ID_Pedido'])) {
                             echo "<button class='valorar-btn' onclick='window.location.href=\"" . RUTA_APP . "/includes/vistas/plantillas/mostrarValoracion.php?id={$pedido['ID_Pedido']}\"'>Valorar</button>";
                         } else {
-                            echo "<p>Ya has valorado este producto.</p>";
+                            echo "<p class='frase'>Ya has valorado este producto.</p>";
                         }
                     } else {
                         echo "<p class='pend'>Pendiente</p>";

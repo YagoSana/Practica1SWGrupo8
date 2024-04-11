@@ -317,9 +317,17 @@ img#imgCompras {
     display: inline-block;
     font-size: 13px;
 	margin: 0px 2px;
-	margin-top: 20px;
+	margin-top: 22px;
 	box-sizing: border-box;
 
+}
+
+p.frase {
+	margin-bottom: 0px;
+	margin-top: 32px;
+	display: inline-block;
+	text-align: center;
+	height: fit-content;
 }
 
 

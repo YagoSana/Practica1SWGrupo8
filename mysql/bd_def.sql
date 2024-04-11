@@ -48,8 +48,8 @@ CREATE TABLE `pedidos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `pedidos` (`ID_Pedido`, `Fecha`, `Cliente`, `Importe`) VALUES
-(1, '2024-04-17', 8, 299.99),
-(2, '2024-04-15', 9, 299.99);
+(1, '2024-04-09', 8, 299.99),
+(2, '2024-04-10', 9, 299.99);
 
 -- --------------------------------------------------------
 

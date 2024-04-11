@@ -1,8 +1,7 @@
 <?php
 //Para acceder al id del producto que voy a valorar se utiliza $_GET['id']
 require '../../config.php';
-use es\ucm\fdi\sw\usuarios\usuario;
-echo $_GET['id'];
+use es\ucm\fdi\sw\src\usuarios\usuario;
 ?>
 <!DOCTYPE html>
 <html lang="es">

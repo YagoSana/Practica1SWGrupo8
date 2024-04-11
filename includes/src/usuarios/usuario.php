@@ -3,6 +3,7 @@ namespace es\ucm\fdi\sw\src\usuarios;
 //require_once '../../config.php';
 use es\ucm\fdi\sw\aplicacion;
 use es\ucm\fdi\sw\vistas\helpers\carrito;
+use es\ucm\fdi\sw\vistas\helpers\valoracion;
 
 use PDO;
 class Usuario
