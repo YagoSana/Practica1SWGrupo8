@@ -16,10 +16,10 @@ define('RUTA_USU',RUTA_SRC.'/usuarios');
 
 
 // Parámetros de configuración de la BD
-define('BD_HOST', '127.0.0.1');
-define('BD_NAME', 'bd_def');
-define('BD_USER', 'root');
-define('BD_PASS', '');
+define('BD_HOST', '127.0.0.1'); //vm005.db.swarm.test
+define('BD_NAME', 'bd_def');    //Practica1SWGrupo8
+define('BD_USER', 'root');      //Practica1SWGrupo8
+define('BD_PASS', '');          //Practica1SWGrupo8
 
 $app = Aplicacion::getInstance();
 $app->init(['host'=>BD_HOST, 'bd'=>BD_NAME, 'user'=>BD_USER, 'pass'=>BD_PASS]);
