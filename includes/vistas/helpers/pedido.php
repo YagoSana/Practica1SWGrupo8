@@ -54,9 +54,6 @@ class Pedido
         $stmt->execute();
         $productos = $stmt->fetchAll();
     
-        // Cerrar la conexión a la base de datos
-        //$db->close();
-    
         // Devolvemos todos los productos del usuario
         return $productos;
     }

@@ -33,12 +33,11 @@ class Valoracion {
     
     //Es la funcion para valorar un producto
     public static function setValoracion($producto_id, $usuario_id, $valoracion, $comentario) {
-        $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
-        $db->connect();
+        $db = Aplicacion::getInstance()->getConexionBd();
 
         $sql = "INSERT INTO valoraciones (Idusuario, ID, Valoracion, Comentario) VALUES (:usuario_id, :producto_id, :valoracion, :comentario)";
 
-        $stmt = $db->getConnection()->prepare($sql);
+        $stmt = $db->prepare($sql);
 
         $stmt->bindParam(':usuario_id', $usuario_id);
         $stmt->bindParam(':producto_id', $producto_id);
@@ -47,7 +46,6 @@ class Valoracion {
 
         $stmt->execute();
 
-        $db->close();
     }
     
     

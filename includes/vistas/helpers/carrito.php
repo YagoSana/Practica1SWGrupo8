@@ -15,11 +15,11 @@ class Carrito {
         $this->usuario = $usuario; //el this hace referencia a la clase padre "Usuario"
     }
 
-    public function agregarProducto($producto) {
+    public function agregarProducto($producto, $pdo) {
         $this->productos[] = $producto;
-        $pdo = Aplicacion::getInstance()->getConexionBd();
+        
         try {
-            if(!$this->comprobarProducto($producto->getID())) {
+            if(!$this->comprobarProducto($pdo, $producto->getID())) {
                 $sql = "INSERT INTO carrito (Cliente, Producto, Cantidad) VALUES (:cliente, :producto_id, :cantidad)";
                 $stmt = $pdo->prepare($sql);
 
@@ -41,8 +41,7 @@ class Carrito {
 
     }
 
-    public function comprobarProducto($productoID) {
-        $pdo = Aplicacion::getInstance()->getConexionBd();
+    public function comprobarProducto($pdo, $productoID) {
         $sql = "UPDATE carrito SET Cantidad = Cantidad + 1 WHERE Producto = :ID";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(['ID' => $productoID]);
@@ -56,22 +55,21 @@ class Carrito {
 
     }
     //Revisar
-    public function eliminarProducto($productoId) {
-        $db = Aplicacion::getInstance()->getConexionBd();
-        $stmt = $db->prepare('DELETE FROM carrito WHERE Producto = :ID');
+    public function eliminarProducto($productoId, $db) {
+        $stmt = $db->getConnection()->prepare('DELETE FROM carrito WHERE Producto = :ID');
         $stmt->execute(['ID' => $productoId]);
     }
 
-    public function restarCantidad($productoId) {
-        $db = Aplicacion::getInstance()->getConexionBd();
+    public function restarCantidad($productoId, $db) {
         $sql = "UPDATE carrito SET Cantidad = Cantidad - 1 WHERE Producto = :ID";
-        $stmt = $db->prepare($sql);
+        $stmt = $db->getConnection()->prepare($sql);
         $stmt->execute(['ID' => $productoId]);
 
     }
 
     public function mostrarProductos() {
-        $db = Aplicacion::getInstance()->getConexionBd();
+        $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
+        $db->connect();
 
         $productos_id = $this->obtenerCarritoDelUsuario($this->usuario->getId());
         $total = 0;
@@ -79,7 +77,7 @@ class Carrito {
             echo "El carrito está vacío.";
         } else {
             foreach ($productos_id as $producto_id) {
-                $producto = Producto::getProducto($producto_id['Producto'], $db);
+                $producto = Producto::getProducto($producto_id['Producto'], $db->getConnection());
                 echo "<div class='producto'>";
                 echo "<img src='" . RUTA_APP . $producto->getImagen() . "' alt='Imagen del producto'>";
                 echo "<div>";
@@ -116,16 +114,18 @@ class Carrito {
 
     public function obtenerCarritoDelUsuario($usuario_id) {
         // Abrir la conexión a la base de datos
-        $db = Aplicacion::getInstance()->getConexionBd();
+        $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
+        $db->connect();
     
         // Consulta SQL para obtener todos los productos del usuario
         $sql = "SELECT * FROM carrito WHERE Cliente = :usuario_id";
-        $stmt = $db->prepare($sql);
+        $stmt = $db->getConnection()->prepare($sql);
         $stmt->bindParam(':usuario_id', $usuario_id);
         $stmt->execute();
         $productos = $stmt->fetchAll();
     
         // Cerrar la conexión a la base de datos
+        $db->close();
     
         // Devolvemos todos los productos del usuario
         return $productos;
@@ -142,29 +142,30 @@ class Carrito {
         //$fecha = date('Y-m-d'); //Para prueba con las valoraciones (tema dias)
         $this->pedido->setFecha($fecha);
 
-        $db = Aplicacion::getInstance()->getConexionBd();$db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
+        $db = new Database(BD_HOST, BD_USER, BD_PASS, BD_NAME);
+        $db->connect();
     
         $productos_id = $this->obtenerCarritoDelUsuario($this->usuario->getId());
 
         // Agregamos los productos al pedido
         foreach($productos_id as $productoID){
-            $producto = Producto::getProducto($productoID['Producto'], $db);
-            $this->pedido->agregarProducto($producto, $productoID['Cantidad']);
+            $producto = Producto::getProducto($productoID['Producto'], $db->getConnection());
+            $this->pedido->agregarProducto($producto, $productoID['Cantidad'], $db);
         }
     
         $this->productos = [];
 
-        $this->vaciarCarrito();
+        $this->vaciarCarrito($db);
     
         $this->pedido->confirmarPedido();
         // Cambiamos el estado del carrito a 'Enviado'
         $this->estado = 'Enviado';
         // Cerrar la conexión a la base de datos
+        $db->close();
     }
 
-    public function vaciarCarrito() {
-        $conn = Aplicacion::getInstance()->getConexionBd();
-        $stmt = $conn->prepare('DELETE FROM carrito');
+    public function vaciarCarrito($db) {
+        $stmt = $db->getConnection()->prepare('DELETE FROM carrito');
         $stmt->execute();
     }
 
@@ -172,16 +173,5 @@ class Carrito {
 
         return $this->pedido;
     }
-
-    public function getCantidadProducto($producto_id) {
-        $db = Aplicacion::getInstance()->getConexionBd();
-        $stmt = $db->prepare('SELECT Cantidad FROM carrito WHERE Producto = :ID');
-        $stmt->execute(['ID' => $producto_id]);
-        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-        $cantidad = $resultado['Cantidad'];
-        return $cantidad;
-    }
-    
-
 }
 ?>
