@@ -56,56 +56,6 @@ class Producto {
         return $result;
     }
     
-    
-    public function getAllProductos() {
-        // Obtener la instancia de la conexión a la base de datos
-        $pdo = Aplicacion::getInstance()->getConexionBd();
-    
-        // Preparar la consulta SQL para seleccionar todos los Productos
-        $stmt = $pdo->prepare('SELECT * FROM Productos');
-        
-        // Ejecutar la consulta
-        $stmt->execute();
-    
-        // Obtener todos los resultados como un array asociativo
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-        // Verificar si se obtuvieron resultados
-        if ($result === false) {
-            // Si no hay resultados, mostrar un mensaje de error
-            die('Error al obtener los Productos de la base de datos');
-        }
-    
-        // Devolver el resultado
-        return $result;
-    }
-    
-    
-    public function getAllProductos() {
-        // Obtener la instancia de la conexión a la base de datos
-        $pdo = Aplicacion::getInstance()->getConexionBd();
-    
-        // Preparar la consulta SQL para seleccionar todos los Productos
-        $stmt = $pdo->prepare('SELECT * FROM Productos');
-        
-        // Ejecutar la consulta
-        $stmt->execute();
-    
-        // Obtener todos los resultados como un array asociativo
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-        // Verificar si se obtuvieron resultados
-        if ($result === false) {
-            // Si no hay resultados, mostrar un mensaje de error
-            die('Error al obtener los Productos de la base de datos');
-        }
-    
-        // Devolver el resultado
-        return $result;
-    }
-    
-    
-
     public function createProducto($Nombre, $Descripcion, $Precio, $Imagen) {
         $pdo = Aplicacion::getInstance()->getConexionBd();
         $stmt = $pdo->prepare('INSERT INTO productos (Nombre, Descripcion, Precio, Imagen) VALUES (:Nombre, :Descripcion, :Precio, :Imagen)');
