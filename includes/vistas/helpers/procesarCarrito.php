@@ -11,7 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $producto = new Producto(null, null, null, null, null);
     $producto_act = $producto->getProducto($producto_id);
-    //var_dump($_SESSION['usuario']);
     // Accede al usuario y a su carrito desde la 
     $carrito = $_SESSION['usuario']->getCarrito();
     // Agrega el producto al carrito

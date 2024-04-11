@@ -20,16 +20,16 @@ class Producto {
 
     public static function getProducto($ID) {
         $pdo = Aplicacion::getInstance()->getConexionBd();
-        $stmt = $pdo->prepare('SELECT * FROM Productos WHERE ID_Producto = :ID');
+        $stmt = $pdo->prepare('SELECT * FROM productos WHERE ID_Producto = :ID');
         $stmt->execute(['ID' => $ID]);
         $producto = $stmt->fetch();
     
         return new Producto(
-            $Producto['ID_Producto'],
-            $Producto['Nombre'],
-            $Producto['Descripcion'],
-            $Producto['Precio'],
-            $Producto['Imagen']
+            $producto['ID_Producto'],
+            $producto['Nombre'],
+            $producto['Descripcion'],
+            $producto['Precio'],
+            $producto['Imagen']
         );
     }
         
@@ -38,7 +38,7 @@ class Producto {
         $pdo = Aplicacion::getInstance()->getConexionBd();
     
         // Preparar la consulta SQL para seleccionar todos los Productos
-        $stmt = $pdo->prepare('SELECT * FROM Productos');
+        $stmt = $pdo->prepare('SELECT * FROM productos');
         
         // Ejecutar la consulta
         $stmt->execute();
@@ -78,7 +78,7 @@ class Producto {
 
     public function deleteProducto($ID) {
         $pdo = Aplicacion::getInstance()->getConexionBd();
-        $stmt = $pdo->prepare('DELETE FROM Productos WHERE ID_Producto = :ID');
+        $stmt = $pdo->prepare('DELETE FROM productos WHERE ID_Producto = :ID');
         $stmt->execute(['ID_Producto' => $ID]);
     }
 

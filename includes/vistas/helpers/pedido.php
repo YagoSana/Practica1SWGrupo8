@@ -7,8 +7,8 @@ class Pedido
     private $cliente;
     //Hay que implementar que cada vez que el pedido se entregue todos
     private $total;
-    private $Productos = array(); //Hay que guardarlos en la base de datos los Productos y los Productos entregados
-    private $ProductosEntregados = array(); //Hay que implementar que cada vez que el Pedido se entregue todos
+    private $productos = array(); //Hay que guardarlos en la base de datos los Productos y los Productos entregados
+    private $productosEntregados = array(); //Hay que implementar que cada vez que el Pedido se entregue todos
                                             //los Productos que habia en la variable Producto se guarden aqui, para luego poder valorarlos y etc
     private $cantidad;
     private $estado;
@@ -92,11 +92,11 @@ class Pedido
         // Abrir la conexión a la base de datos
         $db = Aplicacion::getInstance()->getConexionBd();
 
-        $Pedidos = $this->obtenerProductosDelUsuario($this->cliente->getId());
-        if($Pedidos != null) {
-            foreach ($Pedidos as $Pedido) {
+        $pedidos = $this->obtenerProductosDelUsuario($this->cliente->getId());
+        if($pedidos != null) {
+            foreach ($pedidos as $pedido) {
             // Consulta SQL para obtener los detalles del Producto
-                $sql = "SELECT * FROM Productos WHERE ID_Producto = :Producto_id";
+                $sql = "SELECT * FROM productos WHERE ID_Producto = :producto_id";
                 $stmt = $db->prepare($sql);
                 $stmt->bindParam(':producto_id', $pedido['Producto']);
                 $stmt->execute();

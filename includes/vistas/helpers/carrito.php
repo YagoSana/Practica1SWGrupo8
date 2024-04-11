@@ -6,7 +6,7 @@ require_once 'baseDatos.php';
 class Carrito {
     private $productos = array(); //Es un array con los productos
     private $estado = 'Pendiente';
-    private $Pedido;
+    private $pedido;
     private $total = 0;
 
     //Hacer un construct de la clase carrito???
@@ -74,21 +74,20 @@ class Carrito {
     public function mostrarProductos() {
         $db = Aplicacion::getInstance()->getConexionBd();
 
-        $Productos_id = $this->obtenerCarritoDelUsuario($this->Usuario->getId());
+        $productos_id = $this->obtenerCarritoDelUsuario($this->usuario->getId());
         $this->total = 0;
-        if ($Productos_id == null) {
+        if ($productos_id == null) {
             echo "El Carrito está vacío.";
         } else {
-            foreach ($Productos_id as $Producto_id) {
-                echo $this->total;
-                $Producto = Producto::getProducto($Producto_id['Producto']);
-                echo "<div class='Producto'>";
-                echo "<img src='" . RUTA_APP . $Producto->getImagen() . "' alt='Imagen del Producto'>";
+            foreach ($productos_id as $producto_id) {
+                $producto = Producto::getProducto($producto_id['Producto']);
+                echo "<div class='producto'>";
+                echo "<img src='" . RUTA_APP . $producto->getImagen() . "' alt='Imagen del Producto'>";
                 echo "<div>";
-                echo "<h3>" . $Producto->getNombre() . "</h3>";
+                echo "<h3>" . $producto->getNombre() . "</h3>";
                 // Aquí asumimos que el Producto tiene un método getDescripcion()
-                echo "<p>Precio: " . $Producto->getPrecio() . " €</p>";
-                $this->total += $Producto->getPrecio() * $Producto_id['Cantidad'];
+                echo "<p>Precio: " . $producto->getPrecio() . " €</p>";
+                $this->total += $producto->getPrecio() * $producto_id['Cantidad'];
                
                 if (isset($_SESSION["login"])) {
                     // El usuario ha iniciado sesión, muestra el botón "Eliminar"
@@ -149,13 +148,13 @@ class Carrito {
     
         $productos_id = $this->obtenerCarritoDelUsuario($this->usuario->getId());
 
-        $this->Pedido->setImporte($this->total);
+        $this->pedido->setImporte($this->total);
 
-        $this->Pedido->agregarPedido();
+        $this->pedido->agregarPedido();
         // Agregamos los Productos al Pedido
-        foreach($Productos_id as $ProductoID){
-            $Producto = Producto::getProducto($ProductoID['Producto'], $db);
-            $this->Pedido->agregarProducto($Producto, $ProductoID['Cantidad']);
+        foreach($productos_id as $productoID){
+            $producto = Producto::getProducto($productoID['Producto'], $db);
+            $this->pedido->agregarProducto($producto, $productoID['Cantidad']);
         }
     
         $this->productos = [];
