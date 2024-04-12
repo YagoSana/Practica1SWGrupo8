@@ -121,7 +121,7 @@ class Producto
         //buscar si esta en otras tablas
         $stmt = $pdo->prepare('DELETE FROM productos WHERE ID_Producto = :ID');
         $stmt->execute(['ID' => $ID]);
-        return true;
+        return true ;
         }
         else{
             $contenido = <<<EOS
