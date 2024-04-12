@@ -1,7 +1,7 @@
 <?php
 //Para acceder al id del producto que voy a valorar se utiliza $_GET['id']
 require '../../config.php';
-use es\ucm\fdi\sw\src\usuarios\usuario;
+require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">

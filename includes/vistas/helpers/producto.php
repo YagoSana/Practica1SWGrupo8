@@ -1,9 +1,5 @@
 <?php
-namespace es\ucm\fdi\sw\vistas\helpers;
-use es\ucm\fdi\sw\aplicacion;
-use PDO;
-use es\ucm\fdi\sw\vistas\helpers\valoracion;
-
+require_once "valoracion.php";
 class Producto {
     private $ID;
     private $Nombre;

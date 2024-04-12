@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../../config.php';
-use es\ucm\fdi\sw\src\usuarios\usuario;
+require_once 'usuario.php';
 
 $User = $_POST['username'];
 $Pass = $_POST['password'];
@@ -9,7 +9,6 @@ $Pass = $_POST['password'];
 $usuario = Usuario::login($User, $Pass);
 
 if ($usuario) {
-    echo "entra en usuario";
     $_SESSION["login"] = true;
     $_SESSION["nombre"] = $User;
     

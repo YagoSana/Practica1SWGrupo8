@@ -2,7 +2,7 @@
 require_once '../../config.php';
 header('Location: ' . RUTA_VISTAS . '/plantillas/mostrarCarrito.php');
 require_once '../plantillas/compras.php';
-use es\ucm\fdi\sw\vistas\helpers\producto;
+require_once 'producto.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $producto_id = $_POST['productoId']; // Recupera el ID del producto enviado desde el cliente

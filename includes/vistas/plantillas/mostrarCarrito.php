@@ -1,7 +1,6 @@
 <?php
 require '../../config.php';
-use es\ucm\fdi\sw\usuarios\usuario;
-
+require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
 ?>
 
 <!DOCTYPE html>

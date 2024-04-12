@@ -1,9 +1,8 @@
 <?php
 require_once '../../config.php';
-header("Location: ". RUTA_APP ."/includes/vistas/plantillas/mostrarPedidos.php");
 require_once '../plantillas/mostrarCarrito.php';
-use es\ucm\fdi\sw\src\usuarios\usuario;
-use es\ucm\fdi\sw\vistas\helpers\carrito;
+require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
+require_once 'carrito.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['login'])) {
     // Obtiene el carrito de compras del usuario
@@ -11,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['login'])) {
 
     // Confirma el pedido
     $carrito->confirmarPedido();
-
+    header("Location: ". RUTA_APP ."/includes/vistas/plantillas/mostrarPedidos.php");
     exit;
 } else {
     // Si el usuario no ha iniciado sesión o si la solicitud no es POST,

@@ -1,6 +1,6 @@
 <?php
     require_once '../../config.php';
-    use es\ucm\fdi\sw\vistas\helpers\producto;
+    require 'producto.php';
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){ 
 

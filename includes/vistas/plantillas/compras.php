@@ -1,9 +1,9 @@
 <?php
 // Incluye el archivo de la clase Database
 require ("../../config.php");
-use es\ucm\fdi\sw\vistas\helpers\producto;
-use es\ucm\fdi\sw\usuarios\usuario;
-use es\ucm\fdi\sw\vistas\helpers\carrito;
+require_once ("../helpers/producto.php");
+require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
+require_once ("../helpers/carrito.php");
 // Crea un array para almacenar los productos
 $productos = [];
 

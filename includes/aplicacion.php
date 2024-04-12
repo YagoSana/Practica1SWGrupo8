@@ -1,6 +1,4 @@
 <?php
-namespace es\ucm\fdi\sw;
-use PDO;
 /**
  * Clase que mantiene el estado global de la aplicación.
  */

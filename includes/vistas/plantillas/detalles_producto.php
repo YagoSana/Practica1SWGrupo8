@@ -1,9 +1,8 @@
 <?php
 // Incluye el archivo de la clase Database, Usuario y Producto
 require ("../../config.php");
-use es\ucm\fdi\sw\vistas\helpers\producto;
-use es\ucm\fdi\sw\src\usuarios\usuario;
-use es\ucm\fdi\sw\vistas\helpers\valoracion;
+require_once ("../helpers/producto.php");
+require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
 
 // Obtiene el ID del producto de la URL
 $producto_id = $_GET['id'];

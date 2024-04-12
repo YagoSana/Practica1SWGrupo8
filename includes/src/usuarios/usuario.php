@@ -1,11 +1,8 @@
 <?php
-namespace es\ucm\fdi\sw\src\usuarios;
-//require_once '../../config.php';
-use es\ucm\fdi\sw\aplicacion;
-use es\ucm\fdi\sw\vistas\helpers\carrito;
-use es\ucm\fdi\sw\vistas\helpers\valoracion;
+require_once '../../config.php';
+require_once '../../aplicacion.php';
+include RAIZ_APP . '/includes/vistas/helpers/carrito.php';
 
-use PDO;
 class Usuario
 {
 
