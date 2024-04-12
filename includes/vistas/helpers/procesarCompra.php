@@ -1,7 +1,7 @@
 <?php
-
-require_once '../plantillas/mostrarCarrito.php';
 require_once '../../config.php';
+header("Location: ". RUTA_APP ."/includes/vistas/plantillas/mostrarPedidos.php");
+require_once '../plantillas/mostrarCarrito.php';
 use es\ucm\fdi\sw\src\usuarios\usuario;
 use es\ucm\fdi\sw\vistas\helpers\carrito;
 
@@ -12,15 +12,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['login'])) {
     // Confirma el pedido
     $carrito->confirmarPedido();
 
-    // Aquí puedes agregar el código para actualizar tu base de datos
-    // Por ejemplo, podrías mover los productos del carrito a la tabla de pedidos,
-    // y luego vaciar el carrito en la base de datos.
-
-    // Muestra un mensaje de confirmación
-    echo "Tu pedido ha quedado registrado.";
-
-    // Redirige al usuario a mostrarPedidos.php inmediatamente
-    header("Location: ". RUTA_APP ."/includes/vistas/plantillas/mostrarPedidos.php");
     exit;
 } else {
     // Si el usuario no ha iniciado sesión o si la solicitud no es POST,
