@@ -29,7 +29,7 @@ if (isset($_SESSION["login"])) {
     <h2> Error en el inicio de sesión </h2>
     <h2>Inicio de sesión en BackMusic</h2>
 
-            <form action="$ruta/Usuarios/procesarLogin.php" method="POST">
+            <form action="$ruta/usuarios/procesarLogin.php" method="POST">
                 <p>
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" required>
