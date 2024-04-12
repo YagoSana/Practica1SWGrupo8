@@ -1,17 +1,13 @@
 <?php
-// Incluye el archivo de la clase Database
 require ("../../config.php");
 require_once ("../helpers/producto.php");
-require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
+require_once RAIZ_APP . '/includes/src/usuarios/usuario.php';
 require_once ("../helpers/carrito.php");
-// Crea un array para almacenar los productos
 $productos = [];
 
-// Obtén todos los productos de la base de datos
 $producto = new Producto(null, null, null, null, null);
 $productos_data = $producto->getAllProductos();
 
-// Recorre los datos de los productos y crea objetos Producto
 foreach ($productos_data as $producto_data) {
     $producto = new Producto($producto_data['ID_Producto'], $producto_data['Nombre'], $producto_data['Descripcion'], $producto_data['Precio'], $producto_data['Imagen']);
     $productos[] = $producto;
@@ -48,27 +44,24 @@ foreach ($productos_data as $producto_data) {
                             echo "<h3>" . $producto->getNombre() . "</h3>";
                             echo "</a>";//Solo la imagen y el nombre son clickeables
                             echo "<p>" . $producto->getPrecio() . " €</p>";
-                
+
                             echo "<div class='botones'>";
                             if (isset($_SESSION["login"])) {
-                                // El usuario ha iniciado sesión, muestra el botón "Agregar al carrito" dentro de un formulario
                                 echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarCarrito.php' method='post'>"; //Procesa la adición al carro
                                 echo "<input type='hidden' name='producto_id' value='" . $producto->getID() . "'>";
                                 echo "<button class='agregar' type='submit' name='agregar_producto'>Agregar al carrito</button>";
                                 echo "</form>";
                             } else {
-                                // El usuario no ha iniciado sesión, muestra un enlace para iniciar sesión
                                 echo "<button class='agregar' onclick=\"window.location.href='" . RUTA_SRC . "/login.php'\">Agregar al carrito</button>";
                             }
 
-                            // Botón para eliminar el producto de la tienda, dentro de un formulario
                             if (isset($_SESSION["esEmpleado"])) {
                                 echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarEliminacion.php' method='post'>";
                                 echo "<input type='hidden' name='producto_id' value='" . $producto->getID() . "'>";
                                 echo "<button class='borrar' type='submit' name='eliminar_producto'>Eliminar</button>";
                                 echo "</form>";
                             }
-                            
+
                             echo "</div>";
                             echo "</div>";
                             echo "</div>";

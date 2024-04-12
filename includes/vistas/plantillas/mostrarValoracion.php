@@ -1,5 +1,4 @@
 <?php
-//Para acceder al id del producto que voy a valorar se utiliza $_GET['id']
 require '../../config.php';
 require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
 ?>

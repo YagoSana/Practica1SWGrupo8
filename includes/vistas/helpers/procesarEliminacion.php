@@ -4,7 +4,6 @@
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){ 
 
-        // Recoge los datos del formulario
         $ID = $_POST['producto_id'];
 
         $producto = new Producto(null, null, null, null, null);

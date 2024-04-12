@@ -66,4 +66,3 @@ $app->init(array('host'=>BD_HOST, 'bd'=>BD_NAME, 'user'=>BD_USER, 'pass'=>BD_PAS
 
 register_shutdown_function([$app, 'shutdown']);
 */
-

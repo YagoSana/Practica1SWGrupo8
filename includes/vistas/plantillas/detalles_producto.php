@@ -1,20 +1,14 @@
 <?php
-// Incluye el archivo de la clase Database, Usuario y Producto
 require ("../../config.php");
 require_once ("../helpers/producto.php");
 require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
 
-// Obtiene el ID del producto de la URL
 $producto_id = $_GET['id'];
-
-// Usa el método getProducto de la clase Producto para obtener los detalles del producto
 $producto = Producto::getProducto($producto_id);
 
 $pedidos = Producto::obtenerPedidosDeProducto($producto_id);
-// Usa el método getValoracion para obtener las valoraciones del producto
 
 $ruta = RUTA_APP;
-
 ob_start();
 ?>
 <article>
