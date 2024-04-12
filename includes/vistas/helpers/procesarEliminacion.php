@@ -3,12 +3,14 @@
     require 'producto.php';
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){ 
-
+        $eliminado = false;
         $ID = $_POST['producto_id'];
-
+        
         $producto = new Producto(null, null, null, null, null);
-        $producto->deleteProducto($ID);
-
+        $eliminado = $producto->deleteProducto($ID);
+        if($eliminado){
+            header('Location: '.RUTA_APP. '/includes/vistas/plantillas/paginaConfirmacion.php');
+        }
     }
 
-    header('Location: '.RUTA_APP. '/includes/vistas/plantillas/paginaConfirmacion.php');
+    
