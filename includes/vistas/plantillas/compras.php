@@ -37,8 +37,7 @@ foreach ($productos_data as $producto_data) {
                     if (!empty($productos)) {
                         // Itera sobre los productos y muestra la información
                         foreach ($productos as $producto) {
-                            echo "hola";
-                            if ($producto->getVisible() == 1) {
+                            if ($producto->getVisible() == 1 || isset($_SESSION["esEmpleado"])) {
                                 echo "<div class='producto'>";
                                 echo "<a class='subr' href='detalles_producto.php?id=" . $producto->getID() . "'>"; // Enlace a la página de detalles del producto
                                 echo "<img src='" . RUTA_APP . $producto->getImagen() . "' alt='Imagen del producto' id='imgCompras'>";
@@ -57,12 +56,20 @@ foreach ($productos_data as $producto_data) {
                                     echo "<button class='agregar' onclick=\"window.location.href='" . RUTA_SRC . "/login.php'\">Agregar al carrito</button>";
                                 }
 
-                                if (isset($_SESSION["esEmpleado"])) {
+                                if (isset($_SESSION["esEmpleado"]) && $producto->getVisible() == 1){
                                     echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarEliminacion.php' method='post'>";
                                     echo "<input type='hidden' name='producto_id' value='" . $producto->getID() . "'>";
-                                    echo "<button class='borrar' type='submit' name='eliminar_producto'>Eliminar</button>";
+                                    echo "<button class='borrar' type='submit' name='eliminar_producto'>Ocultar</button>";
                                     echo "</form>";
                                 }
+                                //si no es visible sea diferente
+                                else if (isset($_SESSION["esEmpleado"])) {
+                                    echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarReabastecer.php' method='post'>";
+                                    echo "<input type='hidden' name='producto_id' value='" . $producto->getID() . "'>";
+                                    echo "<button class='reabastecer' type='submit' name='reabastecer_producto'>Reabastecer</button>";
+                                    echo "</form>";
+                                }
+
 
                                 echo "</div>";
                                 echo "</div>";

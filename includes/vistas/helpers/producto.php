@@ -43,7 +43,7 @@ class Producto
         $pdo = Aplicacion::getInstance()->getConexionBd();
 
         // Preparar la consulta SQL para seleccionar todos los Productos
-        $stmt = $pdo->prepare('SELECT * FROM productos');
+        $stmt = $pdo->prepare('SELECT * FROM productos ORDER BY Visible DESC');
 
         // Ejecutar la consulta
         $stmt->execute();
@@ -136,6 +136,14 @@ class Producto
         */
     }
 
+    public function reabastecerProducto($ID)
+    {
+        $pdo = Aplicacion::getInstance()->getConexionBd();
+        $stmt = $pdo->prepare('UPDATE productos SET Visible = 1 WHERE ID_Producto = :ID');
+        $stmt->execute(['ID' => $ID]);
+        return true;
+    }
+
     public function getNombre()
     {
         return $this->Nombre;
@@ -167,5 +175,6 @@ class Producto
         $stmt = $pdo->prepare('SELECT Visible FROM productos WHERE ID_Producto = :ID');
         $stmt->execute(['ID' => $this->ID]);
         $visible = $stmt->fetch();
+        return $visible['Visible'];
     }
 }
