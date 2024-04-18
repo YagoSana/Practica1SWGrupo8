@@ -1,0 +1,333 @@
+body {
+	background-color: #cdcdcd;
+}
+
+div#contenedor {
+	width: 100%;
+	background-color: #cdcdcd;
+	margin-top: 30px;
+}
+
+header {
+	padding: 30px;
+	height: 175px;
+	display: flex;
+	flex-direction: column;
+	background-color: #000000;
+	color: white;
+}
+
+#divSuperior {
+    order: 1;
+}
+
+#divInferior {
+    order: 2;
+	margin-top: 10px;
+}
+
+header a, header a:visited {
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+} 
+
+header a:hover {
+	color: red;
+	font-weight: bold;
+	text-decoration: underline;
+} 
+
+nav {
+	color: #d86767;
+	padding: 10px;
+	float: left;
+	width: 15%;
+	height: 70%;
+	background-color: #cdcdcd;
+}
+
+nav a, nav a:visited {
+	color: #d86767;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+nav a:hover {
+	text-decoration: underline;
+} 
+
+main {
+	padding: 20px;
+	float: right;
+	min-height: 600px;
+	width: 80%;
+	background-color: white;
+}
+
+footer	 {
+	clear: both;
+	padding: 20px;
+	background-color: #303030;
+	color: white;
+	text-align: center;
+}
+
+button {
+	margin-left: 100px;
+}
+
+.h1titulo {
+	width: 50%;
+}
+
+.logoCabecera {
+	float: right;
+	width: 150px;
+	height: 150px;
+}
+
+.carrito {
+    float: right;
+}
+
+.producto {
+	display: inline-block;
+    border: 1px solid #ccc;
+    padding: 1em;
+    margin-bottom: 1em;
+    overflow: auto;
+    max-height: 50%;
+	width: 19%;
+	margin: 1%;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+
+}
+
+.producto img {
+	display: block;
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+.producto .detalles {
+	text-align: center;
+}
+.producto h3 {
+    font-size: 1.2em;
+	color: black;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.subr {
+	text-decoration: none;
+}
+
+.botones {
+    bottom: 10px; /* Ajusta la posición de los botones desde la parte inferior */
+    left: 0;
+    width: 1%;
+    display: flex;
+    justify-content: space-between; /* Distribuye los botones horizontalmente */
+}
+
+.botones button {
+    flex: 1; /* Hace que los botones ocupen el mismo ancho */
+	margin: 0 5px;
+	white-space: nowrap;
+}
+
+.agregar {
+    order: 1; /* Cambia el orden del botón Agregar al carrito */
+	background-color: rgb(76, 195, 195);
+	border-color: rgb(76, 195, 195);
+	color: white;
+	border-radius: 5%;
+}
+
+.borrar {
+	background-color: red;
+	border-color: red;
+	color: white;
+	margin-left: 30px;
+}
+
+
+.detalle_producto {
+    display: flex;
+    margin-bottom: 2em;
+}
+.detalle_producto img {
+    width: 35%;
+    height: auto;
+    margin-right: 2em;
+}
+
+.valoracion {
+    border: 1px solid #ccc;
+    padding: 1em;
+    margin-bottom: 1em;
+    overflow: auto;
+    max-height: 200px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.valoracion p {
+    margin: 0 0 1em;
+    padding-left: 2em;
+    text-indent: -2em;
+    font-size: 1.1em;
+}
+
+.valoracion p:first-child {
+    font-weight: bold;
+}
+
+img#imgCompras {
+	width: 200px;
+	height: 200px;
+}
+
+.form-container {
+	display: flex;
+	align-items: center;
+}
+
+
+.btn {
+	padding: 5px 10px;
+	font-size: 16px;
+	cursor: pointer;
+	border: none;
+	background-color: rgb(76, 195, 195);
+	color: #fff;
+	border-radius: 5px;
+	margin: 0 1px; /* Ajustar el margen entre los botones */
+}
+
+#contador {
+	padding: 10px;
+	font-size: 16px;
+	text-align: center;
+	width: 50px;
+}
+
+.cont {
+    display: flex;
+    align-items: center;
+}
+
+.total {
+    margin-right: 10px;
+}
+
+.boton-confirmar {
+    background-color: rgb(76, 195, 195); /* Cambia el color de fondo del botón */
+    color: white; /* Cambia el color del texto del botón */
+    padding: 7px 15px;
+	border: none;
+	border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+}
+
+.pedido {
+    display: flex; /* Usar flexbox para organizar los elementos */
+    border: 1px solid #ccc;
+    padding: 1em;
+    margin-bottom: 1em;
+    font-size: 15px;
+    width: 95%;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.productosPedido {
+    display: flex; /* Usar flexbox para organizar los productos */
+    flex-direction: row; /* Organizar los productos en una fila */
+    flex-wrap: wrap; /* Permitir que los productos se envuelvan si no caben en una sola fila */
+}
+
+.prodPedido {
+    margin-right: 10px; /* Espacio entre cada producto */
+}
+
+.infoPedido {
+    flex: 1; /* Hacer que la información del pedido ocupe todo el espacio disponible */
+}
+
+/* Estilos para cada elemento de información del pedido */
+.info {
+    margin: 10px; /* Ajustar el margen de la información del pedido */
+}
+
+.entregado {
+     /* Ajustar el margen de la información del pedido */
+	color: #64fe2b;
+	font-weight: bold;
+	font-weight: bold;
+	margin-top: 30px;
+	font-size: 17px;
+	margin-bottom: 0px;
+	margin-right: 20px;
+}
+
+.estado {
+    display: flex; /* Usar flexbox para organizar los productos */
+    flex-direction: row;
+}
+
+.pend {
+	color: #f88a0d;
+	font-weight: bold;
+	margin-top: 30px;
+	font-size: 17px;
+	margin-bottom: 0px;
+}
+
+.ped {
+	font-weight: bold;
+	font-size: 20px;
+	margin-top: 0px;
+	margin-bottom: 15px;
+}
+
+.pedido img {
+    display: block;
+    height: 85px;
+    width: auto;
+    object-fit: cover;
+    margin-right: 10px; /* Reducir el espacio entre las imágenes */
+	margin-bottom: 0px;
+}
+
+.valorar-btn {
+    background-color: rgb(207, 207, 207); /* Cambia el color de fondo del botón */
+    color: rgb(255, 255, 255); /* Cambia el color del texto del botón */
+    padding: 0px 10px;
+	border: none;
+	border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    font-size: 13px;
+	margin: 0px 2px;
+	margin-top: 22px;
+	box-sizing: border-box;
+
+}
+
+p.frase {
+	margin-bottom: 0px;
+	margin-top: 32px;
+	display: inline-block;
+	text-align: center;
+	height: fit-content;
+}
+
+
