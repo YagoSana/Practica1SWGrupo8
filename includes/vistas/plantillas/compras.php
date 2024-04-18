@@ -37,34 +37,37 @@ foreach ($productos_data as $producto_data) {
                     if (!empty($productos)) {
                         // Itera sobre los productos y muestra la información
                         foreach ($productos as $producto) {
-                            echo "<div class='producto'>";
-                            echo "<a class='subr' href='detalles_producto.php?id=" . $producto->getID() . "'>"; // Enlace a la página de detalles del producto
-                            echo "<img src='" . RUTA_APP . $producto->getImagen() . "' alt='Imagen del producto' id='imgCompras'>";
-                            echo "<div class ='detalles'>";
-                            echo "<h3>" . $producto->getNombre() . "</h3>";
-                            echo "</a>";//Solo la imagen y el nombre son clickeables
-                            echo "<p>" . $producto->getPrecio() . " €</p>";
+                            echo "hola";
+                            if ($producto->getVisible() == 1) {
+                                echo "<div class='producto'>";
+                                echo "<a class='subr' href='detalles_producto.php?id=" . $producto->getID() . "'>"; // Enlace a la página de detalles del producto
+                                echo "<img src='" . RUTA_APP . $producto->getImagen() . "' alt='Imagen del producto' id='imgCompras'>";
+                                echo "<div class ='detalles'>";
+                                echo "<h3>" . $producto->getNombre() . "</h3>";
+                                echo "</a>";//Solo la imagen y el nombre son clickeables
+                                echo "<p>" . $producto->getPrecio() . " €</p>";
 
-                            echo "<div class='botones'>";
-                            if (isset($_SESSION["login"])) {
-                                echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarCarrito.php' method='post'>"; //Procesa la adición al carro
-                                echo "<input type='hidden' name='producto_id' value='" . $producto->getID() . "'>";
-                                echo "<button class='agregar' type='submit' name='agregar_producto'>Agregar al carrito</button>";
-                                echo "</form>";
-                            } else {
-                                echo "<button class='agregar' onclick=\"window.location.href='" . RUTA_SRC . "/login.php'\">Agregar al carrito</button>";
+                                echo "<div class='botones'>";
+                                if (isset($_SESSION["login"])) {
+                                    echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarCarrito.php' method='post'>"; //Procesa la adición al carro
+                                    echo "<input type='hidden' name='producto_id' value='" . $producto->getID() . "'>";
+                                    echo "<button class='agregar' type='submit' name='agregar_producto'>Agregar al carrito</button>";
+                                    echo "</form>";
+                                } else {
+                                    echo "<button class='agregar' onclick=\"window.location.href='" . RUTA_SRC . "/login.php'\">Agregar al carrito</button>";
+                                }
+
+                                if (isset($_SESSION["esEmpleado"])) {
+                                    echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarEliminacion.php' method='post'>";
+                                    echo "<input type='hidden' name='producto_id' value='" . $producto->getID() . "'>";
+                                    echo "<button class='borrar' type='submit' name='eliminar_producto'>Eliminar</button>";
+                                    echo "</form>";
+                                }
+
+                                echo "</div>";
+                                echo "</div>";
+                                echo "</div>";
                             }
-
-                            if (isset($_SESSION["esEmpleado"])) {
-                                echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarEliminacion.php' method='post'>";
-                                echo "<input type='hidden' name='producto_id' value='" . $producto->getID() . "'>";
-                                echo "<button class='borrar' type='submit' name='eliminar_producto'>Eliminar</button>";
-                                echo "</form>";
-                            }
-
-                            echo "</div>";
-                            echo "</div>";
-                            echo "</div>";
                         }
                     } else {
                         echo "<p>No se encontraron productos</p>";

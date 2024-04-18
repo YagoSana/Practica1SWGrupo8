@@ -9,7 +9,7 @@
         $producto = new Producto(null, null, null, null, null);
         $eliminado = $producto->deleteProducto($ID);
         if($eliminado){
-            header('Location: '.RUTA_APP. '/includes/vistas/plantillas/paginaConfirmacion.php');
+            header('Location: '.RUTA_APP. '/includes/vistas/plantillas/compras.php');
         }
     }
 
