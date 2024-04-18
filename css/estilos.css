@@ -80,6 +80,7 @@ button {
 }
 
 .logoCabecera {
+	background-color: none;
 	float: right;
 	width: 150px;
 	height: 150px;
