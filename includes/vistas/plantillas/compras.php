@@ -52,7 +52,7 @@ foreach ($productos_data as $producto_data) {
                                 echo "<h3>" . $producto->getNombre() . "</h3>";
                                 echo "</a>";//Solo la imagen y el nombre son clickeables
                                 echo "<p>" . $producto->getPrecio() . " €</p>";
-
+                                echo "</div>";
                                 echo "<div class='botones'>";
                                 if (isset($_SESSION["login"])) {
                                     echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarCarrito.php' method='post'>"; //Procesa la adición al carro
@@ -76,9 +76,9 @@ foreach ($productos_data as $producto_data) {
                                     echo "<button class='reabastecer' type='submit' name='reabastecer_producto'>Reabastecer</button>";
                                     echo "</form>";
                                 }
-                                echo "</div>";
-                                echo "</div>";
-                                echo "</div>";
+                                
+                                echo "</div>"; //fin div botones
+                                echo "</div>"; //fin div producto
                             }
                         }
                     } else {
