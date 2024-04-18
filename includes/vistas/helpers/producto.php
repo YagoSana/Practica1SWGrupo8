@@ -9,6 +9,7 @@ class Producto
     //private $pdo;
     private $Imagen;
     private $Valoracion;
+    private $Visible;
 
     public function __construct($ID, $Nombre, $Descripcion, $Precio, $Imagen)
     {
@@ -17,6 +18,7 @@ class Producto
         $this->Descripcion = $Descripcion;
         $this->Precio = $Precio;
         $this->Imagen = $Imagen;
+        $this->Visible = 1;
     }
 
     public static function getProducto($ID)
@@ -41,7 +43,7 @@ class Producto
         $pdo = Aplicacion::getInstance()->getConexionBd();
 
         // Preparar la consulta SQL para seleccionar todos los Productos
-        $stmt = $pdo->prepare('SELECT * FROM productos');
+        $stmt = $pdo->prepare('SELECT * FROM productos ORDER BY Visible DESC');
 
         // Ejecutar la consulta
         $stmt->execute();
@@ -91,11 +93,13 @@ class Producto
     }
 
 
-    public function deleteProducto($ID)
+    public function deleteProducto($ID) //en realidad es ocultar un producto porque ya no se vende
     {
-        $cancelar = false;
         $pdo = Aplicacion::getInstance()->getConexionBd();
-
+        $stmt = $pdo->prepare('UPDATE productos SET Visible = 0 WHERE ID_Producto = :ID');
+        $stmt->execute(['ID' => $ID]);
+        return true;
+        /*
         // Comprobar si el producto está en la tabla 'productos_pedidos'
         $stmt = $pdo->prepare('SELECT * FROM productos_pedidos WHERE ID_Producto = :ID');
         $stmt->execute(['ID' => $ID]);
@@ -118,7 +122,7 @@ class Producto
         }
         if ($cancelar == false) {
         
-        //buscar si esta en otras tablas
+        
         $stmt = $pdo->prepare('DELETE FROM productos WHERE ID_Producto = :ID');
         $stmt->execute(['ID' => $ID]);
         return true ;
@@ -129,8 +133,15 @@ class Producto
             EOS;
             require_once RAIZ_APP . '/includes/vistas/plantillas/plantilla.php';
         }
-        
+        */
+    }
 
+    public function reabastecerProducto($ID)
+    {
+        $pdo = Aplicacion::getInstance()->getConexionBd();
+        $stmt = $pdo->prepare('UPDATE productos SET Visible = 1 WHERE ID_Producto = :ID');
+        $stmt->execute(['ID' => $ID]);
+        return true;
     }
 
     public function getNombre()
@@ -156,5 +167,14 @@ class Producto
     public function getDescripcion()
     {
         return $this->Descripcion;
+    }
+
+    public function getVisible()
+    {
+        $pdo = Aplicacion::getInstance()->getConexionBd();
+        $stmt = $pdo->prepare('SELECT Visible FROM productos WHERE ID_Producto = :ID');
+        $stmt->execute(['ID' => $this->ID]);
+        $visible = $stmt->fetch();
+        return $visible['Visible'];
     }
 }

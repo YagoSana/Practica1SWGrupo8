@@ -1,11 +1,9 @@
 body {
-	background-color: #cdcdcd;
+	background-color: #ffffff;
 }
 
 div#contenedor {
-	width: 100%;
-	background-color: #cdcdcd;
-	margin-top: 30px;
+	background-color: #ffffff;
 }
 
 header {
@@ -13,8 +11,8 @@ header {
 	height: 175px;
 	display: flex;
 	flex-direction: column;
-	background-color: #000000;
-	color: white;
+	background-color: #f2ba1f;
+	color: black;
 }
 
 #divSuperior {
@@ -27,7 +25,7 @@ header {
 }
 
 header a, header a:visited {
-	color: white;
+	color: black;
 	font-weight: bold;
 	text-decoration: none;
 } 
@@ -44,7 +42,7 @@ nav {
 	float: left;
 	width: 15%;
 	height: 70%;
-	background-color: #cdcdcd;
+	background-color: #ffffff;
 }
 
 nav a, nav a:visited {
@@ -147,13 +145,20 @@ button {
 	color: white;
 	border-radius: 5%;
 }
-
+.reabastecer {
+	background-color: rgb(176, 243, 109);
+	border-color: rgb(176, 243, 109);
+	color: black;
+	margin-left: 30px;
+}
 .borrar {
 	background-color: red;
 	border-color: red;
 	color: white;
 	margin-left: 30px;
 }
+
+
 
 
 .detalle_producto {
