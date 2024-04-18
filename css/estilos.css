@@ -335,4 +335,28 @@ p.frase {
 	height: fit-content;
 }
 
-
+/* buscador en la cabecera */
+.cabecera {
+	background-color: #000;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  }
+  
+  .buscador {
+	width: 50%;
+	height: 35px;
+	border-radius: 20px;
+	border: none;
+	padding: 0 20px;
+	background-color: #333;
+	color: #fff;
+	font-size: 16px;
+  }
+  
+  .buscador::placeholder {
+	color: #aaa;
+	opacity: 1;
+  }
+  
