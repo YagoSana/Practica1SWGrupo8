@@ -91,11 +91,13 @@ class Producto
     }
 
 
-    public function deleteProducto($ID)
+    public function deleteProducto($ID) //en realidad es ocultar un producto porque ya no se vende
     {
         $cancelar = false;
         $pdo = Aplicacion::getInstance()->getConexionBd();
 
+
+        
         // Comprobar si el producto está en la tabla 'productos_pedidos'
         $stmt = $pdo->prepare('SELECT * FROM productos_pedidos WHERE ID_Producto = :ID');
         $stmt->execute(['ID' => $ID]);
@@ -118,7 +120,7 @@ class Producto
         }
         if ($cancelar == false) {
         
-        //buscar si esta en otras tablas
+        
         $stmt = $pdo->prepare('DELETE FROM productos WHERE ID_Producto = :ID');
         $stmt->execute(['ID' => $ID]);
         return true ;
@@ -130,7 +132,6 @@ class Producto
             require_once RAIZ_APP . '/includes/vistas/plantillas/plantilla.php';
         }
         
-
     }
 
     public function getNombre()
