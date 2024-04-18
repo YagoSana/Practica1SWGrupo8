@@ -92,7 +92,7 @@ button {
 
 .producto {
 	display: inline-block;
-    border: 1px solid #ccc;
+    border: 1px solid #ccc; 
     padding: 1em;
     margin-bottom: 1em;
     overflow: auto;
@@ -104,12 +104,17 @@ button {
 
 }
 
+.productoOculto{
+	background-color: #dddddd;
+}
+
 .producto img {
 	display: block;
+	margin: auto;
     height: 100px;
     width: 100px;
     object-fit: cover;
-    margin-right: 20px;
+	
 }
 .producto .detalles {
 	text-align: center;

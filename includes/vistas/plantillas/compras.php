@@ -37,8 +37,15 @@ foreach ($productos_data as $producto_data) {
                     if (!empty($productos)) {
                         // Itera sobre los productos y muestra la información
                         foreach ($productos as $producto) {
-                            if ($producto->getVisible() == 1 || isset($_SESSION["esEmpleado"])) {
-                                echo "<div class='producto'>";
+                            $visible = $producto->getVisible();
+                            if ($visible || isset($_SESSION["esEmpleado"])) {
+
+                                if($visible){
+                                    $class = "producto";
+                                } else $class = "producto productoOculto";
+
+                                echo "<div class='$class'>";
+                                //echo "<div class='producto'>";
                                 echo "<a class='subr' href='detalles_producto.php?id=" . $producto->getID() . "'>"; // Enlace a la página de detalles del producto
                                 echo "<img src='" . RUTA_APP . $producto->getImagen() . "' alt='Imagen del producto' id='imgCompras'>";
                                 echo "<div class ='detalles'>";
@@ -56,7 +63,7 @@ foreach ($productos_data as $producto_data) {
                                     echo "<button class='agregar' onclick=\"window.location.href='" . RUTA_SRC . "/login.php'\">Agregar al carrito</button>";
                                 }
 
-                                if (isset($_SESSION["esEmpleado"]) && $producto->getVisible() == 1){
+                                if (isset($_SESSION["esEmpleado"]) && $visible){
                                     echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarEliminacion.php' method='post'>";
                                     echo "<input type='hidden' name='producto_id' value='" . $producto->getID() . "'>";
                                     echo "<button class='borrar' type='submit' name='eliminar_producto'>Ocultar</button>";
@@ -69,8 +76,6 @@ foreach ($productos_data as $producto_data) {
                                     echo "<button class='reabastecer' type='submit' name='reabastecer_producto'>Reabastecer</button>";
                                     echo "</form>";
                                 }
-
-
                                 echo "</div>";
                                 echo "</div>";
                                 echo "</div>";
