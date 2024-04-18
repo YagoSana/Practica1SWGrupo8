@@ -10,6 +10,11 @@ if (session_status() === PHP_SESSION_NONE) {
         <img src="<?php echo RUTA_IMGS ?>/backMusicLogo.png" class="logoCabecera">
         <h1 class="h1titulo">BACK MUSIC</h1>
         <h2>La mejor tienda de música</h2>
+        <!-- Aquí agregamos el formulario de búsqueda -->
+        <form action="<?php echo RUTA_SRC ?>/buscar.php" method="get">
+            <input type="text" name="q" placeholder="Buscar...">
+            <input type="submit" value="Buscar">
+        </form>
     </div>
     <div id="divInferior">
         <?php
@@ -24,5 +29,4 @@ if (session_status() === PHP_SESSION_NONE) {
         <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarPedidos.php" class='carrito'>PEDIDOS</a>
     </div>
 </header>
-
 </html>
