@@ -8,7 +8,7 @@ div#contenedor {
 
 header {
 	padding: 30px;
-	height: 175px;
+	height: 200px;
 	display: flex;
 	flex-direction: column;
 	background-color: #f2ba1f;
@@ -337,7 +337,7 @@ p.frase {
 
 /* buscador en la cabecera */
 .cabecera {
-	background-color: #000;
+	background-color: #f2ba1f;
 	height: 60px;
 	display: flex;
 	align-items: center;
