@@ -27,7 +27,9 @@ $contenido = '';
 foreach ($resultados as $producto_data) {
     $producto = new Producto($producto_data['ID_Producto'], $producto_data['Nombre'], $producto_data['Descripcion'], $producto_data['Precio'], $producto_data['Imagen']);
     $contenido .= "<div class='producto'>";
-    $contenido .= "<a class='subr' href='detalles_producto.php?id=" . $producto->getID() . "'>"; // Enlace a la página de detalles del producto
+    $contenido .= "<a class='subr' href='" . RUTA_APP . "/includes/vistas/plantillas/detalles_producto.php?id=" . $producto->getID() . "'>";
+ // Enlace a la página de detalles del producto
+    //$contenido .= "<a class='subr' href= . RUTA_APP. 'detalles_producto.php?id=" . $producto->getID() . "'>"; // Enlace a la página de detalles del producto
     $contenido .= "<img src='" . RUTA_APP . $producto->getImagen() . "' alt='Imagen del producto' id='imgCompras'>";
     $contenido .= "<div class ='detalles'>";
     $contenido .= "<h3>" . $producto->getNombre() . "</h3>";
