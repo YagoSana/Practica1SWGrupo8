@@ -14,7 +14,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <!-- Aquí agregamos el formulario de búsqueda -->
             <form action="<?php echo RUTA_SRC ?>/buscar.php" method="get">
                 <input type="text" name="q" class="buscador" placeholder="Buscar...">
-                <input type="submit" value="Buscar">
+                
             </form>
         </div>
     </div>
