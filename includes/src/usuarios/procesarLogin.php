@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../../config.php';
-require 'usuario.php';
+require_once 'usuario.php';
 
 $User = $_POST['username'];
 $Pass = $_POST['password'];
@@ -9,7 +9,6 @@ $Pass = $_POST['password'];
 $usuario = Usuario::login($User, $Pass);
 
 if ($usuario) {
-    echo "entra en usuario";
     $_SESSION["login"] = true;
     $_SESSION["nombre"] = $User;
     
@@ -30,7 +29,7 @@ if (isset($_SESSION["login"])) {
     <h2> Error en el inicio de sesión </h2>
     <h2>Inicio de sesión en BackMusic</h2>
 
-            <form action="$ruta/Usuarios/procesarLogin.php" method="POST">
+            <form action="$ruta/usuarios/procesarLogin.php" method="POST">
                 <p>
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" required>

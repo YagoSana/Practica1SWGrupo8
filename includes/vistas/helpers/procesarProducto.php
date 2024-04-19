@@ -68,14 +68,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         require_once RAIZ_APP . '/includes/vistas/plantillas/plantilla.php';
     }
     else{
-    // Obtén la imagen y su nombre
     $Imagen = $_FILES['producto_imagen']['name'];
     $ruta = $_FILES['producto_imagen']['tmp_name'];
 
-    // Define la ruta donde se guardará la imagen en el servidor
     $target = "/img/imagenesBD/" . $Imagen;
 
-    // Mueve la imagen a la carpeta de destino
     move_uploaded_file($ruta,RAIZ_APP."$target");
 
     $producto = new Producto(null, $Nombre, $Descripcion, $Precio, $target);

@@ -47,6 +47,10 @@ CREATE TABLE `pedidos` (
   `Importe` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+INSERT INTO `pedidos` (`ID_Pedido`, `Fecha`, `Cliente`, `Importe`) VALUES
+(1, '2024-04-09', 8, 299.99),
+(2, '2024-04-10', 9, 299.99);
+
 -- --------------------------------------------------------
 
 --
@@ -58,7 +62,8 @@ CREATE TABLE `productos` (
   `Nombre` varchar(20) NOT NULL,
   `Descripcion` varchar(200) NOT NULL,
   `Precio` decimal(6,2) NOT NULL,
-  `Imagen` varchar(255) NOT NULL
+  `Imagen` varchar(255) NOT NULL,
+  `Visible` boolean NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -86,6 +91,9 @@ CREATE TABLE `productos_pedidos` (
   `Cantidad` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+INSERT INTO `productos_pedidos` (`ID_Pedido`, `ID_Producto`, `Cantidad`) VALUES
+(1, 1, 1),
+(2, 1, 1);
 -- --------------------------------------------------------
 
 --
@@ -133,8 +141,8 @@ CREATE TABLE `valoraciones` (
 --
 
 INSERT INTO `valoraciones` (`ID_Valoracion`, `Idusuario`, `ID`, `Valoracion`, `Comentario`) VALUES
-(1, 2, 1, 5, 'Excelente guitarra. El sonido es claro y resonante, y el cuerpo de madera pulida es absolutamente hermoso.'),
-(2, 3, 1, 4, 'Buena guitarra para su precio. Las cuerdas de acero producen un sonido brillante y la guitarra en sí es bastante duradera.');
+(1, 8, 1, 5, 'Excelente guitarra. El sonido es claro y resonante, y el cuerpo de madera pulida es absolutamente hermoso.'),
+(2, 9, 2, 4, 'Buena guitarra para su precio. Las cuerdas de acero producen un sonido brillante y la guitarra en sí es bastante duradera.');
 
 --
 -- Índices para tablas volcadas

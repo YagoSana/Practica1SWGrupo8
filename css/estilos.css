@@ -1,20 +1,18 @@
 body {
-	background-color: #cdcdcd;
+	background-color: #ffffff;
 }
 
 div#contenedor {
-	width: 100%;
-	background-color: #cdcdcd;
-	margin-top: 30px;
+	background-color: #ffffff;
 }
 
 header {
 	padding: 30px;
-	height: 175px;
+	height: 200px;
 	display: flex;
 	flex-direction: column;
-	background-color: #000000;
-	color: white;
+	background-color: #f2ba1f;
+	color: black;
 }
 
 #divSuperior {
@@ -27,7 +25,7 @@ header {
 }
 
 header a, header a:visited {
-	color: white;
+	color: black;
 	font-weight: bold;
 	text-decoration: none;
 } 
@@ -44,7 +42,7 @@ nav {
 	float: left;
 	width: 15%;
 	height: 70%;
-	background-color: #cdcdcd;
+	background-color: #ffffff;
 }
 
 nav a, nav a:visited {
@@ -82,9 +80,10 @@ button {
 }
 
 .logoCabecera {
+	background-color: none;
 	float: right;
-	width: 150px;
-	height: 150px;
+	width: 170px;
+	height: 170px;
 }
 
 .carrito {
@@ -93,7 +92,7 @@ button {
 
 .producto {
 	display: inline-block;
-    border: 1px solid #ccc;
+    border: 1px solid #ccc; 
     padding: 1em;
     margin-bottom: 1em;
     overflow: auto;
@@ -105,12 +104,17 @@ button {
 
 }
 
+.productoOculto{
+	background-color: #dddddd;
+}
+
 .producto img {
 	display: block;
+	margin: auto;
     height: 100px;
     width: 100px;
     object-fit: cover;
-    margin-right: 20px;
+	
 }
 .producto .detalles {
 	text-align: center;
@@ -127,17 +131,14 @@ button {
 }
 
 .botones {
-    bottom: 10px; /* Ajusta la posición de los botones desde la parte inferior */
-    left: 0;
-    width: 1%;
-    display: flex;
-    justify-content: space-between; /* Distribuye los botones horizontalmente */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
 }
 
 .botones button {
-    flex: 1; /* Hace que los botones ocupen el mismo ancho */
-	margin: 0 5px;
-	white-space: nowrap;
+	margin: 5px;
 }
 
 .agregar {
@@ -147,7 +148,12 @@ button {
 	color: white;
 	border-radius: 5%;
 }
-
+.reabastecer {
+	background-color: rgb(176, 243, 109);
+	border-color: rgb(176, 243, 109);
+	color: black;
+	margin-left: 30px;
+}
 .borrar {
 	background-color: red;
 	border-color: red;
@@ -156,12 +162,14 @@ button {
 }
 
 
+
+
 .detalle_producto {
     display: flex;
     margin-bottom: 2em;
 }
 .detalle_producto img {
-    width: 50%;
+    width: 35%;
     height: auto;
     margin-right: 2em;
 }
@@ -317,9 +325,41 @@ img#imgCompras {
     display: inline-block;
     font-size: 13px;
 	margin: 0px 2px;
-	margin-top: 20px;
+	margin-top: 22px;
 	box-sizing: border-box;
 
 }
 
+p.frase {
+	margin-bottom: 0px;
+	margin-top: 32px;
+	display: inline-block;
+	text-align: center;
+	height: fit-content;
+}
 
+/* buscador en la cabecera */
+.cabecera {
+	background-color: #f2ba1f;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  }
+  
+  .buscador {
+	width: 180%;
+	height: 45px;
+	border-radius: 20px;
+	border: none;
+	padding: 0 20px;
+	background-color: #8e6d13;
+	color: #fff;
+	font-size: 16px;
+  }
+  
+  .buscador::placeholder {
+	color: #aaa;
+	opacity: 1;
+  }
+  /* @media screen and .... */

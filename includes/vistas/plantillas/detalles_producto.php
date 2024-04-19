@@ -1,19 +1,14 @@
 <?php
-// Incluye el archivo de la clase Database, Usuario y Producto
 require ("../../config.php");
 require_once ("../helpers/producto.php");
 require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
 
-// Obtiene el ID del producto de la URL
 $producto_id = $_GET['id'];
-
-// Usa el método getProducto de la clase Producto para obtener los detalles del producto
 $producto = Producto::getProducto($producto_id);
 
-// Usa el método getValoracion para obtener las valoraciones del producto
-$valoraciones = valoracion::getValoracion($producto_id);
-$ruta = RUTA_APP;
+$pedidos = Producto::obtenerPedidosDeProducto($producto_id);
 
+$ruta = RUTA_APP;
 ob_start();
 ?>
 <article>
@@ -25,15 +20,19 @@ ob_start();
                 <h3><?php echo $producto->getNombre(); ?></h3>
                 <p><?php echo $producto->getDescripcion(); ?></p>
                 <h4>Valoraciones</h4>
-                <?php foreach ($valoraciones as $valoracion) { 
-                    $usuario = Usuario::buscaPorId($valoracion["Idusuario"]);
+                <?php foreach($pedidos as $pedido) {
+                    $valoracion = valoracion::getValoracion($pedido['ID_Pedido']);
+                    if($valoracion != null) {
+                        
+                        $usuario = Usuario::buscaPorId($valoracion["Idusuario"]);
+                
                 ?>
                     <div class='valoracion'>
                         <p>Usuario: <?php echo $usuario->getNombre(); ?></p>
                         <p>Valoración: <?php echo $valoracion['Valoracion']; ?></p>
                         <p>Comentario: <?php echo $valoracion['Comentario']; ?></p>
                     </div>
-                <?php } ?>
+                <?php } }?>
             </div>
         </div>
     </section>

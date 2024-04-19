@@ -5,9 +5,9 @@ require_once '../plantillas/compras.php';
 require_once 'producto.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $producto_id = $_POST['productoId']; // Recupera el ID del producto enviado desde el cliente
+    $producto_id = $_POST['productoId']; 
     $accion = $_POST['accion'];
-    // Accede al usuario y a su carrito desde la sesión
+    
     $carrito = $_SESSION['usuario']->getCarrito();
     $cantidad = $carrito->getCantidadProducto($producto_id);
     
