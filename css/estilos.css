@@ -362,4 +362,21 @@ p.frase {
 	color: #aaa;
 	opacity: 1;
   }
-  /* @media screen and .... */
+
+  #gantt{
+	width: 100%;
+  }
+
+.boceto {
+	width: 30%;
+}
+
+.figuraBoceto{
+	display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.figuraBoceto img {
+	margin-right: 20px;
+  }

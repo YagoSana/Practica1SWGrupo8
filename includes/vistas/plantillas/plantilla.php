@@ -3,7 +3,7 @@
 
 <head>
     <?php include RAIZ_APP . '/includes/vistas/comun/header.php'; ?>
-    <title>Planificación Back Music</title>
+    <title> <?= $titulo ?> </title>
 </head>
 
 <body>
