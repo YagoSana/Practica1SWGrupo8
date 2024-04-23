@@ -6,9 +6,9 @@ require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve the data from the form
-    $nombre = $_POST['nombre']; 
-    $descripcion = $_POST['descripcion']; 
-    $imagen = $_POST['imagen']; 
+    $Nombre = $_POST['nombre']; 
+    $Descripcion = $_POST['descripcion']; 
+   // $Imagen = $_POST['imagen']; 
 
     // Valida que el nombre tenga al menos 5 caracteres
     if (strlen($Nombre) < 5) {
@@ -41,6 +41,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     else{
         //Procesar el producto
+        $Imagen = $_FILES['producto_imagen']['name'];
+        $ruta = $_FILES['producto_imagen']['tmp_name'];
+
+        $target = "/img/imagenesBD/" . $Imagen;
+
+        move_uploaded_file($ruta, RAIZ_APP."$target");
+
+        $ID_Usuario = $_SESSION['usuario']->getId();
+
+        $Estado = "Pendiente";
+
+        $venta = new Venta(null, $ID_Usuario, $Nombre, $Descripcion, $Imagen, $Estado);
+
+        $venta->createVenta();
+
         header("Location: " . RUTA_APP . "/index.php");
     }
     
