@@ -6,7 +6,6 @@ class Producto
     private $Nombre;
     private $Descripcion;
     private $Precio;
-    //private $pdo;
     private $Imagen;
     private $Valoracion;
     private $Visible;

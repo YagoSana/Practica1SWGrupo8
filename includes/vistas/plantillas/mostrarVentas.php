@@ -19,8 +19,8 @@ require '../../config.php';
                 <section>
                     <h2>Ventas Back Music</h2>
                     <p>
-                        Esta el la sección de ventas de Back Music. Aquí podrís encontrar las ventas de nuestros
-                        clientes.
+                        Esta el la sección de ventas de Back Music. Aquí podrás encontrar si tus productos han sido
+                        rechazados o aceptados a cambio de BMPoints para su Wallet virtual de la tienda.
                     </p>
                 </section>
             </article>

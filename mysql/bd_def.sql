@@ -144,6 +144,22 @@ INSERT INTO `valoraciones` (`ID_Valoracion`, `Idusuario`, `ID`, `Valoracion`, `C
 (1, 8, 1, 5, 'Excelente guitarra. El sonido es claro y resonante, y el cuerpo de madera pulida es absolutamente hermoso.'),
 (2, 9, 2, 4, 'Buena guitarra para su precio. Las cuerdas de acero producen un sonido brillante y la guitarra en sí es bastante duradera.');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ventas`
+--
+
+CREATE TABLE `ventas` (
+  `ID_Venta` int(10) UNSIGNED NOT NULL,
+  `ID_Usuario` int(20) UNSIGNED NOT NULL.
+  `Nombre` varchar(20) NOT NULL,
+  `Descripcion` varchar(200) NOT NULL,
+  `Imagen` varchar(255) NOT NULL,
+  `Estado` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
 --
 -- Índices para tablas volcadas
 --
