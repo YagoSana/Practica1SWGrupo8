@@ -33,7 +33,7 @@ class Venta {
         $this->ID_Venta = $pdo->lastInsertId();
     }
 
-    public function getAllVentas() {
+    public static function getAllVentas() {
         // Obtener la instancia de la conexión a la base de datos
         $pdo = Aplicacion::getInstance()->getConexionBd();
 
@@ -56,4 +56,37 @@ class Venta {
         return $result;
     }
 
+    public static function getVentaById($venta_id) {
+
+        $pdo = Aplicacion::getInstance()->getConexionBd();
+    
+        $stmt = $pdo->prepare('SELECT * FROM ventas WHERE ID = :ID');
+
+        $stmt->execute(['ID' => $venta_id]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        // Verificar si se obtuvo un resultado
+        if ($result === false) {
+            die('Error al obtener la venta de la base de datos');
+        }
+    
+        $venta = new Venta($result['ID'], $result['ID_Usuario'], $result['Nombre'], $result['Descripcion'], $result['Imagen'], $result['Estado']);
+        // Devolver el objeto Venta
+        return $venta;
+    }
+    
+
+    public function setEstado($estado) {
+        // Obtener la instancia de la conexión a la base de datos
+        $pdo = Aplicacion::getInstance()->getConexionBd();
+    
+        // Preparar la consulta SQL para actualizar el estado de la venta
+        $stmt = $pdo->prepare('UPDATE ventas SET Estado = :Estado WHERE ID = :ID');
+    
+        // Ejecutar la consulta
+        $stmt->execute(['Estado' => $estado, 'ID' => $this->ID]);
+    }
+    
+    
+    
 }

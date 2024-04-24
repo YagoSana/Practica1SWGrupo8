@@ -152,7 +152,7 @@ INSERT INTO `valoraciones` (`ID_Valoracion`, `Idusuario`, `ID`, `Valoracion`, `C
 
 CREATE TABLE `ventas` (
   `ID_Venta` int(10) UNSIGNED NOT NULL,
-  `ID_Usuario` int(20) UNSIGNED NOT NULL.
+  `ID_Usuario` int(20) UNSIGNED NOT NULL,
   `Nombre` varchar(20) NOT NULL,
   `Descripcion` varchar(200) NOT NULL,
   `Imagen` varchar(255) NOT NULL,

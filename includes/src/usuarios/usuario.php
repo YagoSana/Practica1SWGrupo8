@@ -312,4 +312,28 @@ class Usuario
             "roles" => $this->roles
         );
     }
+
+    public function getVentasUsuario() {
+        // Obtener la instancia de la conexión a la base de datos
+        $pdo = Aplicacion::getInstance()->getConexionBd();
+    
+        // Preparar la consulta SQL para seleccionar todas las Ventas del usuario
+        $stmt = $pdo->prepare('SELECT * FROM ventas WHERE ID_Usuario = :ID_Usuario');
+    
+        // Ejecutar la consulta
+        $stmt->execute(['ID_Usuario' => $this->id]);
+    
+        // Obtener todos los resultados como un array asociativo
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        // Verificar si se obtuvieron resultados
+        if ($result === false) {
+            // Si no hay resultados, mostrar un mensaje de error
+            die('Error al obtener las ventas del usuario de la base de datos');
+        }
+    
+        // Devolver el resultado
+        return $result;
+    }
+    
 }
