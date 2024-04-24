@@ -8,7 +8,7 @@ div#contenedor {
 
 header {
 	padding: 30px;
-	height: 200px;
+	height: 250px;
 	display: flex;
 	flex-direction: column;
 	background-color: #f2ba1f;
@@ -24,6 +24,15 @@ header {
 	margin-top: 10px;
 }
 
+#divlogin{
+	float: left;
+}
+#divcarrito{
+	float: right;
+}
+
+
+
 header a, header a:visited {
 	color: black;
 	font-weight: bold;
@@ -36,14 +45,31 @@ header a:hover {
 	text-decoration: underline;
 } 
 
-nav {
-	color: #d86767;
-	padding: 10px;
-	float: left;
-	width: 15%;
-	height: 70%;
-	background-color: #ffffff;
+#lateralIzq ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
 }
+
+#lateralIzq li {
+    float: left;
+}
+
+#lateralIzq li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    margin: 0 20px; /* Añade margen a los lados del texto */
+}
+
+#lateralIzq li a:hover {
+    background-color: #111;
+}
+
 
 nav a, nav a:visited {
 	color: #d86767;
@@ -57,9 +83,7 @@ nav a:hover {
 
 main {
 	padding: 20px;
-	float: right;
 	min-height: 600px;
-	width: 80%;
 	background-color: white;
 }
 
@@ -160,9 +184,6 @@ button {
 	color: white;
 	margin-left: 30px;
 }
-
-
-
 
 .detalle_producto {
     display: flex;
