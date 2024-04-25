@@ -8,12 +8,13 @@ $Apellido = $_POST['Apellido'] ?? null;
 $Email = $_POST['Email'] ?? null;
 $User = $_POST['User'] ?? null;
 $Pass = $_POST['Pass'] ?? null;
-$rol = "cliente";
+$Rol = "cliente";
+$Puntos = 0;
 
 $query = Usuario::buscaUsuario($User);
 
 if (!$query) {
-    Usuario::insertaUsuario($Nombre, $Apellido, $Email, $User, $Pass, $rol);
+    Usuario::insertaUsuario($Nombre, $Apellido, $Email, $User, $Pass, $Rol, $Puntos);
 }
 
 header('Location: ' . RUTA_APP . '/index.php');
