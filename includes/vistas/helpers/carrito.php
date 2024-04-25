@@ -136,8 +136,24 @@ class Carrito {
 
     public function confirmarPedido() {
         // Creamos un nuevo pedido
+        $productos_id = $this->obtenerCarritoDelUsuario($this->usuario->getId());
+        $productosCarrito = array();
+
+        foreach($productos_id as $productoID){
+            $producto = Producto::getProducto($productoID['Producto']);
+            $stock = $producto->getStock();
+            $nom = $producto->getNombre();
+            if($productoID['Cantidad'] > $stock) {
+                echo "<p>No hay suficientes de " . $nom . "</p>";
+                return false;
+            }
+            else {
+                $productosCarrito[] = $productoID;           
+            }
+        }
+
         $this->pedido = new Pedido($this->usuario);
-        // Establecemos la fecha de entrega para dentro de un par de dias
+                // Establecemos la fecha de entrega para dentro de un par de dias
         $dias = rand(2, 5);
         //$fecha = date('Y-m-d', strtotime("+$dias days"));
 
@@ -146,18 +162,25 @@ class Carrito {
 
         $db = Aplicacion::getInstance()->getConexionBd();
     
-        $productos_id = $this->obtenerCarritoDelUsuario($this->usuario->getId());
 
         $this->pedido->setImporte($this->total);
 
         $idPedido = $this->pedido->agregarPedido();
         // Agregamos los Productos al Pedido
-        foreach($productos_id as $productoID){
+        foreach($productosCarrito as $productoID){
             $producto = Producto::getProducto($productoID['Producto']);
             $this->pedido->agregarProducto($idPedido, $producto, $productoID['Cantidad']);
+            $stock = $producto->getStock();
+
             $producto->bajarCantidadStock($productoID['Cantidad']);
+            $this->hola = $productoID['Cantidad'];
+            $this->adios = $stock;
+            if($productoID['Cantidad'] == $stock) {
+                Producto::deleteProducto($producto->getID());
+            }
+            
         }
-    
+        
         $this->productos = [];
 
         $this->vaciarCarrito();
@@ -165,7 +188,6 @@ class Carrito {
         $this->pedido->confirmarPedido();
         // Cambiamos el estado del carrito a 'Enviado'
         $this->estado = 'Enviado';
-        // Cerrar la conexión a la base de datos
     }
 
     public function vaciarCarrito() {

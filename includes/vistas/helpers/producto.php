@@ -161,6 +161,11 @@ class Producto
         return $this->Nombre;
     }
 
+    public function getStock()
+    {
+        return $this->Stock;
+    }
+
     public function getID()
     {
         return $this->ID;
