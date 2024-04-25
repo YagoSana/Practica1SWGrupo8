@@ -63,6 +63,7 @@ CREATE TABLE `productos` (
   `Descripcion` varchar(200) NOT NULL,
   `Precio` decimal(6,2) NOT NULL,
   `Imagen` varchar(255) NOT NULL,
+  `Stock` int(100) UNSIGNED NOT NULL,
   `Visible` boolean NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -70,14 +71,14 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`ID_Producto`, `Nombre`, `Descripcion`, `Precio`, `Imagen`) VALUES
-(1, 'Guitarra Acústica', 'Instrumento musical de alta calidad, con cuerdas de acero y un sonido resonante y claro. Ideal para músicos de todos los niveles. Cuerpo de madera pulida para una estética elegante. Esta guitarra acús', 299.99, '/img/imagenesBD/Guitarra.jpg'),
-(2, 'Tambor', 'Instrumento de percusión de sonido profundo y resonante. Cuerpo de madera con parches de piel ajustables. Perfecto para ritmos enérgicos y actuaciones en vivo.', 99.99, '/img/imagenesBD/Tambor.jpg'),
-(3, 'Arpa', 'Instrumento musical elegante con cuerdas tensadas que se tocan con los dedos. Produce sonidos melodiosos y suaves. Ideal para música clásica y celta. Cuerpo de madera de alta calidad para una resonanc', 629.99, '/img/imagenesBD/Arpa.jpg'),
-(4, 'Armónica', 'diseñada para practicantes, principiantes e intermedios. Gran sistema de armónica adecuado para blues, folk, música clásica pop, jazz, country y rock & roll', 68.20, '/img/imagenesBD/armonica.jpg'),
-(5, 'Pink Floyd Vinilo', 'Vinilo de la banda Pink Floyd, con su álbum más famoso, The Dark Side of the Moon. Un clásico de la música rock que no puede faltar en tu colección.', 35.99, '/img/imagenesBD/PinkFloydVinile.png'),
-(6, 'PumpUpTheJam Vinilo', 'Vinilo de la banda Technotronic, con su álbum más famoso, Pump Up The Jam. Un clásico de la música electrónica que conquistó las pistas de baile en los años 90.', 35.99, '/img/imagenesBD/PumpUpTheJam.png'),
-(7, 'Camiseta Los Ramones', 'Camiseta de la banda Ramones, con su icónico logo en la parte delantera. Fabricada en algodón 100% para una mayor comodidad y durabilidad. Disponible unicamente en talla L. (Más tallas próximamente)', 12.99, '/img/imagenesBD/Ramones.png');
+INSERT INTO `productos` (`ID_Producto`, `Nombre`, `Descripcion`, `Precio`, `Imagen`, `Stock`) VALUES
+(1, 'Guitarra Acústica', 'Instrumento musical de alta calidad, con cuerdas de acero y un sonido resonante y claro. Ideal para músicos de todos los niveles. Cuerpo de madera pulida para una estética elegante. Esta guitarra acús', 299.99, '/img/imagenesBD/Guitarra.jpg', 10),
+(2, 'Tambor', 'Instrumento de percusión de sonido profundo y resonante. Cuerpo de madera con parches de piel ajustables. Perfecto para ritmos enérgicos y actuaciones en vivo.', 99.99, '/img/imagenesBD/Tambor.jpg', 10),
+(3, 'Arpa', 'Instrumento musical elegante con cuerdas tensadas que se tocan con los dedos. Produce sonidos melodiosos y suaves. Ideal para música clásica y celta. Cuerpo de madera de alta calidad para una resonanc', 629.99, '/img/imagenesBD/Arpa.jpg', 10),
+(4, 'Armónica', 'diseñada para practicantes, principiantes e intermedios. Gran sistema de armónica adecuado para blues, folk, música clásica pop, jazz, country y rock & roll', 68.20, '/img/imagenesBD/armonica.jpg', 10),
+(5, 'Pink Floyd Vinilo', 'Vinilo de la banda Pink Floyd, con su álbum más famoso, The Dark Side of the Moon. Un clásico de la música rock que no puede faltar en tu colección.', 35.99, '/img/imagenesBD/PinkFloydVinile.png', 10),
+(6, 'PumpUpTheJam Vinilo', 'Vinilo de la banda Technotronic, con su álbum más famoso, Pump Up The Jam. Un clásico de la música electrónica que conquistó las pistas de baile en los años 90.', 35.99, '/img/imagenesBD/PumpUpTheJam.png', 10),
+(7, 'Camiseta Los Ramones', 'Camiseta de la banda Ramones, con su icónico logo en la parte delantera. Fabricada en algodón 100% para una mayor comodidad y durabilidad. Disponible unicamente en talla L. (Más tallas próximamente)', 12.99, '/img/imagenesBD/Ramones.png', 10);
 
 -- --------------------------------------------------------
 

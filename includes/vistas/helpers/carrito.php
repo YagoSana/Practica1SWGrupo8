@@ -155,6 +155,7 @@ class Carrito {
         foreach($productos_id as $productoID){
             $producto = Producto::getProducto($productoID['Producto']);
             $this->pedido->agregarProducto($idPedido, $producto, $productoID['Cantidad']);
+            $producto->bajarCantidadStock($productoID['Cantidad']);
         }
     
         $this->productos = [];

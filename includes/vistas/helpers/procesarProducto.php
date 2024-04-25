@@ -7,6 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Nombre = $_POST['producto_nombre'];
     $Descripcion = $_POST['producto_descripcion'];
     $Precio = $_POST['producto_precio'];
+    $Stock = $_POST['producto_stock'];
 
     // Valida que el nombre tenga al menos 5 caracteres
     if (strlen($Nombre) < 5) {
@@ -75,9 +76,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     move_uploaded_file($ruta,RAIZ_APP."$target");
 
-    $producto = new Producto(null, $Nombre, $Descripcion, $Precio, $target);
+    $producto = new Producto(null, $Nombre, $Descripcion, $Precio, $target, $Stock);
 
-    $producto->createProducto($Nombre, $Descripcion, $Precio, $target);
+    $producto->createProducto($Nombre, $Descripcion, $Precio, $target, $Stock);
     header('Location: ' . RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php');
     }
 }
