@@ -30,7 +30,7 @@ class Venta {
             'Estado' => $this->Estado
         ]);
     
-        $this->ID_Venta = $pdo->lastInsertId();
+        $this->ID = $pdo->lastInsertId();
     }
 
     public static function getAllVentas() {

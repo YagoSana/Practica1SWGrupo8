@@ -1,13 +1,15 @@
 <?php
 
-require_once '../plantillas/mostrarVentaCliente.php';
+require_once '../plantillas/mostrarVentas.php';
 require_once '../../config.php';
 require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
+require_once RAIZ_APP. '/includes/vistas/helpers/venta.php';
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve the data from the form
-    $Nombre = $_POST['nombre']; 
-    $Descripcion = $_POST['descripcion']; 
+    $Nombre = $_POST['venta_nombre']; 
+    $Descripcion = $_POST['venta_descripcion']; 
    // $Imagen = $_POST['imagen']; 
 
     // Valida que el nombre tenga al menos 5 caracteres
@@ -41,8 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     else{
         //Procesar el producto
-        $Imagen = $_FILES['producto_imagen']['name'];
-        $ruta = $_FILES['producto_imagen']['tmp_name'];
+        $Imagen = $_FILES['venta_imagen']['name'];
+        $ruta = $_FILES['venta_imagen']['tmp_name'];
 
         $target = "/img/imagenesBD/" . $Imagen;
 
@@ -56,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $venta->createVenta();
 
-        header("Location: " . RUTA_APP . "/index.php");
+        header('Location: ' . RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php');
     }
     
 }

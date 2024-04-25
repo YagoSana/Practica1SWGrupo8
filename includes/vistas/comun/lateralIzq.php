@@ -15,6 +15,7 @@
         <?php
             if(isset($_SESSION["esEmpleado"])) {
                 echo '<li><a href="' . RUTA_VISTAS . '/plantillas/uploadProducto.php">Añadir productos</a></li>';
+                echo '<li><a href="' . RUTA_VISTAS . '/plantillas/mostrarGestionVentas.php">Gestionar ventas</a></li>';
             }
         ?>
 
