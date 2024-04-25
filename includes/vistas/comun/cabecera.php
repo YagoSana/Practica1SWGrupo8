@@ -1,13 +1,3 @@
-<?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-if(isset($_SESSION["login"])){
-    require_once RAIZ_APP . '/includes/src/usuarios/usuario.php';
-    $usuario = Usuario::buscaUsuario($_SESSION["nombre"]);
-}
-$puntos = 0;
-?>
 <!DOCTYPE html>
 <html>
 <header>
@@ -36,9 +26,9 @@ $puntos = 0;
         ?>
         </div>
         <div id="divcarrito">
-            <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarCarrito.php" class='carrito'>CARRITO</a>
-            <span class="carrito"> | </span>
-            <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarPedidos.php" class='carrito'>PEDIDOS</a>
+            <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarCarrito.php" class='carrito'><img src="<?php echo RUTA_IMGS ?>/carrito.png" alt="Carrito"></a>
+            <!--<span class="carrito"> | </span>-->
+            <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarPedidos.php" class='carrito'><img src="<?php echo RUTA_IMGS ?>/PEDIDO.png" alt="Carrito"></a>
         </div>
     </div>
 </header>

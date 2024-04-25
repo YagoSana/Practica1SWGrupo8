@@ -14,7 +14,7 @@ if (!isset($_GET['q'])) {
 $busqueda = $_GET['q'];
 
 // Aquí instancias tu clase Producto y obtienes todos los productos
-$producto = new Producto(null, null, null, null, null, null);
+$producto = new Producto(null, null, null, null, null, null,null);
 $productos_data = $producto->getAllProductos();
 
 // Filtra los productos que coinciden con la búsqueda
@@ -25,7 +25,7 @@ $resultados = array_filter($productos_data, function($producto) use ($busqueda) 
 // Prepara el contenido para la plantilla
 $contenido = '';
 foreach ($resultados as $producto_data) {
-    $producto = new Producto($producto_data['ID_Producto'], $producto_data['Nombre'], $producto_data['Descripcion'], $producto_data['Precio'], $producto_data['Imagen'], $producto_data['Stock']);
+    $producto = new Producto($producto_data['ID_Producto'], $producto_data['Nombre'], $producto_data['Descripcion'], $producto_data['Precio'], $producto_data['Imagen'], $producto_data['Stock'], $producto_data['Tipo']);
     $contenido .= "<div class='producto'>";
     $contenido .= "<a class='subr' href='" . RUTA_APP . "/includes/vistas/plantillas/detalles_producto.php?id=" . $producto->getID() . "'>";
  // Enlace a la página de detalles del producto

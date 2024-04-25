@@ -6,7 +6,7 @@
         $reabastecido = false;
         $ID = $_POST['producto_id'];
         
-        $producto = new Producto(null, null, null, null, null, null);
+        $producto = new Producto(null, null, null, null, null, null,null);
         $reabastecido = $producto->reabastecerProducto($ID);
         if($reabastecido){
             header('Location: '.RUTA_APP. '/includes/vistas/plantillas/compras.php');

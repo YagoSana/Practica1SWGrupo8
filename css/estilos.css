@@ -137,6 +137,10 @@ button {
     float: right;
 }
 
+.carrito img {
+	width: 50px;
+}
+
 .producto {
 	display: inline-block;
     border: 1px solid #ccc; 
