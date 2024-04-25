@@ -8,7 +8,7 @@ div#contenedor {
 
 header {
 	padding: 30px;
-	height: 200px;
+	height: 250px;
 	display: flex;
 	flex-direction: column;
 	background-color: #f2ba1f;
@@ -24,6 +24,15 @@ header {
 	margin-top: 10px;
 }
 
+#divlogin{
+	float: left;
+}
+#divcarrito{
+	float: right;
+}
+
+
+
 header a, header a:visited {
 	color: black;
 	font-weight: bold;
@@ -36,13 +45,53 @@ header a:hover {
 	text-decoration: underline;
 } 
 
-nav {
-	color: #d86767;
-	padding: 10px;
+#lateralIzq ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+#lateralIzq li {
 	float: left;
-	width: 15%;
-	height: 70%;
-	background-color: #ffffff;
+}
+
+#lateralIzq li a, .dropdown-btn {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	margin: 0 20px;
+}
+
+#lateralIzq li a:hover, .dropdown:hover .dropdown-btn {
+	background-color: #111;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color:grey;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+	background-color: gray;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+	display: block;
 }
 
 nav a, nav a:visited {
@@ -57,9 +106,7 @@ nav a:hover {
 
 main {
 	padding: 20px;
-	float: right;
 	min-height: 600px;
-	width: 80%;
 	background-color: white;
 }
 
@@ -160,9 +207,6 @@ button {
 	color: white;
 	margin-left: 30px;
 }
-
-
-
 
 .detalle_producto {
     display: flex;

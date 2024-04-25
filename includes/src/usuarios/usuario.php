@@ -278,17 +278,18 @@ class Usuario
         return self::inserta($this);
     }
 
-    public static function insertaUsuario($Nombre, $Apellido, $Email, $User, $Pass, $rol)
+    public static function insertaUsuario($Nombre, $Apellido, $Email, $User, $Pass, $Rol, $Puntos)
     {
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $stmt = $conn->prepare('INSERT INTO usuario (Apellido, Nombre, User, Pass, Email, Rol) VALUES (:Apellido, :Nombre, :User, :Pass, :Email, :Rol)');
+        $stmt = $conn->prepare('INSERT INTO usuario (Apellido, Nombre, User, Pass, Email, Rol, Puntos) VALUES (:Apellido, :Nombre, :User, :Pass, :Email, :Rol, :Puntos)');
         $stmt->execute([
             'Apellido' => $Apellido,
             'Nombre' => $Nombre,
             'User' => $User,
             'Pass' => password_hash($Pass, PASSWORD_DEFAULT), // Hasheamos la contraseña
             'Email' => $Email,
-            'Rol' => $rol
+            'Rol' => $Rol,
+            'Puntos' => $Puntos
         ]);
     }
 

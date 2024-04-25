@@ -9,8 +9,9 @@ class Producto
     private $Imagen;
     private $Valoracion;
     private $Visible;
+    private $Stock;
 
-    public function __construct($ID, $Nombre, $Descripcion, $Precio, $Imagen)
+    public function __construct($ID, $Nombre, $Descripcion, $Precio, $Imagen, $Stock)
     {
         $this->ID = $ID;
         $this->Nombre = $Nombre;
@@ -18,6 +19,7 @@ class Producto
         $this->Precio = $Precio;
         $this->Imagen = $Imagen;
         $this->Visible = 1;
+        $this->Stock = $Stock;
     }
 
     public static function getProducto($ID)
@@ -32,7 +34,8 @@ class Producto
             $producto['Nombre'],
             $producto['Descripcion'],
             $producto['Precio'],
-            $producto['Imagen']
+            $producto['Imagen'], 
+            $producto['Stock']
         );
     }
 
@@ -60,15 +63,16 @@ class Producto
         return $result;
     }
 
-    public function createProducto($Nombre, $Descripcion, $Precio, $Imagen)
+    public function createProducto($Nombre, $Descripcion, $Precio, $Imagen, $Stock)
     {
         $pdo = Aplicacion::getInstance()->getConexionBd();
-        $stmt = $pdo->prepare('INSERT INTO productos (Nombre, Descripcion, Precio, Imagen) VALUES (:Nombre, :Descripcion, :Precio, :Imagen)');
+        $stmt = $pdo->prepare('INSERT INTO productos (Nombre, Descripcion, Precio, Imagen, Stock) VALUES (:Nombre, :Descripcion, :Precio, :Imagen, :Stock)');
         $stmt->execute([
             'Nombre' => $Nombre,
             'Descripcion' => $Descripcion,
             'Precio' => $Precio,
-            'Imagen' => $this->Imagen
+            'Imagen' => $this->Imagen,
+            'Stock' => $Stock
         ]);
 
         $this->ID = $pdo->lastInsertId();
@@ -76,6 +80,7 @@ class Producto
         $this->Descripcion = $Descripcion;
         $this->Precio = $Precio;
         $this->Imagen = $this->$Imagen;
+        $this->Stock = $Stock;
     }
 
     public static function obtenerPedidosDeProducto($producto)
@@ -141,6 +146,14 @@ class Producto
         $stmt = $pdo->prepare('UPDATE productos SET Visible = 1 WHERE ID_Producto = :ID');
         $stmt->execute(['ID' => $ID]);
         return true;
+    }
+
+    public function bajarCantidadStock($Cantidad) {
+        $pdo = Aplicacion::getInstance()->getConexionBd();
+        $stmt = $pdo->prepare('UPDATE productos SET Stock = Stock - :Cantidad WHERE ID_Producto = :ID');
+        $stmt->bindParam(':Cantidad', $Cantidad);
+        $stmt->bindParam(':ID', $this->ID);
+        $stmt->execute();
     }
 
     public function getNombre()
