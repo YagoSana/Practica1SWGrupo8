@@ -2,6 +2,8 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+//require_once RAIZ_APP . '/includes/src/usuarios/usuario.php';
+$puntos = 0;
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,6 +25,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <?php
         if (isset($_SESSION["login"])) {
             echo "<p>Usuario registrado: " . $_SESSION["nombre"] . ". <a href=" . RUTA_SRC . "/usuarios/logout.php>Logout</a></p>";
+            //$puntos = Usuraio::getPuntos($_SESSION["nombre"]);
             echo "<p>Tus puntos del wallet: </p>";
         } else {
             echo "<p>Usuario desconocido. <a href=" . RUTA_SRC . "/login.php>Login</a></p>";
