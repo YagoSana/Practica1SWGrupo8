@@ -12,7 +12,7 @@ class Producto
     private $Stock;
     private $Tipo;
 
-    public function __construct($ID, $Nombre, $Descripcion, $Precio, $Imagen, $Stock,$Tipo)
+    public function __construct($ID, $Nombre, $Descripcion, $Precio, $Imagen, $Stock, $Tipo)
     {
         $this->ID = $ID;
         $this->Nombre = $Nombre;
@@ -37,7 +37,8 @@ class Producto
             $producto['Descripcion'],
             $producto['Precio'],
             $producto['Imagen'], 
-            $producto['Stock']
+            $producto['Stock'], 
+            $producto['Tipo']
         );
     }
 
