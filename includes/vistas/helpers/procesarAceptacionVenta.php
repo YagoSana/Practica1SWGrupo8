@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $venta->setEstado('Aceptada');
 
         // Crear un nuevo producto
-        $producto = new Producto(null, $venta->Nombre, $venta->Descripcion, $valor, $venta->Imagen);
+        $producto = new Producto(null, $venta->Nombre, $venta->Descripcion, $valor, $venta->Imagen, 1);
         $producto->createProducto();
     } else {
         // Cambiar el estado de la venta a "Rechazada"
