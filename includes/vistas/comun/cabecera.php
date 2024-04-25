@@ -23,7 +23,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <?php
         if (isset($_SESSION["login"])) {
             echo "<p>Usuario registrado: " . $_SESSION["nombre"] . ". <a href=" . RUTA_SRC . "/usuarios/logout.php>Logout</a></p>";
-            echo "<p>Tus puntos del wallet:</p>";
+            echo "<p>Tus puntos del wallet: </p>";
         } else {
             echo "<p>Usuario desconocido. <a href=" . RUTA_SRC . "/login.php>Login</a></p>";
         }
