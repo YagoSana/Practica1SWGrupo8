@@ -24,11 +24,11 @@ class Usuario
 
     private $carrito;
 
-    private $roles;
+    private $Roles;
 
     private $valoracion;
 
-    private function __construct($nombreUsuario, $password, $nombre, $apellido, $email, $roles, $id)
+    private function __construct($nombreUsuario, $password, $nombre, $apellido, $email, /*$Roles,*/ $id)
     {
         $this->id = $id;
         $this->nombreUsuario = $nombreUsuario;
@@ -36,7 +36,7 @@ class Usuario
         $this->nombre = $nombre;
         $this->apellido = $apellido;
         $this->email = $email;
-        $this->roles = $roles;
+        //$this->Roles = $Roles;
     }
 
     public static function login($nombreUsuario, $password)
@@ -67,7 +67,7 @@ class Usuario
         $result = false;
         $fila = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($fila) {
-            $result = new Usuario($fila['User'], $fila['Pass'], $fila['Nombre'], $fila['Apellido'], $fila['Email'], $fila['rol'], $fila['Idusuario']);
+            $result = new Usuario($fila['User'], $fila['Pass'], $fila['Nombre'], $fila['Apellido'], $fila['Email'], $fila['Rol'], $fila['Idusuario']);
             $result->inicializarCarrito();
             $_SESSION['usuario'] = $result; //Se guarda la variable de tipo usuario
         }
@@ -84,7 +84,7 @@ class Usuario
         if ($rs) {
             $fila = $rs->fetch(PDO::FETCH_ASSOC);
             if ($fila) {
-                $result = new Usuario($fila['User'], $fila['Pass'], $fila['Nombre'], $fila['Apellido'], $fila['Email'], $fila['rol'], $fila['Idusuario']);
+                $result = new Usuario($fila['User'], $fila['Pass'], $fila['Nombre'], $fila['Apellido'], $fila['Email'], $fila['Rol'], $fila['Idusuario']);
             }
         } else {
             error_log("Error BD ({$conn->errorCode()}): {$conn->errorInfo()}");
@@ -100,20 +100,20 @@ class Usuario
 
     private static function cargaRoles($usuario)
     {
-        $roles = [];
+        $Roles = [];
 
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf(
-            "SELECT RU.rol FROM RolesUsuario RU WHERE RU.usuario=%d",
+            "SELECT RU.Rol FROM RolesUsuario RU WHERE RU.usuario=%d",
             $usuario->id
         );
         $rs = $conn->query($query);
         if ($rs) {
-            $roles = $rs->fetchAll(PDO::FETCH_ASSOC);
+            $Roles = $rs->fetchAll(PDO::FETCH_ASSOC);
 
-            $usuario->roles = [];
-            foreach ($roles as $rol) {
-                $usuario->roles[] = $rol['rol'];
+            $usuario->Roles = [];
+            foreach ($Roles as $Rol) {
+                $usuario->Roles[] = $Rol['Rol'];
             }
             return $usuario;
         } else {
@@ -169,7 +169,7 @@ class Usuario
         if (!$idUsuario) {
             return false;
         }
-        /* Los roles se borran en cascada por la FK
+        /* Los Roles se borran en cascada por la FK
          * $result = self::borraRoles($usuario) !== false;
          */
         $conn = Aplicacion::getInstance()->getConexionBd();
@@ -241,22 +241,22 @@ class Usuario
         return $this->carrito;
     }
 
-    public function añadeRol($role)
+    public function añadeRol($Role)
     {
-        $this->roles[] = $role;
+        $this->Roles[] = $Role;
     }
 
     public function getRoles()
     {
-        return $this->roles;
+        return $this->Roles;
     }
 
-    public function tieneRol($role)
+    public function tieneRol($Role)
     {
-        if ($this->roles == null) {
+        if ($this->Roles == null) {
             self::cargaRoles($this);
         }
-        return array_search($role, $this->roles) !== false;
+        return array_search($Role, $this->Roles) !== false;
     }
 
     public function compruebaPassword($password)
@@ -310,7 +310,7 @@ class Usuario
             "apellido" => $this->apellido,
             "email" => $this->email,
             "carrito" => $this->carrito,
-            "roles" => $this->roles
+            "Roles" => $this->Roles
         );
     }
 
@@ -337,4 +337,12 @@ class Usuario
         return $result;
     }
     
+    public static function getPuntos($usuario) {
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = "SELECT Puntos FROM usuario WHERE User=:nombreUsuario";
+        $stmt = $conn->prepare($query);
+        $stmt->execute(['nombreUsuario' => $usuario->getNombreUsuario()]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['Puntos'];
+    }
 }

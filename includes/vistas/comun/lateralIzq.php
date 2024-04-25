@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <nav id="lateralIzq">
@@ -8,10 +7,11 @@
         <li class="dropdown">
                 <a href="<?php echo RUTA_VISTAS?>/plantillas/compras.php" class="dropdown-btn">Compras</a>
                 <div class="dropdown-content">
-                    <a href="#">Guitarras</a>
-                    <a href="#">Baterías</a>
-                    <a href="#">Pianos</a>
-                    <!-- Añade más instrumentos aquí -->
+                    <a href="<?php echo RUTA_VISTAS?>/plantillas/BuscarPorTipo.php?tipo=Viento">Viento</a>
+                    <a href="<?php echo RUTA_VISTAS?>/plantillas/BuscarPorTipo.php?tipo=Cuerda">Cuerda</a>
+                    <a href="<?php echo RUTA_VISTAS?>/plantillas/BuscarPorTipo.php?tipo=Percusion">Percusion</a>
+                    <a href="<?php echo RUTA_VISTAS?>/plantillas/BuscarPorTipo.php?tipo=Articulos">Articulos</a>
+                    <a href="<?php echo RUTA_VISTAS?>/plantillas/BuscarPorTipo.php?tipo=Todos">Todos</a>
                 </div>
             </li>
         <li><a href="<?php echo RUTA_VISTAS?>/plantillas/mostrarVentas.php">Ventas</a></li>
@@ -23,6 +23,7 @@
         <?php
             if(isset($_SESSION["esEmpleado"])) {
                 echo '<li><a href="' . RUTA_VISTAS . '/plantillas/uploadProducto.php">Añadir productos</a></li>';
+                echo '<li><a href="' . RUTA_VISTAS . '/plantillas/mostrarGestionVentas.php">Gestionar ventas</a></li>';
             }
         ?>
 

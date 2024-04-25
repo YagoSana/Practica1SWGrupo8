@@ -14,25 +14,25 @@ require '../../config.php';
                 <?php include RAIZ_APP . '/includes/vistas/comun/cabecera.php'; ?>
                 <?php include RAIZ_APP . '/includes/vistas/comun/lateralIzq.php'; ?>
                 <main>
-                        <form action="<?= RUTA_APP . '/includes/vistas/helpers/procesarProducto.php'?>" method="POST" enctype="multipart/form-data">
+                        <form action="<?= RUTA_APP . '/includes/vistas/helpers/procesarVentaCliente.php'?>" method="POST" enctype="multipart/form-data">
                                 <p>
-                                        <label for="producto_nombre">Nombre del Producto:</label>
-                                        <input type="text" id="producto_nombre" name="producto_nombre" required>
+                                        <label for="venta_nombre">Nombre del Producto:</label>
+                                        <input type="text" id="venta_nombre" name="venta_nombre" required>
                                 </p>
                                 <p>
-                                        <label for="producto_descripcion">Descripcion del Producto:</label>
+                                        <label for="venta_descripcion">Descripcion del Producto:</label>
                                 </p>
                                 <p>
-                                        <textarea id="producto_descripcion" name="producto_descripcion" rows="4"
+                                        <textarea id="venta_descripcion" name="venta_descripcion" rows="4"
                                                 cols="50" required></textarea>
                                 </p>
                                 <p>
-                                        <label for="producto_precio">Precio a Empeñar del Producto:</label>
-                                        <input type="text" id="producto_precio" name="producto_precio" required>
+                                        <label for="venta_precio">Precio a Empeñar del Producto:</label>
+                                        <input type="text" id="venta_precio" name="venta_precio" required>
                                 </p>
                                 <p>
-                                        <label for="producto_imagen">Imagen del Producto:</label>
-                                        <input type="file" id="producto_imagen" name="producto_imagen" required>
+                                        <label for="venta_imagen">Imagen del Producto:</label>
+                                        <input type="file" id="venta_imagen" name="venta_imagen" required>
                                 </p>
                                 <input type="submit" value="Subir Producto">
                         </form>

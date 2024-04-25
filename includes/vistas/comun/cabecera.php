@@ -1,8 +1,3 @@
-<?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-?>
 <!DOCTYPE html>
 <html>
 <header>
@@ -23,16 +18,17 @@ if (session_status() === PHP_SESSION_NONE) {
         <?php
         if (isset($_SESSION["login"])) {
             echo "<p>Usuario registrado: " . $_SESSION["nombre"] . ". <a href=" . RUTA_SRC . "/usuarios/logout.php>Logout</a></p>";
-            echo "<p>Tus puntos del wallet: </p>";
+            $puntos = Usuario::getPuntos($usuario);
+            echo "<p>Tus puntos en el wallet: $puntos p.</p>";
         } else {
             echo "<p>Usuario desconocido. <a href=" . RUTA_SRC . "/login.php>Login</a></p>";
         }
         ?>
         </div>
         <div id="divcarrito">
-            <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarCarrito.php" class='carrito'>CARRITO</a>
-            <span class="carrito"> | </span>
-            <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarPedidos.php" class='carrito'>PEDIDOS</a>
+            <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarCarrito.php" class='carrito'><img src="<?php echo RUTA_IMGS ?>/carrito.png" alt="Carrito"></a>
+            <!--<span class="carrito"> | </span>-->
+            <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarPedidos.php" class='carrito'><img src="<?php echo RUTA_IMGS ?>/PEDIDO.png" alt="Carrito"></a>
         </div>
     </div>
 </header>

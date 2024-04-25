@@ -10,8 +10,9 @@ class Producto
     private $Valoracion;
     private $Visible;
     private $Stock;
+    private $Tipo;
 
-    public function __construct($ID, $Nombre, $Descripcion, $Precio, $Imagen, $Stock)
+    public function __construct($ID, $Nombre, $Descripcion, $Precio, $Imagen, $Stock,$Tipo)
     {
         $this->ID = $ID;
         $this->Nombre = $Nombre;
@@ -20,6 +21,7 @@ class Producto
         $this->Imagen = $Imagen;
         $this->Visible = 1;
         $this->Stock = $Stock;
+        $this->Tipo = $Tipo;
     }
 
     public static function getProducto($ID)
@@ -38,6 +40,30 @@ class Producto
             $producto['Stock']
         );
     }
+
+    public static function getProductosPorTipo($tipo)
+{
+    // Obtener la instancia de la conexión a la base de datos
+    $pdo = Aplicacion::getInstance()->getConexionBd();
+
+    // Preparar la consulta SQL para seleccionar todos los productos de un tipo específico
+    $stmt = $pdo->prepare('SELECT * FROM productos WHERE Tipo = :tipo ORDER BY Visible DESC');
+
+    // Ejecutar la consulta
+    $stmt->execute(['tipo' => $tipo]);
+
+    // Obtener todos los resultados como un array asociativo
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Verificar si se obtuvieron resultados
+    if ($result === false) {
+        // Si no hay resultados, mostrar un mensaje de error
+        die('Error al obtener los productos de la base de datos');
+    }
+
+    // Devolver el resultado
+    return $result;
+}
 
     public function getAllProductos()
     {
@@ -63,16 +89,17 @@ class Producto
         return $result;
     }
 
-    public function createProducto($Nombre, $Descripcion, $Precio, $Imagen, $Stock)
+    public function createProducto($Nombre, $Descripcion, $Precio, $Imagen, $Stock, $Tipo)
     {
         $pdo = Aplicacion::getInstance()->getConexionBd();
-        $stmt = $pdo->prepare('INSERT INTO productos (Nombre, Descripcion, Precio, Imagen, Stock) VALUES (:Nombre, :Descripcion, :Precio, :Imagen, :Stock)');
+        $stmt = $pdo->prepare('INSERT INTO productos (Nombre, Descripcion, Precio, Imagen, Stock, Tipo) VALUES (:Nombre, :Descripcion, :Precio, :Imagen, :Stock, :Tipo)');
         $stmt->execute([
             'Nombre' => $Nombre,
             'Descripcion' => $Descripcion,
             'Precio' => $Precio,
             'Imagen' => $this->Imagen,
-            'Stock' => $Stock
+            'Stock' => $Stock,
+            'Tipo' => $Tipo
         ]);
 
         $this->ID = $pdo->lastInsertId();
@@ -81,6 +108,7 @@ class Producto
         $this->Precio = $Precio;
         $this->Imagen = $this->$Imagen;
         $this->Stock = $Stock;
+        $this->Tipo = $Tipo;
     }
 
     public static function obtenerPedidosDeProducto($producto)
@@ -186,6 +214,14 @@ class Producto
         return $this->Descripcion;
     }
 
+    public function getStock()
+    {
+        return $this->Stock;
+    }
+    public function getTipo()
+    {
+        return $this->Tipo;
+    }
     public function getVisible()
     {
         $pdo = Aplicacion::getInstance()->getConexionBd();

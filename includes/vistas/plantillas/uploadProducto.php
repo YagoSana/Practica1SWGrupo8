@@ -34,6 +34,15 @@ require '../../config.php';
                                         <label for="producto_imagen">Imagen del Producto:</label>
                                         <input type="file" id="producto_imagen" name="producto_imagen" required>
                                 </p>
+                                <p>
+                                        <label for="producto_tipo">Tipo de Producto:</label>
+                                        <select id="producto_tipo" name="producto_tipo" required>
+                                                <option value="Viento">Viento</option>
+                                                <option value="Percusion">Percusión</option>
+                                                <option value="Cuerda">Cuerda</option>
+                                                <option value="Articulos">Artículos</option>
+                                        </select>
+                                </p>
                                 <input type="submit" value="Subir Producto">
                         </form>
 

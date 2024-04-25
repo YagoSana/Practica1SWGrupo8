@@ -6,7 +6,7 @@
         $eliminado = false;
         $ID = $_POST['producto_id'];
         
-        $producto = new Producto(null, null, null, null, null, null);
+        $producto = new Producto(null, null, null, null, null, null,null);
         $eliminado = $producto->deleteProducto($ID);
         if($eliminado){
             header('Location: '.RUTA_APP. '/includes/vistas/plantillas/compras.php');
