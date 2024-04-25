@@ -46,25 +46,30 @@ header a:hover {
 } 
 
 #lateralIzq ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #333;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow-x: auto; /* Permite el desplazamiento horizontal */
+    white-space: nowrap; /* Evita que los elementos de la lista pasen a la siguiente línea */
+    background-color: #333;
 }
 
 #lateralIzq li {
-	float: left;
+    display: inline-block; /* Los elementos de la lista se alinean horizontalmente */
+    float: none; /* No flotan, por lo que no se despega del flujo normal del documento */
 }
 
 #lateralIzq li a, .dropdown-btn {
-	display: block;
-	color: white;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-	margin: 0 20px;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    margin: 0 17px;
 }
+
+/* Resto de tu CSS... */
+
 
 #lateralIzq li a:hover, .dropdown:hover .dropdown-btn {
 	background-color: #111;
