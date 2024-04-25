@@ -19,16 +19,21 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
     </div>
     <div id="divInferior">
+        <div id="divlogin">
         <?php
         if (isset($_SESSION["login"])) {
-            echo "Usuario registrado: " . $_SESSION["nombre"] . ". <a href=" . RUTA_SRC . "/usuarios/logout.php>Logout</a>";
+            echo "<p class='parrafoheader'>Usuario registrado: " . $_SESSION["nombre"] . ". <a href=" . RUTA_SRC . "/usuarios/logout.php>Logout</a></p>";
+            echo "<p class='parrafoheader'>Tus puntos del wallet:</p>";
         } else {
             echo "Usuario desconocido. <a href=" . RUTA_SRC . "/login.php>Login</a>";
         }
         ?>
-        <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarCarrito.php" class='carrito'>CARRITO</a>
-        <span class="carrito"> | </span>
-        <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarPedidos.php" class='carrito'>PEDIDOS</a>
+        </div>
+        <div id="divcarrito">
+            <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarCarrito.php" class='carrito'>CARRITO</a>
+            <span class="carrito"> | </span>
+            <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarPedidos.php" class='carrito'>PEDIDOS</a>
+        </div>
     </div>
 </header>
 </html>
