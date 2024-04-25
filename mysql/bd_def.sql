@@ -110,7 +110,7 @@ CREATE TABLE `usuario` (
   `Pass` varchar(60) NOT NULL,
   `Email` varchar(20) NOT NULL,
   `Rol` varchar(20) NOT NULL,
-  `Puntos` int(10) 
+  `Puntos` int(10) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

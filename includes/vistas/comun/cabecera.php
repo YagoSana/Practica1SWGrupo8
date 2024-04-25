@@ -1,3 +1,14 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if(isset($_SESSION["login"])){
+    require_once RAIZ_APP . '/includes/src/usuarios/usuario.php';
+    $usuario = Usuario::buscaUsuario($_SESSION["nombre"]);
+}
+$puntos = 0;
+?>
 <!DOCTYPE html>
 <html>
 <header>

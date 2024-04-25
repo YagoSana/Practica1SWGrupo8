@@ -214,10 +214,6 @@ class Producto
         return $this->Descripcion;
     }
 
-    public function getStock()
-    {
-        return $this->Stock;
-    }
     public function getTipo()
     {
         return $this->Tipo;

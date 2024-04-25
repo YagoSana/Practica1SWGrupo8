@@ -1,6 +1,6 @@
 <?php
-require_once '../../config.php';
-require_once '../../aplicacion.php';
+//require_once '../../config.php';
+//require_once '../../aplicacion.php';
 include RAIZ_APP . '/includes/vistas/helpers/carrito.php';
 
 class Usuario
@@ -28,7 +28,7 @@ class Usuario
 
     private $valoracion;
 
-    private function __construct($nombreUsuario, $password, $nombre, $apellido, $email, /*$Roles,*/ $id)
+    private function __construct($nombreUsuario, $password, $nombre, $apellido, $email, $Roles, $id)
     {
         $this->id = $id;
         $this->nombreUsuario = $nombreUsuario;
@@ -36,7 +36,7 @@ class Usuario
         $this->nombre = $nombre;
         $this->apellido = $apellido;
         $this->email = $email;
-        //$this->Roles = $Roles;
+        $this->Roles = $Roles;
     }
 
     public static function login($nombreUsuario, $password)
