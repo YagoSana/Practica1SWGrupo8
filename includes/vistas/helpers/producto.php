@@ -169,11 +169,18 @@ class Producto
         */
     }
 
-    public function reabastecerProducto($ID)
+    public function reabastecerProducto()
     {
         $pdo = Aplicacion::getInstance()->getConexionBd();
-        $stmt = $pdo->prepare('UPDATE productos SET Visible = 1 WHERE ID_Producto = :ID');
-        $stmt->execute(['ID' => $ID]);
+        if($this->Stock > 0) {
+            $sql = 'UPDATE productos SET Visible = 1 WHERE ID_Producto = :ID';
+        }
+        else {
+            $sql = 'UPDATE productos SET Visible = 1, Stock = 10 WHERE ID_Producto = :ID';
+        }
+    
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['ID' => $this->ID]);
         return true;
     }
 
