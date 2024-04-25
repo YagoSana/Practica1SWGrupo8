@@ -30,7 +30,7 @@ class Producto
         $stmt = $pdo->prepare('SELECT * FROM productos WHERE ID_Producto = :ID');
         $stmt->execute(['ID' => $ID]);
         $producto = $stmt->fetch();
-
+    
         return new Producto(
             $producto['ID_Producto'],
             $producto['Nombre'],
@@ -188,6 +188,11 @@ class Producto
     public function getNombre()
     {
         return $this->Nombre;
+    }
+
+    public function getStock()
+    {
+        return $this->Stock;
     }
 
     public function getID()
