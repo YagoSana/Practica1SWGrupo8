@@ -8,7 +8,7 @@ div#contenedor {
 
 header {
 	padding: 30px;
-	height: 200px;
+	height: 250px;
 	display: flex;
 	flex-direction: column;
 	background-color: #f2ba1f;
@@ -24,6 +24,15 @@ header {
 	margin-top: 10px;
 }
 
+#divlogin{
+	float: left;
+}
+#divcarrito{
+	float: right;
+}
+
+
+
 header a, header a:visited {
 	color: black;
 	font-weight: bold;
@@ -36,14 +45,6 @@ header a:hover {
 	text-decoration: underline;
 } 
 
-/*nav {
-	color: #d86767;
-	padding: 10px;
-	float: right;
-	width: 15%;
-	height: 70%;
-	background-color: #ffffff;
-}*/
 #lateralIzq ul {
     list-style-type: none;
     margin: 0;
@@ -183,9 +184,6 @@ button {
 	color: white;
 	margin-left: 30px;
 }
-
-
-
 
 .detalle_producto {
     display: flex;
