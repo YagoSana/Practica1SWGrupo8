@@ -36,13 +36,36 @@ header a:hover {
 	text-decoration: underline;
 } 
 
-nav {
+/*nav {
 	color: #d86767;
 	padding: 10px;
-	float: left;
+	float: right;
 	width: 15%;
 	height: 70%;
 	background-color: #ffffff;
+}*/
+#lateralIzq ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+#lateralIzq li {
+	float: left;
+}
+
+#lateralIzq li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+#lateralIzq li a:hover {
+	background-color: #111;
 }
 
 nav a, nav a:visited {
