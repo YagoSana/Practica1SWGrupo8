@@ -63,9 +63,10 @@ CREATE TABLE `productos` (
   `Descripcion` varchar(200) NOT NULL,
   `Precio` decimal(6,2) NOT NULL,
   `Imagen` varchar(255) NOT NULL,
-  `Stock` int(100) UNSIGNED NOT NULL,
+  `Stock` int(100) NOT NULL,
   `Visible` boolean NOT NULL DEFAULT 1,
-  `Tipo` varchar(255) NOT NULL
+  `Tipo` varchar(20) NOT NULL,
+  `Reacondicionado` boolean NOT NULL DEFAULT false
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

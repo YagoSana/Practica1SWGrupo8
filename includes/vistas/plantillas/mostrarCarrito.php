@@ -25,7 +25,7 @@ require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
                 // Muestra los productos en el carrito
                 $carrito->mostrarProductos();
             } else {
-                echo "Debes iniciar sesión para ver tu carrito de compras.";
+                echo "<p>Debes iniciar sesión para ver tu carrito de compras.</p>";
             }
             ?>
         </main>

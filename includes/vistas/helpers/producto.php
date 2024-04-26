@@ -11,8 +11,9 @@ class Producto
     private $Visible;
     private $Stock;
     private $Tipo;
+    private $Reacondicionado;
 
-    public function __construct($ID, $Nombre, $Descripcion, $Precio, $Imagen, $Stock, $Visible, $Tipo)
+    public function __construct($ID, $Nombre, $Descripcion, $Precio, $Imagen, $Stock, $Visible, $Tipo, $Reacondicionado)
     {
         $this->ID = $ID;
         $this->Nombre = $Nombre;
@@ -22,6 +23,7 @@ class Producto
         $this->Visible = 1;
         $this->Stock = $Stock;
         $this->Tipo = $Tipo;
+        $this->Reacondicionado = $Reacondicionado;
     }
 
     public static function getProducto($ID)
@@ -39,7 +41,8 @@ class Producto
             $producto['Imagen'], 
             $producto['Stock'], 
             $producto['Visible'],
-            $producto['Tipo']
+            $producto['Tipo'],
+            $producto['Reacondicionado']
         );
     }
 
@@ -234,5 +237,12 @@ class Producto
         $stmt->execute(['ID' => $this->ID]);
         $visible = $stmt->fetch();
         return $visible['Visible'];
+    }
+    public function esReacondicionado($usuario){
+        $pdo = Aplicacion::getInstance()->getConexionBd();
+        $stmt = $pdo->prepare('SELECT Reacondicionado FROM productos WHERE ID_Producto = :ID');
+        $stmt->execute(['ID' => $this->ID]);
+        $reacondicionado = $stmt->fetch();
+        return $reacondicionado['Reacondicionado'];
     }
 }

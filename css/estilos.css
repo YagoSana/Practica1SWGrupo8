@@ -195,7 +195,10 @@ button {
     font-weight: bold;
     margin-bottom: 10px;
 }
-
+.producto h4{
+	color: black;
+    margin-bottom: 10px;
+}
 .subr {
 	text-decoration: none;
 }

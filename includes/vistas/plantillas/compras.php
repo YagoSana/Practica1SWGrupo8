@@ -5,11 +5,11 @@ require_once RAIZ_APP . '/includes/src/usuarios/usuario.php';
 require_once ("../helpers/carrito.php");
 $productos = [];
 
-$producto = new Producto(null, null, null, null, null, null, null, null);
+$producto = new Producto(null, null, null, null, null, null, null, null, null);
 $productos_data = $producto->getAllProductos();
 
 foreach ($productos_data as $producto_data) {
-    $producto = new Producto($producto_data['ID_Producto'], $producto_data['Nombre'], $producto_data['Descripcion'], $producto_data['Precio'], $producto_data['Imagen'], $producto_data['Stock'], $producto_data['Visible'], $producto_data['Tipo']);
+    $producto = new Producto($producto_data['ID_Producto'], $producto_data['Nombre'], $producto_data['Descripcion'], $producto_data['Precio'], $producto_data['Imagen'], $producto_data['Stock'], $producto_data['Visible'], $producto_data['Tipo'], $producto_data['Reacondicionado']);
     $productos[] = $producto;
 }
 ?>
@@ -49,7 +49,12 @@ foreach ($productos_data as $producto_data) {
                                 echo "<a class='subr' href='detalles_producto.php?id=" . $producto->getID() . "'>"; // Enlace a la página de detalles del producto
                                 echo "<img src='" . RUTA_APP . $producto->getImagen() . "' alt='Imagen del producto' id='imgCompras'>";
                                 echo "<div class ='detalles'>";
-                                echo "<h3>" . $producto->getNombre() . "</h3>";
+                                $reacondicionado = "(Nuevo)";
+                                if($producto->esReacondicionado($usuario)){
+                                    $reacondicionado = "(Reacondicionado)";
+                                }
+                                echo "<h3>" . $producto->getNombre() ."</h3>";
+                                echo "<h4>" . $reacondicionado . "</h4>";
                                 echo "</a>";//Solo la imagen y el nombre son clickeables
                                 echo "<p>" . $producto->getPrecio() . " €</p>";
                                 echo "</div>";
