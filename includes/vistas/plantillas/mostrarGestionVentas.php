@@ -1,6 +1,7 @@
 <?php
 require '../../config.php';
 require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
+require_once RAIZ_APP. '/includes/vistas/helpers/venta.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">

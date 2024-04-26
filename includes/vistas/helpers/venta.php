@@ -49,7 +49,7 @@ class Venta {
         // Verificar si se obtuvieron resultados
         if ($result === false) {
             // Si no hay resultados, mostrar un mensaje de error
-            die('Error al obtener las ventas pendientes de la base de datos');
+            return NULL;   
         }
 
         // Devolver el resultado

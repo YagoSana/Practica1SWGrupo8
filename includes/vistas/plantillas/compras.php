@@ -5,11 +5,11 @@ require_once RAIZ_APP . '/includes/src/usuarios/usuario.php';
 require_once ("../helpers/carrito.php");
 $productos = [];
 
-$producto = new Producto(null, null, null, null, null, null,null);
+$producto = new Producto(null, null, null, null, null, null, null, null);
 $productos_data = $producto->getAllProductos();
 
 foreach ($productos_data as $producto_data) {
-    $producto = new Producto($producto_data['ID_Producto'], $producto_data['Nombre'], $producto_data['Descripcion'], $producto_data['Precio'], $producto_data['Imagen'], $producto_data['Stock'], $producto_data['Tipo']);
+    $producto = new Producto($producto_data['ID_Producto'], $producto_data['Nombre'], $producto_data['Descripcion'], $producto_data['Precio'], $producto_data['Imagen'], $producto_data['Stock'], $producto_data['Visible'], $producto_data['Tipo']);
     $productos[] = $producto;
 }
 ?>
