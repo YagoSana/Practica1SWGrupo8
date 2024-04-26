@@ -50,7 +50,7 @@ foreach ($productos_data as $producto_data) {
                                 echo "<img src='" . RUTA_APP . $producto->getImagen() . "' alt='Imagen del producto' id='imgCompras'>";
                                 echo "<div class ='detalles'>";
                                 $reacondicionado = "(Nuevo)";
-                                if($producto->esReacondicionado($usuario)){
+                                if($producto->esReacondicionado($producto)){
                                     $reacondicionado = "(Reacondicionado)";
                                 }
                                 echo "<h3>" . $producto->getNombre() ."</h3>";
