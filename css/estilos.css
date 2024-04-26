@@ -8,10 +8,10 @@ div#contenedor {
 
 header {
 	padding: 30px;
-	height: 250px;
+	height: 270px;
 	display: flex;
 	flex-direction: column;
-	background-color: #f2ba1f;
+	background-color: #ffc48d;
 	color: black;
 }
 
@@ -27,12 +27,39 @@ header {
 #divlogin{
 	float: left;
 }
-#divcarrito{
+
+#divarticulos{
 	float: right;
+	display: flex;
+	flex-direction: row;
+	margin-right: 30px;
 }
 
-
-
+#divcarrito{
+	float: right;
+	margin-left: 20px;
+}
+#divpedidos{
+	float: left;
+}
+#divcarrito img{
+	width: 50px;
+}
+#divcarrito p{
+	opacity: 0;
+}
+#divcarrito:hover p{
+	opacity: 0.5;
+}
+#divpedido img{
+	width: 50px;
+}
+#divpedido p{
+	opacity: 0;
+}
+#divpedido:hover p{
+	opacity: 0.5;
+}
 header a, header a:visited {
 	color: black;
 	font-weight: bold;
@@ -131,14 +158,6 @@ button {
 	float: right;
 	width: 170px;
 	height: 170px;
-}
-
-.carrito {
-    float: right;
-}
-
-.carrito img {
-	width: 50px;
 }
 
 .producto {
@@ -388,7 +407,7 @@ p.frase {
 
 /* buscador en la cabecera */
 .cabecera {
-	background-color: #f2ba1f;
+	background-color: none;
 	height: 60px;
 	display: flex;
 	align-items: center;
@@ -401,13 +420,13 @@ p.frase {
 	border-radius: 20px;
 	border: none;
 	padding: 0 20px;
-	background-color: #8e6d13;
+	background-color: #ddab7c;
 	color: #fff;
 	font-size: 16px;
   }
   
   .buscador::placeholder {
-	color: #aaa;
+	color: #696969;
 	opacity: 1;
   }
 
@@ -421,8 +440,8 @@ p.frase {
 
 .figuraBoceto{
 	display: flex;
-  align-items: center;
-  justify-content: space-between;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .figuraBoceto img {

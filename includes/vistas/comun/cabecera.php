@@ -36,10 +36,15 @@ $puntos = 0;
         }
         ?>
         </div>
-        <div id="divcarrito">
-            <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarCarrito.php" class='carrito'><img src="<?php echo RUTA_IMGS ?>/carrito.png" alt="Carrito"></a>
-            <!--<span class="carrito"> | </span>-->
-            <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarPedidos.php" class='carrito'><img src="<?php echo RUTA_IMGS ?>/PEDIDO.png" alt="Carrito"></a>
+        <div id="divarticulos">
+            <div id="divpedido">
+                <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarPedidos.php"><img src="<?php echo RUTA_IMGS ?>/PEDIDO.png" alt="Pedido"></a>
+                <p>Pedidos</p>
+            </div>
+            <div id="divcarrito">
+                <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarCarrito.php"><img src="<?php echo RUTA_IMGS ?>/carrito.png" alt="Carrito"></a>
+                <p>Carrito</p>
+            </div>
         </div>
     </div>
 </header>
