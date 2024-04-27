@@ -68,19 +68,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         EOS;    
         require_once RAIZ_APP . '/includes/vistas/plantillas/plantilla.php';
-    }
-    else{
-    $Imagen = $_FILES['producto_imagen']['name'];
-    $ruta = $_FILES['producto_imagen']['tmp_name'];
+        }
+        else{
+        $Imagen = $_FILES['producto_imagen']['name'];
+        $ruta = $_FILES['producto_imagen']['tmp_name'];
 
-    $target = "/img/imagenesBD/" . $Imagen;
+        $target = "/img/imagenesBD/" . $Imagen;
 
-    move_uploaded_file($ruta,RAIZ_APP."$target");
+        move_uploaded_file($ruta,RAIZ_APP."$target");
+        $Visible = 1;
+        $Reacondicionado = 0;
+        $producto = new Producto(null, $Nombre, $Descripcion, $Precio, $target, $Stock, $Visible, $Tipo, $Reacondicionado);
 
-    $producto = new Producto(null, $Nombre, $Descripcion, $Precio, $target, $Stock, $Tipo);
-
-    $producto->createProducto($Nombre, $Descripcion, $Precio, $target, $Stock,$Tipo);
-    header('Location: ' . RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php');
-    }
+        $producto->createProducto($Nombre, $Descripcion, $Precio, $target, $Stock, $Visible, $Tipo, $Reacondicionado);
+        header('Location: ' . RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php');
+        }
 }
 
