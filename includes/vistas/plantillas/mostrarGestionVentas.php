@@ -33,7 +33,7 @@ require_once RAIZ_APP. '/includes/vistas/helpers/venta.php';
                                     // Aquí puedes mostrar la información de cada venta
                                     echo "<p>" . $venta['Nombre'] . ": " . $venta['Descripcion'] . "</p>";
                                     echo "<p>Estado: " . $venta['Estado'] . "</p>";
-                                    echo "<img src='" . $venta['Imagen'] . "' alt='Imagen del producto'>";
+                                    echo "<img src='". RUTA_IMGS . '/imagenesBD/'.$venta['Imagen'] . "' alt='Imagen del producto'>";
                                     echo '<form action="procesarAceptacionVenta.php" method="post">';
                                     echo '<input type="hidden" name="venta_id" value="' . $venta['ID_Venta'] . '">';
                                     echo '<input type="text" name="valor" placeholder="Introduce un valor">';
