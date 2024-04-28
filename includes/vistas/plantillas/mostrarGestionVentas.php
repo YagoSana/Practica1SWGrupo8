@@ -31,16 +31,23 @@ require_once RAIZ_APP. '/includes/vistas/helpers/venta.php';
                             } else {
                                 foreach($ventas as $venta) {
                                     // Aquí puedes mostrar la información de cada venta
-                                    echo "<p>" . $venta->Nombre . ": " . $venta->Descripcion . "</p>";
-                                    echo "<p>Estado: " . $venta->Estado . "</p>";
-                                    echo "<img src='" . $venta->Imagen . "' alt='Imagen del producto'>";
+                                    echo "<p>" . $venta['Nombre'] . ": " . $venta['Descripcion'] . "</p>";
+                                    echo "<p>Estado: " . $venta['Estado'] . "</p>";
+                                    echo "<img src='" . $venta['Imagen'] . "' alt='Imagen del producto'>";
                                     echo '<form action="procesarAceptacionVenta.php" method="post">';
-                                    echo '<input type="hidden" name="venta_id" value="' . $venta->ID . '">';
+                                    echo '<input type="hidden" name="venta_id" value="' . $venta['ID_Venta'] . '">';
                                     echo '<input type="text" name="valor" placeholder="Introduce un valor">';
+                                    echo '<select name="categoria">';
+                                    echo '<option value="cuerda">Cuerda</option>';
+                                    echo '<option value="viento">Viento</option>';
+                                    echo '<option value="percusion">Percusión</option>';
+                                    echo '<option value="articulo">Artículo</option>';
+                                    echo '</select>'; // Nuevo selector para la categoría del producto que se va a añadir
                                     echo '<button type="submit" name="accion" value="Aceptar">Aceptar</button>';
                                     echo '<button type="submit" name="accion" value="Rechazar">Rechazar</button>';
                                     echo '</form>';
                                 }
+                                
                             }
                         ?>
                     </p>

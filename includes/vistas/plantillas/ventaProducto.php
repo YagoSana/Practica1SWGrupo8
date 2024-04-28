@@ -27,10 +27,6 @@ require '../../config.php';
                                                 cols="50" required></textarea>
                                 </p>
                                 <p>
-                                        <label for="venta_precio">Precio a Empeñar del Producto:</label>
-                                        <input type="text" id="venta_precio" name="venta_precio" required>
-                                </p>
-                                <p>
                                         <label for="venta_imagen">Imagen del Producto:</label>
                                         <input type="file" id="venta_imagen" name="venta_imagen" required>
                                 </p>
