@@ -34,7 +34,7 @@ require_once RAIZ_APP. '/includes/vistas/helpers/venta.php';
                                     echo "<p>" . $venta['Nombre'] . ": " . $venta['Descripcion'] . "</p>";
                                     echo "<p>Estado: " . $venta['Estado'] . "</p>";
                                     echo "<img src='". RUTA_IMGS . '/imagenesBD/'.$venta['Imagen'] . "' alt='Imagen del producto'>";
-                                    echo '<form action="procesarAceptacionVenta.php" method="post">';
+                                    echo '<form action=". RUTA_APP ./includes/vistas/helpers/procesarAceptacionVenta.php" method="post">';
                                     echo '<input type="hidden" name="venta_id" value="' . $venta['ID_Venta'] . '">';
                                     echo '<input type="text" name="valor" placeholder="Introduce un valor">';
                                     echo '<select name="categoria">';
