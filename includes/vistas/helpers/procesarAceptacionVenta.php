@@ -19,16 +19,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Crear un nuevo producto
         // Al crear el producto hacemos que este no sea visible por los usuarios hasta que los empleados no quieran,
-        // se establece la categoria, el stock se establece en 1 (por motivos obvios) y se establece como reacondicionado
-        $producto = new Producto(null, $venta->Nombre, $venta->Descripcion, $valor, $venta->Imagen, 1, 0, $categoria, 1);
-        $producto->createProducto();
+        // se establece la categoria, el stock se establece en 1 (por motivos obvios) y se establece como reacondicionado   
+        $rutaImg = "/img/imagenesBD/" . $venta->getImagen();
+
+        $producto = new Producto(null, $venta->getNombre(), $venta->getDescripcion(), $valor, $rutaImg, 1, 1, $categoria, $venta->getIDUsuario());
+        $producto->createProducto($venta->getNombre(), $venta->getDescripcion(), $valor, $rutaImg, 1, 1, $categoria, $venta->getIDUsuario());
     } else {
         // Cambiar el estado de la venta a "Rechazada"
         $venta->setEstado('Rechazada');
     }
 
     // Redirigir al usuario a la página de ventas
-    header("Location: mostrarVentas.php");
+    header('Location: ' . RUTA_APP . '/includes/vistas/plantillas/mostrarVentas.php');
     exit;
 }
 ?>

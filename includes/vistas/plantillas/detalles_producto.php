@@ -7,7 +7,7 @@ $producto_id = $_GET['id'];
 $producto = Producto::getProducto($producto_id);
 
 $pedidos = Producto::obtenerPedidosDeProducto($producto_id);
-
+$titulo  = "Detalles del producto";
 $ruta = RUTA_APP;
 ob_start();
 ?>

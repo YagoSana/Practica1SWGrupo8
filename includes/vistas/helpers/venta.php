@@ -56,13 +56,14 @@ class Venta {
         return $result;
     }
 
-    public static function getVentaById($venta_id) {
+    public static function getVentaById($ID_Venta) {
 
         $pdo = Aplicacion::getInstance()->getConexionBd();
     
-        $stmt = $pdo->prepare('SELECT * FROM ventas WHERE ID = :ID');
+        $stmt = $pdo->prepare('SELECT * FROM ventas WHERE ID_Venta = :ID_Venta');
 
-        $stmt->execute(['ID' => $venta_id]);
+        echo $ID_Venta;
+        $stmt->execute(['ID_Venta' => $ID_Venta]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
     
         // Verificar si se obtuvo un resultado
@@ -70,7 +71,7 @@ class Venta {
             die('Error al obtener la venta de la base de datos');
         }
     
-        $venta = new Venta($result['ID'], $result['ID_Usuario'], $result['Nombre'], $result['Descripcion'], $result['Imagen'], $result['Estado']);
+        $venta = new Venta($result['ID_Venta'], $result['ID_Usuario'], $result['Nombre'], $result['Descripcion'], $result['Imagen'], $result['Estado']);
         // Devolver el objeto Venta
         return $venta;
     }
@@ -81,12 +82,34 @@ class Venta {
         $pdo = Aplicacion::getInstance()->getConexionBd();
     
         // Preparar la consulta SQL para actualizar el estado de la venta
-        $stmt = $pdo->prepare('UPDATE ventas SET Estado = :Estado WHERE ID = :ID');
+        $stmt = $pdo->prepare('UPDATE ventas SET Estado = :Estado WHERE ID_Venta = :ID_Venta');
     
         // Ejecutar la consulta
-        $stmt->execute(['Estado' => $estado, 'ID' => $this->ID]);
+        $stmt->execute(['Estado' => $estado, 'ID_Venta' => $this->ID]);
     }
     
-    
+    public function getID() {
+        return $this->ID;
+    }
+
+    public function getIDUsuario() {
+        return $this->ID_Usuario;
+    }
+
+    public function getNombre() {
+        return $this->Nombre;
+    }
+
+    public function getDescripcion() {
+        return $this->Descripcion;
+    }
+
+    public function getImagen() {
+        return $this->Imagen;
+    }
+
+    public function getEstado() {
+        return $this->Estado;
+    }
     
 }

@@ -1,9 +1,8 @@
 <?php
-
-require_once '../plantillas/mostrarVentas.php';
 require_once '../../config.php';
 require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
 require_once RAIZ_APP. '/includes/vistas/helpers/venta.php';
+session_start();
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -53,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $venta = new Venta(null, $ID_Usuario, $Nombre, $Descripcion, $Imagen, $Estado);
 
         $venta->createVenta();
-
+        
         header('Location: ' . RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php');
     }
     

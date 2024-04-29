@@ -66,7 +66,7 @@ CREATE TABLE `productos` (
   `Stock` int(100) NOT NULL,
   `Visible` boolean NOT NULL DEFAULT 1,
   `Tipo` varchar(20) NOT NULL,
-  `Reacondicionado` boolean NOT NULL DEFAULT false
+  `ID_Venta` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -209,9 +209,8 @@ ALTER TABLE `usuario`
 ALTER TABLE `valoraciones`
   ADD PRIMARY KEY (`ID_Valoracion`);
 
---
--- AUTO_INCREMENT de las tablas volcadas
---
+ALTER TABLE `ventas`
+  ADD PRIMARY KEY (`ID_Venta`);
 
 --
 -- AUTO_INCREMENT de la tabla `carrito`
@@ -229,23 +228,22 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `ID_Producto` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID_Producto` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `Idusuario` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `Idusuario` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT de la tabla `valoraciones`
 --
 ALTER TABLE `valoraciones`
-  MODIFY `ID_Valoracion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_Valoracion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
---
--- Restricciones para tablas volcadas
---
+ALTER TABLE `ventas`
+  MODIFY `ID_Venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Filtros para la tabla `productos_pedidos`

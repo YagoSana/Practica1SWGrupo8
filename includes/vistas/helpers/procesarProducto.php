@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Nombre = $_POST['producto_nombre'];
     $Descripcion = $_POST['producto_descripcion'];
     $Precio = $_POST['producto_precio'];
-    $Stock = $_POST['producto_stock'];
+    $Stock = 10;//$_POST['producto_stock'];
     $Tipo = $_POST['producto_tipo'];
 
     // Valida que el nombre tenga al menos 5 caracteres
@@ -79,7 +79,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $Visible = 1;
         $Reacondicionado = 0;
         $producto = new Producto(null, $Nombre, $Descripcion, $Precio, $target, $Stock, $Visible, $Tipo, $Reacondicionado);
-
         $producto->createProducto($Nombre, $Descripcion, $Precio, $target, $Stock, $Visible, $Tipo, $Reacondicionado);
         header('Location: ' . RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php');
         }

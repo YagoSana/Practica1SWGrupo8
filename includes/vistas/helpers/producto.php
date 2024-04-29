@@ -11,9 +11,9 @@ class Producto
     private $Visible;
     private $Stock;
     private $Tipo;
-    private $Reacondicionado;
+    private $ID_Venta;
 
-    public function __construct($ID, $Nombre, $Descripcion, $Precio, $Imagen, $Stock, $Visible, $Tipo, $Reacondicionado)
+    public function __construct($ID, $Nombre, $Descripcion, $Precio, $Imagen, $Stock, $Visible, $Tipo, $ID_Venta)
     {
         $this->ID = $ID;
         $this->Nombre = $Nombre;
@@ -23,7 +23,7 @@ class Producto
         $this->Visible = 1;
         $this->Stock = $Stock;
         $this->Tipo = $Tipo;
-        $this->Reacondicionado = $Reacondicionado;
+        $this->ID_Venta = $ID_Venta;
     }
 
     public static function getProducto($ID)
@@ -42,7 +42,7 @@ class Producto
             $producto['Stock'], 
             $producto['Visible'],
             $producto['Tipo'],
-            $producto['Reacondicionado']
+            $producto['ID_Venta']
         );
     }
 
@@ -94,17 +94,19 @@ class Producto
         return $result;
     }
 
-    public function createProducto($Nombre, $Descripcion, $Precio, $Imagen, $Stock, $Tipo)
+    public function createProducto($Nombre, $Descripcion, $Precio, $Imagen, $Stock, $Visible, $Tipo, $ID_Venta)
     {
         $pdo = Aplicacion::getInstance()->getConexionBd();
-        $stmt = $pdo->prepare('INSERT INTO productos (Nombre, Descripcion, Precio, Imagen, Stock, Tipo) VALUES (:Nombre, :Descripcion, :Precio, :Imagen, :Stock, :Tipo)');
+        $stmt = $pdo->prepare('INSERT INTO productos (Nombre, Descripcion, Precio, Imagen, Stock, Visible, Tipo, ID_Venta) VALUES (:Nombre, :Descripcion, :Precio, :Imagen, :Stock, :Visible, :Tipo, :ID_Venta)');
         $stmt->execute([
             'Nombre' => $Nombre,
             'Descripcion' => $Descripcion,
             'Precio' => $Precio,
             'Imagen' => $this->Imagen,
             'Stock' => $Stock,
-            'Tipo' => $Tipo
+            'Visible' => $Visible,
+            'Tipo' => $Tipo,
+            'ID_Venta' => $ID_Venta
         ]);
 
         $this->ID = $pdo->lastInsertId();
@@ -113,7 +115,9 @@ class Producto
         $this->Precio = $Precio;
         $this->Imagen = $this->$Imagen;
         $this->Stock = $Stock;
+        $this->Visible = $Visible;
         $this->Tipo = $Tipo;
+        $this->ID_Venta = $ID_Venta;
     }
 
     public static function obtenerPedidosDeProducto($producto)
@@ -238,11 +242,11 @@ class Producto
         $visible = $stmt->fetch();
         return $visible['Visible'];
     }
-    public function esReacondicionado($usuario){
+    public function esReacondicionado($producto){
         $pdo = Aplicacion::getInstance()->getConexionBd();
-        $stmt = $pdo->prepare('SELECT Reacondicionado FROM productos WHERE ID_Producto = :ID');
-        $stmt->execute(['ID' => $this->ID]);
+        $stmt = $pdo->prepare('SELECT ID_Venta FROM productos WHERE ID_Producto = :ID');
+        $stmt->execute(['ID' => $producto->getID()]);
         $reacondicionado = $stmt->fetch();
-        return $reacondicionado['Reacondicionado'];
+        return $reacondicionado['ID_Venta'];
     }
 }

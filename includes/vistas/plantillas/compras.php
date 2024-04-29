@@ -9,7 +9,7 @@ $producto = new Producto(null, null, null, null, null, null, null, null, null);
 $productos_data = $producto->getAllProductos();
 
 foreach ($productos_data as $producto_data) {
-    $producto = new Producto($producto_data['ID_Producto'], $producto_data['Nombre'], $producto_data['Descripcion'], $producto_data['Precio'], $producto_data['Imagen'], $producto_data['Stock'], $producto_data['Visible'], $producto_data['Tipo'], $producto_data['Reacondicionado']);
+    $producto = new Producto($producto_data['ID_Producto'], $producto_data['Nombre'], $producto_data['Descripcion'], $producto_data['Precio'], $producto_data['Imagen'], $producto_data['Stock'], $producto_data['Visible'], $producto_data['Tipo'], $producto_data['ID_Venta']);
     $productos[] = $producto;
 }
 ?>
@@ -50,7 +50,7 @@ foreach ($productos_data as $producto_data) {
                                 echo "<img src='" . RUTA_APP . $producto->getImagen() . "' alt='Imagen del producto' id='imgCompras'>";
                                 echo "<div class ='detalles'>";
                                 $reacondicionado = "(Nuevo)";
-                                if($producto->esReacondicionado($producto)){
+                                if($producto->esReacondicionado($producto)){ //revisa si el id de la venta es 0
                                     $reacondicionado = "(Reacondicionado)";
                                 }
                                 echo "<h3>" . $producto->getNombre() ."</h3>";
