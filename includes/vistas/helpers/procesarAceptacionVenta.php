@@ -1,6 +1,7 @@
 <?php
 require '../../config.php';
 require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
+require_once "venta.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario
