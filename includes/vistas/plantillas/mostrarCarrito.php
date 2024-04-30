@@ -8,7 +8,7 @@ require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
 
 <head>
     <?php include RAIZ_APP . '/includes/vistas/comun/header.php'; ?>
-    <title>Login Back Music</title>
+    <title>Carrito Back Music</title>
 </head>
 
 <body>

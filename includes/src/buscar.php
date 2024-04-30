@@ -23,9 +23,10 @@ $resultados = array_filter($productos_data, function($producto) use ($busqueda) 
 });
 
 // Prepara el contenido para la plantilla
-$contenido = '';
+$contenido = '<h2>Compras Back Music</h2>
+        <p>Esta el la sección de compras de Back Music. Aquí podrás encontrar todo lo que tenemos a la venta.</p>';
 foreach ($resultados as $producto_data) {
-    $producto = new Producto($producto_data['ID_Producto'], $producto_data['Nombre'], $producto_data['Descripcion'], $producto_data['Precio'], $producto_data['Imagen'], $producto_data['Stock'],  $producto_data['Visible'], $producto_data['Tipo'], $producto_data['Reacondicionado']);
+    $producto = new Producto($producto_data['ID_Producto'], $producto_data['Nombre'], $producto_data['Descripcion'], $producto_data['Precio'], $producto_data['Imagen'], $producto_data['Stock'], $producto_data['Visible'], $producto_data['Tipo'], $producto_data['ID_Venta']);
     $contenido .= "<div class='producto'>";
     $contenido .= "<a class='subr' href='" . RUTA_APP . "/includes/vistas/plantillas/detalles_producto.php?id=" . $producto->getID() . "'>";
  // Enlace a la página de detalles del producto
@@ -49,7 +50,7 @@ foreach ($resultados as $producto_data) {
     if (isset($_SESSION["esEmpleado"])) {
         $contenido .= "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarEliminacion.php' method='post'>";
         $contenido .= "<input type='hidden' name='producto_id' value='" . $producto->getID() . "'>";
-        $contenido .= "<button class='borrar' type='submit' name='eliminar_producto'>Eliminar</button>";
+        $contenido .= "<button class='borrar' type='submit' name='eliminar_producto'>Ocultar</button>";
         $contenido .= "</form>";
     }
 
@@ -59,5 +60,6 @@ foreach ($resultados as $producto_data) {
 }
 
 // Incluye la plantilla
+$titulo = "Compras Back Music";
 include RAIZ_APP . '/includes/vistas/plantillas/plantilla.php';
 ?>

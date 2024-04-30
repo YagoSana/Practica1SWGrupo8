@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-04-2024 a las 20:17:52
+-- Tiempo de generación: 30-04-2024 a las 11:13:12
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `bd_def`
+-- Base de datos: `bd_def_estructura`
 --
 
 -- --------------------------------------------------------
@@ -47,10 +47,6 @@ CREATE TABLE `pedidos` (
   `Importe` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `pedidos` (`ID_Pedido`, `Fecha`, `Cliente`, `Importe`) VALUES
-(1, '2024-04-09', 8, 299.99),
-(2, '2024-04-10', 9, 299.99);
-
 -- --------------------------------------------------------
 
 --
@@ -64,23 +60,10 @@ CREATE TABLE `productos` (
   `Precio` decimal(6,2) NOT NULL,
   `Imagen` varchar(255) NOT NULL,
   `Stock` int(100) NOT NULL,
-  `Visible` boolean NOT NULL DEFAULT 1,
+  `Visible` tinyint(1) NOT NULL DEFAULT 1,
   `Tipo` varchar(20) NOT NULL,
   `ID_Venta` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `productos`
---
-
-INSERT INTO `productos` (`ID_Producto`, `Nombre`, `Descripcion`, `Precio`, `Imagen`, `Stock`, `Tipo`) VALUES
-(1, 'Guitarra Acústica', 'Instrumento musical de alta calidad, con cuerdas de acero y un sonido resonante y claro. Ideal para músicos de todos los niveles. Cuerpo de madera pulida para una estética elegante. Esta guitarra acús', 299.99, '/img/imagenesBD/Guitarra.jpg', 10,'Cuerda'),
-(2, 'Tambor', 'Instrumento de percusión de sonido profundo y resonante. Cuerpo de madera con parches de piel ajustables. Perfecto para ritmos enérgicos y actuaciones en vivo.', 99.99, '/img/imagenesBD/Tambor.jpg', 10,'Percusion'),
-(3, 'Arpa', 'Instrumento musical elegante con cuerdas tensadas que se tocan con los dedos. Produce sonidos melodiosos y suaves. Ideal para música clásica y celta. Cuerpo de madera de alta calidad para una resonanc', 629.99, '/img/imagenesBD/Arpa.jpg', 10,'Cuerda'),
-(4, 'Armónica', 'diseñada para practicantes, principiantes e intermedios. Gran sistema de armónica adecuado para blues, folk, música clásica pop, jazz, country y rock & roll', 68.20, '/img/imagenesBD/armonica.jpg', 10,'Viento'),
-(5, 'Pink Floyd Vinilo', 'Vinilo de la banda Pink Floyd, con su álbum más famoso, The Dark Side of the Moon. Un clásico de la música rock que no puede faltar en tu colección.', 35.99, '/img/imagenesBD/PinkFloydVinile.png', 10,'Articulos'),
-(6, 'PumpUpTheJam Vinilo', 'Vinilo de la banda Technotronic, con su álbum más famoso, Pump Up The Jam. Un clásico de la música electrónica que conquistó las pistas de baile en los años 90.', 35.99, '/img/imagenesBD/PumpUpTheJam.png', 10,'Articulos'),
-(7, 'Camiseta Los Ramones', 'Camiseta de la banda Ramones, con su icónico logo en la parte delantera. Fabricada en algodón 100% para una mayor comodidad y durabilidad. Disponible unicamente en talla L. (Más tallas próximamente)', 12.99, '/img/imagenesBD/Ramones.png', 10,'Articulos');
 
 -- --------------------------------------------------------
 
@@ -94,9 +77,6 @@ CREATE TABLE `productos_pedidos` (
   `Cantidad` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `productos_pedidos` (`ID_Pedido`, `ID_Producto`, `Cantidad`) VALUES
-(1, 1, 1),
-(2, 1, 1);
 -- --------------------------------------------------------
 
 --
@@ -114,18 +94,6 @@ CREATE TABLE `usuario` (
   `Puntos` int(10) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `usuario`
---
-
-INSERT INTO `usuario` (`Apellido`, `Nombre`, `User`, `Idusuario`, `Pass`, `Email`, `rol`) VALUES
-('Sanabria', 'Yago', 'yagosana', 8, '$2y$10$9qG31gaUs54HT/3GBlnJyuIBUQ.ZGczvK8Sfm9o5VNbmnRGS.cw4e', 'yagosana@ucm.es', 'admin'),
-('Felix', 'Alvaro', 'alfelix', 9, '$2y$10$54u/0lMeJCzcHgi0bZgGcOYYagUBVP6jIgNjiqQ6EZqIvRTUjI9vy', 'alfelix@ucm.es', 'admin'),
-('Reyes', 'Laura', 'laureyes', 10, '$2y$10$zEvqxkmtmILL0EI3JpPTEut1lTGooL0ruYChDrPXWTh79V9vC.Wo6', 'laurreye@ucm.es', 'admin'),
-('El Farissi', 'Mohamed', 'melfaris', 11, '$2y$10$.VmxpNm4gNvaao99INOetOtXLIOAzhPLOkTfXC7wGaOCXMnT7RKBi', 'melfaris@ucm.es', 'admin'),
-('Cliente', 'Cliente', 'cliente', 12, '$2y$10$fHDX7YGU4ukGN4sF2wwGWOGnLyrSimmhIyVKZ/X2ct/QDORq.Px.u', 'cliente@ucm.es', 'cliente'),
-('Empleado', 'Empleado', 'empleado', 13, '$2y$10$IQsUNhK3fI8fMHL/tRZUzeDCtHNHYQsdMI3vRh65uWhq1nTnq6jk6', 'empleado@ucm.es', 'empleado');
-
 -- --------------------------------------------------------
 
 --
@@ -139,14 +107,6 @@ CREATE TABLE `valoraciones` (
   `Valoracion` int(11) NOT NULL,
   `Comentario` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `valoraciones`
---
-
-INSERT INTO `valoraciones` (`ID_Valoracion`, `Idusuario`, `ID`, `Valoracion`, `Comentario`) VALUES
-(1, 8, 1, 5, 'Excelente guitarra. El sonido es claro y resonante, y el cuerpo de madera pulida es absolutamente hermoso.'),
-(2, 9, 2, 4, 'Buena guitarra para su precio. Las cuerdas de acero producen un sonido brillante y la guitarra en sí es bastante duradera.');
 
 -- --------------------------------------------------------
 
@@ -162,7 +122,6 @@ CREATE TABLE `ventas` (
   `Imagen` varchar(255) NOT NULL,
   `Estado` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 
 --
 -- Índices para tablas volcadas
@@ -209,8 +168,15 @@ ALTER TABLE `usuario`
 ALTER TABLE `valoraciones`
   ADD PRIMARY KEY (`ID_Valoracion`);
 
+--
+-- Indices de la tabla `ventas`
+--
 ALTER TABLE `ventas`
   ADD PRIMARY KEY (`ID_Venta`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
 
 --
 -- AUTO_INCREMENT de la tabla `carrito`
@@ -228,22 +194,26 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `ID_Producto` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `ID_Producto` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `Idusuario` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `Idusuario` int(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `valoraciones`
 --
 ALTER TABLE `valoraciones`
-  MODIFY `ID_Valoracion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `ID_Valoracion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT de la tabla `ventas`
+--
 ALTER TABLE `ventas`
-  MODIFY `ID_Venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `ID_Venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 
 --
 -- Filtros para la tabla `productos_pedidos`

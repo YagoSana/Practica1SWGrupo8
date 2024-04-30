@@ -1,13 +1,13 @@
 <?php
-require ("../../config.php");
-require_once ("../helpers/producto.php");
+require("../../config.php");
+require_once("../helpers/producto.php");
 require_once RAIZ_APP . '/includes/src/usuarios/usuario.php';
-require_once ("../helpers/carrito.php");
+require_once("../helpers/carrito.php");
 $productos = [];
 
 $tipo = $_GET['tipo'];
 
-$producto = new Producto(null, null, null, null, null, null,null, null, null);
+$producto = new Producto(null, null, null, null, null, null, null, null, null);
 if ($tipo == 'Todos') {
     $productos_data = $producto->getAllProductos();
 } else {
@@ -20,7 +20,8 @@ foreach ($productos_data as $producto_data) {
 }
 
 // Inicia la variable contenido
-$contenido = '';
+$contenido = '<h2>Compras Back Music</h2>
+        <p>Esta el la sección de compras de Back Music. Aquí podrás encontrar todo lo que tenemos a la venta.</p>';
 
 // Verifica si hay productos para mostrar
 if (!empty($productos)) {
@@ -29,7 +30,7 @@ if (!empty($productos)) {
         $visible = $producto->getVisible();
         if ($visible || isset($_SESSION["esEmpleado"])) {
 
-            if($visible){
+            if ($visible) {
                 $class = "producto";
             } else $class = "producto productoOculto";
             $rutaImagen = RUTA_APP . $producto->getImagen();
@@ -60,7 +61,7 @@ if (!empty($productos)) {
                 EOS;
             }
 
-            if (isset($_SESSION["esEmpleado"]) && $visible){
+            if (isset($_SESSION["esEmpleado"]) && $visible) {
                 $contenido .= <<<EOS
                 <form action='" . RUTA_APP . "/includes/vistas/helpers/procesarEliminacion.php' method='post'>
                     <input type='hidden' name='producto_id' value='{$producto->getID()}'>
@@ -76,4 +77,3 @@ if (!empty($productos)) {
 // Muestra la plantilla con el contenido
 $titulo = 'Compras Back Music';
 require_once RAIZ_APP . '/includes/vistas/plantillas/plantilla.php';
-?>
