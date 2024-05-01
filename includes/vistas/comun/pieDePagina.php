@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <footer>
-        Back Music. Das Musik.
+        <p>Back Music. Das Musik.</p>
+        <p>¡Síguenos en redes sociales!</p>
     </footer>
 </html>

@@ -12,7 +12,7 @@
                     <a href="<?php echo RUTA_VISTAS?>/plantillas/BuscarPorTipo.php?tipo=Percusion">Percusion</a>
                     <a href="<?php echo RUTA_VISTAS?>/plantillas/BuscarPorTipo.php?tipo=Articulos">Articulos</a>
                     <a href="<?php echo RUTA_VISTAS?>/plantillas/BuscarPorTipo.php?tipo=Reacondicionados">Reacondicionados</a>
-                    <a href="<?php echo RUTA_VISTAS?>/plantillas/BuscarPorTipo.php?tipo=Todos">Todos</a>
+                    <a href="<?php echo RUTA_VISTAS?>/plantillas/compras.php">Todos</a>
                 </div>
             </li>
         <li><a href="<?php echo RUTA_VISTAS?>/plantillas/mostrarVentas.php">Ventas</a></li>
