@@ -10,7 +10,13 @@ $tipo = $_GET['tipo'];
 $producto = new Producto(null, null, null, null, null, null, null, null, null);
 if ($tipo == 'Todos') {
     $productos_data = $producto->getAllProductos();
-} else {
+
+}
+else if ($tipo == 'Reacondicionados'){
+
+    $productos_data = $producto->getProductosReacondicionados();
+} 
+else {
     $productos_data = $producto->getProductosPorTipo($tipo);
 }
 

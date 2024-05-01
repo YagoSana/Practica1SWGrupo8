@@ -47,28 +47,51 @@ class Producto
     }
 
     public static function getProductosPorTipo($tipo)
-{
-    // Obtener la instancia de la conexión a la base de datos
-    $pdo = Aplicacion::getInstance()->getConexionBd();
+    {
+        // Obtener la instancia de la conexión a la base de datos
+        $pdo = Aplicacion::getInstance()->getConexionBd();
 
-    // Preparar la consulta SQL para seleccionar todos los productos de un tipo específico
-    $stmt = $pdo->prepare('SELECT * FROM productos WHERE Tipo = :tipo ORDER BY Visible DESC');
+        // Preparar la consulta SQL para seleccionar todos los productos de un tipo específico
+        $stmt = $pdo->prepare('SELECT * FROM productos WHERE Tipo = :tipo ORDER BY Visible DESC');
 
-    // Ejecutar la consulta
-    $stmt->execute(['tipo' => $tipo]);
+        // Ejecutar la consulta
+        $stmt->execute(['tipo' => $tipo]);
 
-    // Obtener todos los resultados como un array asociativo
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // Obtener todos los resultados como un array asociativo
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Verificar si se obtuvieron resultados
-    if ($result === false) {
-        // Si no hay resultados, mostrar un mensaje de error
-        die('Error al obtener los productos de la base de datos');
+        // Verificar si se obtuvieron resultados
+        if ($result === false) {
+            // Si no hay resultados, mostrar un mensaje de error
+            die('Error al obtener los productos de la base de datos');
+        }
+
+        // Devolver el resultado
+        return $result;
     }
 
-    // Devolver el resultado
-    return $result;
-}
+    public function getProductosReacondicionados() {
+        // Obtener la instancia de la conexión a la base de datos
+        $pdo = Aplicacion::getInstance()->getConexionBd();
+
+        // Preparar la consulta SQL para seleccionar solo los productos reacondicionados
+        $stmt = $pdo->prepare('SELECT * FROM productos WHERE ID_Venta != 0 ORDER BY Visible DESC');
+
+        // Ejecutar la consulta
+        $stmt->execute();
+
+        // Obtener todos los resultados como un array asociativo
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Verificar si se obtuvieron resultados
+        if ($result === false) {
+            // Si no hay resultados, mostrar un mensaje de error
+            die('Error al obtener los productos reacondicionados de la base de datos');
+        }
+
+        // Devolver el resultado
+        return $result;
+    }
 
     public function getAllProductos()
     {
@@ -234,6 +257,12 @@ class Producto
     {
         return $this->Tipo;
     }
+
+    public function getID_Venta(){
+
+        return $this->ID_Venta;
+    }
+
     public function getVisible()
     {
         $pdo = Aplicacion::getInstance()->getConexionBd();
@@ -249,4 +278,6 @@ class Producto
         $reacondicionado = $stmt->fetch();
         return $reacondicionado['ID_Venta'];
     }
+
+    
 }
