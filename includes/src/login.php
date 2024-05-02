@@ -6,6 +6,7 @@ require_once ("../config.php");
 
 <head>
     <?php include RAIZ_APP . '/includes/vistas/comun/header.php'; ?>
+    <link rel="stylesheet" type="text/css" href="<?php echo RUTA_CSS?>/estilos.css">
     <title>Login Back Music</title>
 </head>
 
@@ -13,7 +14,7 @@ require_once ("../config.php");
     <div id="contenedor">
         <?php include RAIZ_APP . '/includes/vistas/comun/cabecera.php'; ?>
         <?php include RAIZ_APP . '/includes/vistas/comun/lateralIzq.php'; ?>
-        <main>
+        <main id="login-form">
             <h2>Inicio de sesión en BackMusic</h2>
 
             <form action="<?php echo RUTA_SRC ?>/usuarios/procesarLogin.php" method="POST">

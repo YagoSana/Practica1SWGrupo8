@@ -468,3 +468,28 @@ p.frase {
   border-radius: 5px;
   cursor: pointer;
 }
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #f0f0f0;
+  padding: 10 px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+#login-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+#login-form form p {
+  margin-bottom: 15px;
+}
+
+
