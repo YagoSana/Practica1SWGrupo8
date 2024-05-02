@@ -9,6 +9,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $accion = $_POST['accion'];
     $valor = $_POST['valor'];
     $categoria = $_POST['categoria'];
+    $nombre = $_POST['nombre']; // Obtener el nombre del producto del formulario
+    $descripcion = $_POST['descripcion']; // Obtener la descripción del producto del formulario
 
     // Obtener la venta
     $venta = Venta::getVentaById($venta_id);
@@ -22,8 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // se establece la categoria, el stock se establece en 1 (por motivos obvios) y se establece como reacondicionado   
         $rutaImg = "/img/imagenesBD/" . $venta->getImagen();
 
-        $producto = new Producto(null, $venta->getNombre(), $venta->getDescripcion(), $valor, $rutaImg, 1, 1, $categoria, $venta->getIDUsuario());
-        $producto->createProducto($venta->getNombre(), $venta->getDescripcion(), $valor, $rutaImg, 1, 1, $categoria, $venta->getIDUsuario());
+        $producto = new Producto(null, $nombre, $descripcion, $valor, $rutaImg, 1, 1, $categoria, $venta->getIDUsuario());
+        $producto->createProducto($nombre, $descripcion, $valor, $rutaImg, 1, 1, $categoria, $venta->getIDUsuario());
     } else {
         // Cambiar el estado de la venta a "Rechazada"
         $venta->setEstado('Rechazada');
@@ -33,4 +35,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header('Location: ' . RUTA_APP . '/includes/vistas/plantillas/mostrarVentas.php');
     exit;
 }
+
 ?>
