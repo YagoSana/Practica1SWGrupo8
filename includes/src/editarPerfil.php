@@ -6,7 +6,7 @@ require_once ("../config.php");
 
 <head>
     <?php include RAIZ_APP . '/includes/vistas/comun/header.php'; ?>
-    <title>Registro Back Music</title>
+    <title>Editar Perfil Back Music</title>
 </head>
 
 <body>
@@ -14,8 +14,8 @@ require_once ("../config.php");
         <?php include RAIZ_APP . '/includes/vistas/comun/cabecera.php'; ?>
         <?php include RAIZ_APP . '/includes/vistas/comun/lateralIzq.php'; ?>
         <main>
-            <h2>Regístrate en BackMusic</h2>
-            <form action=<?php echo RUTA_USU . "/procesarRegister.php"; ?> method="POST">
+            <h2>Edita tu perfil de BackMusic</h2>
+            <form action=<?php echo RUTA_USU . "/procesarEditarPerfil.php"; ?> method="POST">
                 <p>
                     <input type="text" id="User" name="User" placeholder="Nombre de usuario" size="30" required>
                 </p>
@@ -34,7 +34,7 @@ require_once ("../config.php");
                     <label for="terminos">Marque esta casilla para verificar que ha leído nuestros términos y
                         condiciones del servicio</label>
                 </p>
-                <input type="submit" value="Registrar">
+                <input type="submit" value="Confirmar">
             </form>
         </main>
         <?php include RAIZ_APP . '/includes/vistas/comun/header.php'; ?>

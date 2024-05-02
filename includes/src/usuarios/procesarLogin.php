@@ -11,6 +11,7 @@ $usuario = Usuario::login($User, $Pass);
 if ($usuario) {
     $_SESSION["login"] = true;
     $_SESSION["nombre"] = $User;
+    $_SESSION["ID"] = $usuario->getID();
     
     if ($usuario->getRoles() == "empleado") {
         $_SESSION["esEmpleado"] = true;

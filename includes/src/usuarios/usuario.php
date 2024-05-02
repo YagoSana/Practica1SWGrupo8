@@ -122,43 +122,6 @@ class Usuario
         return false;
     }
 
-    private static function actualiza($usuario)
-    {
-        $result = false;
-        $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf(
-            "UPDATE Usuarios U SET nombreUsuario = %s, nombre=%s, password=%s WHERE U.id=%d",
-            $conn->quote($usuario->nombreUsuario),
-            $conn->quote($usuario->nombre),
-            $conn->quote($usuario->password),
-            $usuario->id
-        );
-        if ($conn->exec($query)) {
-            $result = self::borraRoles($usuario);
-            if ($result) {
-                $result = self::insertaRoles($usuario);
-            }
-        } else {
-            error_log("Error BD ({$conn->errorCode()}): {$conn->errorInfo()}");
-        }
-
-        return $result;
-    }
-
-    private static function borraRoles($usuario)
-    {
-        $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf(
-            "DELETE FROM RolesUsuario RU WHERE RU.usuario = %d",
-            $usuario->id
-        );
-        if (!$conn->exec($query)) {
-            error_log("Error BD ({$conn->errorCode()}): {$conn->errorInfo()}");
-            return false;
-        }
-        return $usuario;
-    }
-
     private static function borra($usuario)
     {
         return self::borraPorId($usuario->id);
@@ -291,6 +254,21 @@ class Usuario
             'Rol' => $Rol,
             'Puntos' => $Puntos
         ]);
+    }
+
+    public static function editarUsuario($viejouser, $Nombre, $Apellido, $Email, $User, $Pass, $Rol, $Puntos)
+    {
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $stmt = $conn->prepare('UPDATE usuario SET Apellido = :Apellido, Nombre = :Nombre, User = :User, Pass = :Pass, Email = :Email, Rol = :Rol, Puntos = :Puntos WHERE Idusuario = '.$viejouser);
+        $stmt->execute([
+        'Apellido' => $Apellido,
+        'Nombre' => $Nombre,
+        'User' => $User,
+        'Pass' => password_hash($Pass, PASSWORD_DEFAULT), // Hasheamos la contraseña
+        'Email' => $Email,
+        'Rol' => $Rol,
+        'Puntos' => $Puntos
+    ]);
     }
 
     public function borrate()

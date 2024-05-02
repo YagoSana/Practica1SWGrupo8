@@ -8,7 +8,7 @@ div#contenedor {
 
 header {
   padding: 30px;
-  height: 270px;
+  height: 290px;
   display: flex;
   flex-direction: column;
   background-color: #ffc48d;
@@ -149,10 +149,6 @@ footer {
   background-color: #303030;
   color: white;
   text-align: center;
-}
-
-button {
-  margin-left: 100px;
 }
 
 .h1titulo {
@@ -458,4 +454,17 @@ p.frase {
   position: absolute;
   top: 5px;
   right: 5px;
+}
+
+.buttoncabecera {
+  display: flex;
+  gap: 10px;
+}
+.buttoncabecera button {
+  background-color:  #da8434;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }

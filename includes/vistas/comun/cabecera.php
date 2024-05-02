@@ -3,7 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-if(isset($_SESSION["login"])){
+if (isset($_SESSION["login"])) {
     require_once RAIZ_APP . '/includes/src/usuarios/usuario.php';
     $usuario = Usuario::buscaUsuario($_SESSION["nombre"]);
 }
@@ -20,21 +20,35 @@ $puntos = 0;
             <!-- Aquí agregamos el formulario de búsqueda -->
             <form action="<?php echo RUTA_SRC ?>/buscar.php" method="get">
                 <input type="text" name="q" class="buscador" placeholder="Buscar...">
-                
+
             </form>
         </div>
     </div>
     <div id="divInferior">
         <div id="divlogin">
-        <?php
-        if (isset($_SESSION["login"])) {
-            echo "<p>Usuario registrado: " . $_SESSION["nombre"] . ". <a href=" . RUTA_SRC . "/usuarios/logout.php>Logout</a></p>";
-            $puntos = Usuario::getPuntos($usuario);
-            echo "<p>Tus puntos en el wallet: $puntos p.</p>";
-        } else {
-            echo "<p>Usuario desconocido. <a href=" . RUTA_SRC . "/login.php>Login</a></p>";
-        }
-        ?>
+            <?php
+            if (isset($_SESSION["login"])) {
+                echo "<p>Bienvenido: " . $_SESSION["nombre"] . "</p> 
+                <div class='buttoncabecera'>
+                    <form action='" . RUTA_SRC . "/editarPerfil.php' method='post'>
+                        <button type='submit' name='edit_profile'>Editar perfil</button>
+                    </form> 
+                    <form action='" . RUTA_SRC . "/usuarios/logout.php' method='post'>
+                        <button type='submit' name='logout'>Logout</button>
+                    </form>
+                </div>
+                </p>";
+                $puntos = Usuario::getPuntos($usuario);
+                echo "<p>Tus puntos en el wallet: $puntos p.</p>";
+            } else {
+                echo "<p>Usuario no registrado.</p>
+                <div class='buttoncabecera'>
+                    <form action='" . RUTA_SRC . "/login.php' method='post'>
+                        <button type='submit' name='login'>Login</button>
+                    </form>
+                </div>";
+            }
+            ?>
         </div>
         <div id="divarticulos">
             <div id="divpedido">
@@ -48,4 +62,5 @@ $puntos = 0;
         </div>
     </div>
 </header>
+
 </html>
