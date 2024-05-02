@@ -15,13 +15,10 @@ $tipo = $_GET['tipo'];
 $producto = new Producto(null, null, null, null, null, null, null, null, null);
 if ($tipo == 'Todos') {
     $productos_data = $producto->getAllProductos();
-
-}
-else if ($tipo == 'Reacondicionados'){
+} else if ($tipo == 'Reacondicionados') {
 
     $productos_data = $producto->getProductosReacondicionados();
-} 
-else {
+} else {
     $productos_data = $producto->getProductosPorTipo($tipo);
 }
 
@@ -38,7 +35,7 @@ if (!empty($productos)) {
     // Itera sobre los productos y muestra la información
     foreach ($productos as $producto) {
         $reacondicionado = "(Nuevo)";
-        if($producto->esReacondicionado($producto)){ //revisa si el id de la venta es 0
+        if ($producto->esReacondicionado($producto)) { //revisa si el id de la venta es 0
             $reacondicionado = "(Reacondicionado)";
         }
         $visible = $producto->getVisible();
@@ -62,7 +59,7 @@ if (!empty($productos)) {
                 </div>
                 <div class='botones'>
             EOS;
-            if (isset($_SESSION["login"])) {                
+            if (isset($_SESSION["login"])) {
                 $contenido .= <<<EOS
                 <form action='$ruta/includes/vistas/helpers/procesarCarrito.php' method='post'>
                     <input type='hidden' name='producto_id' value='{$producto->getID()}'>
@@ -70,7 +67,7 @@ if (!empty($productos)) {
                 </form>
                 EOS;
             } else {
-                
+
                 $contenido .= <<<EOS
                 <button class='agregar' onclick="window.location.href='$ruta/incudes/src/login.php'">Agregar al carrito</button>
                 EOS;
@@ -83,8 +80,7 @@ if (!empty($productos)) {
                     <button class='borrar' type='submit' name='eliminar_producto'>Ocultar</button>
                 </form>
                 EOS;
-            }
-            else if (isset($_SESSION["esEmpleado"])) {
+            } else if (isset($_SESSION["esEmpleado"])) {
                 $contenido .= <<<EOS
                 <form action='$ruta/includes/vistas/helpers/procesarReabastecer.php' method='post'>
                     <input type='hidden' name='producto_id' value='{$producto->getID()}'>
