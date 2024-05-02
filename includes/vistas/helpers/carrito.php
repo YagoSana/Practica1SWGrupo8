@@ -7,7 +7,6 @@ class Carrito {
     private $productos = array(); //Es un array con los productos
     private $estado = 'Pendiente';
     private $pedido;
-    private $total = 0;
 
     //Hacer un construct de la clase carrito???
     //Para hacer un new del pedido
@@ -71,49 +70,11 @@ class Carrito {
 
     }
 
-    public function mostrarProductos() {
+    public function getProductos() {
         $db = Aplicacion::getInstance()->getConexionBd();
 
         $productos_id = $this->obtenerCarritoDelUsuario($this->usuario->getId());
-        $this->total = 0;
-        if ($productos_id == null) {
-            echo "El Carrito está vacío.";
-        } else {
-            foreach ($productos_id as $producto_id) {
-                $producto = Producto::getProducto($producto_id['Producto']);
-                echo "<div class='producto'>";
-                echo "<img src='" . RUTA_APP . $producto->getImagen() . "' alt='Imagen del Producto'>";
-                echo "<div>";
-                echo "<h3>" . $producto->getNombre() . "</h3>";
-                // Aquí asumimos que el Producto tiene un método getDescripcion()
-                echo "<p>Precio: " . $producto->getPrecio() . " €</p>";
-                $this->total += $producto->getPrecio() * $producto_id['Cantidad'];
-               
-                if (isset($_SESSION["login"])) {
-                    // El usuario ha iniciado sesión, muestra el botón "Eliminar"
-                    echo '<div class="form-container">';
-                        echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarProductoCarrito.php' method='post'>";
-                            echo "<input type='hidden' name='productoId' value='" . $producto->getID() . "'>";
-                            echo '<button type="submit" class="btn" name="accion" value="decrementar">-</button>';
-                            echo '<span id="contador">' .$producto_id['Cantidad'].'</span>';
-                            echo '<button type="submit" class="btn" name="accion" value="incrementar">+</button>';
-                            echo "<button class='borrar' type='submit' name='accion' value='eliminar'>Eliminar</button>";
-                        echo "</form>";
-                    echo "</div>";
-                }
-                echo "</div>";
-                echo "</div>";
-            }
-            if (isset($_SESSION["login"])) {
-                // El usuario ha iniciado sesión, muestra el botón "Confirmar Pedido"
-                echo "<div class='cont'>";
-                echo '<span class="total">Total: ' .$this->total.' €</span>';
-                echo '<form action="' . RUTA_APP . '/includes/vistas/helpers/procesarCompra.php" method="POST">
-                    <input type="submit" name="confirmar" value="Confirmar Pedido" class="boton-confirmar">
-                </form>';
-                echo '</div>';
-            }
-        }
+        return $productos_id;
     }
 
     public function obtenerCarritoDelUsuario($usuario_id) {
@@ -134,7 +95,7 @@ class Carrito {
     }
 
 
-    public function confirmarPedido() {
+    public function confirmarPedido($total) {
         // Creamos un nuevo pedido
         $productos_id = $this->obtenerCarritoDelUsuario($this->usuario->getId());
         $productosCarrito = array();
@@ -145,9 +106,8 @@ class Carrito {
             $stock = $producto->getStock();
              
             
-            $nom = $producto->getNombre();
+            //$nom = $producto->getNombre();
             if($productoID['Cantidad'] > $stock) {
-                echo "<p>No hay suficientes de " . $nom . "</p>";
                 return false;
             }
             else {
@@ -156,8 +116,9 @@ class Carrito {
         }
 
         $this->pedido = new Pedido($this->usuario);
-                // Establecemos la fecha de entrega para dentro de un par de dias
-        $dias = rand(2, 5);
+        
+        // Establecemos la fecha de entrega para dentro de un par de dias
+        //$dias = rand(2, 5);
         //$fecha = date('Y-m-d', strtotime("+$dias days"));
 
         $fecha = date('Y-m-d'); //Para prueba con las valoraciones (tema dias)
@@ -166,7 +127,7 @@ class Carrito {
         $db = Aplicacion::getInstance()->getConexionBd();
     
 
-        $this->pedido->setImporte($this->total);
+        $this->pedido->setImporte($total);
 
         $idPedido = $this->pedido->agregarPedido();
         // Agregamos los Productos al Pedido
