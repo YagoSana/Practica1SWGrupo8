@@ -45,9 +45,11 @@ if (!empty($productos)) {
                 $class = "producto";
             } else $class = "producto productoOculto";
             $rutaImagen = RUTA_APP . $producto->getImagen();
+            $stock = $producto->getStock();
             $contenido .= <<<EOS
-            <div class='$class'>
+            <div class='$class' style='position: relative;'>
                 <a class='subr' href='detalles_producto.php?id={$producto->getID()}'>
+                <span class='stock'>Stock: $stock</span>
                 <img src='$rutaImagen' alt='Imagen del producto' id='imgCompras'>
 
                     <div class ='detalles'>
