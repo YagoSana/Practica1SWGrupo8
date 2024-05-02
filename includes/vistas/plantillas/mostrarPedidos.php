@@ -27,7 +27,7 @@ require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
                     $pedido = new Pedido($_SESSION['usuario']);
                 }
                     
-                $pedido->mostrarPedidos();
+                echo $pedido->mostrarPedidos();
               
             } else {
                 echo "<p>Debes iniciar sesión para ver tus pedidos.</p>";

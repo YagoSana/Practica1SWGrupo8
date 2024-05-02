@@ -101,52 +101,53 @@ class Pedido
     public function mostrarPedidos() {
         // Abrir la conexión a la base de datos
         $db = Aplicacion::getInstance()->getConexionBd();
-
+    
         $pedidos = $this->obtenerPedidosDelUsuario($this->cliente->getId());
+        $output = "";
+    
         if($pedidos != null) {
             foreach ($pedidos as $pedido) {
-                echo "<div class='pedido'>";
-                echo "<div class='infoPedido'>";
-                echo "<p class='ped'>Pedido: #" .$pedido['ID_Pedido']. "</p>";
-                echo "<p class='info'>Total: " .$pedido['Importe']. " €</p>";
-                echo "<p class='info'>Fecha: " . $pedido['Fecha'] . "</p>";
-                echo "<div class='estado'>";
+                $output .= "<div class='pedido'>";
+                $output .= "<div class='infoPedido'>";
+                $output .= "<p class='ped'>Pedido: #" .$pedido['ID_Pedido']. "</p>";
+                $output .= "<p class='info'>Total: " .$pedido['Importe']. " €</p>";
+                $output .= "<p class='info'>Fecha: " . $pedido['Fecha'] . "</p>";
+                $output .= "<div class='estado'>";
                     if ($pedido['Fecha'] <= date('Y-m-d')) {
-                        echo "<p class='entregado'>Entregado</p>";
+                        $output .= "<p class='entregado'>Entregado</p>";
                         if ($this->yaValorado($pedido['ID_Pedido'])) {
-                            echo "<button class='valorar-btn' onclick='window.location.href=\"" . RUTA_APP . "/includes/vistas/plantillas/mostrarValoracion.php?id={$pedido['ID_Pedido']}\"'>Valorar</button>";
+                            $output .= "<button class='valorar-btn' onclick='window.location.href=\"" . RUTA_APP . "/includes/vistas/plantillas/mostrarValoracion.php?id={$pedido['ID_Pedido']}\"'>Valorar</button>";
                         } else {
-                            echo "<p class='frase'>Ya has valorado este producto.</p>";
+                            $output .= "<p class='frase'>Ya has valorado este producto.</p>";
                         }
                     } else {
-                        echo "<p class='pend'>Pendiente</p>";
+                        $output .= "<p class='pend'>Pendiente</p>";
                     }
-                echo "</div>";    
-                echo "</div>";
+                $output .= "</div>";    
+                $output .= "</div>";
                 $productos = $this->obtenerProductosDelPedido($pedido['ID_Pedido']);
-                echo "<div class='productosPedido'>";
+                $output .= "<div class='productosPedido'>";
                 foreach($productos as $producto) {
                     $sql = "SELECT * FROM productos WHERE ID_Producto = :producto_id";
                     $stmt = $db->prepare($sql);
                     $stmt->bindParam(':producto_id', $producto['ID_Producto']);
                     $stmt->execute();
                     $prod = $stmt->fetch();
-
-                    echo "<div class='prodPedido'>";
-                    //echo "<p>Producto: " . $prod['Nombre'] . "</p>";
-                    echo "<p><img src='" . RUTA_APP . $prod['Imagen'] . "' alt='Imagen del producto' id='imgPedidos'>x" . $producto['Cantidad'] . "</p>";
-                    //echo "<img src='" . RUTA_APP . $prod['Imagen'] . "' alt='Imagen del producto' id='imgPedidos'>";
-                    echo "</div>";
-                    //echo "<p>Cantidad: " . $producto['Cantidad'] . "</p>";
+    
+                    $output .= "<div class='prodPedido'>";
+                    $output .= "<p><img src='" . RUTA_APP . $prod['Imagen'] . "' alt='Imagen del producto' id='imgPedidos'>x" . $producto['Cantidad'] . "</p>";
+                    $output .= "</div>";
                 }
-                echo "</div>";
+                $output .= "</div>";
                 
-                echo "</div>";
+                $output .= "</div>";
             }
         } else {
-            echo "<p>No existen pedidos.</p>";
+            $output .= "<p>No existen pedidos.</p>";
         }
-    }   
+    
+        return $output;
+    } 
     
 
 
@@ -181,9 +182,6 @@ class Pedido
     public function confirmarPedido() {
         // Cambiamos el estado del pedido a 'Pendiente'
         $this->estado = 'Pendiente';
-        
-        echo "Pedido confirmado. Estado del pedido: " . $this->estado;
-        echo "Su pedido llegara el: " . $this->fechaEntrega;
     }
 
 
