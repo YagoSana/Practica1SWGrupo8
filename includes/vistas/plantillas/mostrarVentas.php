@@ -34,10 +34,11 @@ require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
                                 } else {
                                     foreach($ventas as $venta) {
                                         // Aquí puedes mostrar la información de cada venta
+                                        echo "<div class='producto'>";
                                         echo "<p>" . $venta['Nombre'] . ": " . $venta['Descripcion'] . "</p>";
                                         echo "<p>Estado: " . $venta['Estado'] . "</p>";
                                         echo "<img src='". RUTA_IMGS . '/imagenesBD/'.$venta['Imagen'] . "' alt='Imagen del producto'>";
-                                        
+                                        echo "</div>";
                                     }
                                 }
 

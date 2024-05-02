@@ -11,7 +11,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['login'])) {
     $carrito = $_SESSION['usuario']->getCarrito();
-    $total = $_GET['total'];
+    $total = $_POST['total'];
     $exito = $carrito->confirmarPedido($total);
     if (!$exito) {
         $error = true;

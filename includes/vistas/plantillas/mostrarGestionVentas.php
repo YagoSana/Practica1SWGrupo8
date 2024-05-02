@@ -31,11 +31,13 @@ require_once RAIZ_APP. '/includes/vistas/helpers/venta.php';
                             } else {
                                 foreach($ventas as $venta) {
                                     // Aquí puedes mostrar la información de cada venta
-                                    echo "<p>" . $venta['Nombre'] . ": " . $venta['Descripcion'] . "</p>";
-                                    echo "<p>Estado: " . $venta['Estado'] . "</p>";
-                                    echo "<img src='". RUTA_IMGS . '/imagenesBD/'.$venta['Imagen'] . "' alt='Imagen del producto'>";
+                                    echo "<div class='producto'>";
                                     echo '<form action="'. RUTA_APP .'/includes/vistas/helpers/procesarAceptacionVenta.php" method="post">';
                                     echo '<input type="hidden" name="venta_id" value="' . $venta['ID_Venta'] . '">';
+                                    echo '<input type="text" name="nombre" value="' . $venta['Nombre'] . '">'; // Campo de texto editable para el nombre
+                                    echo '<textarea name="descripcion" rows="4" cols="50">' . $venta['Descripcion'] . '</textarea>'; // Campo de texto editable para la descripción
+                                    echo "<p>Estado: " . $venta['Estado'] . "</p>";
+                                    echo "<img src='". RUTA_IMGS . '/imagenesBD/'.$venta['Imagen'] . "' alt='Imagen del producto'>";
                                     echo '<input type="text" name="valor" placeholder="Introduce un valor">';
                                     echo '<select name="categoria">';
                                     echo '<option value="cuerda">Cuerda</option>';
@@ -46,7 +48,10 @@ require_once RAIZ_APP. '/includes/vistas/helpers/venta.php';
                                     echo '<button type="submit" name="accion" value="Aceptar">Aceptar</button>';
                                     echo '<button type="submit" name="accion" value="Rechazar">Rechazar</button>';
                                     echo '</form>';
+                                    echo "</div>";
                                 }
+                                
+                                
                                 
                             }
                         ?>

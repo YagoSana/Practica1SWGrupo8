@@ -60,6 +60,7 @@ require_once RAIZ_APP . '/includes/vistas/helpers/carrito.php';
                         echo "<div class='cont'>";
                         echo '<span class="total">Total: ' . $total . ' €</span>';
                         echo '<form action="' . RUTA_APP . '/includes/vistas/helpers/procesarCompra.php?total=$total" method="POST">
+                        <input type="hidden" name="total" value="' . $total . '">
                         <input type="submit" name="confirmar" value="Confirmar Pedido" class="boton-confirmar">
                         </form>';
                         if (isset($_GET['error'])){
