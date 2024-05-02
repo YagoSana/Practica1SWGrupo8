@@ -44,9 +44,13 @@ foreach ($productos_data as $producto_data) {
                                     $class = "producto";
                                 } else $class = "producto productoOculto";
 
-                                echo "<div class='$class'>";
+                                echo "<div class='$class' style='position: relative;'>";
                                 //echo "<div class='producto'>";
                                 echo "<a class='subr' href='detalles_producto.php?id=" . $producto->getID() . "'>"; // Enlace a la página de detalles del producto
+
+                                $stock = $producto->getStock();
+                                echo "<span class='stock'>Stock: $stock</span>";
+
                                 echo "<img src='" . RUTA_APP . $producto->getImagen() . "' alt='Imagen del producto' id='imgCompras'>";
                                 echo "<div class ='detalles'>";
                                 $reacondicionado = "(Nuevo)";

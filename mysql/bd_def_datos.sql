@@ -85,7 +85,7 @@ INSERT INTO `valoraciones` (`ID_Valoracion`, `Idusuario`, `ID`, `Valoracion`, `C
 --
 
 INSERT INTO `ventas` (`ID_Venta`, `ID_Usuario`, `Nombre`, `Descripcion`, `Imagen`, `Estado`) VALUES
-(1, 12, 'Piano Eléctrico', 'Vendo un piano eléctrico poco usado, queria tener una obcion barata de música clasica en mi sótano pero ya no lo uso. Ha pillado algo de polvo pero no ha perdido valor alguino.', 'pianoElectrico.jpg', 'Aceptada');
+(1, 12, 'Piano Eléctrico', 'Vendo un piano eléctrico poco usado, queria tener una opción barata de música clasica en mi sótano pero ya no lo uso. Ha pillado algo de polvo pero no ha perdido valor alguno.', 'pianoElectrico.jpg', 'Aceptada');
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 

@@ -16,7 +16,6 @@
                 </div>
             </li>
         <li><a href="<?php echo RUTA_VISTAS?>/plantillas/mostrarVentas.php">Ventas</a></li>
-        <li><a href="<?php echo RUTA_VISTAS?>/plantillas/contacto.php">Contacto</a></li>
         <li><a href="<?php echo RUTA_VISTAS?>/plantillas/detalles.php">Detalles</a></li>
         <li><a href="<?php echo RUTA_VISTAS?>/plantillas/miembros.php">Miembros</a></li>
         <li><a href="<?php echo RUTA_VISTAS?>/plantillas/bocetos.php">Bocetos</a></li>
