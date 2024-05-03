@@ -36,35 +36,25 @@ require_once RAIZ_APP . '/includes/vistas/helpers/carrito.php';
                         echo "<img src='" . RUTA_APP . $producto->getImagen() . "' alt='Imagen del Producto'>";
                         echo "<div>";
                         echo "<h3>" . $producto->getNombre() . "</h3>";
-                        // Aquí asumimos que el Producto tiene un método getDescripcion()
                         echo "<p>Precio: " . $producto->getPrecio() . " €</p>";
                         $total += $producto->getPrecio() * $producto_id['Cantidad'];
-
-                        if (isset($_SESSION["login"])) {
-                            // El usuario ha iniciado sesión, muestra el botón "Eliminar"
-                            echo '<div class="form-container">';
-                            echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarProductoCarrito.php' method='post'>";
-                            echo "<input type='hidden' name='productoId' value='" . $producto->getID() . "'>";
-                            echo '<button type="submit" class="btn" name="accion" value="decrementar">-</button>';
-                            echo '<span id="contador">' . $producto_id['Cantidad'] . '</span>';
-                            echo '<button type="submit" class="btn" name="accion" value="incrementar">+</button>';
-                            echo "<button class='borrar' type='submit' name='accion' value='eliminar'>Eliminar</button>";
-                            echo "</form>";
-                            echo "</div>";
-                        }
                         echo "</div>";
                         echo "</div>";
                     }
                     if (isset($_SESSION["login"])) {
                         // El usuario ha iniciado sesión, muestra el botón "Confirmar Pedido"
                         echo "<div class='cont'>";
-                        echo '<span class="total">Total: ' . $total . ' €</span>';
+                        // Aquí es donde agregas 'data-total' al elemento que muestra el total
+                        echo '<span class="total" data-total="' . $total . '">Total: ' . $total . ' €</span>';
                         echo '<form action="' . RUTA_APP . '/includes/vistas/helpers/procesarCompra.php?total=$total" method="POST">
-                        <input type="hidden" name="total" value="' . $total . '">
+                        <input type="hidden" name="total" value="' . $total . '">';
+                        // Y aquí es donde agregas 'data-puntos' a la casilla de verificación
+                        echo '<input type="checkbox" id="usarPuntos" name="usarPuntos" data-puntos="' . $puntos . '">';
+                        echo '<label for="usarPuntos">¿Usar puntos del wallet?</label>
                         <input type="submit" name="confirmar" value="Confirmar Pedido" class="boton-confirmar">
                         </form>';
                         if (isset($_GET['error'])){
-                            echo "Error al procear el pedido, no disponemos de tantos artículos en stock.";
+                            echo "Error al procesar el pedido, no disponemos de tantos artículos en stock.";
                         }
                         echo '</div>';
                     }
@@ -76,6 +66,9 @@ require_once RAIZ_APP . '/includes/vistas/helpers/carrito.php';
         </main>
         <?php include RAIZ_APP . '/includes/vistas/comun/pieDePagina.php'; ?>
     </div>
+
+    <script src="/includes/src/javaScript/restaPuntos.js"></script>
+
 </body>
 
 </html>
