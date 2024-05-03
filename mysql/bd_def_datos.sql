@@ -69,7 +69,7 @@ INSERT INTO `usuario` (`Apellido`, `Nombre`, `User`, `Idusuario`, `Pass`, `Email
 ('Felix', 'Alvaro', 'alfelix', 9, '$2y$10$54u/0lMeJCzcHgi0bZgGcOYYagUBVP6jIgNjiqQ6EZqIvRTUjI9vy', 'alfelix@ucm.es', 'admin', 0),
 ('Reyes', 'Laura', 'laureyes', 10, '$2y$10$zEvqxkmtmILL0EI3JpPTEut1lTGooL0ruYChDrPXWTh79V9vC.Wo6', 'laurreye@ucm.es', 'admin', 0),
 ('El Farissi', 'Mohamed', 'melfaris', 11, '$2y$10$.VmxpNm4gNvaao99INOetOtXLIOAzhPLOkTfXC7wGaOCXMnT7RKBi', 'melfaris@ucm.es', 'admin', 0),
-('Cliente', 'Cliente', 'cliente', 12, '$2y$10$fHDX7YGU4ukGN4sF2wwGWOGnLyrSimmhIyVKZ/X2ct/QDORq.Px.u', 'cliente@ucm.es', 'cliente', 0),
+('Cliente', 'Cliente', 'cliente', 12, '$2y$10$fHDX7YGU4ukGN4sF2wwGWOGnLyrSimmhIyVKZ/X2ct/QDORq.Px.u', 'cliente@ucm.es', 'cliente', 8.5),
 ('Empleado', 'Empleado', 'empleado', 13, '$2y$10$IQsUNhK3fI8fMHL/tRZUzeDCtHNHYQsdMI3vRh65uWhq1nTnq6jk6', 'empleado@ucm.es', 'empleado', 0);
 
 --

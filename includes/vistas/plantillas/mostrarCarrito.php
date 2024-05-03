@@ -38,6 +38,18 @@ require_once RAIZ_APP . '/includes/vistas/helpers/carrito.php';
                         echo "<h3>" . $producto->getNombre() . "</h3>";
                         echo "<p>Precio: " . $producto->getPrecio() . " €</p>";
                         $total += $producto->getPrecio() * $producto_id['Cantidad'];
+                        if (isset($_SESSION["login"])) {
+                            // El usuario ha iniciado sesión, muestra el botón "Eliminar"
+                            echo '<div class="form-container">';
+                            echo "<form action='" . RUTA_APP . "/includes/vistas/helpers/procesarProductoCarrito.php' method='post'>";
+                            echo "<input type='hidden' name='productoId' value='" . $producto->getID() . "'>";
+                            echo '<button type="submit" class="btn" name="accion" value="decrementar">-</button>';
+                            echo '<span id="contador">' . $producto_id['Cantidad'] . '</span>';
+                            echo '<button type="submit" class="btn" name="accion" value="incrementar">+</button>';
+                            echo "<button class='borrar' type='submit' name='accion' value='eliminar'>Eliminar</button>";
+                            echo "</form>";
+                            echo "</div>";
+                        }
                         echo "</div>";
                         echo "</div>";
                     }
@@ -53,7 +65,7 @@ require_once RAIZ_APP . '/includes/vistas/helpers/carrito.php';
                         echo '<label for="usarPuntos">¿Usar puntos del wallet?</label>
                         <input type="submit" name="confirmar" value="Confirmar Pedido" class="boton-confirmar">
                         </form>';
-                        if (isset($_GET['error'])){
+                        if (isset($_GET['error'])) {
                             echo "Error al procesar el pedido, no disponemos de tantos artículos en stock.";
                         }
                         echo '</div>';
@@ -67,8 +79,7 @@ require_once RAIZ_APP . '/includes/vistas/helpers/carrito.php';
         <?php include RAIZ_APP . '/includes/vistas/comun/pieDePagina.php'; ?>
     </div>
 
-    <script src="/includes/src/javaScript/restaPuntos.js"></script>
-
+    <script type="text/javascript" src="<?=RUTA_INCL?>/src/javaScript/restaPuntos.js"></script>
 </body>
 
 </html>

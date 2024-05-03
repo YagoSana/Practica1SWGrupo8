@@ -54,10 +54,12 @@ class Usuario
     public static function crea($nombreUsuario, $password, $nombre, $apellido, $email)
     {
         //esta mal
+        /*
         $user = new Usuario($nombreUsuario, self::hashPassword($password), $nombre, $apellido, $email, "clinete", null);
         $_SESSION["usuario"] = $user;
         $user->añadeRol("cliente");
         return $user->guarda();
+        */
     }
 
     public static function buscaUsuario($nombreUsuario)
@@ -151,6 +153,7 @@ class Usuario
 
     public function obtenerProductosDelUsuario()
     {
+        /*
         foreach ($this->pedidos as $pedido) {
             foreach ($pedido->getProductos() as $producto) {
                 echo "Nombre del producto: " . $producto->getNombre() . "\n";
@@ -161,6 +164,7 @@ class Usuario
                 echo "------------------------\n";
             }
         }
+        */
     }
 
     private function inicializarCarrito()
@@ -233,6 +237,12 @@ class Usuario
         $stmt->execute(['nuevosPuntos' => $nuevos_puntos, 'nombreUsuario' => $nombreUsuario]);
     }
     
+    public static function quitarWalletPoints($usuario){
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = "UPDATE usuario SET Puntos = 0 WHERE Idusuario = $usuario->id";
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+    }
     
     public static function getUsuario($id_usuario){
         // Obtener la conexión a la base de datos
@@ -269,13 +279,6 @@ class Usuario
         $this->password = self::hashPassword($nuevoPassword);
     }
 
-    public function guarda()
-    {
-        if ($this->id !== null) {
-            return self::actualiza($this);
-        }
-        return self::inserta($this);
-    }
 
     public static function insertaUsuario($Nombre, $Apellido, $Email, $User, $Pass, $Rol, $Puntos)
     {
