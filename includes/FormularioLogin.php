@@ -14,33 +14,39 @@ class FormularioLogin extends Formulario
     protected function generaCamposFormulario(&$datos)
     {
         // Se reutiliza el nombre de usuario introducido previamente o se deja en blanco
-        $nombreUsuario = $datos['nombreUsuario'] ?? '';
+        $nombreUsuario = $datos['User'] ?? '';
 
         // Se generan los mensajes de error si existen.
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
         $erroresCampos = self::generaErroresCampos(['nombreUsuario', 'password'], $this->errores, 'span', array('class' => 'error'));
 
         // Se genera el HTML asociado a los campos del formulario y los mensajes de error.
-        $html = <<<EOF
-        $htmlErroresGlobales
-        <fieldset>
-            <legend>Usuario y contraseña</legend>
-            <div>
-                <label for="nombreUsuario">Nombre de usuario:</label>
-                <input id="nombreUsuario" type="text" name="nombreUsuario" value="$nombreUsuario" />
-                {$erroresCampos['nombreUsuario']}
-            </div>
-            <div>
-                <label for="password">Password:</label>
-                <input id="password" type="password" name="password" />
-                {$erroresCampos['password']}
-            </div>
-            <div>
-                <button type="submit" name="login">Entrar</button>
-            </div>
-        </fieldset>
-        EOF;
-        return $html;
+        if (isset($_SESSION["login"])) {
+            header('Location: ' . RUTA_APP . '/index.php');
+        } else {
+            $ruta = RUTA_SRC;   
+            $contenido = <<<EOS
+            <h2> Error en el inicio de sesión </h2>
+            <h2>Inicio de sesión en BackMusic</h2>
+
+                    <form action="$ruta/usuarios/procesarLogin.php" method="POST">
+                        <p>
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" name="username" required>
+                        </p>
+                        <p>
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" required>
+                        </p>
+                        <input type="submit" value="Login">
+                    </form>
+
+                    <h3>¿No tienes cuenta en nuestra web?</h3>
+                    <p>Regístrate como un nuevo Usuario <a href="../register.php">aquí</a></p>
+            EOS;
+            require_once RAIZ_APP . '/includes/vistas/plantillas/plantilla.php';
+        }
+        return $contenido;
     }
 
     protected function procesaFormulario(&$datos)
