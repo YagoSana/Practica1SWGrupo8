@@ -19,6 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Cambiar el estado de la venta a "Aceptada"
         $venta->setEstado('Aceptada');
 
+        $puntos = intval($valor * 0.1);
+        Usuario::setWalletPoints($puntos, $venta->getIDUsuario());
         // Crear un nuevo producto
         // Al crear el producto hacemos que este no sea visible por los usuarios hasta que los empleados no quieran,
         // se establece la categoria, el stock se establece en 1 (por motivos obvios) y se establece como reacondicionado   

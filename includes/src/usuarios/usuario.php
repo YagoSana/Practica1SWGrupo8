@@ -28,6 +28,8 @@ class Usuario
 
     private $valoracion;
 
+    private $walletPoints;
+
     private function __construct($nombreUsuario, $password, $nombre, $apellido, $email, $Roles, $id)
     {
         $this->id = $id;
@@ -214,6 +216,37 @@ class Usuario
         return $this->Roles;
     }
 
+    public static function setWalletPoints($points, $id_usuario){
+        // Obtener el usuario actual y sus puntos actuales
+        $usuario_actual = Usuario::getUsuario($id_usuario);
+        $puntos_actuales = Usuario::getPuntos($usuario_actual);
+    
+        // Actualizar los puntos
+        $nuevos_puntos = $puntos_actuales + $points;
+    
+        // Subir los nuevos puntos a la base de datos
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = "UPDATE usuario SET Puntos=:nuevosPuntos WHERE User=:nombreUsuario";
+        $stmt = $conn->prepare($query);
+        $stmt->execute(['nuevosPuntos' => $nuevos_puntos, 'nombreUsuario' => $usuario_actual]);
+    }
+    
+    public static function getUsuario($id_usuario){
+        // Obtener la conexión a la base de datos
+        $conn = Aplicacion::getInstance()->getConexionBd();
+    
+        // Preparar la consulta para obtener el nombre de usuario
+        $query = "SELECT User FROM usuario WHERE Idusuario=:Idusuario";
+        $stmt = $conn->prepare($query);
+    
+        // Ejecutar la consulta y devolver el nombre de usuario
+        $stmt->execute(['Idusuario' => $id_usuario]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['User'];
+    }
+    
+    
+
     public function tieneRol($Role)
     {
         if ($this->Roles == null) {
@@ -315,12 +348,18 @@ class Usuario
         return $result;
     }
     
-    public static function getPuntos($usuario) {
+    public static function getPuntos($id_usuario) {
+        // Obtener la conexión a la base de datos
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = "SELECT Puntos FROM usuario WHERE User=:nombreUsuario";
+    
+        // Preparar la consulta para obtener los puntos del usuario
+        $query = "SELECT Puntos FROM usuario WHERE Idusuario=:idUsuario";
         $stmt = $conn->prepare($query);
-        $stmt->execute(['nombreUsuario' => $usuario->getNombreUsuario()]);
+    
+        // Ejecutar la consulta y devolver los puntos del usuario
+        $stmt->execute(['idUsuario' => $id_usuario]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['Puntos'];
     }
+
 }

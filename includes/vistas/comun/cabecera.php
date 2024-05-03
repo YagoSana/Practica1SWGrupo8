@@ -38,7 +38,7 @@ $puntos = 0;
                     </form>
                 </div>
                 </p>";
-                $puntos = Usuario::getPuntos($usuario);
+                $puntos = Usuario::getPuntos($usuario->getId());
                 echo "<p>Tus puntos en el wallet: $puntos p.</p>";
             } else {
                 echo "<p>Usuario no registrado.</p>
