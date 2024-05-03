@@ -217,19 +217,22 @@ class Usuario
     }
 
     public static function setWalletPoints($points, $id_usuario){
-        // Obtener el usuario actual y sus puntos actuales
-        $usuario_actual = Usuario::getUsuario($id_usuario);
-        $puntos_actuales = Usuario::getPuntos($usuario_actual);
-    
+        // Obtener los puntos actuales del usuario
+        $puntos_actuales = Usuario::getPuntos($id_usuario);
+        
         // Actualizar los puntos
         $nuevos_puntos = $puntos_actuales + $points;
+    
+        // Obtener el nombre de usuario
+        $nombreUsuario = Usuario::getUsuario($id_usuario);
     
         // Subir los nuevos puntos a la base de datos
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = "UPDATE usuario SET Puntos=:nuevosPuntos WHERE User=:nombreUsuario";
         $stmt = $conn->prepare($query);
-        $stmt->execute(['nuevosPuntos' => $nuevos_puntos, 'nombreUsuario' => $usuario_actual]);
+        $stmt->execute(['nuevosPuntos' => $nuevos_puntos, 'nombreUsuario' => $nombreUsuario]);
     }
+    
     
     public static function getUsuario($id_usuario){
         // Obtener la conexión a la base de datos
