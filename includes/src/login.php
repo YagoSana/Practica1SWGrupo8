@@ -1,8 +1,9 @@
 <?php
 require_once ("../config.php");
-include RAIZ_APP . '\includes\FormularioLogin.php';
+include RAIZ_APP . '/includes/FormularioLogin.php';
 
 $form = new FormularioLogin();
+
 $htmlFormLogin = $form->gestiona();
 
 $tituloPagina = 'Login';

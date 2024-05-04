@@ -1,79 +1,73 @@
 <?php
 require_once __DIR__.'/Formulario.php';
-session_start();
 require_once 'config.php';
-
 require_once __DIR__.'/src/usuarios/usuario.php';
 
 class FormularioLogin extends Formulario
 {
     public function __construct() {
-        parent::__construct('formLogin', ['urlRedireccion' => 'index.php']);
+        parent::__construct('formLogin', ['urlRedireccion' => RUTA_APP . '/index.php']);
     }
     
     protected function generaCamposFormulario(&$datos)
     {
         // Se reutiliza el nombre de usuario introducido previamente o se deja en blanco
-        $nombreUsuario = $datos['User'] ?? '';
+        $nombreUsuario = $datos['username'] ?? '';
+        $password = $datos['password'] ?? '';
 
         // Se generan los mensajes de error si existen.
-        $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
-        $erroresCampos = self::generaErroresCampos(['nombreUsuario', 'password'], $this->errores, 'span', array('class' => 'error'));
+        $erroresCampos = self::generaErroresCampos(['username', 'password'], $this->errores, 'span', array('class' => 'error'));
 
         // Se genera el HTML asociado a los campos del formulario y los mensajes de error.
-        if (isset($_SESSION["login"])) {
-            header('Location: ' . RUTA_APP . '/index.php');
-        } else {
-            $ruta = RUTA_SRC;   
-            $contenido = <<<EOS
-            <h2> Error en el inicio de sesión </h2>
-            <h2>Inicio de sesión en BackMusic</h2>
+        $htmlCamposFormulario = <<<EOS
+        <fieldset>
+            <legend>Usuario y contraseña</legend>
+            <div>
+                <label for="username">Nombre de usuario:</label>
+                <input id="username" type="text" name="username" value="$nombreUsuario" />
+                {$erroresCampos['username']}
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input id="password" type="password" name="password" />
+                {$erroresCampos['password']}
+            </div>
+            <div>
+                <input type="submit" value="Login">
+            </div>
+        </fieldset>
+        EOS;
 
-                    <form action="$ruta/usuarios/procesarLogin.php" method="POST">
-                        <p>
-                            <label for="username">Username:</label>
-                            <input type="text" id="username" name="username" required>
-                        </p>
-                        <p>
-                            <label for="password">Password:</label>
-                            <input type="password" id="password" name="password" required>
-                        </p>
-                        <input type="submit" value="Login">
-                    </form>
-
-                    <h3>¿No tienes cuenta en nuestra web?</h3>
-                    <p>Regístrate como un nuevo Usuario <a href="../register.php">aquí</a></p>
-            EOS;
-            require_once RAIZ_APP . '/includes/vistas/plantillas/plantilla.php';
-        }
-        return $contenido;
+        return $htmlCamposFormulario;
     }
 
     protected function procesaFormulario(&$datos)
     {
         $this->errores = [];
-        $nombreUsuario = trim($datos['User'] ?? '');
-        $nombreUsuario = filter_var($nombreUsuario, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if ( ! $nombreUsuario || empty($nombreUsuario) ) {
-            $this->errores['User'] = 'El nombre de usuario no puede estar vacío';
+        $nombreUsuario = trim($datos['username'] ?? '');
+        $password = trim($datos['password'] ?? '');
+
+        // Validación de campos
+        if (empty($nombreUsuario)) {
+            $this->errores['username'] = 'El nombre de usuario no puede estar vacío';
         }
-        
-        $password = trim($datos['Pass'] ?? '');
-        $password = filter_var($password, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if ( ! $password || empty($password) ) {
-            $this->errores['Pass'] = 'El password no puede estar vacío.';
+        if (empty($password)) {
+            $this->errores['password'] = 'El password no puede estar vacío.';
         }
 
+        // Procesamiento de formulario
         if (count($this->errores) === 0) {
             $usuario = Usuario::login($nombreUsuario, $password);
-        
+
             if (!$usuario) {
                 $this->errores[] = "El usuario o el password no coinciden";
             } else {
+                session_start();
                 $_SESSION["login"] = true;
-                $_SESSION["nombre"] = $User;
+                $_SESSION["nombre"] = $usuario->getNombreUsuario();
                 $_SESSION["ID"] = $usuario->getID();
-                
+
+                // Configurar roles de usuario si es necesario
                 if ($usuario->getRoles() == "empleado") {
                     $_SESSION["esEmpleado"] = true;
                 }
@@ -82,33 +76,6 @@ class FormularioLogin extends Formulario
                     $_SESSION["esAdmin"] = true;
                 }
             }
-        }
-
-        /////////////
-        if (isset($_SESSION["login"])) {
-            header('Location: ' . RUTA_APP . '/index.php');
-        } else {
-            $ruta = RUTA_SRC;   
-            $contenido = <<<EOS
-            <h2> Error en el inicio de sesión </h2>
-            <h2>Inicio de sesión en BackMusic</h2>
-
-                    <form action="$ruta/usuarios/procesarLogin.php" method="POST">
-                        <p>
-                            <label for="username">Username:</label>
-                            <input type="text" id="username" name="username" required>
-                        </p>
-                        <p>
-                            <label for="password">Password:</label>
-                            <input type="password" id="password" name="password" required>
-                        </p>
-                        <input type="submit" value="Login">
-                    </form>
-
-                    <h3>¿No tienes cuenta en nuestra web?</h3>
-                    <p>Regístrate como un nuevo Usuario <a href="../register.php">aquí</a></p>
-            EOS;
-            require_once RAIZ_APP . '/includes/vistas/plantillas/plantilla.php';
         }
     }
 }
