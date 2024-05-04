@@ -17,6 +17,8 @@ class FormularioLogin extends Formulario
 
         // Se generan los mensajes de error si existen.
         $erroresCampos = self::generaErroresCampos(['username', 'password'], $this->errores, 'span', array('class' => 'error'));
+        $linkRegistro = RUTA_APP . '/includes/src/register.php';
+
 
         // Se genera el HTML asociado a los campos del formulario y los mensajes de error.
         $htmlCamposFormulario = <<<EOS
@@ -35,6 +37,9 @@ class FormularioLogin extends Formulario
             <div>
                 <input type="submit" value="Login">
             </div>
+            <p>¿No tienes cuenta en nuestra web?</p>
+           
+            <p>Regístrate como un nuevo Usuario <a href="$linkRegistro">aquí</a></p>
         </fieldset>
         EOS;
 
