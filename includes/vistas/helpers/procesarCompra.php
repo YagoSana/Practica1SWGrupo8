@@ -1,7 +1,5 @@
 <?php
 require_once '../../config.php';
-//header("Location: ". RUTA_APP ."/includes/vistas/plantillas/mostrarPedidos.php");
-//require_once '../plantillas/mostrarCarrito.php';
 require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
 require_once 'carrito.php';
 
@@ -12,6 +10,23 @@ if (session_status() === PHP_SESSION_NONE) {
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['login'])) {
     $carrito = $_SESSION['usuario']->getCarrito();
     $total = $_POST['total'];
+    $usarPuntos = isset($_POST['usarPuntos']);
+    $puntos = Usuario::getPuntos($_SESSION['usuario']->getId());
+
+    if ($usarPuntos) {
+        if ($total > $puntos) {
+            // Caso 1: El total es mayor que los puntos del wallet
+            // Resta los puntos del wallet al total y elimina todos los puntos del wallet
+            $total -= $puntos;
+            Usuario::quitarWalletPoints($puntos, $_SESSION['usuario']->getId());
+        } else {
+            // Caso 2: El total es menor o igual que los puntos del wallet
+            // Resta el total de los puntos del wallet y establece el total a cero
+            Usuario::quitarWalletPoints($total, $_SESSION['usuario']->getId());
+            $total = 0;
+        }
+    }
+
     $exito = $carrito->confirmarPedido($total);
     if (!$exito) {
         $error = true;
@@ -23,4 +38,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['login'])) {
 } else {
     header("Location: ". RUTA_APP ."/includes/src/login.php");
 }
+
 ?>

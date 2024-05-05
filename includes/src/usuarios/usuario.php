@@ -237,12 +237,26 @@ class Usuario
         $stmt->execute(['nuevosPuntos' => $nuevos_puntos, 'nombreUsuario' => $nombreUsuario]);
     }
     
-    public static function quitarWalletPoints($usuario){
+    public static function quitarWalletPoints($points, $id_usuario){
+        // Obtener los puntos actuales del usuario
+        $puntos_actuales = Usuario::getPuntos($id_usuario);
+        
+        // Actualizar los puntos
+        $nuevos_puntos = $puntos_actuales - $points; // Resta los puntos
+        
+        // Asegúrate de que los puntos no sean negativos
+        $nuevos_puntos = max($nuevos_puntos, 0);
+        
+        // Obtener el nombre de usuario
+        $nombreUsuario = Usuario::getUsuario($id_usuario);
+        
+        // Subir los nuevos puntos a la base de datos
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = "UPDATE usuario SET Puntos = 0 WHERE Idusuario = $usuario->id";
+        $query = "UPDATE usuario SET Puntos=:nuevosPuntos WHERE User=:nombreUsuario";
         $stmt = $conn->prepare($query);
-        $stmt->execute();
+        $stmt->execute(['nuevosPuntos' => $nuevos_puntos, 'nombreUsuario' => $nombreUsuario]);
     }
+    
     
     public static function getUsuario($id_usuario){
         // Obtener la conexión a la base de datos

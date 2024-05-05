@@ -99,8 +99,7 @@ class Carrito
     }
 
 
-    public function confirmarPedido($total)
-    {
+    public function confirmarPedido($total) {
         // Creamos un nuevo pedido
         $productos_id = $this->obtenerCarritoDelUsuario($this->usuario->getId());
         $productosCarrito = array();
@@ -110,8 +109,6 @@ class Carrito
 
             $stock = $producto->getStock();
 
-
-            //$nom = $producto->getNombre();
             if ($productoID['Cantidad'] > $stock) {
                 return false;
             } else {
@@ -120,10 +117,6 @@ class Carrito
         }
 
         $this->pedido = new Pedido($this->usuario);
-
-        // Establecemos la fecha de entrega para dentro de un par de dias
-        //$dias = rand(2, 5);
-        //$fecha = date('Y-m-d', strtotime("+$dias days"));
 
         $fecha = date('Y-m-d'); //Para prueba con las valoraciones (tema dias)
         $this->pedido->setFecha($fecha);
@@ -139,14 +132,20 @@ class Carrito
             $producto->bajarCantidadStock($productoID['Cantidad']);
 
             if ($productoID['Cantidad'] == $stock) {
-                var_dump($stock);
-                var_dump($productoID['Cantidad']);
                 $producto->deleteProducto($producto->getID());
             }
         }
 
         $this->productos = [];
-        Usuario::quitarWalletPoints($this->usuario);
+        // Aquí es donde ajustamos los puntos del wallet
+        $puntos = Usuario::getPuntos($this->usuario->getId());
+        if ($total <= $puntos) {
+            // Si el total es menor o igual que los puntos del wallet, restamos el total de los puntos
+            Usuario::quitarPuntosWallet($total, $this->usuario->getId());
+        } else {
+            // Si el total es mayor que los puntos del wallet, eliminamos todos los puntos del wallet
+            Usuario::quitarPuntosWallet($puntos, $this->usuario->getId());
+        }
         $this->vaciarCarrito();
         $this->pedido->confirmarPedido();
         // Cambiamos el estado del carrito a 'Enviado'
