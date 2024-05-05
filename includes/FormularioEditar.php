@@ -7,7 +7,7 @@ require_once __DIR__.'/src/usuarios/usuario.php';
 class FormularioEditar extends Formulario
 {
     public function __construct() {
-        parent::__construct('formRegistro', ['urlRedireccion' => RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php']);
+        parent::__construct('formEditar', ['urlRedireccion' => RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php']);
     }
     
     protected function generaCamposFormulario(&$datos)

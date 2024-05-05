@@ -1,54 +1,17 @@
 <?php
-require '../../config.php';
+require_once ("../../config.php");
+include RAIZ_APP . '/includes/FormularioUploadProducto.php';
+
+$form = new FormularioUploadProducto();
+
+$htmlFormUploadProducto = $form->gestiona();
+
+$titulo = 'Añadir producto Back Music';
+
+$contenido = <<<EOS
+<h1>Añadir producto Back Music</h1>
+$htmlFormUploadProducto
+EOS;
+
+require_once RAIZ_APP . '/includes/vistas/plantillas/plantilla.php';
 ?>
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-        <?php include RAIZ_APP . '/includes/vistas/comun/header.php'; ?>
-        <title>Login Back Music</title>
-</head>
-
-<body>
-        <div id="contenedor">
-                <?php include RAIZ_APP . '/includes/vistas/comun/cabecera.php'; ?>
-                <?php include RAIZ_APP . '/includes/vistas/comun/lateralIzq.php'; ?>
-                <main>
-                        <form action="<?= RUTA_APP . '/includes/vistas/helpers/procesarProducto.php'?>" method="POST" enctype="multipart/form-data">
-                                <p>
-                                        <label for="producto_nombre">Nombre del Producto:</label>
-                                        <input type="text" id="producto_nombre" name="producto_nombre" required>
-                                </p>
-                                <p>
-                                        <label for="producto_descripcion">Descripcion del Producto:</label>
-                                </p>
-                                <p>
-                                        <textarea id="producto_descripcion" name="producto_descripcion" rows="4"
-                                                cols="50" required></textarea>
-                                </p>
-                                <p>
-                                        <label for="producto_precio">Precio del Producto:</label>
-                                        <input type="text" id="producto_precio" name="producto_precio" required>
-                                </p>
-                                <p>
-                                        <label for="producto_imagen">Imagen del Producto:</label>
-                                        <input type="file" id="producto_imagen" name="producto_imagen" required>
-                                </p>
-                                <p>
-                                        <label for="producto_tipo">Tipo de Producto:</label>
-                                        <select id="producto_tipo" name="producto_tipo" required>
-                                                <option value="Viento">Viento</option>
-                                                <option value="Percusion">Percusión</option>
-                                                <option value="Cuerda">Cuerda</option>
-                                                <option value="Articulos">Artículos</option>
-                                        </select>
-                                </p>
-                                <input type="submit" value="Subir Producto">
-                        </form>
-
-                </main>
-                <?php include RAIZ_APP . '/includes/vistas/comun/pieDePagina.php'; ?>
-        </div>
-</body>
-
-</html>
