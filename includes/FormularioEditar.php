@@ -4,10 +4,10 @@ require_once __DIR__.'/Formulario.php';
 require_once 'config.php';
 require_once __DIR__.'/src/usuarios/usuario.php';
 
-class FormularioRegister extends Formulario
+class FormularioEditar extends Formulario
 {
     public function __construct() {
-        parent::__construct('formRegistro', ['urlRedireccion' => RUTA_APP . '/index.php']);
+        parent::__construct('formRegistro', ['urlRedireccion' => RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php']);
     }
     
     protected function generaCamposFormulario(&$datos)
@@ -47,7 +47,7 @@ class FormularioRegister extends Formulario
                 {$erroresCampos['password']}
             </div>
             <div id='botonLogin'>
-                <input type="submit" value="Registrarse">
+                <input type="submit" value="Confirmar cambios">
             </div>
         </fieldset>
     EOS;
@@ -88,7 +88,10 @@ protected function procesaFormulario(&$datos){
             $Puntos = 0;
             $query = Usuario::buscaUsuario($nombreUsuario);
             if (!$query) {
-                Usuario::insertaUsuario($nombre, $apellido, $email, $nombreUsuario, $password, $Rol, $Puntos);
+                session_start();
+                $viejouser = $_SESSION['ID'];
+                Usuario::editarUsuario($viejouser, $nombre, $apellido, $email, $nombreUsuario, $password, $Rol, $Puntos);
+                session_destroy(); //y que vuelva a iniciar sesion con datos nuevos
             } else {
                 $this->errores[] = 'El nombre de usuario ya está en uso.';
             }

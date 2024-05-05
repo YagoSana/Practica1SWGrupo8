@@ -6,10 +6,10 @@ $form = new FormularioLogin();
 
 $htmlFormLogin = $form->gestiona();
 
-$tituloPagina = 'Login';
+$titulo = 'Login Back Music';
 
 $contenido = <<<EOS
-<h1>Acceso al sistema</h1>
+<h1>Login Back Music</h1>
 $htmlFormLogin
 EOS;
 

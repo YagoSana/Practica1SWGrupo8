@@ -7,10 +7,10 @@ $form = new FormularioRegister();
 
 $htmlFormRegistro = $form->gestiona();
 
-$tituloPagina = 'Registro';
+$titulo = 'Register Back Music';
 
 $contenido = <<<EOS
-<h1>Registro de usuario</h1>
+<h1>Regístrate en Back Music</h1>
 $htmlFormRegistro
 EOS;
 

@@ -469,27 +469,25 @@ p.frase {
   cursor: pointer;
 }
 
-#login-form {
+.claseFormulario {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  
-  max-width: 500px;
-  margin: 0 auto;
-  background-color: #f0f0f0;
-  padding: 10 px;
-  border: 1px solid #ddd;
+  align-items: left;
+}
+
+.claseFormulario div {
+  padding: 5px;
+  display: flex;
+}
+
+.claseFormulario label {
+  flex: 1;
+  max-width: 150px;
+  margin-right: 10px;
+  text-align: left;
+}
+
+.claseFormulario #botonLogin {
+  margin-top: 10px;
   border-radius: 5px;
 }
-
-#login-form form {
-  display: flex;
-  flex-direction: column;
-}
-
-#login-form form p {
-  margin-bottom: 15px;
-}
-
-

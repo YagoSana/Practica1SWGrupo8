@@ -22,24 +22,24 @@ class FormularioLogin extends Formulario
 
         // Se genera el HTML asociado a los campos del formulario y los mensajes de error.
         $htmlCamposFormulario = <<<EOS
-        <fieldset>
-            <legend>Usuario y contraseña</legend>
+        <fieldset class='claseFormulario'>
             <div>
-                <label for="username">Nombre de usuario:</label>
+                <label for="username">Nombre de usuario :</label>
                 <input id="username" type="text" name="username" value="$nombreUsuario" />
                 {$erroresCampos['username']}
             </div>
             <div>
-                <label for="password">Password:</label>
+                <label for="password">Contraseña :</label>
                 <input id="password" type="password" name="password" />
                 {$erroresCampos['password']}
             </div>
-            <div>
+            <div id='botonLogin'>
                 <input type="submit" value="Login">
             </div>
             <p>¿No tienes cuenta en nuestra web?</p>
            
             <p>Regístrate como un nuevo Usuario <a href="$linkRegistro">aquí</a></p>
+
         </fieldset>
         EOS;
 
