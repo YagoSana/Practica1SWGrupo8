@@ -2,65 +2,48 @@
 require '../../config.php';
 require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
 require_once RAIZ_APP. '/includes/vistas/helpers/venta.php';
-?>
-<!DOCTYPE html>
-<html lang="es">
 
-<head>
-    <?php include RAIZ_APP . '/includes/vistas/comun/header.php'; ?>
-    <title>Ventas Back Music</title>
-</head>
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-<body>
-    <div id="contenedor">
-        <?php include RAIZ_APP . '/includes/vistas/comun/cabecera.php'; ?>
-        <?php include RAIZ_APP . '/includes/vistas/comun/lateralIzq.php'; ?>
-
-        <main>
+$titulo = 'Ventas Back Music';
+$contenido = <<<EOS
             <article>
                 <section>
                     <h2>Administrar Ventas</h2>
-                    <p>
-                        Esta es la sección de administración de ventas. Aquí puedes aceptar o rechazar las ventas.
-                        <?php
-                            // Obtiene todas las ventas
-                            $ventas = Venta::getAllVentas();
+                    <p> Esta es la sección de administración de ventas. Aquí puedes aceptar o rechazar las ventas. </p>
+            EOS;
+            $ventas = Venta::getAllVentas();
 
-                            if($ventas == null) {
-                                echo "<p>No hay ventas para mostrar.</p>";
-                            } else {
-                                foreach($ventas as $venta) {
-                                    // Aquí puedes mostrar la información de cada venta
-                                    echo "<div class='producto'>";
-                                    echo '<form action="'. RUTA_APP .'/includes/vistas/helpers/procesarAceptacionVenta.php" method="post">';
-                                    echo '<input type="hidden" name="venta_id" value="' . $venta['ID_Venta'] . '">';
-                                    echo '<input type="text" name="nombre" value="' . $venta['Nombre'] . '">'; // Campo de texto editable para el nombre
-                                    echo '<textarea name="descripcion" rows="4" cols="50">' . $venta['Descripcion'] . '</textarea>'; // Campo de texto editable para la descripción
-                                    echo "<p>Estado: " . $venta['Estado'] . "</p>";
-                                    echo "<img src='". RUTA_IMGS . '/imagenesBD/'.$venta['Imagen'] . "' alt='Imagen del producto'>";
-                                    echo '<input type="text" name="valor" placeholder="Introduce un valor">';
-                                    echo '<select name="categoria">';
-                                    echo '<option value="cuerda">Cuerda</option>';
-                                    echo '<option value="viento">Viento</option>';
-                                    echo '<option value="percusion">Percusión</option>';
-                                    echo '<option value="articulo">Artículo</option>';
-                                    echo '</select>'; // Nuevo selector para la categoría del producto que se va a añadir
-                                    echo '<button type="submit" name="accion" value="Aceptar">Aceptar</button>';
-                                    echo '<button type="submit" name="accion" value="Rechazar">Rechazar</button>';
-                                    echo '</form>';
-                                    echo "</div>";
-                                }
-                                
-                                
-                                
-                            }
-                        ?>
+            if($ventas == null || !isset($_SESSION["esEmpleado"])) {
+                $contenido .= "<p>No hay ventas para mostrar.</p>";
+            } else {
+                foreach($ventas as $venta) {    
+                    // Aquí puedes mostrar la información de cada venta
+                    $contenido .= "<div class='producto'>";
+                    $contenido .= '<form action="'. RUTA_APP .'/includes/vistas/helpers/procesarAceptacionVenta.php" method="post">';
+                    $contenido .= '<input type="hidden" name="venta_id" value="' . $venta['ID_Venta'] . '">';
+                    $contenido .= '<input type="text" name="nombre" value="' . $venta['Nombre'] . '">'; // Campo de texto editable para el nombre
+                    $contenido .= '<textarea name="descripcion" rows="4" cols="40">' . $venta['Descripcion'] . '</textarea>'; // Campo de texto editable para la descripción
+                    $contenido .= "<p>Estado: " . $venta['Estado'] . "</p>";
+                    $contenido .= "<img src='". RUTA_IMGS . '/imagenesBD/'.$venta['Imagen'] . "' alt='Imagen del producto'>";
+                    $contenido .= '<input type="text" name="valor" placeholder="Introduce un valor">';
+                    $contenido .= '<select name="categoria">';
+                    $contenido .= '<option value="cuerda">Cuerda</option>';
+                    $contenido .= '<option value="viento">Viento</option>';
+                    $contenido .= '<option value="percusion">Percusión</option>';
+                    $contenido .= '<option value="articulo">Artículo</option>';
+                    $contenido .= '</select>'; // Nuevo selector para la categoría del producto que se va a añadir
+                    $contenido .= '<button type="submit" name="accion" value="Aceptar">Aceptar</button>';
+                    $contenido .= '<button type="submit" name="accion" value="Rechazar">Rechazar</button>';
+                    $contenido .= '</form>';
+                    $contenido .= "</div>";
+                }
+            }
+            $contenido .= <<<EOS
                     </p>
                 </section>
             </article>
-        </main>
-        <?php include RAIZ_APP . '/includes/vistas/comun/pieDePagina.php'; ?>
-    </div>
-</body>
-
-</html>
+            EOS;
+require_once RAIZ_APP . '/includes/vistas/plantillas/plantilla.php';
