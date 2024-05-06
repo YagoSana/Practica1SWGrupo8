@@ -8,7 +8,7 @@ class FormularioUploadProducto extends Formulario
 {
     public function __construct()
     {
-        parent::__construct('formUpload', ['urlRedireccion' => RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php', 'enctype' => 'multipart/form-data']);
+        parent::__construct('formUpload', ['urlRedireccion' => RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php'], ['enctype' => 'multipart/form-data']);
     }
 
     protected function generaCamposFormulario(&$datos)
@@ -90,23 +90,22 @@ class FormularioUploadProducto extends Formulario
 
         if (count($this->errores) === 0) {
             //gestion del producto
-            
+
             $ruta = $_FILES['producto_imagen']['tmp_name'];
-            echo $ruta . "<br>";
+
             $target = "/img/imagenesBD/" . $producto_imagen;
-            echo $target . "<br>";
 
-            move_uploaded_file($ruta, RAIZ_APP . $target);
+            if (move_uploaded_file($ruta, RAIZ_APP . $target)) {
 
-            $Visible = 1;
-            $Reacondicionado = 0;
-            $Stock = 10;
-            $producto = new Producto(null, $producto_nombre, $producto_descripcion, $producto_precio, $target, $Stock, $Visible, $producto_tipo, $Reacondicionado);
-            $producto->createProducto($producto_nombre, $producto_descripcion, $producto_precio, $target, $Stock, $Visible, $producto_tipo, $Reacondicionado);
-        }
-        else {
-            // Error al mover el archivo
-            $this->errores['producto_imagen'] = 'Error al mover la imagen.';
+                $Visible = 1;
+                $Reacondicionado = 0;
+                $Stock = 10;
+                $producto = new Producto(null, $producto_nombre, $producto_descripcion, $producto_precio, $target, $Stock, $Visible, $producto_tipo, $Reacondicionado);
+                $producto->createProducto($producto_nombre, $producto_descripcion, $producto_precio, $target, $Stock, $Visible, $producto_tipo, $Reacondicionado);
+            } else {
+                // Error al mover el archivo
+                $this->errores['producto_imagen'] = 'Error al mover la imagen.';
+            }
         }
     }
 }

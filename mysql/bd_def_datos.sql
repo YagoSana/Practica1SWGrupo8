@@ -84,8 +84,8 @@ INSERT INTO `valoraciones` (`ID_Valoracion`, `Idusuario`, `ID_Producto`, `ID_Ped
 -- Volcado de datos para la tabla `ventas`
 --
 
-INSERT INTO `ventas` (`ID_Venta`, `ID_Usuario`, `Nombre`, `Descripcion`, `Imagen`, `Estado`) VALUES
-(1, 12, 'Piano Eléctrico', 'Vendo un piano eléctrico poco usado, queria tener una opción barata de música clasica en mi sótano pero ya no lo uso. Ha pillado algo de polvo pero no ha perdido valor alguno.', 'pianoElectrico.jpg', 'Aceptada');
+INSERT INTO `ventas` (`ID_Venta`, `ID_Usuario`, `Nombre`, `Descripcion`, `Imagen`, `Precio`, `Categoria`, `Estado`) VALUES
+(1, 12, 'Piano Eléctrico', 'Vendo un piano eléctrico poco usado, queria tener una opción barata de música clasica en mi sótano pero ya no lo uso. Ha pillado algo de polvo pero no ha perdido valor alguno.', 'pianoElectrico.jpg', '85.00', 'Cuerda', 'Aceptada');
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 

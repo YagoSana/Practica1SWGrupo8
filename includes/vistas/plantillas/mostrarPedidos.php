@@ -1,41 +1,25 @@
 <?php
 require '../../config.php';
 require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
-?>
 
-<!DOCTYPE html>
-<html lang="es">
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-<head>
-    <?php include RAIZ_APP . '/includes/vistas/comun/header.php'; ?>
-    <title>Mostrar Pedidos</title>
-</head>
+$titulo = 'Pedidos Back Music';
+$contenido = "";
+if (isset($_SESSION['login'])) {
+    // Obtiene los pedidos del usuario
+    $carrito = $_SESSION['usuario']->getCarrito();
+    $pedido = $carrito->getPedido(); //Devuelve el pedido del usuario
 
-<body>
-    <div id="contenedor">
-        <?php include RAIZ_APP . '/includes/vistas/comun/cabecera.php'; ?>
-        <?php include RAIZ_APP . '/includes/vistas/comun/lateralIzq.php'; ?>
-        <main>
-            <?php
-            // Comprobamos que el usuario ha iniciado sesion
-            if (isset($_SESSION['login'])) {
-                // Obtiene los pedidos del usuario
-                $carrito = $_SESSION['usuario']->getCarrito();
-                $pedido = $carrito->getPedido(); //Devuelve el pedido del usuario
-
-                if($pedido == null) {
-                    $pedido = new Pedido($_SESSION['usuario']);
-                }
-                    
-                echo $pedido->mostrarPedidos();
-              
-            } else {
-                echo "<p>Debes iniciar sesión para ver tus pedidos.</p>";
-            }
-            ?>
-        </main>
-        <?php include RAIZ_APP . '/includes/vistas/comun/pieDePagina.php'; ?>
-    </div>
-</body>
-
-</html>
+    if($pedido == null) {
+        $pedido = new Pedido($_SESSION['usuario']);
+    }
+        
+    $contenido .= $pedido->mostrarPedidos();
+    
+} else {
+    $contenido .= "<p>Debes iniciar sesión para ver tus pedidos.</p>";
+}
+require_once RAIZ_APP . '/includes/vistas/plantillas/plantilla.php';
