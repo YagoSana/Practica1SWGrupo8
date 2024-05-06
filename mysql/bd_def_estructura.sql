@@ -103,7 +103,8 @@ CREATE TABLE `usuario` (
 CREATE TABLE `valoraciones` (
   `ID_Valoracion` int(10) UNSIGNED NOT NULL,
   `Idusuario` int(20) UNSIGNED NOT NULL,
-  `ID` int(10) UNSIGNED NOT NULL,
+  `ID_Producto` int(10) UNSIGNED NOT NULL,
+  `ID_Pedido` int(10) UNSIGNED NOT NULL,
   `Valoracion` int(11) NOT NULL,
   `Comentario` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

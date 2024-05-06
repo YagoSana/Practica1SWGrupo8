@@ -76,9 +76,9 @@ INSERT INTO `usuario` (`Apellido`, `Nombre`, `User`, `Idusuario`, `Pass`, `Email
 -- Volcado de datos para la tabla `valoraciones`
 --
 
-INSERT INTO `valoraciones` (`ID_Valoracion`, `Idusuario`, `ID`, `Valoracion`, `Comentario`) VALUES
-(1, 8, 1, 5, 'Excelente guitarra para adentrarse en el mundo de la música, la madera se siente de calidad y las cuerdas de metal son fantásticas.'),
-(2, 9, 2, 4, 'Son buenas las guitarras que se venden en esta tienda. He comprado 2, una para mi y otra para mi hermano para tocar juntos y disfrutamos mucho de la calidad del producto. Como aspecto negativo podría decir que pesan un poco de más.');
+INSERT INTO `valoraciones` (`ID_Valoracion`, `Idusuario`, `ID_Producto`, `ID_Pedido`, `Valoracion`, `Comentario`) VALUES
+(1, 8, 1, 1, 5, 'Excelente guitarra para adentrarse en el mundo de la música, la madera se siente de calidad y las cuerdas de metal son fantásticas.'),
+(2, 9, 1, 2, 4, 'Son buenas las guitarras que se venden en esta tienda. He comprado 2, una para mi y otra para mi hermano para tocar juntos y disfrutamos mucho de la calidad del producto. Como aspecto negativo podría decir que pesan un poco de más.');
 
 --
 -- Volcado de datos para la tabla `ventas`

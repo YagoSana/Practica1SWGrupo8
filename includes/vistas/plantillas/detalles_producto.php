@@ -6,7 +6,6 @@ require_once RAIZ_APP. '/includes/src/usuarios/usuario.php';
 $producto_id = $_GET['id'];
 $producto = Producto::getProducto($producto_id);
 
-$pedidos = Producto::obtenerPedidosDeProducto($producto_id);
 $titulo  = "Detalles del producto";
 $ruta = RUTA_APP;
 ob_start();
@@ -20,8 +19,11 @@ ob_start();
                 <h3><?php echo $producto->getNombre(); ?></h3>
                 <p><?php echo $producto->getDescripcion(); ?></p>
                 <h4>Valoraciones</h4>
-                <?php foreach($pedidos as $pedido) {
-                    $valoracion = valoracion::getValoracion($pedido['ID_Pedido']);
+                <?php
+                $id_producto = $producto->getID();
+                $valoraciones = valoracion::getValoracion($id_producto);
+                foreach($valoraciones as $valoracion) {
+                    
                     if($valoracion != null) {
                         
                         $usuario = Usuario::buscaPorId($valoracion["Idusuario"]);

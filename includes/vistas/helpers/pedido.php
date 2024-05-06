@@ -76,7 +76,7 @@ class Pedido
         return $productos;
     }
 
-    public function obtenerProductosDelPedido($pedido) {
+    public static function obtenerProductosDelPedido($pedido) {
         $db = Aplicacion::getInstance()->getConexionBd();
 
         $sql = "SELECT * FROM productos_pedidos WHERE ID_Pedido = :pedido_id";
@@ -115,11 +115,11 @@ class Pedido
                 $output .= "<div class='estado'>";
                     if ($pedido['Fecha'] <= date('Y-m-d')) {
                         $output .= "<p class='entregado'>Entregado</p>";
-                        if ($this->yaValorado($pedido['ID_Pedido'])) {
+                        //if ($this->yaValorado($pedido['ID_Pedido'])) {
                             $output .= "<button class='valorar-btn' onclick='window.location.href=\"" . RUTA_APP . "/includes/vistas/plantillas/mostrarValoracion.php?id={$pedido['ID_Pedido']}\"'>Valorar</button>";
-                        } else {
-                            $output .= "<p class='frase'>Ya has valorado este producto.</p>";
-                        }
+                        //} else {
+                           // $output .= "<p class='frase'>Ya has valorado este producto.</p>";
+                        //}
                     } else {
                         $output .= "<p class='pend'>Pendiente</p>";
                     }
@@ -151,12 +151,12 @@ class Pedido
     
 
 
-    private function yaValorado($pedidoId) {
+    public function yaValorado($pedidoId, $productoId) {
         // Abrir la conexión a la base de datos
         $db = Aplicacion::getInstance()->getConexionBd();
     
         // Consulta SQL para obtener la valoración del usuario para el pedido
-        $sql = "SELECT Valoracion FROM valoraciones WHERE Idusuario = :usuario_id AND ID = :pedido_id";
+        $sql = "SELECT Valoracion FROM valoraciones WHERE Idusuario = :usuario_id AND ID_Pedido = :pedido_id AND ID_Producto = :producto_id";
     
         // Preparar la consulta
         $stmt = $db->prepare($sql);
@@ -165,7 +165,7 @@ class Pedido
         $usuario_id = $this->cliente->getId();
         $stmt->bindParam(':usuario_id', $usuario_id);
         $stmt->bindParam(':pedido_id', $pedidoId);
-    
+        $stmt->bindParam(':producto_id', $productoId);
         // Ejecutar la consulta
         $stmt->execute();
     
