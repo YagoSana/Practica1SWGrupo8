@@ -26,6 +26,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['login'])) {
             Usuario::quitarWalletPoints($totalSinDescuento, $_SESSION['usuario']->getId());
         }
     }
+    else {
+        $puntos += $totalSinDescuento * 0.05;
+
+        Usuario::setWalletPoints($puntos, $_SESSION['usuario']->getId());
+    }
+
 
     $exito = $carrito->confirmarPedido($total);
     if (!$exito) {

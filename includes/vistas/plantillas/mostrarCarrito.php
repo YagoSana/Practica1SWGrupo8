@@ -55,9 +55,13 @@ if (isset($_SESSION['login'])) {
             $contenido .= '<form action="' . RUTA_APP . '/includes/vistas/helpers/procesarCompra.php?total=$total" method="POST">
             <input type="hidden" name="total" value="' . $total . '">';
             $contenido .= '<input type="hidden" name="totalSinDescuento" value="' . $totalSinDescuento . '">';
-            $contenido .= '<input type="checkbox" id="usarPuntos" name="usarPuntos" data-puntos="' . $puntos . '">';
-            $contenido .= '<label for="usarPuntos">¿Usar puntos del wallet?</label>
-            <input type="submit" name="confirmar" value="Confirmar Pedido" class="boton-confirmar">
+            if ($puntos > 0) {
+                $contenido .= '<input type="checkbox" id="usarPuntos" name="usarPuntos" data-puntos="' . $puntos . '">';
+                $contenido .= '<label for="usarPuntos">¿Usar puntos del wallet?</label>';
+            } else {
+                $contenido .= '<p>No tienes puntos en tu wallet para utilizar.</p>';
+            }
+            $contenido .= '<input type="submit" name="confirmar" value="Confirmar Pedido" class="boton-confirmar">
             </form>';
             if (isset($_GET['error'])) {
                 $contenido .= "Error al procesar el pedido, no disponemos de tantos artículos en stock.";
