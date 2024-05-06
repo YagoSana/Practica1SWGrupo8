@@ -8,7 +8,7 @@ class FormularioUploadProducto extends Formulario
 {
     public function __construct()
     {
-        parent::__construct('formUpload', ['urlRedireccion' => RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php', 'enctype' => 'multipart/form-data']);
+        parent::__construct('formUpload', ['urlRedireccion' => RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php'],['enctype' => 'multipart/form-data']);
     }
 
     protected function generaCamposFormulario(&$datos)
@@ -92,9 +92,8 @@ class FormularioUploadProducto extends Formulario
             //gestion del producto
             
             $ruta = $_FILES['producto_imagen']['tmp_name'];
-            echo $ruta . "<br>";
+            
             $target = "/img/imagenesBD/" . $producto_imagen;
-            echo $target . "<br>";
 
             move_uploaded_file($ruta, RAIZ_APP . $target);
 
