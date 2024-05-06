@@ -15,6 +15,9 @@
         </main>
         <?php include RAIZ_APP . '/includes/vistas/comun/pieDePagina.php'; ?>
     </div>
+    <?php if (isset($javascript)): ?>
+        <script type="text/javascript" src="<?=RUTA_INCL . $javascript?>"></script>
+    <?php endif; ?>
 </body>
 
 </html>
