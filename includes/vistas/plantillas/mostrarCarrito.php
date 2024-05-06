@@ -54,14 +54,13 @@ require_once RAIZ_APP . '/includes/vistas/helpers/carrito.php';
                         echo "</div>";
                     }
                     if (isset($_SESSION["login"])) {
-                        $totalSinDescuento = $total;
                         // El usuario ha iniciado sesión, muestra el botón "Confirmar Pedido"
                         echo "<div class='cont'>";
                         // Aquí es donde agregas 'data-total' al elemento que muestra el total
                         echo '<span class="total" data-total="' . $total . '">Total: ' . $total . ' €</span>';
                         echo '<form action="' . RUTA_APP . '/includes/vistas/helpers/procesarCompra.php?total=$total" method="POST">
                         <input type="hidden" name="total" value="' . $total . '">';
-                        echo '<input type="hidden" name="totalSinDescuento" value="' . $totalSinDescuento . '">';
+                        // Y aquí es donde agregas 'data-puntos' a la casilla de verificación
                         echo '<input type="checkbox" id="usarPuntos" name="usarPuntos" data-puntos="' . $puntos . '">';
                         echo '<label for="usarPuntos">¿Usar puntos del wallet?</label>
                         <input type="submit" name="confirmar" value="Confirmar Pedido" class="boton-confirmar">

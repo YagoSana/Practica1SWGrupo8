@@ -10,16 +10,19 @@ if (session_status() === PHP_SESSION_NONE) {
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['login'])) {
     $carrito = $_SESSION['usuario']->getCarrito();
     $total = $_POST['total'];
-    $totalSinDescuento = $_POST['totalSinDescuento']; // Aquí obtienes el total original
     $usarPuntos = isset($_POST['usarPuntos']);
     $puntos = Usuario::getPuntos($_SESSION['usuario']->getId());
 
     if ($usarPuntos) {
-        if ($total > 0) {
+        if ($total > $puntos) {
+            // Caso 1: El total es mayor que los puntos del wallet
+            // Resta los puntos del wallet al total y elimina todos los puntos del wallet
             Usuario::quitarWalletPoints($puntos, $_SESSION['usuario']->getId());
         } else {
+            // Caso 2: El total es menor o igual que los puntos del wallet
+            // Resta el total de los puntos del wallet y establece el total a cero
             
-            Usuario::quitarWalletPoints($totalSinDescuento, $_SESSION['usuario']->getId());
+            Usuario::quitarWalletPoints($total, $_SESSION['usuario']->getId());
         }
     }
 
