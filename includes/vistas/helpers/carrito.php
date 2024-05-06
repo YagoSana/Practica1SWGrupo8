@@ -2,7 +2,6 @@
 ob_start(); // Start output buffering
 require_once 'producto.php';
 require_once 'pedido.php';
-require_once '../../src/usuarios/usuario.php';
 
 class Carrito
 {
@@ -138,15 +137,7 @@ class Carrito
         }
 
         $this->productos = [];
-        // Aquí es donde ajustamos los puntos del wallet
-        $puntos = Usuario::getPuntos($this->usuario->getId());
-        if ($total <= $puntos) {
-            // Si el total es menor o igual que los puntos del wallet, restamos el total de los puntos
-            Usuario::quitarWalletPoints($total, $this->usuario->getId());
-        } else {
-            // Si el total es mayor que los puntos del wallet, eliminamos todos los puntos del wallet
-            Usuario::quitarWalletPoints($puntos, $this->usuario->getId());
-        }
+        
         $this->vaciarCarrito();
         $this->pedido->confirmarPedido();
         // Cambiamos el estado del carrito a 'Enviado'
