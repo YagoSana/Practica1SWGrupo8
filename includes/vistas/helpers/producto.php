@@ -125,7 +125,7 @@ class Producto
             'Nombre' => $Nombre,
             'Descripcion' => $Descripcion,
             'Precio' => $Precio,
-            'Imagen' => $this->Imagen,
+            'Imagen' => $Imagen,
             'Stock' => $Stock,
             'Visible' => $Visible,
             'Tipo' => $Tipo,
@@ -136,7 +136,7 @@ class Producto
         $this->Nombre = $Nombre;
         $this->Descripcion = $Descripcion;
         $this->Precio = $Precio;
-        $this->Imagen = $this->$Imagen;
+        $this->Imagen = $Imagen;
         $this->Stock = $Stock;
         $this->Visible = $Visible;
         $this->Tipo = $Tipo;

@@ -7,8 +7,10 @@ class Venta {
     private $Descripcion;
     private $Imagen;
     private $Estado;
+    private $Precio;
+    private $Categoria;
 
-    public function __construct($ID, $ID_Usuario, $Nombre, $Descripcion, $Imagen, $Estado) {
+    public function __construct($ID, $ID_Usuario, $Nombre, $Descripcion, $Imagen, $Precio, $Categoria, $Estado) {
 
         $this->ID = $ID;
         $this->ID_Usuario = $ID_Usuario;
@@ -16,17 +18,21 @@ class Venta {
         $this->Descripcion = $Descripcion;
         $this->Imagen = $Imagen;
         $this->Estado = $Estado;
+        $this->Precio = $Precio;
+        $this->Categoria = $Categoria;
 
     }
 
     public function createVenta() {
         $pdo = Aplicacion::getInstance()->getConexionBd();
-        $stmt = $pdo->prepare('INSERT INTO ventas (ID_Usuario, Nombre, Descripcion, Imagen, Estado) VALUES (:ID_Usuario, :Nombre, :Descripcion, :Imagen, :Estado)');
+        $stmt = $pdo->prepare('INSERT INTO ventas (ID_Usuario, Nombre, Descripcion, Imagen, Precio, Categoria, Estado) VALUES (:ID_Usuario, :Nombre, :Descripcion, :Imagen, :Precio, :Categoria, :Estado)');
         $stmt->execute([
             'ID_Usuario' => $this->ID_Usuario,
             'Nombre' => $this->Nombre,
             'Descripcion' => $this->Descripcion,
             'Imagen' => $this->Imagen,
+            'Precio' => $this->Precio,
+            'Categoria' => $this->Categoria,
             'Estado' => $this->Estado
         ]);
     
@@ -62,7 +68,6 @@ class Venta {
     
         $stmt = $pdo->prepare('SELECT * FROM ventas WHERE ID_Venta = :ID_Venta');
 
-        echo $ID_Venta;
         $stmt->execute(['ID_Venta' => $ID_Venta]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
     
@@ -71,7 +76,7 @@ class Venta {
             die('Error al obtener la venta de la base de datos');
         }
     
-        $venta = new Venta($result['ID_Venta'], $result['ID_Usuario'], $result['Nombre'], $result['Descripcion'], $result['Imagen'], $result['Estado']);
+        $venta = new Venta($result['ID_Venta'], $result['ID_Usuario'], $result['Nombre'], $result['Descripcion'], $result['Imagen'], $result['Precio'], $result['Categoria'], $result['Estado']);
         // Devolver el objeto Venta
         return $venta;
     }
@@ -110,6 +115,14 @@ class Venta {
 
     public function getEstado() {
         return $this->Estado;
+    }
+
+    public function getPrecio() {
+        return $this->Precio;
+    }
+
+    public function getCategoria() {
+        return $this->Categoria;
     }
     
 }

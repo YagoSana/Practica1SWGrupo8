@@ -491,3 +491,14 @@ p.frase {
   margin-top: 10px;
   border-radius: 5px;
 }
+
+.claseFormulario img {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+#botonesVenta{
+  display: flex;
+  justify-content: left;
+  gap: 10px;
+}

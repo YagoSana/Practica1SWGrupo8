@@ -120,6 +120,8 @@ CREATE TABLE `ventas` (
   `Nombre` varchar(20) NOT NULL,
   `Descripcion` varchar(200) NOT NULL,
   `Imagen` varchar(255) NOT NULL,
+  `Precio` decimal(6,2) NOT NULL,
+  `Categoria` varchar(20) NOT NULL,
   `Estado` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
