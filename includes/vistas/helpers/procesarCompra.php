@@ -10,6 +10,7 @@ if (session_status() === PHP_SESSION_NONE) {
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['login'])) {
     $carrito = $_SESSION['usuario']->getCarrito();
     $total = $_POST['total'];
+    $totalSinDescuento = $_POST['totalSinDescuento'];
     $usarPuntos = isset($_POST['usarPuntos']);
     $puntos = Usuario::getPuntos($_SESSION['usuario']->getId());
 
@@ -22,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['login'])) {
             // Caso 2: El total es menor o igual que los puntos del wallet
             // Resta el total de los puntos del wallet y establece el total a cero
             
-            Usuario::quitarWalletPoints($total, $_SESSION['usuario']->getId());
+            Usuario::quitarWalletPoints($totalSinDescuento, $_SESSION['usuario']->getId());
         }
     }
 
