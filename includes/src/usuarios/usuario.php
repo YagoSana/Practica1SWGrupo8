@@ -242,7 +242,7 @@ class Usuario
         $puntos_actuales = Usuario::getPuntos($id_usuario);
         
         // Actualizar los puntos
-        $nuevos_puntos = $puntos_actuales - $points; // Resta los puntos
+        $nuevos_puntos = $puntos_actuales - $points;
         
         // Asegúrate de que los puntos no sean negativos
         $nuevos_puntos = max($nuevos_puntos, 0);

@@ -17,13 +17,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['login'])) {
         if ($total > $puntos) {
             // Caso 1: El total es mayor que los puntos del wallet
             // Resta los puntos del wallet al total y elimina todos los puntos del wallet
-            $total -= $puntos;
             Usuario::quitarWalletPoints($puntos, $_SESSION['usuario']->getId());
         } else {
             // Caso 2: El total es menor o igual que los puntos del wallet
             // Resta el total de los puntos del wallet y establece el total a cero
+            
             Usuario::quitarWalletPoints($total, $_SESSION['usuario']->getId());
-            $total = 0;
         }
     }
 

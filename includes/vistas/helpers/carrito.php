@@ -100,6 +100,9 @@ class Carrito
 
 
     public function confirmarPedido($total) {
+
+        echo $total;
+
         // Creamos un nuevo pedido
         $productos_id = $this->obtenerCarritoDelUsuario($this->usuario->getId());
         $productosCarrito = array();
