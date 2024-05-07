@@ -19,7 +19,7 @@ $productos_data = $producto->getAllProductos();
 
 // Filtra los productos que coinciden con la búsqueda
 $resultados = array_filter($productos_data, function($producto) use ($busqueda) {
-    return strpos($producto['Nombre'], $busqueda) !== false;
+    return strpos(strtolower($producto['Nombre']), strtolower($busqueda)) !== false;
 });
 $ruta = RUTA_APP;
 // Prepara el contenido para la plantilla
