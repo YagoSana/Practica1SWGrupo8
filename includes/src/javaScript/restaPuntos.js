@@ -13,7 +13,7 @@ window.onload = function() {
         if (checkbox.checked) {
             // Si la casilla está marcada, resta los puntos del wallet al total
             var nuevoTotal = Math.max(totalOriginal - puntosWallet, 0);
-            totalElement.textContent = 'Total: ' + nuevoTotal + ' €';
+            totalElement.textContent = 'Total: ' + nuevoTotal.toFixed(2) + ' €';
             totalInput.value = nuevoTotal; // Actualiza el valor del campo oculto
         } else {
             // Si la casilla no está marcada, restablece el total a su valor original
