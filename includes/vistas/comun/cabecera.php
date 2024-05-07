@@ -9,7 +9,7 @@ $puntos = 0;
     <div id="divSuperior">
         <img src="<?php echo RUTA_IMGS ?>/backMusicLogo.png" class="logoCabecera">
         <h1 class="h1titulo">BACK MUSIC</h1>
-        <h2>La mejor tienda de música</h2>
+        <h2 class="h2subtitulo">La mejor tienda de música</h2>
         <div class="cabecera">
             <!-- Aquí agregamos el formulario de búsqueda -->
             <form action="<?php echo RUTA_SRC ?>/buscar.php" method="get">
@@ -50,7 +50,7 @@ $puntos = 0;
                 <p>Pedidos</p>
             </div>
             <div id="divcarrito">
-                <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarCarrito.php"><img src="<?php echo RUTA_IMGS ?>/carrito.png" alt="Carrito"></a>
+                <a href="<?php echo RUTA_VISTAS ?>/plantillas/mostrarCarrito.php"><img src="<?php echo RUTA_IMGS ?>/CARRITO.png" alt="Carrito"></a>
                 <p>Carrito</p>
             </div>
         </div>
