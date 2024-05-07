@@ -59,7 +59,7 @@ if (isset($_SESSION['login'])) {
                 $contenido .= '<input type="checkbox" id="usarPuntos" name="usarPuntos" data-puntos="' . $puntos . '">';
                 $contenido .= '<label for="usarPuntos">¿Usar puntos del wallet?</label>';
             } else {
-                $contenido .= '<p>No tienes puntos en tu wallet para utilizar.</p>';
+                $contenido .= 'No tienes puntos en tu wallet para utilizar.';
             }
             $contenido .= '<input type="submit" name="confirmar" value="Confirmar Pedido" class="boton-confirmar">
             </form>';

@@ -17,7 +17,7 @@ require_once '../helpers/producto.php';
         <?php include RAIZ_APP . '/includes/vistas/comun/cabecera.php'; ?>
         <?php include RAIZ_APP . '/includes/vistas/comun/lateralIzq.php'; ?>
         <main>
-            <h2>Valore nuestro producto :D</h2>
+            <h2>Valore nuestros productos</h2>
             <?php
                 $id_pedido = $_GET['id'];
                 $pedido = new Pedido($_SESSION['usuario']);
