@@ -4,6 +4,10 @@ require_once __DIR__.'/Formulario.php';
 require_once 'config.php';
 require_once __DIR__.'/src/usuarios/usuario.php';
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 class FormularioEditar extends Formulario
 {
     public function __construct() {
@@ -12,11 +16,17 @@ class FormularioEditar extends Formulario
     
     protected function generaCamposFormulario(&$datos)
 {
+    $nombreUsuario = $_SESSION['nombre'];
+    $nombre = $_SESSION['nombrePila'];
+    $apellido = $_SESSION['apellido'];
+    $email = $_SESSION['email'];
+
+    /*
     $nombreUsuario = $datos['username'] ?? '';
     $nombre = $datos['nombre'] ?? '';
     $apellido = $datos['apellido'] ?? '';
     $email = $datos['email'] ?? '';
-
+    */
     $erroresCampos = self::generaErroresCampos(['username', 'nombre', 'apellido', 'email', 'password'], $this->errores, 'span', array('class' => 'error'));
     $rutajsjquery = RUTA_APP . '/includes/src/javaScript/jquery-3.7.1.min.js';
     $rutajsreg = RUTA_APP . '/includes/src/javaScript/registro.js';

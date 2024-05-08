@@ -72,6 +72,11 @@ class FormularioLogin extends Formulario
                 $_SESSION["nombre"] = $usuario->getNombreUsuario();
                 $_SESSION["ID"] = $usuario->getID();
 
+                //para usar en editar perfil
+                $_SESSION["apellido"] = $usuario->getApellido();
+                $_SESSION["email"] = $usuario->getEmail();
+                $_SESSION["nombrePila"] = $usuario->getNombre();
+
                 // Configurar roles de usuario si es necesario
                 if ($usuario->getRoles() == "empleado") {
                     $_SESSION["esEmpleado"] = true;
