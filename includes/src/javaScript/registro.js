@@ -6,21 +6,11 @@ $(document).ready(function() {
 	$("#userMal").hide();
 
 	$("#email").change(function(){
-		const campo = $("#email"); // referencia jquery al campo
-		const campo1 = $("#username");
-		campo1[0].setCustomValidity(""); // limpia validaciones previas
+		const campo = $("#email"); // referencia jquery al campo 
+		// limpia validaciones previas
 		campo[0].setCustomValidity(""); // limpia validaciones previas
 
-		if(nombreUsuarioValido(campo1.val())){
-			campo1[0].setCustomValidity("");
-			$("#userOK").show();
-			$("#userMal").hide();
-			
-		}else{
-			campo1[0].setCustomValidity("El nombre de usuario debe tener al menos 5 caracteres");
-			$("#userOK").hide();
-			$("#userMal").show();
-		}
+		
 
 		const esCorreoValido = campo[0].checkValidity();
 		if (esCorreoValido && correoValidoUCM(campo.val())) {
@@ -38,9 +28,22 @@ $(document).ready(function() {
 
 	
 	$("#username").change(function(){
-		var url = "comprobarUsuario.php?user=" + $("#username").val();
+		/*const campo1 = $("#username");
+		campo1[0].setCustomValidity("");
+		if(nombreUsuarioValido(campo1.val())){
+			campo1[0].setCustomValidity("");
+			$("#userOK").show();
+			$("#userMal").hide();
+			
+		}else{
+			campo1[0].setCustomValidity("El nombre de usuario debe tener al menos 5 caracteres");
+			$("#userOK").hide();
+			$("#userMal").show();
+		}*/
+		var url = "../vistas/helpers/comprobarUsuario.php?user=" + $("#username").val();
 		$.get(url,usuarioExiste);
-  	});
+	});
+	
 
 
   	function nombreUsuarioValido(nombre) {
@@ -57,10 +60,12 @@ $(document).ready(function() {
 	function usuarioExiste(data,status) {
 		// tu codigo aqui
 		// Por ejemplo, puedes verificar si el usuario ya existe
+		console.log(data);
 		if (data === "existe") {
 			// Usuario ya existe, muestra un mensaje de error
-			$("#userOK").hide();
+			
 			$("#userMal").show();
+			$("#userOK").hide();
 			alert("El nombre de usuario ya está en uso");
 
 		} else {
