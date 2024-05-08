@@ -10,8 +10,6 @@ $(document).ready(function() {
 		// limpia validaciones previas
 		campo[0].setCustomValidity(""); // limpia validaciones previas
 
-		
-
 		const esCorreoValido = campo[0].checkValidity();
 		if (esCorreoValido && correoValidoUCM(campo.val())) {
 
@@ -26,22 +24,22 @@ $(document).ready(function() {
 		
 	});
 
-	
 	$("#username").change(function(){
-		/*const campo1 = $("#username");
+		const campo1 = $("#username");
 		campo1[0].setCustomValidity("");
-		if(nombreUsuarioValido(campo1.val())){
+		const esUsernameValido = campo1[0].checkValidity();
+
+		if(esUsernameValido && nombreUsuarioValido(campo1.val())){
+			//mirar si existe el usuario
+
+			var url = "../vistas/helpers/comprobarUsuario.php?user=" + $("#username").val();
+			$.get(url,usuarioExiste);
 			campo1[0].setCustomValidity("");
-			$("#userOK").show();
-			$("#userMal").hide();
-			
 		}else{
-			campo1[0].setCustomValidity("El nombre de usuario debe tener al menos 5 caracteres");
+			campo1[0].setCustomValidity("El nombre de usuario no está disponible o es demasiado corto");
 			$("#userOK").hide();
 			$("#userMal").show();
-		}*/
-		var url = "../vistas/helpers/comprobarUsuario.php?user=" + $("#username").val();
-		$.get(url,usuarioExiste);
+		}
 	});
 	
 
@@ -53,20 +51,20 @@ $(document).ready(function() {
 
 	function correoValidoUCM(correo) {
 		// Comprueba si el correo termina en @ucm.es
-
-        return correo.endsWith("@ucm.es") || correo.endsWith("@gmail.es");
+		if (correo.endsWith("@ucm.es") || correo.endsWith("@gmail.com")) {
+			return true;
+		}
+        return false;
 	}
 
 	function usuarioExiste(data,status) {
 		// tu codigo aqui
 		// Por ejemplo, puedes verificar si el usuario ya existe
-		console.log(data);
 		if (data === "existe") {
 			// Usuario ya existe, muestra un mensaje de error
 			
 			$("#userMal").show();
 			$("#userOK").hide();
-			alert("El nombre de usuario ya está en uso");
 
 		} else {
 			// Usuario no existe, oculta el mensaje de error

@@ -18,12 +18,15 @@ class FormularioEditar extends Formulario
     $email = $datos['email'] ?? '';
 
     $erroresCampos = self::generaErroresCampos(['username', 'nombre', 'apellido', 'email', 'password'], $this->errores, 'span', array('class' => 'error'));
-
+    $rutajsjquery = RUTA_APP . '/includes/src/javaScript/jquery-3.7.1.min.js';
+    $rutajsreg = RUTA_APP . '/includes/src/javaScript/registro.js';
     $contenido = <<<EOS
         <fieldset class='claseFormulario'>
             <div>
                 <label for="username">Nombre de usuario :</label>
                 <input id="username" type="text" name="username" value="$nombreUsuario" required />
+                <span id="userOK">&#x2705;</span>
+                <span id="userMal">&#x26A0;</span>
                 {$erroresCampos['username']}
             </div>
             <div>
@@ -39,6 +42,8 @@ class FormularioEditar extends Formulario
             <div>
                 <label for="email">Email :</label>
                 <input id="email" type="email" name="email" value="$email" required />
+                <span id="correoOK">&#x2705;</span>
+                <span id="correoMal">&#x26A0;</span>
                 {$erroresCampos['email']}
             </div>
             <div>
@@ -49,6 +54,8 @@ class FormularioEditar extends Formulario
             <div id='botonLogin'>
                 <input type="submit" value="Confirmar cambios">
             </div>
+            <script type="text/javascript" src=$rutajsjquery></script>
+            <script type="text/javascript" src=$rutajsreg></script>
         </fieldset>
     EOS;
 
