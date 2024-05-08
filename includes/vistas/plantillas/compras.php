@@ -16,7 +16,7 @@ foreach ($productos_data as $producto_data) {
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
+$javascript = "/src/javaScript/filtrotipocompras.js";
 $titulo = 'Compras Back Music';
 $contenido = <<<EOS
     <article>
@@ -25,7 +25,20 @@ $contenido = <<<EOS
         <p>Esta el la sección de compras de Back Music. Aquí podrás encontrar todo lo que tenemos a la venta.</p>
     EOS;
     if (!empty($productos)) {
+        //filtrar productos
+        $contenido .= "<div id='filtrocompras'>
+        Filtrar por tipo: <select id='filtrotipocompras' onchange='redireccionar()'>
+            <option value=''>Seleccionar</option>
+            <option value='Viento'>Viento</option>
+            <option value='Percusion'>Percusión</option>
+            <option value='Cuerda'>Cuerda</option>
+            <option value='Articulos'>Artículos</option>
+            <option value='Reacondicionados'>Reacondicionados</option>
+            <option value='Todos'>Todos</option>
+        </select>
+        </div>";
         // Itera sobre los productos y muestra la información
+        $contenido .= "<div id='divproductos'>";
         foreach ($productos as $producto) {
             $visible = $producto->getVisible();
             if ($visible || isset($_SESSION["esEmpleado"])) {
@@ -80,6 +93,7 @@ $contenido = <<<EOS
                 $contenido .= "</div>"; //fin div producto
             }
         }
+        $contenido .= "</div>"; //fin div productos
     } else {
         $contenido .= "<p>No se encontraron productos</p>";
     }

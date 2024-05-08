@@ -27,12 +27,26 @@ foreach ($productos_data as $producto_data) {
     $productos[] = $producto;
 }
 // Inicia la variable contenido
+$javascript = "/src/javaScript/filtrotipocompras.js";
 $ruta = RUTA_APP;
 $contenido = '<h2>Compras Back Music</h2>
         <p>Esta el la sección de compras de Back Music. Aquí podrás encontrar todo lo que tenemos a la venta.</p>';
 // Verifica si hay productos para mostrar
 if (!empty($productos)) {
+    //filtrar productos
+    $contenido .= "<div id='filtrocompras'>
+    Filtrar por tipo: <select id='filtrotipocompras' onchange='redireccionar()'>
+        <option value=''>Seleccionar</option>
+        <option value='Viento'>Viento</option>
+        <option value='Percusion'>Percusión</option>
+        <option value='Cuerda'>Cuerda</option>
+        <option value='Articulos'>Artículos</option>
+        <option value='Reacondicionados'>Reacondicionados</option>
+        <option value='Todos'>Todos</option>
+    </select>
+    </div>";
     // Itera sobre los productos y muestra la información
+    $contenido .= "<div id='divproductos'>";
     foreach ($productos as $producto) {
         $reacondicionado = "(Nuevo)";
         if ($producto->esReacondicionado($producto)) { //revisa si el id de la venta es 0
@@ -94,6 +108,7 @@ if (!empty($productos)) {
             $contenido .= "</div></div>";
         }
     }
+    $contenido .= "</div>"; //fin div productos
 }
 
 // Muestra la plantilla con el contenido
