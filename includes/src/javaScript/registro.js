@@ -28,7 +28,7 @@ $(document).ready(function() {
 
 	
 	$("#username").change(function(){
-		const campo1 = $("#username");
+		/*const campo1 = $("#username");
 		campo1[0].setCustomValidity("");
 		if(nombreUsuarioValido(campo1.val())){
 			campo1[0].setCustomValidity("");
@@ -39,7 +39,7 @@ $(document).ready(function() {
 			campo1[0].setCustomValidity("El nombre de usuario debe tener al menos 5 caracteres");
 			$("#userOK").hide();
 			$("#userMal").show();
-		}
+		}*/
 		var url = "../vistas/helpers/comprobarUsuario.php?user=" + $("#username").val();
 		$.get(url,usuarioExiste);
 	});
@@ -63,8 +63,9 @@ $(document).ready(function() {
 		console.log(data);
 		if (data === "existe") {
 			// Usuario ya existe, muestra un mensaje de error
-			$("#userOK").hide();
+			
 			$("#userMal").show();
+			$("#userOK").hide();
 			alert("El nombre de usuario ya está en uso");
 
 		} else {
