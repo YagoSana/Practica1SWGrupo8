@@ -28,4 +28,4 @@ else{
     $venta = Venta::getVentaById($ventaid);
     $venta->setEstado('Rechazada');
 }
-header('Location: ' . RUTA_APP . '/includes/vistas/plantillas/mostrarVentas.php');
+header('Location: ' . RUTA_APP . '/includes/vistas/plantillas/mostrarGestionVentas.php');

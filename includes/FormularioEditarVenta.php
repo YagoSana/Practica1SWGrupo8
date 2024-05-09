@@ -4,67 +4,118 @@ require_once 'config.php';
 require_once __DIR__ . '/src/usuarios/usuario.php';
 require_once 'vistas/helpers/venta.php';
 
-class FormularioEditarVenta extends Formulario {
+class FormularioEditarVenta extends Formulario
+{
 
     private $idVenta;
     private $idUsuario;
+    private $ventaReal;
 
-    public function __construct($idVenta, $idUsuario) {
+    public function __construct($idVenta, $idUsuario)
+    {
         parent::__construct('formEditarVenta', ['urlRedireccion' => RUTA_APP . '/includes/vistas/plantillas/mostrarGestionVentas.php']);
 
         $this->idVenta = $idVenta;
         $this->idUsuario = $idUsuario;
+        $this->ventaReal = Venta::getVentaById($this->idVenta);
     }
 
-    protected function generaCamposFormulario(&$datos){
-
+    protected function generaCamposFormulario(&$datos)
+    {
+        $venta = Venta::getVentaById($this->idVenta);
+        $nombre = $venta->getNombre();
+        $valor = $venta->getPrecio();
+        $descripcion = $venta->getDescripcion();
+        $categoria = $venta->getCategoria();
+        $imagen = $venta->getimagen();
+        $rutaimagen = RUTA_IMGS . "/imagenesBD/" . $imagen;
+        /*
         $nombre = $datos['nombre'] ?? '';
         $descripcion = $datos['descripcion'] ?? '';
         $valor = $datos['valor'] ?? '';
         $categoria = $datos['categoria'] ?? '';
-
-        $erroresCampos = self::generaErroresCampos(['nombre', 'descripcion', 'valor', 'categoria', 'imagen'], $this->errores, 'span', array('class' => 'error'));
+        */
+        $erroresCampos = self::generaErroresCampos(['venta_nombre', 'venta_descripcion', 'venta_precio', 'venta_categoria'], $this->errores, 'span', array('class' => 'error'));
 
         $contenido = <<<EOS
         <fieldset class='claseFormulario'>
             <div>
-                <label for="nombre">Nombre del producto :</label>
-                <input id="nombre" type="text" name="nombre" value="$nombre" required />
-                {$erroresCampos['nombre']}
+                <label for="venta_nombre">Nombre del producto :</label>
+                <input id="venta_nombre" type="text" name="venta_nombre" value="$nombre" required />
+                {$erroresCampos['venta_nombre']}
             </div>
             <div>
-                <label for="descripcion">Descripción :</label>
-                <textarea id="descripcion" name="descripcion" rows="4" cols="40" required>$descripcion</textarea>
-                {$erroresCampos['descripcion']}
+                <label for="venta_descripcion">Descripción :</label>
+                <textarea id="venta_descripcion" name="venta_descripcion" rows="4" cols="40" required>$descripcion</textarea>
+                {$erroresCampos['venta_descripcion']}
             </div>
             <div>
-                <label for="valor">Valor :</label>
-                <input id="valor" type="text" name="valor" value="$valor" required />
-                {$erroresCampos['valor']}
+                <label for="venta_precio">Valor :</label>
+                <input id="venta_precio" type="text" name="venta_precio" value="$valor" required />
+                {$erroresCampos['venta_precio']}
             </div>
             <div>
-                <label for="categoria">Categoría :</label>
-                <select id="categoria" name="categoria" required>
+                <label for="venta_categoria">Categoría :</label>
+                <select id="venta_categoria" name="venta_categoria" required>
                     <option value="cuerda" $categoria == 'cuerda' ? 'selected' : ''>Cuerda</option>
                     <option value="viento" $categoria == 'viento' ? 'selected' : ''>Viento</option>
                     <option value="percusion" $categoria == 'percusion' ? 'selected' : ''>Percusión</option>
                     <option value="articulo" $categoria == 'articulo' ? 'selected' : ''>Artículo</option>
                 </select>
-                {$erroresCampos['categoria']}
+                {$erroresCampos['venta_categoria']}
             </div>
             <div>
-                <input type="submit" value="Añadir producto">
+                <label for="venta_imagen">Imagen :</label>
+                <img src='$rutaimagen' alt="Imagen del producto">
+            </div>
+            <div>
+                <input type="submit" value="Editar producto">
             </div>
         </fieldset>
         EOS;
 
         return $contenido;
     }
+    
+    protected function procesaFormulario(&$datos)
+    {
 
-    protected function procesaFormulario(&$datos){
-
-        if(session_status() === PHP_SESSION_NONE){
+        if (session_status() === PHP_SESSION_NONE) {
             session_start();
+        }
+        //venta actualizada
+
+        $this->errores = [];
+
+        $nombre = trim($datos['venta_nombre'] ?? '');
+        $valor = trim($datos['venta_precio'] ?? '');
+        $categoria = trim($datos['venta_categoria'] ?? '');
+        $descripcion = trim($datos['venta_descripcion'] ?? '');
+
+        // Validación de campos
+        if (empty($nombre)) {
+            $this->errores['venta_nombre'] = 'El nombre no puede estar vacío';
+        }
+        if (empty($valor)) {
+            $this->errores['venta_precio'] = 'El precio no puede estar vacío';
+        }
+        if (empty($categoria)) {
+            $this->errores['venta_categoria'] = 'La categoría no puede estar vacía';
+        }
+        if (empty($descripcion)) {
+            $this->errores['venta_descripcion'] = 'La descripción no puede estar vacía.';
+        }
+        // Procesamiento de formulario
+        if (count($this->errores) === 0) {
+
+            $ID_Usuario = $_SESSION['usuario']->getId();
+
+            $Estado = "Pendiente";
+            
+             Venta::editVenta($ID_Usuario, $nombre, $descripcion, $this->ventaReal->getPrecio(), $this->ventaReal->getCategoria(), $Estado);
+
+            header('Location: ' . RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php');
+            
         }
     }
 }

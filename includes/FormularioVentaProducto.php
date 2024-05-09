@@ -8,7 +8,7 @@ class FormularioVentaProducto extends Formulario
 {
     public function __construct()
     {
-        parent::__construct('formVenta', ['urlRedireccion' => RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php'], ['enctype' => 'multipart/form-data']);
+        parent::__construct('formVenta', ['urlRedireccion' => RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php','enctype' => 'multipart/form-data']);
     }
 
     protected function generaCamposFormulario(&$datos)
@@ -73,7 +73,7 @@ class FormularioVentaProducto extends Formulario
         $venta_precio = trim($datos['venta_precio'] ?? '');
         $venta_categoria = trim($datos['venta_categoria'] ?? '');
         $venta_descripcion = trim($datos['venta_descripcion'] ?? '');
-        $venta_imagen = trim($datos['venta_imagen'] ?? '');
+        $venta_imagen = isset($_FILES['venta_imagen']);
 
         // Validación de campos
         if (empty($venta_nombre)) {
@@ -88,7 +88,7 @@ class FormularioVentaProducto extends Formulario
         if (empty($venta_descripcion)) {
             $this->errores['venta_descripcion'] = 'La descripción no puede estar vacía.';
         }
-        if (empty($venta_imagen)) {
+        if (!$venta_imagen) {
             $this->errores['venta_imagen'] = 'Por favor, introduce una foto.';
         }
 
@@ -96,8 +96,7 @@ class FormularioVentaProducto extends Formulario
         if (count($this->errores) === 0) {
 
             $ruta = $_FILES['venta_imagen']['tmp_name'];
-
-            $target = "/img/imagenesBD/" . $venta_imagen;
+            $target = "/img/imagenesBD/" . $_FILES['venta_imagen']['name'];
 
             if (move_uploaded_file($ruta, RAIZ_APP . $target)) {
 
@@ -105,7 +104,7 @@ class FormularioVentaProducto extends Formulario
 
                 $Estado = "Pendiente";
 
-                $venta = new Venta(null, $ID_Usuario, $venta_nombre, $venta_descripcion, $venta_imagen, $venta_precio, $venta_categoria, $Estado);
+                $venta = new Venta(null, $ID_Usuario, $venta_nombre, $venta_descripcion, $_FILES['venta_imagen']['name'], $venta_precio, $venta_categoria, $Estado);
 
                 $venta->createVenta();
 

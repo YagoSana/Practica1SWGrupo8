@@ -92,6 +92,19 @@ class Venta {
         // Ejecutar la consulta
         $stmt->execute(['Estado' => $estado, 'ID_Venta' => $this->ID]);
     }
+
+    public static function editVenta($viejouser, $Nombre, $Descripcion, $Precio, $Categoria, $Estado) {
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $stmt = $conn->prepare('UPDATE ventas SET Nombre = :Nombre, Descripcion = :Descripcion, Precio = :Precio, Categoria = :Categoria, Estado = :Estado  WHERE ID_Usuario = '.$viejouser);
+        $stmt->execute([
+            'Nombre' => $Nombre,
+            'Descripcion' => $Descripcion,
+            'Precio' => $Precio,
+            'Categoria' => $Categoria,
+            'Estado' => $Estado
+        ]);
+    }
+
     
     public function getID() {
         return $this->ID;

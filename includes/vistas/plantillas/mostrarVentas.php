@@ -35,14 +35,7 @@ if (isset($_SESSION["login"])) {
             $contenido .= "<p>" . $venta['Descripcion'] . "</p>";
             $contenido .= "<p>Estado : " . $venta['Estado'] . "</p>";
             $contenido .= "<img src='" . RUTA_IMGS . '/imagenesBD/' . $venta['Imagen'] . "' alt='Imagen del producto'>";
-            $contenido .= "<div id='botonesVenta'>";
-            $ventaid = $venta['ID_Venta'];
-            if ($venta['Estado'] == 'Pendiente') {
-                $contenido .= "<button onclick='window.location.href=\"../helpers/procesarAceptacionVenta.php?venta=$ventaid\";'> Aceptar </button>";
-                $contenido .= "<button onclick='window.location.href=\"../helpers/procesarAceptacionVenta.php?venta=-$ventaid\";'> Rechazar </button>";
-                $contenido .= "<button> Editar </button>"; //pendiente de revisión
-            }
-            $contenido .= "</div>";
+            
             $contenido .= "</div>";
         }
     }
