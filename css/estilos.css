@@ -552,6 +552,9 @@ p.frase {
 .stock {
   color: black;
   position: absolute;
+  background-color: #cde5e8;
+  border-radius: 4px;
+  padding: 3px;
   top: 5px;
   right: 5px;
 }

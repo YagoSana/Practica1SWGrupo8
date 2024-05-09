@@ -85,7 +85,7 @@ if (!empty($productos)) {
             } else {
 
                 $contenido .= <<<EOS
-                <button class='agregar' onclick="window.location.href='$ruta/incudes/src/login.php'">Agregar al carrito</button>
+                <button class='agregar' onclick="window.location.href='$ruta/includes/src/login.php'">Agregar al carrito</button>
                 EOS;
             }
 

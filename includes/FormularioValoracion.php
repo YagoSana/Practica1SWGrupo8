@@ -29,7 +29,7 @@ class FormularioValoracion extends Formulario
         $htmlCamposFormulario = <<<EOS
         <div class='val'>
             <input type="hidden" id="pedido_id" name="pedido_id" value="$this->pedidoId">
-            <input type="hidden" id="producto_id" name="producto_id" value="$this->productoId ?>">
+            <input type="hidden" id="producto_id" name="producto_id" value="$this->productoId">
             <required>
             <label class="opcion">
                 <input type="radio" id="valoracion" name="valoracion" value="1"> 1
