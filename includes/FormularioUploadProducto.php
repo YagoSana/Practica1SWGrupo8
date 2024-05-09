@@ -89,20 +89,10 @@ class FormularioUploadProducto extends Formulario
         }
 
         if (count($this->errores) === 0) {
-            //gestion del producto 
-            echo $_FILES . "<br>";
-            $this->errores['producto_imagen'] = 'Error al mover la imagen.';
-            print_r($_FILES);
-           
-            echo $_FILES['producto_imagen']['name'] . "<br>";
-            echo $_FILES['producto_imagen']['tmp_name'] . "<br>";
+            //gestion del producto     
             $ruta = $_FILES['producto_imagen']['tmp_name'];
-
-            $target = "/img/imagenesBD/" . $producto_imagen;
-
-            echo $ruta;
-            echo $target;
-
+            $target = "/img/imagenesBD/" . $_FILES['producto_imagen']['name'];
+            
             if (move_uploaded_file($ruta, RAIZ_APP . $target)) {
 
                 $Visible = 1;
