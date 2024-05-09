@@ -10,8 +10,11 @@ if (session_status() === PHP_SESSION_NONE) {
 
 class FormularioEditar extends Formulario
 {
+    private $nombreUsuarioActual;
+
     public function __construct() {
         parent::__construct('formEditar', ['urlRedireccion' => RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php']);
+        $this->nombreUsuarioActual = $_SESSION['nombre'];
     }
     
     protected function generaCamposFormulario(&$datos)
@@ -80,6 +83,7 @@ protected function procesaFormulario(&$datos){
         $email = trim($datos['email'] ?? '');
         $password = trim($datos['password'] ?? '');
 
+        
         if (empty($nombreUsuario)) {
             $this->errores['username'] = 'Por favor, introduce un nombre de usuario.';
         }
@@ -99,14 +103,24 @@ protected function procesaFormulario(&$datos){
         if (empty($password)) {
             $this->errores['password'] = 'Por favor, introduce una contraseña.';
         }
-
+        
         if (count($this->errores) === 0) {
-            $Rol = "cliente";
-            $Puntos = 0;
+
             $query = Usuario::buscaUsuario($nombreUsuario);
-            if (!$query) {
+    
+            if (!$query || $this->nombreUsuarioActual == $nombreUsuario) {
                 session_start();
+
                 $viejouser = $_SESSION['ID'];
+                $Puntos = Usuario::getPuntos($viejouser);
+
+                if($query) {
+                    $Rol = $query->getRoles();              
+                } else {
+                    $query = Usuario::buscaUsuario($this->nombreUsuarioActual);
+                    $Rol = $query->getRoles();
+                }
+                
                 Usuario::editarUsuario($viejouser, $nombre, $apellido, $email, $nombreUsuario, $password, $Rol, $Puntos);
                 session_destroy(); //y que vuelva a iniciar sesion con datos nuevos
             } else {
