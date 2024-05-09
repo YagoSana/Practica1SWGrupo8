@@ -357,6 +357,74 @@ img#imgCompras {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
+textarea#comentario {
+  margin-left: 15px;
+}
+
+.val {
+  border: 1px solid #ccc;
+  padding: 1em;
+  margin-bottom: 2em;
+  overflow: auto;
+  max-height: 200px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+}
+
+.val .opcion {
+  display: inline-block;
+}
+
+.val textarea {
+  flex-grow: 1;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.val input[type="submit"] {
+  background-color: rgb(76, 195, 195);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.val p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.nom {
+  
+    background-color: #575555;
+    color: white;
+    padding: 5px 10px;
+    font-size: 18px;
+    display: inline-block;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.volver-btn {
+  background-color: #94adb8;
+  color: rgb(0, 0, 0);
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 .productosPedido {
   display: flex; /* Usar flexbox para organizar los productos */
   flex-direction: row; /* Organizar los productos en una fila */
