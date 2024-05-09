@@ -10,7 +10,7 @@ $htmlFormVentaProducto = $form->gestiona();
 $titulo = 'Venta producto Back Music';
 
 $contenido = <<<EOS
-<h1>Venta de tú producto en Back Music</h1>
+<h1>Venta de tu producto en Back Music</h1>
 $htmlFormVentaProducto
 EOS;
 
