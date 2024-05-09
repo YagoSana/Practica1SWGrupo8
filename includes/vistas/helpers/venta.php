@@ -95,7 +95,7 @@ class Venta {
 
     public static function editVenta($viejouser, $Nombre, $Descripcion, $Precio, $Categoria, $Estado) {
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $stmt = $conn->prepare('UPDATE ventas SET Nombre = :Nombre, Descripcion = :Descripcion, Precio = :Precio, Categoria = :Categoria, Estado = :Estado  WHERE ID_Usuario = '.$viejouser);
+        $stmt = $conn->prepare('UPDATE ventas SET Nombre = :Nombre, Descripcion = :Descripcion, Precio = :Precio, Categoria = :Categoria, Estado = :Estado  WHERE ID_Venta = '.$viejouser);
         $stmt->execute([
             'Nombre' => $Nombre,
             'Descripcion' => $Descripcion,

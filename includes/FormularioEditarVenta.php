@@ -85,14 +85,14 @@ class FormularioEditarVenta extends Formulario
             session_start();
         }
         //venta actualizada
-
+        
         $this->errores = [];
-
+        
         $nombre = trim($datos['venta_nombre'] ?? '');
         $valor = trim($datos['venta_precio'] ?? '');
         $categoria = trim($datos['venta_categoria'] ?? '');
         $descripcion = trim($datos['venta_descripcion'] ?? '');
-
+        
         // Validación de campos
         if (empty($nombre)) {
             $this->errores['venta_nombre'] = 'El nombre no puede estar vacío';
@@ -106,14 +106,15 @@ class FormularioEditarVenta extends Formulario
         if (empty($descripcion)) {
             $this->errores['venta_descripcion'] = 'La descripción no puede estar vacía.';
         }
+        
         // Procesamiento de formulario
         if (count($this->errores) === 0) {
-
-            $ID_Usuario = $_SESSION['usuario']->getId();
-
+            
+            $ID_Usuario = $this->idVenta;
+            
             $Estado = "Pendiente";
             
-             Venta::editVenta($ID_Usuario, $nombre, $descripcion, $this->ventaReal->getPrecio(), $this->ventaReal->getCategoria(), $Estado);
+             Venta::editVenta($ID_Usuario, $nombre, $descripcion, $valor, $categoria, $Estado);
 
             header('Location: ' . RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php');
             
