@@ -20,13 +20,16 @@ class FormularioUploadProducto extends Formulario
         $producto_tipo = $datos['producto_tipo'] ?? '';
 
         $erroresCampos = self::generaErroresCampos(['producto_nombre', 'producto_descripcion', 'producto_precio', 'producto_imagen', 'producto_tipo'], $this->errores, 'span', array('class' => 'error'));
-        print_r($this->errores);
+        $rutajsjquery = RUTA_APP . '/includes/src/javaScript/jquery-3.7.1.min.js';
+        $rutajsreg = RUTA_APP . '/includes/src/javaScript/upload.js';
         $contenido = <<<EOS
-        <fieldset class='claseFormulario'>
+        <fieldset class='claseFormulario' id='formularioUpload'>
             <div>
                 <label for="producto_nombre">Nombre del Producto :</label>
                 <input type="text" id="producto_nombre" name="producto_nombre" required>
-            </div>
+                <span id="nombreOK">&#x2705;</span>
+                <span id="nombreMal">&#x26A0;</span>
+                </div>
             <div>
                 <label for="producto_descripcion">Descripcion del Producto :</label>
             </div>
@@ -36,6 +39,8 @@ class FormularioUploadProducto extends Formulario
             <div>
                 <label for="producto_precio">Precio del Producto :</label>
                 <input type="text" id="producto_precio" name="producto_precio" required>
+                <span id="precioOK">&#x2705;</span>
+                <span id="precioMal">&#x26A0;</span>
             </div>
             <div>
                 <label for="producto_imagen">Imagen del Producto :</label>
@@ -53,6 +58,8 @@ class FormularioUploadProducto extends Formulario
             <div id='botonLogin'>
                 <input type="submit" value="Subir Producto">
             </div>
+            <script type="text/javascript" src=$rutajsjquery></script>
+            <script type="text/javascript" src=$rutajsreg></script>
         </fieldset>
     EOS;
 

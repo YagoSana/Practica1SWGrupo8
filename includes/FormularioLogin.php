@@ -38,7 +38,7 @@ class FormularioLogin extends Formulario
             </div>
             <p>¿No tienes cuenta en nuestra web?</p>
            
-            <p>Regístrate como un nuevo Usuario <a href="$linkRegistro">aquí</a></p>
+            <p>Regístrate como un nuevo usuario <a href="$linkRegistro">aquí</a></p>
 
         </fieldset>
         EOS;
