@@ -11,16 +11,16 @@ class FormularioLogin extends Formulario
     
     protected function generaCamposFormulario(&$datos)
     {
-        // Se reutiliza el nombre de usuario introducido previamente o se deja en blanco
+        
         $nombreUsuario = $datos['username'] ?? '';
         $password = $datos['password'] ?? '';
 
-        // Se generan los mensajes de error si existen.
+        
         $erroresCampos = self::generaErroresCampos(['username', 'password'], $this->errores, 'span', array('class' => 'error'));
         $linkRegistro = RUTA_APP . '/includes/src/register.php';
 
 
-        // Se genera el HTML asociado a los campos del formulario y los mensajes de error.
+        
         $htmlCamposFormulario = <<<EOS
         <fieldset class='claseFormulario'>
             <div>
@@ -52,7 +52,7 @@ class FormularioLogin extends Formulario
         $nombreUsuario = trim($datos['username'] ?? '');
         $password = trim($datos['password'] ?? '');
 
-        // Validación de campos
+        
         if (empty($nombreUsuario)) {
             $this->errores['username'] = 'El nombre de usuario no puede estar vacío';
         }
@@ -60,7 +60,7 @@ class FormularioLogin extends Formulario
             $this->errores['password'] = 'El password no puede estar vacío.';
         }
 
-        // Procesamiento de formulario
+        
         if (count($this->errores) === 0) {
             $usuario = Usuario::login($nombreUsuario, $password);
 
