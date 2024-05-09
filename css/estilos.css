@@ -268,6 +268,7 @@ footer {
 
 .detalle_producto {
   display: flex;
+  align-items: flex-start;
   margin-bottom: 2em;
 }
 .detalle_producto img {
