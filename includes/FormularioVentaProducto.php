@@ -20,16 +20,21 @@ class FormularioVentaProducto extends Formulario
         $venta_imagen = $datos['venta_imagen'] ?? '';
 
         $erroresCampos = self::generaErroresCampos(['venta_nombre', 'venta_precio', 'venta_categoria', 'venta_descripcion', 'venta_imagen'], $this->errores, 'span', array('class' => 'error'));
-
+        $rutajsjquery = RUTA_APP . '/includes/src/javaScript/jquery-3.7.1.min.js';
+        $rutajsreg = RUTA_APP . '/includes/src/javaScript/venta.js';
         $htmlCamposFormulario = <<<EOS
         <fieldset class='claseFormulario'>
             <div>
                 <label for="venta_nombre">Nombre :</label>
                 <input type="text" id="venta_nombre" name="venta_nombre" required>
+                <span id="nombreOK">&#x2705;</span>
+                <span id="nombreMal">&#x26A0;</span>
             </div>
             <div>
                 <label for="venta_precio">Precio :</label>
                 <input type="text" id="venta_precio" name="venta_precio" required>
+                <span id="precioOK">&#x2705;</span>
+                <span id="precioMal">&#x26A0;</span>
             </div>
             <div>
                 <label for="venta_categoria">Categoría :</label>
@@ -52,8 +57,10 @@ class FormularioVentaProducto extends Formulario
                 <input type="file" id="venta_imagen" name="venta_imagen" required>
             </div>
             <div id='botonLogin'>
-            <input type="submit" value="Subir Producto">
+                <input type="submit" value="Subir Producto">
             </div>
+            <script type="text/javascript" src=$rutajsjquery></script>
+            <script type="text/javascript" src=$rutajsreg></script>
         </fieldset>
         EOS;
 

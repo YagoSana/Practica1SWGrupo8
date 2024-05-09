@@ -23,7 +23,7 @@ class FormularioUploadProducto extends Formulario
         $rutajsjquery = RUTA_APP . '/includes/src/javaScript/jquery-3.7.1.min.js';
         $rutajsreg = RUTA_APP . '/includes/src/javaScript/upload.js';
         $contenido = <<<EOS
-        <fieldset class='claseFormulario' id='formularioUpload'>
+        <fieldset class='claseFormulario'>
             <div>
                 <label for="producto_nombre">Nombre del Producto :</label>
                 <input type="text" id="producto_nombre" name="producto_nombre" required>
