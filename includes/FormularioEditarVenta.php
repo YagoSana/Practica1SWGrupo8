@@ -29,19 +29,16 @@ class FormularioEditarVenta extends Formulario
         $categoria = $venta->getCategoria();
         $imagen = $venta->getimagen();
         $rutaimagen = RUTA_IMGS . "/imagenesBD/" . $imagen;
-        /*
-        $nombre = $datos['nombre'] ?? '';
-        $descripcion = $datos['descripcion'] ?? '';
-        $valor = $datos['valor'] ?? '';
-        $categoria = $datos['categoria'] ?? '';
-        */
         $erroresCampos = self::generaErroresCampos(['venta_nombre', 'venta_descripcion', 'venta_precio', 'venta_categoria'], $this->errores, 'span', array('class' => 'error'));
-
+        $rutajsjquery = RUTA_APP . '/includes/src/javaScript/jquery-3.7.1.min.js';
+        $rutajsreg = RUTA_APP . '/includes/src/javaScript/venta.js';
         $contenido = <<<EOS
         <fieldset class='claseFormulario'>
             <div>
                 <label for="venta_nombre">Nombre del producto :</label>
                 <input id="venta_nombre" type="text" name="venta_nombre" value="$nombre" required />
+                <span id="nombreOK">&#x2705;</span>
+                <span id="nombreMal">&#x26A0;</span>
                 {$erroresCampos['venta_nombre']}
             </div>
             <div>
@@ -52,6 +49,8 @@ class FormularioEditarVenta extends Formulario
             <div>
                 <label for="venta_precio">Valor :</label>
                 <input id="venta_precio" type="text" name="venta_precio" value="$valor" required />
+                <span id="precioOK">&#x2705;</span>
+                <span id="precioMal">&#x26A0;</span>
                 {$erroresCampos['venta_precio']}
             </div>
             <div>
@@ -68,9 +67,11 @@ class FormularioEditarVenta extends Formulario
                 <label for="venta_imagen">Imagen :</label>
                 <img src='$rutaimagen' alt="Imagen del producto">
             </div>
-            <div>
+            <div id='botonLogin'>
                 <input type="submit" value="Editar producto">
             </div>
+            <script type="text/javascript" src=$rutajsjquery></script>
+            <script type="text/javascript" src=$rutajsreg></script>
         </fieldset>
         EOS;
 
