@@ -6,6 +6,7 @@
     require_once '../../FormularioValoracion.php';
     session_start();
 
+    $titulo = "Valorar productos";
     $htmlFormVal = "";
     $id_pedido = $_GET['id'];
     $pedido = new Pedido($_SESSION['usuario']);

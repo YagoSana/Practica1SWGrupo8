@@ -8,7 +8,7 @@ class FormularioUploadProducto extends Formulario
 {
     public function __construct()
     {
-        parent::__construct('formUpload', ['urlRedireccion' => RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php'], ['enctype' => 'multipart/form-data']);
+        parent::__construct('formUpload', ['urlRedireccion' => RUTA_APP . '/includes/vistas/plantillas/paginaConfirmacion.php' , 'enctype' => 'multipart/form-data']);
     }
 
     protected function generaCamposFormulario(&$datos)
@@ -20,7 +20,7 @@ class FormularioUploadProducto extends Formulario
         $producto_tipo = $datos['producto_tipo'] ?? '';
 
         $erroresCampos = self::generaErroresCampos(['producto_nombre', 'producto_descripcion', 'producto_precio', 'producto_imagen', 'producto_tipo'], $this->errores, 'span', array('class' => 'error'));
-
+        print_r($this->errores);
         $contenido = <<<EOS
         <fieldset class='claseFormulario'>
             <div>
@@ -65,7 +65,7 @@ class FormularioUploadProducto extends Formulario
         $producto_nombre = trim($datos['producto_nombre'] ?? '');
         $producto_descripcion = trim($datos['producto_descripcion'] ?? '');
         $producto_precio = trim($datos['producto_precio'] ?? '');
-        $producto_imagen = trim($datos['producto_imagen'] ?? '');
+        $producto_imagen = isset($_FILES['producto_imagen']);
         $producto_tipo = trim($datos['producto_tipo'] ?? '');
 
         if (empty($producto_nombre)) {
@@ -80,7 +80,7 @@ class FormularioUploadProducto extends Formulario
             $this->errores['producto_precio'] = 'Por favor, introduce un precio.';
         }
 
-        if (empty($producto_imagen)) {
+        if (!$producto_imagen) {
             $this->errores['producto_imagen'] = 'Por favor, introduce una foto.';
         }
 
@@ -89,11 +89,19 @@ class FormularioUploadProducto extends Formulario
         }
 
         if (count($this->errores) === 0) {
-            //gestion del producto
-
+            //gestion del producto 
+            echo $_FILES . "<br>";
+            $this->errores['producto_imagen'] = 'Error al mover la imagen.';
+            print_r($_FILES);
+           
+            echo $_FILES['producto_imagen']['name'] . "<br>";
+            echo $_FILES['producto_imagen']['tmp_name'] . "<br>";
             $ruta = $_FILES['producto_imagen']['tmp_name'];
 
             $target = "/img/imagenesBD/" . $producto_imagen;
+
+            echo $ruta;
+            echo $target;
 
             if (move_uploaded_file($ruta, RAIZ_APP . $target)) {
 

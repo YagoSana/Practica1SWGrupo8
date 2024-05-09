@@ -16,8 +16,8 @@ $(document).ready(function() {
 			campo[0].setCustomValidity("");
 			$("#correoOK").show();
 			$("#correoMal").hide();
-		} else {			
-			campo[0].setCustomValidity("El correo debe ser válido y acabar por @ucm.es o @gmail.com");
+		} else {
+			alert("El correo debe ser válido y acabar por @ucm.es o @gmail.com");
 			$("#correoOK").hide();
 			$("#correoMal").show();
 		}
@@ -31,12 +31,11 @@ $(document).ready(function() {
 
 		if(esUsernameValido && nombreUsuarioValido(campo1.val())){
 			//mirar si existe el usuario
-
 			var url = "../vistas/helpers/comprobarUsuario.php?user=" + $("#username").val();
 			$.get(url,usuarioExiste);
 			campo1[0].setCustomValidity("");
-		}else{
-			campo1[0].setCustomValidity("El nombre de usuario no está disponible o es demasiado corto");
+		}else{			
+			alert("El nombre de usuario es demasiado corto");
 			$("#userOK").hide();
 			$("#userMal").show();
 		}
@@ -62,7 +61,7 @@ $(document).ready(function() {
 		// Por ejemplo, puedes verificar si el usuario ya existe
 		if (data === "existe") {
 			// Usuario ya existe, muestra un mensaje de error
-			
+			alert("El nombre de usuario no está disponible");
 			$("#userMal").show();
 			$("#userOK").hide();
 
