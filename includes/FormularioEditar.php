@@ -65,7 +65,7 @@ class FormularioEditar extends Formulario
                 {$erroresCampos['password']}
             </div>
             <div id='botonLogin'>
-                <input type="submit" value="Confirmar cambios">
+                <input type="submit" value="Confirmar cambios" id='botonEnviar'>
             </div>
             <script type="text/javascript" src=$rutajsjquery></script>
             <script type="text/javascript" src=$rutajsreg></script>

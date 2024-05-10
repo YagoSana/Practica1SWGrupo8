@@ -29,6 +29,7 @@ class FormularioUploadProducto extends Formulario
                 <input type="text" id="producto_nombre" name="producto_nombre" required>
                 <span id="nombreOK">&#x2705;</span>
                 <span id="nombreMal">&#x26A0;</span>
+                {$erroresCampos['producto_nombre']}
                 </div>
             <div>
                 <label for="producto_descripcion">Descripcion del Producto :</label>
@@ -41,10 +42,12 @@ class FormularioUploadProducto extends Formulario
                 <input type="text" id="producto_precio" name="producto_precio" required>
                 <span id="precioOK">&#x2705;</span>
                 <span id="precioMal">&#x26A0;</span>
+                {$erroresCampos['producto_precio']}
             </div>
             <div>
                 <label for="producto_imagen">Imagen del Producto :</label>
                 <input type="file" id="producto_imagen" name="producto_imagen" required>
+                {$erroresCampos['producto_imagen']}
             </div>
             <div>
                 <label for="producto_tipo">Tipo de Producto :</label>

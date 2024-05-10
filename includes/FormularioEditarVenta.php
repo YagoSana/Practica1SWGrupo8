@@ -68,7 +68,7 @@ class FormularioEditarVenta extends Formulario
                 <img src='$rutaimagen' alt="Imagen del producto">
             </div>
             <div id='botonLogin'>
-                <input type="submit" value="Editar producto">
+                <input type="submit" value="Editar producto" id='botonEnviar'>
             </div>
             <script type="text/javascript" src=$rutajsjquery></script>
             <script type="text/javascript" src=$rutajsreg></script>

@@ -1,4 +1,8 @@
 $(document).ready(function () {
+
+  var botonEnviar = document.getElementById("botonEnviar");
+  botonEnviar.disabled = true;
+
   $("#nombreOK").hide();
   $("#precioOK").hide();
   $("#nombreMal").hide();
@@ -14,12 +18,12 @@ $(document).ready(function () {
       campo[0].setCustomValidity("");
       $("#nombreOK").show();
       $("#nombreMal").hide();
-      $("#botonLogin").show();
+      botonEnviar.disabled = false;
     } else {
       alert("El nombre debe tener al menos 5 caracteres");
       $("#nombreOK").hide();
       $("#nombreMal").show();
-      $("#botonLogin").hide();
+      botonEnviar.disabled = true;
     }
   });
 
@@ -32,11 +36,11 @@ $(document).ready(function () {
       campo1[0].setCustomValidity("");
       $("#precioOK").show();
       $("#precioMal").hide();
-      $("#botonLogin").show();
+      botonEnviar.disabled = false;
     } else {
       $("#precioOK").hide();
       $("#precioMal").show();
-      $("#botonLogin").hide();
+      botonEnviar.disabled = true;
     }
   });
 

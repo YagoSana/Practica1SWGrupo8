@@ -52,7 +52,7 @@ class FormularioRegister extends Formulario
                 {$erroresCampos['password']}
             </div>
             <div id='botonLogin'>
-                <input type="submit" value="Registrarse">
+                <input type="submit" value="Registrarse" id='botonEnviar'>
             </div>
             <script type="text/javascript" src=$rutajsjquery></script>
             <script type="text/javascript" src=$rutajsreg></script>
@@ -74,6 +74,9 @@ protected function procesaFormulario(&$datos){
         if (empty($nombreUsuario)) {
             $this->errores['username'] = 'Por favor, introduce un nombre de usuario.';
         }
+        elseif (strlen($nombreUsuario) < 5) {
+            $this->errores['username'] = 'Por favor, introduce un nombre de usuario valido.';
+        }
 
         if (empty($nombre)) {
             $this->errores['nombre'] = 'Por favor, introduce tu nombre.';
@@ -82,10 +85,9 @@ protected function procesaFormulario(&$datos){
         if (empty($apellido)) {
             $this->errores['apellido'] = 'Por favor, introduce tu apellido.';
         }
-
-       // if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-         //   $this->errores['email'] = 'Por favor, introduce un email válido.';
-        //}
+        if (empty($email)) {
+            $this->errores['email'] = 'Por favor, introduce un email válido.';
+        }
 
         if (empty($password)) {
             $this->errores['password'] = 'Por favor, introduce una contraseña.';

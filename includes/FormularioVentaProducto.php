@@ -57,7 +57,7 @@ class FormularioVentaProducto extends Formulario
                 <input type="file" id="venta_imagen" name="venta_imagen" required>
             </div>
             <div id='botonLogin'>
-                <input type="submit" value="Subir Producto">
+                <input type="submit" value="Subir Producto" id='botonEnviar'>
             </div>
             <script type="text/javascript" src=$rutajsjquery></script>
             <script type="text/javascript" src=$rutajsreg></script>

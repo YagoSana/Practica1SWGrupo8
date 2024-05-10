@@ -1,4 +1,7 @@
 $(document).ready(function () {
+  var botonEnviar = document.getElementById("botonEnviar");
+  botonEnviar.disabled = true;
+
   $("#correoOK").hide();
   $("#userOK").hide();
   $("#correoMal").hide();
@@ -14,12 +17,12 @@ $(document).ready(function () {
       campo[0].setCustomValidity("");
       $("#correoOK").show();
       $("#correoMal").hide();
-      $("#botonLogin").show();
+      botonEnviar.disabled = false;
     } else {
       alert("El correo debe ser válido y acabar por @ucm.es o @gmail.com");
       $("#correoOK").hide();
       $("#correoMal").show();
-      $("#botonLogin").hide();
+      botonEnviar.disabled = true;
     }
   });
 
@@ -30,16 +33,15 @@ $(document).ready(function () {
 
     if (esUsernameValido && nombreUsuarioValido(campo1.val())) {
       //mirar si existe el usuario
-      var url =
-        "../vistas/helpers/comprobarUsuario.php?user=" + $("#username").val();
+      var url ="../vistas/helpers/comprobarUsuario.php?user=" + $("#username").val();
       $.get(url, usuarioExiste);
       campo1[0].setCustomValidity("");
-	  $("#botonLogin").show();
+      botonEnviar.disabled = false;
     } else {
       alert("El nombre de usuario es demasiado corto");
       $("#userOK").hide();
       $("#userMal").show();
-	  $("#botonLogin").hide();
+      botonEnviar.disabled = true;
     }
   });
 

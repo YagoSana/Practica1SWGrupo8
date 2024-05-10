@@ -12,7 +12,7 @@ class FormularioValoracion extends Formulario
 
     public function __construct($pedidoId, $productoId)
     {
-        parent::__construct('FormValoracion', ['urlRedireccion' => RUTA_APP . '/includes/vistas/plantillas/mostrarValoracion.php?id=' . $pedidoId, 'method'=>'POST', 'enctype'=>'multipart/form-data']);
+        parent::__construct('FormValoracion', ['urlRedireccion' => RUTA_APP . '/includes/vistas/plantillas/mostrarValoracion.php?id=' . $pedidoId, 'method' => 'POST', 'enctype' => 'multipart/form-data']);
         $this->pedidoId = $pedidoId;
         $this->productoId = $productoId;
     }
@@ -48,7 +48,7 @@ class FormularioValoracion extends Formulario
             </label>
             </required>
             <textarea id="comentario" name="comentario" minlength="50" maxlength="1500" required></textarea>
-            <input type="submit" value="Enviar valoración">
+            <input type="submit" value="Enviar valoración" id='botonEnviar'>
         </div>
         <script type="text/javascript" src=$rutajsval></script>
         EOS;
@@ -72,8 +72,6 @@ class FormularioValoracion extends Formulario
         } else {
             $this->errores[] = "La valoración no puede ser nula";
         }
-       // Usuario::valorarProducto($productoId, $pedidoId, $_SESSION['usuario']->getId(), $valoracion, $comentario);
+        // Usuario::valorarProducto($productoId, $pedidoId, $_SESSION['usuario']->getId(), $valoracion, $comentario);
     }
 }
-
-?>
