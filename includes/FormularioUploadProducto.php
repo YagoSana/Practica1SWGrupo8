@@ -59,7 +59,7 @@ class FormularioUploadProducto extends Formulario
                 </select>
             </div>
             <div id='botonLogin'>
-                <input type="submit" value="Subir Producto">
+                <input type="submit" value="Subir Producto" id='botonEnviar'>
             </div>
             <script type="text/javascript" src=$rutajsjquery></script>
             <script type="text/javascript" src=$rutajsreg></script>

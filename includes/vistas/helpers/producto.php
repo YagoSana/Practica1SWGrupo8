@@ -99,7 +99,7 @@ class Producto
         $pdo = Aplicacion::getInstance()->getConexionBd();
 
         // Preparar la consulta SQL para seleccionar todos los Productos
-        $stmt = $pdo->prepare('SELECT * FROM productos ORDER BY Visible DESC');
+        $stmt = $pdo->prepare('SELECT * FROM productos ORDER BY Visible DESC, ID_Venta ASC');
 
         // Ejecutar la consulta
         $stmt->execute();

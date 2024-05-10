@@ -17,8 +17,6 @@ $contenido = <<<EOS
 if (isset($_SESSION["login"])) {
     // Obtiene las ventas del usuario
     $ventas = Venta::getAllVentas();
-    $contenido .= '<form action="ventaProducto.php"><button type="submit">Subir Producto</button></form>';
-
     if ($ventas == null) {
         $contenido .= "<p>No has subido ningun producto para su venta.</p>";
     } else {

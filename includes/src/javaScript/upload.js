@@ -1,12 +1,11 @@
 $(document).ready(function () {
-
-  var botonEnviar = document.getElementById("botonEnviar");
-  botonEnviar.disabled = true;
-
   $("#nombreOK").hide();
   $("#precioOK").hide();
   $("#nombreMal").hide();
   $("#precioMal").hide();
+
+  var botonEnviar = document.getElementById("botonEnviar");
+  botonEnviar.disabled = true;
 
   $("#producto_nombre").change(function () {
     const campo = $("#producto_nombre"); // referencia jquery al campo
